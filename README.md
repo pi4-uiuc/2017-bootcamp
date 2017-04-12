@@ -48,42 +48,42 @@ Dates: May 26 -- June 9, 2017
 ### Day 1: Computing Fundamentals
 
 1. The Terminal [SWC The Unix Shell](http://swcarpentry.github.io/shell-novice/))
-  * file system navigation
-  * scripting
-  * control flow
+   * file system navigation
+   * scripting
+   * control flow
 2. Version Control [SWC Git Novice 1-6](http://swcarpentry.github.io/git-novice/)
-  * commiting changes
-  * branching
-  * merging
+   * commiting changes
+   * branching
+   * merging
 4.  Collaborative Coding [SWC Git Novice 7-14](http://swcarpentry.github.io/git-novice/)
-  * GitHub
-  * Code Reviews
+    * GitHub
+    * Code Reviews
 3. Software Development
-  * Reproducible Research
-  * Collaboration using Agile / Scrum iterative methodology
-  * Guest lecture 'from the trenches?'
+   * Reproducible Research
+   * Collaboration using Agile / Scrum iterative methodology
+   * Guest lecture 'from the trenches?'
 5. Group Projects: Setup
-  * Overview of available data
-  * Overview of scientific questions 
-  * Divide into Teams
-  * Setup GitHub repository
-  * Formulate questions and hypotheses
+   * Overview of available data
+   * Overview of scientific questions 
+   * Divide into Teams
+   * Setup GitHub repository
+   * Formulate questions and hypotheses
 
 ### Day 2: Getting started with R
 
 1. [Getting Started with R and Rstudio (SWC 1-3)](http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/)
 2. Loading and Evaluating Data
-  * data types
-  * [vectorization](http://swcarpentry.github.io/r-novice-gapminder/09-vectorization/)
+   * data types
+   * [vectorization](http://swcarpentry.github.io/r-novice-gapminder/09-vectorization/)
 3. Control Flow (if, else, for) [SWC 7](http://swcarpentry.github.io/r-novice-gapminder/07-control-flow/)
 4. Visualization [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
 5. Data Manipulation
-  * [filtering, subsetting, summarizing, new variables with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)
-  * [Converting data from wide to long with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/)
+   * [filtering, subsetting, summarizing, new variables with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)
+   * [Converting data from wide to long with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/)
 6. Project 
-  * curate data 
-  * design data management plan
-  * identify data that is needed / open questions
+   * curate data 
+   * design data management plan
+   * identify data that is needed / open questions
 
 
 The first half of the day will follow the R Novice Gapminder lesson http://swcarpentry.github.io/r-novice-gapminder/
@@ -91,54 +91,54 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 ### Day 3: Databases and Visualization
 
 1. Data structures
-  * Spreadsheets [DC lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)
-  * Relational Databases
-  * non-relational databases
-  * Raster data and databases
+   * Spreadsheets [DC lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)
+   * Relational Databases
+   * non-relational databases
+   * Raster data and databases
 2. Querying databases
-  * SQL
-  * Connecting from R using the dplyr package
+   * SQL
+   * Connecting from R using the dplyr package
 5. Data Curation
-  * Metadata and Vocabularies
-  * Publishing Data, Archives and Repositories
+   * Metadata and Vocabularies
+   * Publishing Data, Archives and Repositories
 4. exploratory Data Analysis
-  * Data Cleaning with Open Refine (DC lesson 1-4)[http://www.datacarpentry.org/OpenRefine-ecology-lesson/]
-    * or, port to R
-  * Scatter Plots
+   * Data Cleaning with Open Refine (DC lesson 1-4)[http://www.datacarpentry.org/OpenRefine-ecology-lesson/]
+     * or, port to R
+   * Scatter Plots
 3. Visualization
-  * bestiary of plots, which plots for which data
-  * Turning tables into graphs [Gelman et al 2002](http://www.tandfonline.com/doi/abs/10.1198/000313002317572790)
-  * Beyond Bar and line graphs [Weissgerber et al 2015](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002128)
-  * Tufte, sparklines 
+   * bestiary of plots, which plots for which data
+   * Turning tables into graphs [Gelman et al 2002](http://www.tandfonline.com/doi/abs/10.1198/000313002317572790)
+   * Beyond Bar and line graphs [Weissgerber et al 2015](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002128)
+   * Tufte, sparklines 
 4. Project: Find data, clean, evaluate, and summarize, publish to GitHub
 
 ### Day 4: Probability and Statistics
 
 1. Probability Distributions
-  * Bestiary, meaning, PDFs (Bolker Ch4, [Dietze EE509](https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd))
-  * Stochastic Simulation (Bolker Ch5)
+   * Bestiary, meaning, PDFs (Bolker Ch4, [Dietze EE509](https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd))
+   * Stochastic Simulation (Bolker Ch5)
 2. Summary statistics
-  * Estimates of central tendency, variance, shape
-  * Fitting PDFs - 
+   * Estimates of central tendency, variance, shape
+   * Fitting PDFs - 
       * parameter estimation 
       * goodness of fit (_L_, [A,B,D,]IC)
 3. Statistical Modeling
-  * Regression
-  * Functions
-  * Dynamic Models
+   * Regression
+   * Functions
+   * Dynamic Models
 
 ### Day 5
 
 1. Model Building
-  * Descriptive Analysis
-  * Hypothesis Driven Analysis
+   * Descriptive Analysis
+   * Hypothesis Driven Analysis
 4. Model Fitting 
-  * Frequentist, Bayesian
-  * Inference and Prediction
+   * Frequentist, Bayesian
+   * Inference and Prediction
 6. Multilevel modeling
-  * ANOVA
-  * GLM
-  * HB
+   * ANOVA
+   * GLM
+   * HB
   
 ## Days 6-9 (Neal Davis)
 
