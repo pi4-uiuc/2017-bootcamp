@@ -131,11 +131,11 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
   * Functions
   * Dynamic Models
 
-
 ### Day 5
 
-2. Descriptive Analysis
-1. Hypothesis Driven Analysis
+1. Model Building
+  * Descriptive Analysis
+  * Hypothesis Driven Analysis
 4. Model Fitting 
   * Frequentist, Bayesian
   * Inference and Prediction
