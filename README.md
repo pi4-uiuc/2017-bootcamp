@@ -10,12 +10,15 @@ Neal Davis, Deparatment of Comptuer Science, University of Illinois
 
 Teaching Assistant: Vaibhav Karve, Department of Mathematics
 
+# THIS IS A DRAFT
 
 ## Objective
 
-To teach methods in data analysis and computation to Math graduate students in 2 weeks to students with little or no programming experience.
+A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation. The goal is to prepare students to apply their understanding of math to solve problems in industry.
 
 This is the material from a 2 week Computational Bootcamp for PI4 students prior to beginning summer internships as part of the NSF funded [PI4 Program for Interdisciplinary and Industrial Internships at Illinois](https://pi4.math.illinois.edu/). 
+
+Previous years: [2016](http://www.math.uiuc.edu/~hirani/cbmg/index.html), [2015](http://math.illinois.edu/~shahkar2/cbmg/), [2014](http://www.math.uiuc.edu/~hirani/teaching/cbmgsu14) courses focused more on numerical analysis. This year the focus is shifting to the use and analysis of large and complex data.
 
 ## Pre-requisites
 
