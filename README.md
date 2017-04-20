@@ -22,13 +22,11 @@ Previous years: [2016](http://www.math.uiuc.edu/~hirani/cbmg/index.html), [2015]
 
 ## Pre-requisites
 
-Students should be familiar with the R and Python programming languages. 
+Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by midnight June 25. Each of these courses should take a few hours to complete: 
+* [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) 
+* [Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science).
 
-Students are required to take two free courses from DataCamp and email their completion certificates by midnight June 25. Each course should take a few hours to complete.
-
-Required: [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) and [Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science).
-
-Exceptions: students who have experience with R and / or Python may be excused from these requirements. Please email the instructors with a sample of code that you have written.
+Students who have experience with R and / or Python may be excused from these requirements. Please email the instructors with a sample of code that you have written.
 
 ## Agenda
 
@@ -174,3 +172,7 @@ Hadoop lesson:
 
 ## Projects
 
+# References and further reading
+
+[A gallery of interesting Jupyter Notebooks
+](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks_
