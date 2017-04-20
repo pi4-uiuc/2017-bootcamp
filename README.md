@@ -30,9 +30,14 @@ Although the course is aimed at students with limited experience using software,
 
 ## Agenda
 
-Dates: May 26 -- June 9, 2017
+### Dates: May 26 -- June 9, 2017
 
-### Typical Daily Schedule:
+* May 26: Computing Basics
+* May 30-June 2: Data and Statistics in R
+* June 5-June 8: Data and Machine Learning with Python
+* June 9: Conclusion and Project Presentations
+
+### Daily Schedule:
 
 | Time | Activity |
 |---|---|
