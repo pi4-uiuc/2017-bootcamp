@@ -8,7 +8,7 @@ David LeBauer, Carl R Woese Institute for Genomic Biology
 
 Neal Davis, Deparatment of Comptuer Science, University of Illinois
 
-Teaching Assistant: Vaibhav Karve, Department of Mathematics
+Teaching Assistant: TBD
 
 # THIS IS A DRAFT
 
@@ -26,7 +26,7 @@ Although the course is aimed at students with limited experience using software,
 * [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) 
 * [Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science).
 
-Students who have experience with R and / or Python may be excused from these requirements. Please email the instructors with a sample of code that you have written.
+*Students who have significant experience with R and / or Python may elect to substitute a more advanced course.
 
 ## Agenda
 
@@ -175,4 +175,4 @@ Hadoop lesson:
 # References and further reading
 
 [A gallery of interesting Jupyter Notebooks
-](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks_
+](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks)
