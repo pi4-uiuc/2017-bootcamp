@@ -4,11 +4,11 @@ Computational Bootcamp for the PI4 program, Department of Mathematics,  Universi
 
 ## Instructors: 
 
-David LeBauer, Carl R Woese Institute for Genomic Biology
+David LeBauer, Carl R Woese Institute for Genomic Biology, University of Illinois
 
 Neal Davis, Deparatment of Comptuer Science, University of Illinois
 
-Teaching Assistant: TBD
+Teaching Assistant: Stefan Klajbor, Deparatment of Comptuer Science, University of Illinois
 
 # THIS IS A DRAFT
 
