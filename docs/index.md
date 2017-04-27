@@ -180,7 +180,7 @@ Hadoop lesson:
 <style type="text/css">
 #watermark {
   color: #d0d0d0;
-  font-size: 50pt;
+  font-size: 200pt;
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   position: absolute;
@@ -194,5 +194,5 @@ Hadoop lesson:
 </style>
 
 <div id="watermark">
-<p>DRAFT.</p>
+<p>DRAFT. DRAFT. DRAFT</p>
 </div>
