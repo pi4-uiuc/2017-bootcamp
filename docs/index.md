@@ -186,7 +186,7 @@ Hadoop lesson:
   position: absolute;
   width: 100%;
   height: 100%;
-  margin: 5;
+  margin: -5;
   z-index: -1;
   left:-100px;
   top:-200px;
