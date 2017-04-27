@@ -179,7 +179,7 @@ Hadoop lesson:
 <!-- adding Draft watermark http://stackoverflow.com/a/2486786/199217 -->
 <style type="text/css">
 #watermark {
-  color: #d0d0d0;
+  color: #F5F5F5;
   font-size: 200pt;
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
