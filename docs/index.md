@@ -188,8 +188,8 @@ Hadoop lesson:
   height: 100%;
   margin: 0;
   z-index: -1;
-  left:-50px;
-  top:-100px;
+  left:-100px;
+  top:-200px;
 }
 </style>
 
