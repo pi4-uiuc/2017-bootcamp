@@ -193,8 +193,6 @@ Hadoop lesson:
 }
 </style>
 
-
-<p>DDRAFT.</p>
 <div id="watermark">
 <p>DRAFT.</p>
 </div>
