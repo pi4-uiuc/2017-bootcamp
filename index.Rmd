@@ -25,7 +25,7 @@ David LeBauer, Carl R Woese Institute for Genomic Biology
 
 Neal Davis, Deparatment of Comptuer Science, University of Illinois
 
-Teaching Assistant: TBD
+Teaching Assistant: Stefan Klajbor, Department of Mathematics, University of Illinois
 
 ## Course Objective
 
