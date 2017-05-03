@@ -1,5 +1,6 @@
-# Day 1:  {#intro}
+# Day 1 Overview:  {#intro}
 
+## Shell 
 
 ## Version Control [SWC Git Novice 1-6](http://swcarpentry.github.io/git-novice/)
    * commiting changes
@@ -13,7 +14,7 @@
 ## Software Development
    * Reproducible Research
    * Collaboration using Agile / Scrum iterative methodology
-   * Guest lecture 'from the trenches?'
+   * Guest lecture 'from the trenches'
 
 ## Group Projects: Setup
    * Overview of available data
