@@ -1,4 +1,4 @@
-# PI4 Computational Bootcamp 2017
+# Computational Bootcamp 2017
 
 Computational Bootcamp for the PI4 program, Department of Mathematics,  University of Illinois at Urbana-Champaign
 
@@ -10,9 +10,7 @@ Neal Davis, Deparatment of Comptuer Science, University of Illinois
 
 Teaching Assistant: Stefan Klajbor, Deparatment of Comptuer Science, University of Illinois
 
-# THIS IS A DRAFT
-
-## Objective
+## Objectives
 
 A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation. The goal is to prepare students to apply their understanding of math to solve problems in industry.
 
@@ -177,7 +175,24 @@ Hadoop lesson:
 
 ## Projects
 
-# References and further reading
 
-[A gallery of interesting Jupyter Notebooks
-](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks)
+<!-- adding Draft watermark http://stackoverflow.com/a/2486786/199217 -->
+<style type="text/css">
+#watermark {
+  color: #F5F5F5;
+  font-size: 200pt;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: -5;
+  z-index: -1;
+  left:-100px;
+  top:-200px;
+}
+</style>
+
+<div id="watermark">
+<p>DRAFT. DRAFT. DRAFT</p>
+</div>
