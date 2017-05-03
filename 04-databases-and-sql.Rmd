@@ -1,0 +1,42 @@
+# Relational Databases and SQL
+
+## Relational Databases
+
+### Tables
+
+### Data Normalization
+
+### Schemas
+
+
+
+## SQL
+
+### Select
+
+### Join
+
+## Database Management Systems
+
+### Common software
+
+MySQL, PostgreSQL, Oracle, 
+
+Access??
+
+### Connecting to a database server
+
+### API
+
+## Real World Examples
+
+### A Simple database
+
+* Download data from BETYdb
+* Discuss how to normalize it
+
+### Advanced: BETYdb
+
+* Full Schema betydb.org/schemas
+* How would you query all of the planting dates associated with a trait record?
+

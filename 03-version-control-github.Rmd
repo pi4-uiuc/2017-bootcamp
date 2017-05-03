@@ -1,0 +1,24 @@
+# "Version Control, Reproducible Research, Collaborative development"
+
+## Version Control [SWC Git Novice 1-6](http://swcarpentry.github.io/git-novice/)
+
+### The Git Graph
+
+### commiting changes
+
+### branching
+
+### merging
+
+##  Collaborative Coding [SWC Git Novice 7-14](http://swcarpentry.github.io/git-novice/)
+
+### GitHub
+
+### Pull Requests & Code Reviews
+
+### Messaging
+
+* Slack
+* IRC
+
+## Reproducible Research

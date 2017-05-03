@@ -1,6 +1,23 @@
-# PI4 Computational Bootcamp 2017
+--- 
+title: "PI4 Computational Bootcamp"
+author: "David LeBauer and Neal Davis"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Textbook for PI4 Computational Bootcamp Summer 2017."
+---
 
-Computational Bootcamp for the PI4 program, Department of Mathematics,  University of Illinois at Urbana-Champaign
+
+
+This is the text for the 2017 PI4 Computational Bootcamp taught to students in the Department of Mathematics, University of Illinois at Urbana-Champaign.
+
+
+# Syllabus
 
 ## Instructors: 
 
@@ -10,9 +27,7 @@ Neal Davis, Deparatment of Comptuer Science, University of Illinois
 
 Teaching Assistant: TBD
 
-# THIS IS A DRAFT
-
-## Objective
+## Course Objective
 
 A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation. The goal is to prepare students to apply their understanding of math to solve problems in industry.
 
@@ -146,7 +161,7 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
    * GLM
    * HB
   
-## Days 6-9 (Neal Davis)
+### Days 6-9 (Neal Davis)
 
 - Data mining (from MATLAB tutorials)
 - Hadoop and MapReduce algorithm
@@ -177,7 +192,8 @@ Hadoop lesson:
 
 ## Projects
 
-# References and further reading
+## References and further reading
 
 [A gallery of interesting Jupyter Notebooks
 ](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks)
+
