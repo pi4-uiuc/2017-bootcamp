@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="the-terminal-unix-shell.html">
-<link rel="next" href="relational-databases-and-sql.html">
+<link rel="prev" href="relational-databases-and-sql.html">
+
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -200,80 +200,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="version-control-reproducible-research-collaborative-development" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> “Version Control, Reproducible Research, Collaborative development”</h1>
-<div id="version-control-swc-git-novice-1-6-1" class="section level2">
-<h2><span class="header-section-number">4.1</span> Version Control <a href="http://swcarpentry.github.io/git-novice/">SWC Git Novice 1-6</a></h2>
-<div id="getting-started" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Getting Started</h3>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">mkdir</span> myproject
-<span class="kw">git</span> init
-<span class="kw">git</span> status
-<span class="kw">cat</span> <span class="st">&quot;my project&quot;</span> <span class="kw">&gt;</span> README.md
-<span class="kw">git</span> status</code></pre></div>
+<div id="introduction-to-r" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Introduction to R</h1>
+<div id="getting-started-with-r-and-rstudio" class="section level2">
+<h2><span class="header-section-number">6.1</span> Getting Started with R and Rstudio</h2>
+<p><a href="http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/">Getting Started with R and Rstudio (SWC 1-3)</a></p>
 </div>
-<div id="commiting-changes" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> commiting changes</h3>
-<p>You need to tell git which files to line up for the commit</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">git</span> add README.md
-<span class="kw">git</span> status</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">git</span> commit -m <span class="st">&quot;added README as first commit&quot;</span>
-<span class="kw">git</span> status</code></pre></div>
-</div>
-<div id="branching" class="section level3">
-<h3><span class="header-section-number">4.1.3</span> branching</h3>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">git</span> checkout -b first-script</code></pre></div>
-<p>This creates a new branch called your ‘first script’. Now lets add something to it.</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">echo</span> <span class="st">&quot;!#/bin/bash \n echo &#39;hello world&#39;&quot;</span> <span class="kw">&gt;</span> myscript.sh</code></pre></div>
+<div id="loading-and-evaluating-data" class="section level2">
+<h2><span class="header-section-number">6.2</span> Loading and Evaluating Data</h2>
 <ul>
-<li>What is <code>\n</code>?</li>
-<li>What does <code>$</code> do?</li>
-</ul>
-<p>Now commit the changes:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">git</span> add myscript.sh
-<span class="kw">git</span> commit -m <span class="st">&#39;added hello world script&#39;</span></code></pre></div>
-</div>
-<div id="merging" class="section level3">
-<h3><span class="header-section-number">4.1.4</span> Merging</h3>
-<pre><code>git status
-git log
-git checkout master
-git status
-git merge first-script
-git status</code></pre>
-</div>
-<div id="review" class="section level3">
-<h3><span class="header-section-number">4.1.5</span> Review</h3>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">git</span> log --graph</code></pre></div>
-</div>
-</div>
-<div id="collaborative-coding-swc-git-novice-7-14-1" class="section level2">
-<h2><span class="header-section-number">4.2</span> Collaborative Coding <a href="http://swcarpentry.github.io/git-novice/">SWC Git Novice 7-14</a></h2>
-<div id="github" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> GitHub</h3>
-</div>
-<div id="pull-requests-code-reviews" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> Pull Requests &amp; Code Reviews</h3>
-</div>
-<div id="messaging" class="section level3">
-<h3><span class="header-section-number">4.2.3</span> Messaging</h3>
-<ul>
-<li>Slack</li>
-<li>IRC</li>
+<li>R data types</li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/09-vectorization/">vectorization</a></li>
 </ul>
 </div>
+<div id="control-flow-if-else-for" class="section level2">
+<h2><span class="header-section-number">6.3</span> Control Flow (if, else, for)</h2>
+<p>Following <a href="http://swcarpentry.github.io/r-novice-gapminder/07-control-flow/">SWC R intro 7</a></p>
 </div>
-<div id="git-in-practice" class="section level2">
-<h2><span class="header-section-number">4.3</span> Git in Practice</h2>
-<div class="figure">
-<img src="http://justinhileman.info/article/changing-history/git-flow.png" alt="image of git workflow" />
-<p class="caption">image of git workflow</p>
+<div id="visualization-in-r-using-ggplot" class="section level2">
+<h2><span class="header-section-number">6.4</span> Visualization in R using ggplot</h2>
+<p>Following <a href="http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/">SWC 8</a></p>
 </div>
-<p>From Vincent Dressen <a href="http://nvie.com/posts/a-successful-git-branching-model/" class="uri">http://nvie.com/posts/a-successful-git-branching-model/</a></p>
-</div>
-<div id="reproducible-research" class="section level2">
-<h2><span class="header-section-number">4.4</span> Reproducible Research</h2>
+<div id="data-manipulation" class="section level2">
+<h2><span class="header-section-number">6.5</span> Data Manipulation</h2>
+<ul>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/">filtering, subsetting, summarizing, new variables with dplyr</a></li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/">Converting data from wide to long with tidyr</a></li>
+</ul>
 
+<div id="refs" class="references">
+<div>
+<p>Devenyi, Gabriel, Christina Koch, and Ashwin Srinath, eds. 2016. “Software Carpentry: The Unix Shell.” doi:<a href="https://doi.org/10.5281/zenodo.57544">10.5281/zenodo.57544</a>.</p>
+</div>
+</div>
 </div>
 </div>
             </section>
@@ -281,8 +240,8 @@ git status</code></pre>
           </div>
         </div>
       </div>
-<a href="the-terminal-unix-shell.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="relational-databases-and-sql.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="relational-databases-and-sql.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
