@@ -168,22 +168,23 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 - Basic ML (from MATLAB tutorials)
 
 Data mining topics:
-- Data cleaning
-- Principal component analysis
-- k-Nearest Neighbor clustering
-- k-D tree
-- Support Vector Machine
-- Monte Carlo simulation
-- k-Means clustering
-- Hierarchical clustering
-- Hidden Markov model
+
+* Data cleaning
+* Principal component analysis
+* k-Nearest Neighbor clustering
+* k-D tree
+* Support Vector Machine
+* Monte Carlo simulation
+* k-Means clustering
+* Hierarchical clustering
+* Hidden Markov model
 
 Hadoop lesson:
-- MapReduce algorithm
-- What are Hadoop and friends?
-- Hadoop interface
-- Basic examples (word count, etc.)
-- PMU example
+* MapReduce algorithm
+* What are Hadoop and friends?
+* Hadoop interface
+* Basic examples (word count, etc.)
+* PMU example
 
 ### Day 10 Project Wrapup and Presentations
 
