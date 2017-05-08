@@ -23,3 +23,7 @@
    * Setup GitHub repository
    * Formulate questions and hypotheses
    
+
+## Reading
+
+Vincent Dresen "A successful Git branching model" http://nvie.com/posts/a-successful-git-branching-model/
