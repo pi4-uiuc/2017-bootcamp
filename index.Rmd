@@ -37,7 +37,7 @@ Previous years: [2016](http://www.math.uiuc.edu/~hirani/cbmg/index.html), [2015]
 
 ## Pre-requisites
 
-Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by midnight June 25. Each of these courses should take a few hours to complete: 
+Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by midnight May 25. Each of these courses should take a few hours to complete: 
 * [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) 
 * [Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science).
 
