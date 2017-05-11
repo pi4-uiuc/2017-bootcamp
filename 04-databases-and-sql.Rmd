@@ -12,9 +12,26 @@
 
 ## SQL
 
-### Select
+### Basic commands
 
-### Join
+SELECT
+WHERE
+JOIN
+
+LIMIT
+ORDER BY
+GROUP BY
+AND
+OR
+MIN
+MAX
+AVG
+SUM
+COUNT
+LIKE
+
+
+### Types of Joins
 
 ## Database Management Systems
 
@@ -26,7 +43,30 @@ Access??
 
 ### Connecting to a database server
 
-### API
+connection parameters
+host
+login
+user
+database
+
+.pgpass
+
+psql -U bety -d bety -h localhost
+
+### R: RPostgreSQL and dplyr
+
+
+
+### APIs
+
+keys
+### restful interface
+
+get put delete 
+
+### json data structures
+
+### R traits package
 
 ## Real World Examples
 
@@ -86,3 +126,7 @@ SELECT 'yields'::character(10) AS result_type,
 ```
 
 For more information, see the [BETYdb data access documentation](https://pecan.gitbooks.io/betydb-data-access/content/sqlqueries.html)
+
+## references and further reading
+
+https://www.dataquest.io/blog/sql-basics/
