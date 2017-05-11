@@ -2,9 +2,17 @@
 
 ## Relational Databases
 
+### Data Normalization
+
+example: 
+
+download from betydb.org/search?genus=Miscanthus
+review table
+where are redundancies
+
 ### Tables
 
-### Data Normalization
+
 
 ### Schemas
 
