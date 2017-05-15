@@ -6,9 +6,9 @@ Computational Bootcamp for the PI4 program, Department of Mathematics,  Universi
 
 David LeBauer, Carl R Woese Institute for Genomic Biology, University of Illinois
 
-Neal Davis, Deparatment of Comptuer Science, University of Illinois
+Neal Davis, Deparatment of Computer Science, University of Illinois
 
-Teaching Assistant: Stefan Klajbor, Deparatment of Comptuer Science, University of Illinois
+Teaching Assistant: Stefan Klajbor, Deparatment of Computer Science, University of Illinois
 
 # THIS IS A DRAFT
 
@@ -146,29 +146,31 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
    * GLM
    * HB
   
-## Days 6-9 (Neal Davis)
+### Day 6
 
-- Data mining (from MATLAB tutorials)
-- Hadoop and MapReduce algorithm
-- Basic ML (from MATLAB tutorials)
+- Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
 
-Data mining topics:
-- Data cleaning
-- Principal component analysis
-- k-Nearest Neighbor clustering
-- k-D tree
-- Support Vector Machine
-- Monte Carlo simulation
-- k-Means clustering
-- Hierarchical clustering
-- Hidden Markov model
+1. Pandas and MatPlotLib
+2. Data cleaning
+3. Principal Component Analysis
 
-Hadoop lesson:
-- MapReduce algorithm
-- What are Hadoop and friends?
-- Hadoop interface
-- Basic examples (word count, etc.)
-- PMU example
+### Day 7
+
+1. $k$-nearest-neighbor
+2. $k$-d tree
+3. Support Vector Machines
+
+### Day 8
+
+1. $k$-means clustering
+2. Hierarchical clustering
+3. Hidden Markov models
+4. Amazon Web Services
+
+### Day 9
+
+1. Hadoop and MapReduce
+2. The Hadoop zoo
 
 ### Day 10 Project Wrapup and Presentations
 
