@@ -148,6 +148,8 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
   
 ### Day 6
 
+- Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
+
 1. Pandas and MatPlotLib
 2. Data cleaning
 3. Principal Component Analysis
