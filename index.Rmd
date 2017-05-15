@@ -157,7 +157,7 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
    * Frequentist, Bayesian
    * Inference and Prediction
 6. Multilevel modeling
-   * ANOVA
+   * ANOVA ([Gelman et al 2005](https://projecteuclid.org/download/pdfview_1/euclid.aos/1112967698))
    * GLM
    * HB
   
