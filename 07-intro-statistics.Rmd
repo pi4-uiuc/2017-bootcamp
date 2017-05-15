@@ -1,0 +1,9 @@
+2. Summary statistics
+   * Estimates of central tendency, variance, shape
+   * Fitting PDFs - 
+      * parameter estimation 
+      * goodness of fit (_L_, [A,B,D,]IC)
+3. Statistical Modeling
+   * Regression
+   * Functions
+   * Dynamic Models
