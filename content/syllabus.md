@@ -16,10 +16,6 @@ Stefan Klajbor (TA), Department of Mathematics, University of Illinois
 
 A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation. The goal is to prepare students to apply their understanding of math to solve problems in industry.
 
-This is the material from a 2 week Computational Bootcamp for PI4 students prior to beginning summer internships as part of the NSF funded [PI4 Program for Interdisciplinary and Industrial Internships at Illinois](https://pi4.math.illinois.edu/). 
-
-Previous years: [2016](http://www.math.uiuc.edu/~hirani/cbmg/index.html), [2015](http://math.illinois.edu/~shahkar2/cbmg/), [2014](http://www.math.uiuc.edu/~hirani/teaching/cbmgsu14) courses focused more on numerical analysis. This year the focus is shifting to the use and analysis of large and complex data.
-
 ## Pre-requisites
 
 Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by midnight May 25. Each of these courses should take a few hours to complete: 
