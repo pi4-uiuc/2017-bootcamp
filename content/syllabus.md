@@ -8,7 +8,7 @@ date: "2017-05-05"
 
 David LeBauer, Carl R Woese Institute for Genomic Biology
 
-Neal Davis, Deparatment of Comptuer Science, University of Illinois
+Neal Davis, Deparatment of Computer Science, University of Illinois
 
 Stefan Klajbor (TA), Department of Mathematics, University of Illinois
 
@@ -142,31 +142,31 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
    * GLM
    * HB
   
-### Days 6-9 (Neal Davis)
+### Day 6
 
-- Data mining (from MATLAB tutorials)
-- Hadoop and MapReduce algorithm
-- Basic ML (from MATLAB tutorials)
+- Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
 
-Data mining topics:
+1. Pandas and MatPlotLib
+2. Data cleaning
+3. Principal Component Analysis
 
-* Data cleaning
-* Principal component analysis
-* k-Nearest Neighbor clustering
-* k-D tree
-* Support Vector Machine
-* Monte Carlo simulation
-* k-Means clustering
-* Hierarchical clustering
-* Hidden Markov model
+### Day 7
 
-Hadoop lesson:
+1. $k$-nearest-neighbor
+2. $k$-d tree
+3. Support Vector Machines
 
-* MapReduce algorithm
-* What are Hadoop and friends?
-* Hadoop interface
-* Basic examples (word count, etc.)
-* PMU example
+### Day 8
+
+1. $k$-means clustering
+2. Hierarchical clustering
+3. Hidden Markov models
+4. Amazon Web Services
+
+### Day 9
+
+1. Hadoop and MapReduce
+2. The Hadoop zoo
 
 ### Day 10 Project Wrapup and Presentations
 
