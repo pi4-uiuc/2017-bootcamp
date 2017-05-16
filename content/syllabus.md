@@ -63,6 +63,7 @@ We will have a one hour break each day for lunch. On days with a guest lecture, 
 
 ### Day 1: Computing Fundamentals
 
+Friday May 26
 
 1. The Terminal [SWC The Unix Shell](http://swcarpentry.github.io/shell-novice/))
    * file system navigation
@@ -89,6 +90,8 @@ We will have a one hour break each day for lunch. On days with a guest lecture, 
 
 ### Day 2: Getting started with R
 
+Tuesday May 30
+
 1. [Getting Started with R and Rstudio (SWC 1-3)](http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/)
 2. Loading and Evaluating Data
    * data types
@@ -107,6 +110,8 @@ We will have a one hour break each day for lunch. On days with a guest lecture, 
 The first half of the day will follow the R Novice Gapminder lesson http://swcarpentry.github.io/r-novice-gapminder/
 
 ### Day 3: Databases and Visualization
+
+Wednesday May 31 
 
 1. Data structures
    * Spreadsheets [DC lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)
@@ -132,6 +137,8 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 4: Probability and Statistics
 
+Thursday June 1
+
 1. Probability Distributions
    * Bestiary, meaning, PDFs (Bolker Ch4, [Dietze EE509](https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd))
    * Stochastic Simulation (Bolker Ch5)
@@ -147,6 +154,8 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 5
 
+Friday June 2
+
 1. Model Building
    * Descriptive Analysis
    * Hypothesis Driven Analysis
@@ -160,6 +169,8 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
   
 ### Day 6
 
+Monday June 5
+
 - Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
 
 1. Pandas and MatPlotLib
@@ -168,11 +179,16 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 7
 
+Tuesday June 6
+
 1. $k$-nearest-neighbor
 2. $k$-d tree
 3. Support Vector Machines
 
 ### Day 8
+
+Wednesday June 7
+
 
 1. $k$-means clustering
 2. Hierarchical clustering
@@ -181,10 +197,14 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 9
 
+Thursday June 8
+
 1. Hadoop and MapReduce
 2. The Hadoop zoo
 
 ### Day 10 Project Wrapup and Presentations
+
+Friday June 9
 
 * Morning: Group project completion and write-up.
 * Afternoon: Group Presentations (15 min each, open to public).
