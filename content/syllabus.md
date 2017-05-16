@@ -1,6 +1,9 @@
 ---
 title: "Syllabus"
 date: "2017-05-05"
+output:
+  blogdown::html_page:
+    toc: "true"
 ---
 
 

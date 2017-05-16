@@ -66,7 +66,7 @@
 
 <p>David LeBauer, Carl R Woese Institute for Genomic Biology</p>
 
-<p>Neal Davis, Deparatment of Comptuer Science, University of Illinois</p>
+<p>Neal Davis, Deparatment of Computer Science, University of Illinois</p>
 
 <p>Stefan Klajbor (TA), Department of Mathematics, University of Illinois</p>
 
@@ -76,11 +76,25 @@
 
 <h2 id="pre-requisites">Pre-requisites</h2>
 
+<h3 id="accounts">Accounts</h3>
+
+<p>Each student should have an account on GitHub.com and terraref.ndslabs.org.</p>
+
+<h3 id="familarity-with-basic-syntax-and-operations-in-r-and-python">Familarity with basic syntax and operations in R and Python</h3>
+
 <p>Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are <strong>Required</strong>*; completion certificates must be mailed to the instructors by midnight May 25. Each of these courses should take a few hours to complete:
 * <a href="https://www.datacamp.com/courses/free-introduction-to-r">Introduction to R</a>
 * <a href="https://www.datacamp.com/courses/intro-to-python-for-data-science">Introduction to Python for Data Science</a>.</p>
 
 <p>*Students who have significant experience with R and / or Python may elect to substitute a more advanced course.</p>
+
+<h3 id="computers-and-software">Computers and Software</h3>
+
+<p>The only software requirement is a modern web browser.</p>
+
+<p>The classroom is equiped with desktop computers, though students are encouraged to bring laptops. Much of the instruction and collaborative work will be done using the NDS Labs Workbench. The NDS labs workbench provides Shell, R, and Python editors as well as access to large datasets within a web browser. Please sign up for an account here:  at <a href="https://terraref.ndslabs.org">terraref.ndslabs.org</a>.</p>
+
+<p>Students are welcome and encouraged to run the software on their own computers, however some of the software is challenging to install and will be limited time for instructors to assist with installation and configuration.</p>
 
 <h2 id="agenda">Agenda</h2>
 
@@ -316,37 +330,41 @@
 </ul></li>
 </ol>
 
-<h3 id="days-6-9-neal-davis">Days 6-9 (Neal Davis)</h3>
+<h3 id="day-6">Day 6</h3>
 
 <ul>
-<li>Data mining (from MATLAB tutorials)</li>
-<li>Hadoop and MapReduce algorithm</li>
-<li>Basic ML (from MATLAB tutorials)</li>
+<li>Presumptive background:  <a href="https://www.datacamp.com/courses/intro-to-python-for-data-science">Intro to Python for Data Science</a> (covers through NumPy)</li>
 </ul>
 
-<p>Data mining topics:</p>
-
-<ul>
+<ol>
+<li>Pandas and MatPlotLib</li>
 <li>Data cleaning</li>
-<li>Principal component analysis</li>
-<li>k-Nearest Neighbor clustering</li>
-<li>k-D tree</li>
-<li>Support Vector Machine</li>
-<li>Monte Carlo simulation</li>
-<li>k-Means clustering</li>
+<li>Principal Component Analysis</li>
+</ol>
+
+<h3 id="day-7">Day 7</h3>
+
+<ol>
+<li>$k$-nearest-neighbor</li>
+<li>$k$-d tree</li>
+<li>Support Vector Machines</li>
+</ol>
+
+<h3 id="day-8">Day 8</h3>
+
+<ol>
+<li>$k$-means clustering</li>
 <li>Hierarchical clustering</li>
-<li>Hidden Markov model</li>
-</ul>
+<li>Hidden Markov models</li>
+<li>Amazon Web Services</li>
+</ol>
 
-<p>Hadoop lesson:</p>
+<h3 id="day-9">Day 9</h3>
 
-<ul>
-<li>MapReduce algorithm</li>
-<li>What are Hadoop and friends?</li>
-<li>Hadoop interface</li>
-<li>Basic examples (word count, etc.)</li>
-<li>PMU example</li>
-</ul>
+<ol>
+<li>Hadoop and MapReduce</li>
+<li>The Hadoop zoo</li>
+</ol>
 
 <h3 id="day-10-project-wrapup-and-presentations">Day 10 Project Wrapup and Presentations</h3>
 
@@ -378,8 +396,29 @@
     
 
     
+<script src="../js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 
     
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98205888-1', 'auto');
+ga('send', 'pageview');
+</script>
+
   </body>
 </html>
 

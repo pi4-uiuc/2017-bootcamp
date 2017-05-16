@@ -36,19 +36,9 @@
       
       <guid>/syllabus/</guid>
       <description>Instructors: David LeBauer, Carl R Woese Institute for Genomic Biology
-Neal Davis, Deparatment of Comptuer Science, University of Illinois
+Neal Davis, Deparatment of Computer Science, University of Illinois
 Stefan Klajbor (TA), Department of Mathematics, University of Illinois
 Course Objectives A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation. The goal is to prepare students to apply their understanding of math to solve problems in industry.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/</guid>
-      <description>PI4 Computational Bootcamp This is the material from a 2 week Computational Bootcamp for PI4 students prior to beginning summer internships as part of the NSF funded PI4 Program for Interdisciplinary and Industrial Internships at Illinois.
-This year the focus is shifting to the use and analysis of large and complex data. In previous years, courses focused more on numerical analysis. Materials from 2016, 2015, 2014 are available through these links.</description>
     </item>
     
   </channel>
