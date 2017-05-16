@@ -41,16 +41,31 @@ The classroom is equiped with desktop computers, though students are encouraged 
 
 Students are welcome and encouraged to run the software on their own computers, however some of the software is challenging to install and will be limited time for instructors to assist with installation and configuration.
 
-## Agenda
+### Code of Conduct
 
-### Dates: May 26 -- June 9, 2017
+All participants must read and abide by our [Code of Conduct](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/CODE_OF_CONDUCT.md). 
+
+## Logistics
+
+
+#### Location: 239 [Altgeld Hall](https://en.wikipedia.org/wiki/Altgeld_Hall), 
+
+University of Illinois Department of Mathematics
+1409 West Green Street
+Urbana, Il
+
+#### Time: 9AM - 5PM
+
+We will have a one hour break each day for lunch. On days with a guest lecture, we will break from 11:30 12:00 so that students have time to purchase a lunch and bring it back to the classroom in time for the talk.
+
+#### Dates: May 26 -- June 9, 2017
 
 * May 26: Computing Basics
 * May 30-June 2: Data and Statistics in R
 * June 5-June 8: Data and Machine Learning with Python
 * June 9: Conclusion and Project Presentations
 
-### Daily Schedule:
+#### Daily Schedule:
 
 | Time | Activity |
 |:---|:---|
@@ -64,7 +79,12 @@ Students are welcome and encouraged to run the software on their own computers, 
 | 3:00--3:15 | Break | 
 | 3:15--5:00 | Group Projects | 
 
+
+## Course Schedule
+
 ### Day 1: Computing Fundamentals
+
+Friday May 26
 
 1. The Terminal [SWC The Unix Shell](http://swcarpentry.github.io/shell-novice/))
    * file system navigation
@@ -74,13 +94,14 @@ Students are welcome and encouraged to run the software on their own computers, 
    * commiting changes
    * branching
    * merging
+5. Guest Lecture: 
+   * Aaron Saxton, PhD. Senior Data Scientist, Agrible Inc.
 4.  Collaborative Coding [SWC Git Novice 7-14](http://swcarpentry.github.io/git-novice/)
     * GitHub
     * Code Reviews
 3. Software Development
    * Reproducible Research
-   * Collaboration using Agile / Scrum iterative methodology
-   * Guest lecture 'from the trenches?'
+   * Agile / Scrum
 5. Group Projects: Setup
    * Overview of available data
    * Overview of scientific questions 
@@ -89,6 +110,8 @@ Students are welcome and encouraged to run the software on their own computers, 
    * Formulate questions and hypotheses
 
 ### Day 2: Getting started with R
+
+Tuesday May 30
 
 1. [Getting Started with R and Rstudio (SWC 1-3)](http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/)
 2. Loading and Evaluating Data
@@ -108,6 +131,8 @@ Students are welcome and encouraged to run the software on their own computers, 
 The first half of the day will follow the R Novice Gapminder lesson http://swcarpentry.github.io/r-novice-gapminder/
 
 ### Day 3: Databases and Visualization
+
+Wednesday May 31 
 
 1. Data structures
    * Spreadsheets [DC lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)
@@ -133,6 +158,8 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 4: Probability and Statistics
 
+Thursday June 1
+
 1. Probability Distributions
    * Bestiary, meaning, PDFs (Bolker Ch4, [Dietze EE509](https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd))
    * Stochastic Simulation (Bolker Ch5)
@@ -148,6 +175,8 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 5
 
+Friday June 2
+
 1. Model Building
    * Descriptive Analysis
    * Hypothesis Driven Analysis
@@ -161,6 +190,8 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
   
 ### Day 6
 
+Monday June 5
+
 - Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
 
 1. Pandas and MatPlotLib
@@ -169,11 +200,16 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 7
 
+Tuesday June 6
+
 1. $k$-nearest-neighbor
 2. $k$-d tree
 3. Support Vector Machines
 
 ### Day 8
+
+Wednesday June 7
+
 
 1. $k$-means clustering
 2. Hierarchical clustering
@@ -182,10 +218,14 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 9
 
+Thursday June 8
+
 1. Hadoop and MapReduce
 2. The Hadoop zoo
 
 ### Day 10 Project Wrapup and Presentations
+
+Friday June 9
 
 * Morning: Group project completion and write-up.
 * Afternoon: Group Presentations (15 min each, open to public).
