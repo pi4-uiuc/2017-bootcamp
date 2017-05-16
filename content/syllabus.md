@@ -18,11 +18,25 @@ A two week course designed to introduce Math graduate students with little or no
 
 ## Pre-requisites
 
+### Accounts
+
+Each student should have an account on GitHub.com and terraref.ndslabs.org. 
+
+### Familarity with basic syntax and operations in R and Python
+
 Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by midnight May 25. Each of these courses should take a few hours to complete: 
 * [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) 
 * [Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science).
 
 *Students who have significant experience with R and / or Python may elect to substitute a more advanced course.
+
+### Computers and Software 
+
+The only software requirement is a modern web browser.
+
+The classroom is equiped with desktop computers, though students are encouraged to bring laptops. Much of the instruction and collaborative work will be done using the NDS Labs Workbench. The NDS labs workbench provides Shell, R, and Python editors as well as access to large datasets within a web browser. Please sign up for an account here:  at [terraref.ndslabs.org](https://terraref.ndslabs.org).
+
+Students are welcome and encouraged to run the software on their own computers, however some of the software is challenging to install and will be limited time for instructors to assist with installation and configuration.
 
 ## Agenda
 
