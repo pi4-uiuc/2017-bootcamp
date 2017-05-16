@@ -24,16 +24,27 @@ Although the course is aimed at students with limited experience using software,
 
 *Students who have significant experience with R and / or Python may elect to substitute a more advanced course.
 
-## Agenda
+## Logistics
 
-### Dates: May 26 -- June 9, 2017
+
+#### Location: 239 [Altgeld Hall](https://en.wikipedia.org/wiki/Altgeld_Hall), 
+
+University of Illinois Department of Mathematics
+1409 West Green Street
+Urbana, Il
+
+#### Time: 9AM - 5PM
+
+We will have a one hour break each day for lunch. On days with a guest lecture, we will break from 11:30 12:00 so that students have time to purchase a lunch and bring it back to the classroom in time for the talk.
+
+#### Dates: May 26 -- June 9, 2017
 
 * May 26: Computing Basics
 * May 30-June 2: Data and Statistics in R
 * June 5-June 8: Data and Machine Learning with Python
 * June 9: Conclusion and Project Presentations
 
-### Daily Schedule:
+#### Daily Schedule:
 
 | Time | Activity |
 |:---|:---|
@@ -46,6 +57,9 @@ Although the course is aimed at students with limited experience using software,
 | 2:00--3:00 | Topic 4 |
 | 3:00--3:15 | Break | 
 | 3:15--5:00 | Group Projects | 
+
+
+## Agenda
 
 ### Day 1: Computing Fundamentals
 
