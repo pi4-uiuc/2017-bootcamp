@@ -63,6 +63,7 @@ We will have a one hour break each day for lunch. On days with a guest lecture, 
 
 ### Day 1: Computing Fundamentals
 
+
 1. The Terminal [SWC The Unix Shell](http://swcarpentry.github.io/shell-novice/))
    * file system navigation
    * scripting
@@ -71,13 +72,14 @@ We will have a one hour break each day for lunch. On days with a guest lecture, 
    * commiting changes
    * branching
    * merging
+5. Guest Lecture: 
+   * Aaron Saxton, PhD. Senior Data Scientist, Agrible Inc.
 4.  Collaborative Coding [SWC Git Novice 7-14](http://swcarpentry.github.io/git-novice/)
     * GitHub
     * Code Reviews
 3. Software Development
    * Reproducible Research
-   * Collaboration using Agile / Scrum iterative methodology
-   * Guest lecture 'from the trenches?'
+   * Agile / Scrum
 5. Group Projects: Setup
    * Overview of available data
    * Overview of scientific questions 
