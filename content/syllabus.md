@@ -79,6 +79,13 @@ We will have a one hour break each day for lunch. On days with a guest lecture, 
 | 3:00--3:15 | Break | 
 | 3:15--5:00 | Group Projects | 
 
+#### Guest Presentations
+
+All lectures will be from 12:00 to 1:00 unless otherwise noted.
+
+* Friday, May 26: "TBD" Aaron Saxton, PhD. Senior Data Scientist, Agrible Inc.
+* Wednesday May 31: "Data in Nuclear Engineering" 
+Katy Huff, PhD. Assitant Professor in the Department of Nuclear, Plasma, and Radiological Engineering, UIUC
 
 ## Course Schedule
 
@@ -94,8 +101,6 @@ Friday May 26
    * commiting changes
    * branching
    * merging
-5. Guest Lecture: 
-   * Aaron Saxton, PhD. Senior Data Scientist, Agrible Inc.
 4.  Collaborative Coding [SWC Git Novice 7-14](http://swcarpentry.github.io/git-novice/)
     * GitHub
     * Code Reviews
