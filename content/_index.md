@@ -4,7 +4,7 @@ site: blogdown:::blogdown_site
 
 ## 2017 PI4 Computational Bootcamp
 
-The 2017 PI4 computational Bootcamp will be held May 28 - June 9, 2017 in 239 Altgeld Hall.
+The 2017 PI4 computational Bootcamp will be held May 26 - June 9, 2017 in 239 Altgeld Hall.
 
 The bootcamp is a two-week long course for for PI4 students prior to beginning summer internships as part of the NSF funded [PI4 Program for Interdisciplinary and Industrial Internships at Illinois](https://pi4.math.illinois.edu/). 
 
