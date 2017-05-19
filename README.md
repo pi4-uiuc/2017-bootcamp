@@ -69,7 +69,7 @@ ssh -Nf -L 5432:localhost:5432 bety6.ncsa.illinois.edu
 
 ### R Lessons
 
-For R material we are using the [rOpenSci docker image]. 
+For R material we are using docker images defined in the [terraref/toolserver-dockerfiles](https://github.com/terraref/toolserver-dockerfiles) GitHub repository. 
 
 Handy additions:
 
