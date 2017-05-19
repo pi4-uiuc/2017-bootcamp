@@ -6,6 +6,7 @@ date: "2017-05-05"
 
 ### Day 1. Programming Fundamentals  
 
+* **Wilson et al 2014 [Best Practices for Scientific Computing](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745)**
 * [Agile Manifesto](http://agilemanifesto.org/principles.html)
 * [Vincent Dresen "A successful Git branching model"](http://nvie.com/posts/a-successful-git-branching-model/)
 
@@ -16,7 +17,7 @@ date: "2017-05-05"
 
 ### Day 3: Databases and Visualization
 
-* BETYdb 
+* [LeBauer, David, et al. "BETYdb: a yield, trait, and ecosystem service database applied to second‐generation bioenergy feedstock production." GCB Bioenergy (2017).](http://onlinelibrary.wiley.com/doi/10.1111/gcbb.12420/full)
 * [Tidy Data](http://r4ds.had.co.nz/tidy-data.html)
 * [Relational Data](http://r4ds.had.co.nz/relational-data.html)
 * Turning tables into graphs [Gelman et al 2002](http://www.tandfonline.com/doi/abs/10.1198/000313002317572790)

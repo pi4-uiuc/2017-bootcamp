@@ -1,18 +1,52 @@
 # Relational Databases and SQL
 
+
+To motivate the use of a relational database, lets start by looking at a table. 
+
+Go to [betydb.org](https://betydb.org) and enter "Miscanthus Yield" into the search box and click the search glass icon.
+
+Lets review the information in this table.
+
+* Site with city
+* Date + time + timezone
+* Species + common name 
+* Cultivar
+* Trait 
+* Mean (with units)
+* Method
+* Entity
+
+Now click the "Download Results" button. This will download a .csv file. A .csv file is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:
+
+```
+row 1 col 1, row 1 col 2, row 1 col 3
+row 2 col 1, row 2 col 2, row 2 col 3
+row 3 col 1, row 3 col 2, row 3 col 3
+```
+
+_a brief note about csv files_
+
+By default, many computers will open the csv file directly into a [spreadsheet program](https://en.wikipedia.org/wiki/spreadsheet) like Microsoft Excel or OpenOffice Calc. But because it is a text file, you can also open it in a [text editor](https://en.wikipedia.org/wiki/Text_editor) like Notepad, nano, or emacs.
+
+It can also be easily read by any software or parsed at the command line using tools like `cut` and `sed`. Unlike xml and json, it is more intuitive for a human to read.
+
+
+
 ## Relational Databases
+
 
 ### Data Normalization
 
 example: 
 
-download from betydb.org/search?genus=Miscanthus
+download from betydb.org/search?genus=Miscanthus&trait=Yield
 review table
 where are redundancies
 
-### Tables
+### Tables & Schemas
 
 
+![A simplified entity–relationship diagram for key tables in Biofuel Ecophysiological Traits and Yields database (BETYdb).](http://onlinelibrary.wiley.com/store/10.1111/gcbb.12420/asset/image_n/gcbb12420-fig-0001.png?v=1&t=j2uxcy2q&s=ddb49c4e35c662b8ca120fc2882a17f28f0f50b5)
 
 ### Schemas
 
