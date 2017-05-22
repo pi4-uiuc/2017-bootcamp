@@ -27,7 +27,7 @@ Each student should have an account on GitHub.com and terraref.ndslabs.org.
 
 ### Familarity with basic syntax and operations in R and Python
 
-Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by midnight May 25. Each of these courses should take a few hours to complete: 
+Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by the start of the second day of class (Tuesday May 30). These courses should take a few hours to complete: 
 * [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) 
 * [Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science).
 
@@ -139,6 +139,10 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 Wednesday May 31 
 
+4. Data Cleaning and Exploratory Analysis
+   * Data Cleaning with Open Refine [DC lesson 1-4](http://www.datacarpentry.org/OpenRefine-ecology-lesson/)
+   * Data Cleaning in R
+   * Scatter Plots
 1. Data structures
    * Spreadsheets [DC lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)
    * Relational Databases
@@ -150,10 +154,6 @@ Wednesday May 31
 5. Data Curation
    * Metadata and Vocabularies
    * Publishing Data, Archives and Repositories
-4. exploratory Data Analysis
-   * Data Cleaning with Open Refine [DC lesson 1-4](http://www.datacarpentry.org/OpenRefine-ecology-lesson/)
-   * Data Cleaning in R
-   * Scatter Plots
 3. Visualization
    * bestiary of plots, which plots for which data
    * Turning tables into graphs [Gelman et al 2002](http://www.tandfonline.com/doi/abs/10.1198/000313002317572790)
@@ -199,7 +199,8 @@ Monday June 5
 
 - Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
 
-1. Pandas and MatPlotLib
+1. Pandas
+2. MatPlotLib etc
 2. Data cleaning
 3. Principal Component Analysis
 
@@ -210,6 +211,7 @@ Tuesday June 6
 1. $k$-nearest-neighbor
 2. $k$-d tree
 3. Support Vector Machines
+4. Monte Carlo sampling
 
 ### Day 8
 
@@ -219,14 +221,15 @@ Wednesday June 7
 1. $k$-means clustering
 2. Hierarchical clustering
 3. Hidden Markov models
-4. Amazon Web Services
+4. Data Mining Project
 
 ### Day 9
 
 Thursday June 8
 
-1. Hadoop and MapReduce
-2. The Hadoop zoo
+1. Amazon Web Services (Cloud computing)
+1. Hadoop MapReduce
+2. Hadoop Pig
 
 ### Day 10 Project Wrapup and Presentations
 
