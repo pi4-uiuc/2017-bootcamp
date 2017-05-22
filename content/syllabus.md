@@ -9,11 +9,17 @@ output:
 
 ## Instructors: 
 
-David LeBauer, Carl R Woese Institute for Genomic Biology
+David LeBauer
+* Carl R Woese Institute for Genomic Biology and National Center for Supercomputing Applications, University of Illinois
+* email:dlebauer@illinois.edu 
 
-Neal Davis, Deparatment of Computer Science, University of Illinois
+Neal Davis
+* Deparatment of Computer Science, University of Illinois
+* email:davis68@illinois.edu
 
-Stefan Klajbor (TA), Department of Mathematics, University of Illinois
+Stefan Klajbor (TA) 
+* Department of Mathematics, University of Illinois
+* email:klajbor2@illinois.edu
 
 ## Course Objectives
 
@@ -23,11 +29,15 @@ A two week course designed to introduce Math graduate students with little or no
 
 ### Accounts
 
-Each student should have an account on GitHub.com and terraref.ndslabs.org. 
+Each student should register for the following accounts: 
+
+* github.com
+* www.terraref.ndslabs.org. 
+* TERRA REF Alpha User program https://goo.gl/forms/M0ZEMi3PSLENhspl2
 
 ### Familarity with basic syntax and operations in R and Python
 
-Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by the start of the second day of class (Tuesday May 30). These courses should take a few hours to complete: 
+Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by the start of the first day of class (Friday May 25). These courses should take a few hours to complete: 
 * [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) 
 * [Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science).
 
