@@ -1,13 +1,88 @@
 # Spreadsheets and Table
 
-Here we are going to 
+Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona
+
+https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U/edit#gid=932079509
+
+Let's review the pages
+
+* README is good. They are well ahead of the curve on this!
+* What additional information is here?
+* Where is the data we want to look at?
+* What information is redundant
 
 
+* Download the table "PlantHeights_AllPlots" as CSV
 
 
 # Data Cleaning 
 
-* Download OpenRefine from http://openrefine.org/download.html
+* In this lesson, we will use Open Refine to find errors, sort, and clean our dataset. 
+* Open the OpenRefine container in the NDSLabs workbench
+
+## About Open Refine
+
+This tutorial is based on the [Data Carpentry Open Refine for Ecology lesson](http://www.datacarpentry.org/OpenRefine-ecology-lesson/01-working-with-openrefine/), modified to use our datasets.
+
+You can learn more about and download Open Refine at [openrefine.org](https://openrefine.org). 
+
+
+## Importing Data into Open Refine
+
+Once OpenRefine is launched in your browser, the left margin has options to Create Project, Open Project, or Import Project. Here we will create a new project:
+
+* click 'Create Project'; 'Get data from This Computer' should be selected
+   * what other ways can you get data into OpenRefine?
+* Click Choose Files and select the file `DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv` 
+* Click Open --> Next
+* OpenRefine gives you a preview - a chance to show you it understood the file. 
+   * did the file show up sensibly? 
+* in the upper right corner create a meaninful project name and then click "Create Project"
+
+## Faceting
+
+OpenRefine supports faceted browsing. This allows you tosee the big picture of your data and
+then filter down to a subset of rows. Once you have a target set of rows, you can apply changes in bulk.
+
+* lets work with one of the columns containing plant height measurements
+  * next to one of the numeric columns (Plant_ht_Aug24) click the arrow
+  * facet --> Numeric facet.
+    * what went wrong?
+  * click 'edit cells' --> common transforms --> numeric
+  * now try to click facet --> numeric again
+    * what do you see this time? 
+    * How is a numeric facet different than a text facet?
+  * click Plant_ht_Sep15
+    * how many rows are there with non-numeric data?
+    * what to do here?
+    
+Lets look at the Genotype field
+
+* select the arrow next to the column named "Genotype"
+* select "Facet" --> "Text Facet"
+* sort by "count"
+  * what do you notice? 
+  * What is the level of replication in this study? 
+  * Which genotypes are not like the others?
+  * why are there so many Genotypes named "Great Scott" and "border"?
+* Lets clean up all whitespace problems
+  * trim leading and trailing whitespace
+  * trim consecutive white space
+  * now how many groups do we have?
+* Edit "border" --> "Border"
+
+### TERRA REF Sites and Variables
+  
+Your turn:
+
+Lets review a few datasets from the TERRA REF trait database. These are provided in the .json format by default:
+
+1. Look at the sites table. Where are the sites? Are there redundant names?
+   * import from https://terraref.ncsa.illinois.edu/bety/api/beta/sites?key=9999999999999999999999999999999999999999&limit=none
+   * when you review the data, select the lowest level of hierarchy so column names aren't long concatenations of the entire tree. 
+2. See if you can find any redundant variables    
+  * import from https://terraref.ncsa.illinois.edu/bety/api/beta/variables.xml?key=9999999999999999999999999999999999999999&limit=none
+  * note that this is an XML format (the BETYdb API provide json, xml, and csv)
 
 
 # Relational Databases and SQL
@@ -18,9 +93,29 @@ Here we are going to
 
 ### Data Normalization
 
+"Codd's Normal Forms" from (Codd 1970)  
+
+> process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. [Wikipedia - Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
+
 To motivate the use of a relational databases, lets start by looking at a table. 
 
-:point_right: Go to [betydb.org](https://betydb.org) and enter "Miscanthus Yield" into the search box and click the search glass icon.
+#### Importing data from the web
+
+
+##### Open Refine
+
+* Lets look at the Miscanthus Yield dataset again
+* Open --> Create Project --> From URL
+  * Enter https://www.betydb.org/search.csv?search=Ayield
+* What is the matter here? Lets clean up the imported dataset.
+  * columns are csv
+  * discard first 8 lines, parse next 1 line as column headers
+  * also, 'parse cells to numbers, dates, etc'
+* Create Project
+
+##### From a Web Interface
+
+Go to [betydb.org](https://betydb.org) and enter "Miscanthus Yield" into the search box and click the search glass icon.
 
 Lets review the information in this table.
 
@@ -49,6 +144,11 @@ It can also be easily read by any software or parsed at the command line using t
 
 > where are redundancies?
 
+
+## Lets look at the underlying database
+
+PostgreSQL workbench
+
 ### Tables & Schemas
 
 
@@ -58,7 +158,9 @@ It can also be easily read by any software or parsed at the command line using t
 
 
 
-## SQL
+# SQL
+
+Lets start using some basic SQL Commands
 
 ### Basic commands
 
@@ -177,4 +279,5 @@ For more information, see the [BETYdb data access documentation](https://pecan.g
 
 ## references and further reading
 
-https://www.dataquest.io/blog/sql-basics/
+* https://www.dataquest.io/blog/sql-basics/
+* Codd, E.F. (June 1970). "A Relational Model of Data for Large Shared Data Banks". Communications of the ACM. 13 (6): 377–387. doi:10.1145/362384.362685.

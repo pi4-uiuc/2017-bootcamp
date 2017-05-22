@@ -1,8 +1,13 @@
 # Introduction to R
 
+Why R?
+
 ## Getting Started with R and Rstudio
 
 [Getting Started with R and Rstudio (SWC 1-3)](http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/)
+
+* Project setup
+* Rstudio Desktop 
 
 ## Loading and Evaluating Data
 
