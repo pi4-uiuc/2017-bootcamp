@@ -161,30 +161,29 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
    * GLM
    * HB
   
-### Days 6-9 (Neal Davis)
+### Day 6
 
-- Data mining (from MATLAB tutorials)
-- Hadoop and MapReduce algorithm
-- Basic ML (from MATLAB tutorials)
+1. Pandas
+2. Matplotlib, etc.
+3. Data cleaning
+4. Principal component analysis
 
-Data mining topics:
+### Day 7
+1. $k$-nearest neighbors
+2. $k$-d tree
+3. Support vector machines
+4. Monte Carlo sampling
 
-* Data cleaning
-* Principal component analysis
-* k-Nearest Neighbor clustering
-* k-D tree
-* Support Vector Machine
-* Monte Carlo simulation
-* k-Means clustering
-* Hierarchical clustering
-* Hidden Markov model
+### Day 8
+1. $k$-means clustering
+2. Hierarchical clustering
+3. Hidden Markov modeling
+4. Data Mining Project
 
-Hadoop lesson:
-* MapReduce algorithm
-* What are Hadoop and friends?
-* Hadoop interface
-* Basic examples (word count, etc.)
-* PMU example
+### Day 9
+1. Amazon Web Services (Cloud computing)
+2. Hadoop MapReduce
+3. Hadoop Pig
 
 ### Day 10 Project Wrapup and Presentations
 
@@ -195,6 +194,5 @@ Hadoop lesson:
 
 ## References and further reading
 
-[A gallery of interesting Jupyter Notebooks
-](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks)
+- [A gallery of interesting Jupyter Notebooks](https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks)
 
