@@ -1,9 +1,26 @@
+# Spreadsheets and Table
+
+Here we are going to 
+
+
+
+
+# Data Cleaning 
+
+* Download OpenRefine from http://openrefine.org/download.html
+
+
 # Relational Databases and SQL
 
 
-To motivate the use of a relational database, lets start by looking at a table. 
+## Relational Databases
 
-Go to [betydb.org](https://betydb.org) and enter "Miscanthus Yield" into the search box and click the search glass icon.
+
+### Data Normalization
+
+To motivate the use of a relational databases, lets start by looking at a table. 
+
+:point_right: Go to [betydb.org](https://betydb.org) and enter "Miscanthus Yield" into the search box and click the search glass icon.
 
 Lets review the information in this table.
 
@@ -30,18 +47,7 @@ By default, many computers will open the csv file directly into a [spreadsheet p
 
 It can also be easily read by any software or parsed at the command line using tools like `cut` and `sed`. Unlike xml and json, it is more intuitive for a human to read.
 
-
-
-## Relational Databases
-
-
-### Data Normalization
-
-example: 
-
-download from betydb.org/search?genus=Miscanthus&trait=Yield
-review table
-where are redundancies
+> where are redundancies?
 
 ### Tables & Schemas
 
@@ -124,7 +130,7 @@ get put delete
 
 ## Real World Application: the Biofuel Ecophysiological Traits and Yields database
 
-![Summary BETYdb schema](hhttps://pecan.gitbooks.io/betydb-data-access/content/betydb_schema.png)
+![Summary BETYdb schema](https://pecan.gitbooks.io/betydb-data-access/content/betydb_schema.png)
 
 We have created 'views' to make it easier to query data from multiple tables. For example, to lookup the name and location of a site or the names and units of variables. The following query joins multiple tables, and is based on the yieldsview table:
 
