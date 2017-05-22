@@ -32,8 +32,12 @@ A two week course designed to introduce Math graduate students with little or no
 Each student should register for the following accounts: 
 
 * github.com
-* www.terraref.ndslabs.org. 
 * TERRA REF Alpha User program https://goo.gl/forms/M0ZEMi3PSLENhspl2
+
+And will receive email notifications that they are signed up for the following:
+
+* National Data Service workbench. 
+* Slack (an invitation will be sent to you via email)
 
 ### Familarity with basic syntax and operations in R and Python
 
