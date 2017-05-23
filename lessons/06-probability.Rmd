@@ -1,3 +1,5 @@
 1. Probability Distributions
    * Bestiary, meaning, PDFs (Bolker Ch4, [Dietze EE509](https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd))
    * Stochastic Simulation (Bolker Ch5)
+
+![](bestiary_distns_table.jpg)
