@@ -57,7 +57,7 @@ Because the dependencies are complex, most of the tutorials are written in envir
 
 * Many online databases (especially betydb.org) will be used via both the web front end and the 
 * Data on the ROGER supercomputer is mounted to the terraref.ndslabs.org database in the `/data` directory
-* 
+
 ### Shell Lessons
 
 ### SQL Lessons
