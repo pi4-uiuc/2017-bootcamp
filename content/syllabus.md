@@ -97,9 +97,10 @@ We will have a one hour break each day for lunch. On days with a guest lecture, 
 
 All lectures will be from 12:00 to 1:00 unless otherwise noted.
 
-* Friday, May 26: "TBD" Aaron Saxton, PhD. Senior Data Scientist, Agrible Inc.
-* Wednesday May 31: "Data in Nuclear Engineering" 
-Katy Huff, PhD. Assitant Professor in the Department of Nuclear, Plasma, and Radiological Engineering, UIUC
+* Tuesday, May 30: "TBD" Aaron Saxton, PhD. Senior Data Scientist, Agrible Inc.
+* Wednesday May 31: "Data in Nuclear Engineering" Katy Huff, PhD, Department of Nuclear, Plasma, and Radiological Engineering, UIUC
+* Friday, June 2: "TBD" Rob Kooper, Senior Research Programmer, National Center for Supercomputing Applications
+
 
 ## Course Schedule
 
