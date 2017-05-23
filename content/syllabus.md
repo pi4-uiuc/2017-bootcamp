@@ -51,9 +51,9 @@ Although the course is aimed at students with limited experience using software,
 
 The only software requirement is a modern web browser.
 
-The classroom is equiped with desktop computers, though students are encouraged to bring laptops. Much of the instruction and collaborative work will be done using the NDS Labs Workbench. The NDS labs workbench provides Shell, R, and Python editors as well as access to large datasets within a web browser. Please sign up for an account here:  at [terraref.ndslabs.org](https://terraref.ndslabs.org).
+The classroom is equiped with desktop computers, though students are encouraged to bring laptops. Much of the instruction and collaborative work will be done using the NDS Labs Workbench. The NDS labs workbench provides Shell, R, and Python editors as well as access to large datasets within a web browser.
 
-Students are welcome and encouraged to run the software on their own computers, however some of the software is challenging to install and will be limited time for instructors to assist with installation and configuration.
+Students are welcome and encouraged to run the software on their own computers, however some of the software is challenging to install and there will be limited time for instructors to assist with installation and configuration.
 
 ### Code of Conduct
 
