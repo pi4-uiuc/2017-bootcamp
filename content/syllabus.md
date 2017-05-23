@@ -36,7 +36,7 @@ Each student should register for the following accounts:
 
 And will receive email notifications that they are signed up for the following:
 
-* National Data Service workbench. 
+* National Data Service workbench http://www.pi4.ndslabs.org
 * Slack (an invitation will be sent to you via email)
 
 ### Familarity with basic syntax and operations in R and Python
