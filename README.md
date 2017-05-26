@@ -76,4 +76,5 @@ Handy additions:
 
 ```r
 install.packages('addinlist')
+install.packages('tiff')
 ```

@@ -88,6 +88,11 @@ The program `ls` will tell you:
 ls
 ```
 
+
+```sh
+ls -F
+```
+
 Most command line programs have many options. Options are often specified as 'flags' (perhaps because `-` looks like a flag pole?)
 
 Many shell programs provide common flags such as `--help` and `--version` (as well as synonyms `-h` and `-v`). Lets ask the shell for help with `ls`:
@@ -99,6 +104,20 @@ ls --help
 
 for even more information, you can use `man ls`.
 
+
+### Looking around
+
+
+```sh
+ls
+ls ~/
+ls /data/terraref/sites/ua-mac
+cd /data/terraref/sites/ua-mac
+ls
+cd ## shortcut brings you home
+pwd
+```
+
 ## Environment Variables 
 
 ```sh
@@ -109,9 +128,15 @@ echo $PATH
 printenv
 ```
 
+## Useful Tools
+
 ## Find with `grep`
 
 ## Find and replace with `sed`
+
+## Parse text with `cut`
+
+
 
 ## For Loops
 
