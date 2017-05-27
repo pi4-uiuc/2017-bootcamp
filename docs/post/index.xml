@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PI4 Computational Bootcamp</title>
-    <link>/</link>
-    <description>Recent content on PI4 Computational Bootcamp</description>
+    <title>Posts on PI4 Computational Bootcamp</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 27 May 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -42,36 +42,6 @@ Version Control SWC Git Novice 1-6 Getting Started Introduce yourself</descripti
       <description>Objectives Students should experience a collaborative development cycle similar to what they might encounter as a research programmer / software engineer / data scientist etc.
 They will have the opportunity to contribute to open source projects (e.g. TERRA REF and PEcAn Projects). Their GitHub repositories, reports, and code will become part of their portfolio.
 Projects will provide the opportunity for students to apply what we have learned in class to new datasets and analyses.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Fri, 05 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>This site includes material for the 2017 PI4 Computational Bootcamp taught to students in the Department of Mathematics, University of Illinois at Urbana-Champaign.</description>
-    </item>
-    
-    <item>
-      <title>Reading</title>
-      <link>/reading/</link>
-      <pubDate>Fri, 05 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/reading/</guid>
-      <description>Day 1. Programming Fundamentals  Wilson et al 2014 Best Practices for Scientific Computing Agile Manifesto Vincent Dresen &amp;ldquo;A successful Git branching model&amp;rdquo;  Day 2: Getting started with R  Introduction, Data Structures, Subsetting, Functions in &amp;ldquo;Advanced R&amp;rdquo; by Wickham &amp;ldquo;Git and GitHub&amp;rdquo; in &amp;ldquo;R packages&amp;rdquo; by Wickham.  Day 3: Databases and Visualization  LeBauer, David, et al. &amp;ldquo;BETYdb: a yield, trait, and ecosystem service database applied to second‐generation bioenergy feedstock production.</description>
-    </item>
-    
-    <item>
-      <title>Syllabus</title>
-      <link>/syllabus/</link>
-      <pubDate>Fri, 05 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/syllabus/</guid>
-      <description>Instructors: David LeBauer
- Carl R Woese Institute for Genomic Biology and National Center for Supercomputing Applications, University of Illinois email:dlebauer@illinois.edu  Neal Davis
- Deparatment of Computer Science, University of Illinois email:davis68@illinois.edu  Stefan Klajbor (TA)
- Department of Mathematics, University of Illinois email:klajbor2@illinois.edu  Course Objectives A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation.</description>
     </item>
     
   </channel>

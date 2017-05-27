@@ -12,6 +12,11 @@
   </url>
   
   <url>
+    <loc>/2017/05/27/project-day-1/</loc>
+    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2017-05-05T00:00:00+00:00</lastmod>
   </url>
@@ -44,6 +49,18 @@
   
   <url>
     <loc>/post/</loc>
+    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/project/</loc>
+    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/shell/</loc>
     <lastmod>2017-05-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

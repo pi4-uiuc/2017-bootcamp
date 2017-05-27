@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on PI4 Computational Bootcamp</title>
+    <link>/tags/git/</link>
+    <description>Recent content in Git on PI4 Computational Bootcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 May 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2. Version Control and Collaborative development</title>
+      <link>/2017/05/27/version-control-git-github/</link>
+      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/27/version-control-git-github/</guid>
+      <description>Version control makes it possible to have ‘unlimited undo’ and histories of your documents (and some smaller datasets)
+Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate. If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it make it easier to use heterogeneous environments.
+Version Control SWC Git Novice 1-6 Getting Started Introduce yourself</description>
+    </item>
+    
+  </channel>
+</rss>
