@@ -10,14 +10,17 @@ output:
 ## Instructors: 
 
 David LeBauer
+
 * Carl R Woese Institute for Genomic Biology and National Center for Supercomputing Applications, University of Illinois
 * email:dlebauer@illinois.edu 
 
 Neal Davis
+
 * Deparatment of Computer Science, University of Illinois
 * email:davis68@illinois.edu
 
 Stefan Klajbor (TA) 
+
 * Department of Mathematics, University of Illinois
 * email:klajbor2@illinois.edu
 
@@ -146,7 +149,6 @@ Tuesday May 30
    * curate data 
    * design data management plan
    * identify data that is needed / open questions
-
 
 The first half of the day will follow the R Novice Gapminder lesson http://swcarpentry.github.io/r-novice-gapminder/
 

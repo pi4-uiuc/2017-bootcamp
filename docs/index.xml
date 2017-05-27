@@ -6,10 +6,32 @@
     <description>Recent content on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 27 May 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Terminal (Unix Shell)</title>
+      <link>/2017/05/27/the-terminal-unix-shell/</link>
+      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/27/the-terminal-unix-shell/</guid>
+      <description>“What is a command shell and why would I use one?”
+This tutorial is based on the Software Carpentry Unix Shell) [@swc_unix_shell] lesson, and will refer to it for background information.
+Today we will learn - how the shell relates to the keyboard, the screen, the operating system, and users’ programs.&amp;quot; - when and why command-line interfaces should be used instead of graphical interfaces. - similarities and differences between a file and a directory.</description>
+    </item>
+    
+    <item>
+      <title>Version Control, Reproducible Research, Collaborative development</title>
+      <link>/2017/05/27/version-control-git-github/</link>
+      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/27/version-control-git-github/</guid>
+      <description>Version control makes it possible to have ‘unlimited undo’ and histories of your documents (and some smaller datasets)
+Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate. If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it make it easier to use heterogeneous environments.
+Version Control SWC Git Novice 1-6 Getting Started Introduce yourself</description>
+    </item>
     
     <item>
       <title>About</title>
@@ -35,10 +57,10 @@
       <pubDate>Fri, 05 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/syllabus/</guid>
-      <description>Instructors: David LeBauer * Carl R Woese Institute for Genomic Biology and National Center for Supercomputing Applications, University of Illinois * email:dlebauer@illinois.edu
-Neal Davis * Deparatment of Computer Science, University of Illinois * email:davis68@illinois.edu
-Stefan Klajbor (TA) * Department of Mathematics, University of Illinois * email:klajbor2@illinois.edu
-Course Objectives A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation.</description>
+      <description>Instructors: David LeBauer
+ Carl R Woese Institute for Genomic Biology and National Center for Supercomputing Applications, University of Illinois email:dlebauer@illinois.edu  Neal Davis
+ Deparatment of Computer Science, University of Illinois email:davis68@illinois.edu  Stefan Klajbor (TA)
+ Department of Mathematics, University of Illinois email:klajbor2@illinois.edu  Course Objectives A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation.</description>
     </item>
     
   </channel>

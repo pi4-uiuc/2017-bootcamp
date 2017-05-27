@@ -27,12 +27,12 @@ publishDir = "docs"
 #    url = "https://github.com/dlebauer/pi4-computational-bootcamp"
 
 [params]
-    description = "A website built through Hugo and blogdown."
+    description = "PI4 Computational Bootcamp Website."
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
     highlightjsCDN = "//cdn.bootcss.com"
-    highlightjsLang = ["r", "yaml"]
+    highlightjsLang = ["r", "yaml", "shell"]
     highlightjsTheme = "github"
 
     MathJaxCDN = "//cdn.bootcss.com"

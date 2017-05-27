@@ -155,6 +155,14 @@ It can also be easily read by any software or parsed at the command line using t
 
 Open the PostgreSQL application in the NDSLabs workbench.
 
+```
+Host: terra-bety.default
+Port: 5432
+User: bety
+Password: bety
+DB: bety
+```
+
 ### Tables & Schemas
 
 
