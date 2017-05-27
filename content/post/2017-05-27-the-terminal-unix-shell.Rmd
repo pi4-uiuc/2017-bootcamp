@@ -1,10 +1,10 @@
 ---
-title: The Terminal (Unix Shell)
-author: ~
+title: "1. The Terminal (Unix Shell)"
+author: David LeBauer
 date: '2017-05-27'
+type: post
 slug: the-terminal-unix-shell
-categories: []
-tags: []
+tags: [shell]
 ---
 
 "What is a command shell and why would I use one?"
@@ -140,7 +140,20 @@ printenv
 First get a file 
 
 ```sh
-data $ curl -o miscanthus.csv "https://www.betydb.org/search.csv?genus=Miscanthus"
+ 
+mkdir project
+mkdir project/data
+cd project/data
+
+### Get some crop trait and yield data
+for genus in panicum miscanthus salix populus
+do 
+  echo curl -o $genus.csv https://www.betydb.org/search.csv?search=$genus
+done
+
+### Get some weather data
+cp /data/terraref/sites/uiuc-energyfarm/raw_data/weather_stations/Weather*DayAvg.dat ~/project/data/
+
 ```
 
 look at it 
@@ -209,6 +222,58 @@ done
 
 ## Shell Scripts
 
+
+```sh
+nano getdata.sh 
+```
+
+Then type the following
+
+```sh
+#!/bin/bash
+for genus in panicum miscanthus salix populus
+do 
+  curl -o $genus https://www.betydb.org/search.csv?search=$genus
+done
+```
+
+Save the file and exit
+
+Make the file executable
+
+```sh
+chmod +x getdata.sh
+```
+
+Run the file
+
+```sh
+./getdata.sh
+```
+
+### Using variables
+
+```sh
+nano getonegenus.sh
+```
+
+```sh
+#!/bin/bash
+curl -o $1.csv https://www.betydb.org/search.csv?search=$1
+```
+
+save, make executable
+
+```sh
+chmod +x getonegenus.sh
+```
+
+now you can send the search term via the command line
+
+```sh
+./getonegenus.sh salix
+```
+
 ## Regular Expressions ('Regex')
 
 Too long for today, difficult to learn, but examples are Googleable, like
@@ -270,7 +335,7 @@ This is a clear rule but difficult to enforce without extensive automated testin
 
 When Part 1 fails, write a script to rename all of the files. Lets take a look. 
 
-```{sh}
+```sh
 #!/bin/bash
 
 cd /projects/arpae/terraref/sites/ua-mac/raw_data/SWIR/

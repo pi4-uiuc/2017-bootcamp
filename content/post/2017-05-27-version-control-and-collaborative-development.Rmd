@@ -1,9 +1,8 @@
 ---
-title: Version Control, Reproducible Research, Collaborative development
+title: "2. Version Control and Collaborative development"
 author: ~
 date: '2017-05-27'
 slug: version-control-git-github
-categories: []
 tags: [git]
 ---
 
