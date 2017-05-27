@@ -1,4 +1,11 @@
-# The Terminal (Unix Shell)
+---
+title: The Terminal (Unix Shell)
+author: ~
+date: '2017-05-27'
+slug: the-terminal-unix-shell
+categories: []
+tags: []
+---
 
 "What is a command shell and why would I use one?"
 
@@ -130,21 +137,75 @@ printenv
 
 ## Useful Tools
 
+First get a file 
+
+```sh
+data $ curl -o miscanthus.csv "https://www.betydb.org/search.csv?genus=Miscanthus"
+```
+
+look at it 
+
+```sh
+head data.csv
+tail data.csv
+
+```
+
+count lines 
+
+```
+wc -l data.csv
+head -n 10 data.csv
+```
+
+```
+tail -n +11 data.csv 
+```
+
+a pipe 
+
+```sh
+tail -n +11 data.csv | head -n 4 
+```
+
+```sh
+tail -n +11 data.csv > miscanthus.csv
+```
+
+
 ## Find with `grep`
+
+```sh
+grep yield miscanthus.csv
+```
 
 ## Find and replace with `sed`
 
+```sh
+sed -i 's/willow/Willow/g' willow.csv
+```
+
 ## Parse text with `cut`
 
+```sh
+cut -d, -f3,5 miscanthus.csv
+```
 
 
 ## For Loops
+
+```sh
+for genus in panicum miscanthus salix 
+
+```
 
 ```sh
 for $i in in {seq 1 10}; do
    echo $i
 done
 ```
+
+
 
 ## Shell Scripts
 
@@ -237,7 +298,7 @@ done # !d
 
 Can you find:
 
-* How many for-loops are they? How deeply are they nested?
+* How many for-loops are there? How deeply are they nested?
 * What do you think the following regex characters mean:
   * `[0-9]`? 
   * `[123]`
