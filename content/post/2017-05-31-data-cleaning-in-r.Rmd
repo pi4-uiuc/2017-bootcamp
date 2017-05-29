@@ -1,0 +1,18 @@
+---
+title: Data Cleaning in R
+author: ~
+date: '2017-05-31'
+slug: data-cleaning-in-r
+categories: []
+tags: []
+---
+
+## Data Cleaning and Exploratory Analysis
+   * Data Cleaning with Open Refine [DC lesson 1-4](http://www.datacarpentry.org/OpenRefine-ecology-lesson/)
+   * Data Cleaning in R
+   * Scatter Plots
+   
+## Data Manipulation
+
+   * [filtering, subsetting, summarizing, new variables with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)
+   * [Converting data from wide to long with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/)

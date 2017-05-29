@@ -1,4 +1,21 @@
-# Spreadsheets and Tables
+---
+title: "5. Databases and SQL"
+author: "David LeBauer"
+date: '2017-05-30'
+slug: databases-and-sql
+tags: [r]
+---
+
+
+## Introduction 
+
+<iframe src="https://docs.google.com/presentation/d/1dQHlodU9PggM7khqlL_OS4P-X-o96D78ihuvuD2Iong/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+## Spreadsheets and Tables
+
+A database is a generic term for data. Often these are divided into 'relational' and 'non-relational'... We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.
+
+In fact, so far we have been working with tables.
 
 ## Miscanthus Yields
 
@@ -21,19 +38,19 @@ Let's review the pages
 * Download the table "PlantHeights_AllPlots" as CSV
 
 
-# Data Cleaning 
+## Data Cleaning 
 
 * In this lesson, we will use Open Refine to find errors, sort, and clean our dataset. 
 * Open the OpenRefine container in the NDSLabs workbench
 
-## About Open Refine
+### About Open Refine
 
 This tutorial is based on the [Data Carpentry Open Refine for Ecology lesson](http://www.datacarpentry.org/OpenRefine-ecology-lesson/01-working-with-openrefine/), modified to use our datasets.
 
 You can learn more about and download Open Refine at [openrefine.org](https://openrefine.org). 
 
 
-## Importing Data into Open Refine
+### Importing Data into Open Refine
 
 Once OpenRefine is launched in your browser, the left margin has options to Create Project, Open Project, or Import Project. Here we will create a new project:
 
@@ -45,7 +62,7 @@ Once OpenRefine is launched in your browser, the left margin has options to Crea
    * did the file show up sensibly? 
 * in the upper right corner create a meaninful project name and then click "Create Project"
 
-## Faceting
+### Faceting
 
 OpenRefine supports faceted browsing. This allows you tosee the big picture of your data and
 then filter down to a subset of rows. Once you have a target set of rows, you can apply changes in bulk.
@@ -91,24 +108,8 @@ Lets review a few datasets from the TERRA REF trait database. These are provided
   * note that this is an XML format (the BETYdb API provide json, xml, and csv)
 
 
-# Relational Databases and SQL
 
-
-## Relational Databases
-
-
-### Data Normalization
-
-"Codd's Normal Forms" from (Codd 1970)  
-
-> process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. [Wikipedia - Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
-
-To motivate the use of a relational databases, lets start by looking at a table. 
-
-#### Importing data from the web
-
-
-##### Open Refine
+#### Open Refine
 
 * Lets look at the Miscanthus Yield dataset again
 * Open --> Create Project --> From URL
@@ -119,7 +120,7 @@ To motivate the use of a relational databases, lets start by looking at a table.
   * also, 'parse cells to numbers, dates, etc'
 * Create Project
 
-##### From a Web Interface
+#### From a Web Interface
 
 Go to [betydb.org](https://betydb.org) and enter "Miscanthus Yield" into the search box and click the search glass icon.
 
@@ -151,9 +152,51 @@ It can also be easily read by any software or parsed at the command line using t
 > where are redundancies?
 
 
-## Lets look at the underlying database
+* Site + city + lat + lon
+* Date + time + timezone
+* genus + scientificname + common name 
+* Cultivar
+* Trait + units & description 
+* Mean 
+* Method
+* Entity
 
-Open the PostgreSQL application in the NDSLabs workbench.
+### Tidy data
+
+
+* Each variable forms a column.
+* Each observation forms a row.
+* Each type of observational unit forms a table.
+
+From [tidyr vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
+
+> YOUR TURN Is the Miscanthus dataset tidy? What would we need to do to make it tidy?
+
+## Relational Databases and SQL
+
+### Data Normalization
+
+"Codd's Normal Forms" from (Codd 1970)  
+
+> process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. [Wikipedia - Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
+
+To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information (that violates the )
+
+> YOUR TURN: which of these fields has redundant data? how would you begin to normalize this data set?
+
+
+### Lets look at the underlying database
+
+#### Connecting to a database server
+
+connection parameters:
+
+* host
+* login
+* user 
+* database (database name)
+
+Lets connect to the terraref instance of betydb. Until now we have been accessing betydb.org. Now we will access (a copy of) the database behind terraref.ncsa.illinois.edu/bety
 
 ```
 Host: terra-bety.default
@@ -163,21 +206,33 @@ Password: bety
 DB: bety
 ```
 
+From the command line:
+
+```sh
+psql -U bety -d bety -h terra-bety.default
+```
+
+The hidden .pgpass file:
+
+```sh
+echo "terra-bety.default:5432:bety:bety:bety" >> ~/.pgpass
+chmod 0600 ~/.pgpass # why?
+psql 
+```
+
+Open the PostgreSQL application in the NDSLabs workbench and enter the connection parameters above.
+
 ### Tables & Schemas
 
 
 ![A simplified entity–relationship diagram for key tables in Biofuel Ecophysiological Traits and Yields database (BETYdb).](http://onlinelibrary.wiley.com/store/10.1111/gcbb.12420/asset/image_n/gcbb12420-fig-0001.png?v=1&t=j2uxcy2q&s=ddb49c4e35c662b8ca120fc2882a17f28f0f50b5)
 
-### Schemas
 
-
-
-# SQL
+## SQL
 
 Lets start using some basic SQL Commands
 
-### Basic commands
-
+```sql
 SELECT
 WHERE
 JOIN
@@ -193,9 +248,27 @@ AVG
 SUM
 COUNT
 LIKE
+```
+
+```sql
+select * from traits limit 10;
+select * from traits where mean < 0;
+```
+
+* where is all of the useful information????
 
 
 ### Types of Joins
+
+![types of joins](http://r4ds.had.co.nz/diagrams/join-venn.png)
+
+From [Grolemund and Wickham "R for Data Science"](http://r4ds.had.co.nz/relational-data.html)
+
+```sql
+select * from traits left join variables 
+   on traits.variable_id = variables.id
+   where variables.name = 'NDVI'
+```
 
 ## Database Management Systems
 
@@ -203,41 +276,39 @@ LIKE
 
 MySQL, PostgreSQL, Oracle, 
 
-Access??
+Access
 
-### Connecting to a database server
-
-connection parameters
-host
-login
-user
-database
-
-.pgpass
-
-psql -U bety -d bety -h localhost
 
 ### R: RPostgreSQL and dplyr
 
+```{r}
 
+```
 
 ### APIs
 
-keys
-### restful interface
+* sign into terraref.ncsa.illinois.edu/bety
+  * username: `pi4-student`
+  * password: `ask-instructor` <!--pi4student!!-->
+* locate your API key and copy it <!-- sSJzqPF77rRus9BGOZS4T76fzNhQ5Nk01tjcf1Bh-->
+
+* see [terraref tutorials 01- betydb getting started](https://github.com/terraref/tutorials/blob/master/traits/00-BETYdb-getting-started.Rmd)
+
+#### restful interface
 
 get put delete 
+https://en.wikipedia.org/wiki/Representational_state_transfer
 
-### json data structures
+#### json data structures
+
 
 ### R traits package
 
+Example: query indoor data from terraref database using the R traits package:
+
+https://github.com/terraref/tutorials/blob/master/traits/02-danforth-phenotyping-facility.Rmd
+
 ## Real World Examples
-
-### A Simple database
-
-* Download data from BETYdb
-* Discuss how to normalize it
 
 ### Advanced: BETYdb
 

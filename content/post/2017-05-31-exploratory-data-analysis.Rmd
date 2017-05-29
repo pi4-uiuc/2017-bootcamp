@@ -1,0 +1,17 @@
+---
+title: Exploratory Data Analysis
+author: ~
+date: '2017-05-31'
+slug: exploratory-data-analysis
+categories: []
+tags: []
+---
+
+## Visualization in R using ggplot
+
+* R for data science http://r4ds.had.co.nz/data-visualisation.html
+* [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
+
+```{r}
+
+```
