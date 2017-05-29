@@ -131,7 +131,7 @@ cd ## shortcut brings you back home
 pwd
 ```
 
-Directories in the shell have a tree-like structure. You can use `cd ..` to move up one step in the tree, `cd ../..` to move up two steps, `cd ../../..` to move up three steps, and so on.
+Directories in the shell have a tree-like structure. You can use `cd ..` to move up one step in the tree, `cd ../..` to move up two steps, `cd ../../..` to move up three steps, and so on. Just typing in `cd` will bring you to your home directory (equivalent to `cd ~/`.
 
 ## Environment Variables 
 
@@ -141,11 +141,13 @@ Environment variables are variables that affect the way software interacts with 
 echo $PATH
 ```
 
-You can see the envioronment variables by doing:
+You can see the environment variables by doing:
 
 ```sh
 printenv
 ```
+
+
 
 ## Useful Tools
 
@@ -163,7 +165,7 @@ Then we get some data, from terraref:
 ### Get some crop trait and yield data
 for genus in panicum miscanthus salix populus
 do 
-  echo curl -o $genus.csv https://www.betydb.org/search.csv?search=$genus
+  curl -o $genus.csv https://www.betydb.org/search.csv?search=$genus
 done
 
 ### Get some weather data
@@ -334,15 +336,19 @@ tail -f nohup.out
 ```
 
 
-### Using variables
+### Using variables in your shell script.
 
-You can write shell scripts that take input variables. Create a file:
+You can write shell scripts that take input variables. 
+
+When you run a bash script, a variable can be added after the name of the script like `myscript.sh var1 var2`. 
+
+Create a file:
 
 ```sh
 nano getonegenus.sh
 ```
 
-Write the following. Here `$1` represents the input variable:
+Write the following. Here `$1` represents the first input variable:
 
 ```sh
 #!/bin/bash
