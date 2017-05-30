@@ -308,17 +308,6 @@ a %*% a + b %*% b
 # abc %*% abc # error ... not allowed
 
 ```
-```{r vectorization-1}
-salix <- multi_spp_list$salix
-salix$trait == 'Ayield'         ## becomes a logical vector
-salix_yield <- salix[salix$trait == 'Ayield',] ## can be used for subsetting
-
-## what fraction of salix yields are > 10?
-salix_yield <- salix[salix$trait == 'Ayield',] ## can be used for subsetting
-
-sum(salix_yield$mean > 10, na.rm = TRUE)
-
-```
 
 ```{r vectorization}
 sapply(1:10, function(x)  x>2)
@@ -329,6 +318,22 @@ sapply(1:10, function(x)  x>2)
 files <- sapply(genera, function(x) paste0('data/', x, '.csv'))
 
 multi_spp_list <- lapply(files, function(x) read_csv(x))
+```
+
+
+```{r}
+
+salix <- multi_spp_list$salix
+salix$trait == 'Ayield'         ## becomes a logical vector
+salix_yield <- salix[salix$trait == 'Ayield',] ## can be used for subsetting
+
+## what fraction of salix yields are > 10?
+salix_yield <- salix[salix$trait == 'Ayield',] ## can be used for subsetting
+
+sum(salix_yield$mean > 10, na.rm = TRUE)
+```
+
+```{r lapply-examples}
 
 lapply(multi_spp_list, class)
 lapply(multi_spp_list, function(x) class(x$mean))
@@ -339,17 +344,16 @@ multi_spp_list2 <- lapply(multi_spp_list,
                           } )
 multi_spp_df <- dplyr::bind_rows(multi_spp_list2)
 
+
+## check that all rows made it 
+lapply(multi_spp_list, nrow)
+sum(unlist(lapply(multi_spp_list, nrow)))
+nrow(multi_spp_df)
+
 ```
+
 
 > your turn: write the above lapply statement as a for loop
-
-```{r lapply-example}
-lapply(multi_spp_list, nrow)
-
-sum(unlist(lapply(multi_spp_list, nrow)))
-
-nrow(multi_spp_df)
-```
 
 Save the dataframe in results folder
 
@@ -360,3 +364,6 @@ write_csv(multi_spp_df, path = 'results/multi_spp_df.csv')
 ## Writing reports with R markdown
 
 http://swcarpentry.github.io/r-novice-gapminder/15-knitr-markdown/
+
+
+Support for many languages (Python, SQL, bash) http://rmarkdown.rstudio.com/authoring_knitr_engines.html#overview

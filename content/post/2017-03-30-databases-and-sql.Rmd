@@ -182,8 +182,18 @@ From [tidyr vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/ti
 
 To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information (that violates the )
 
-> YOUR TURN: which of these fields has redundant data? how would you begin to normalize this data set?
+> YOUR TURN: which of these fields has redundant data? 
 
+
+* SQL allows us to select and group subsets of data, do math and other calculations, and combine data.
+* A relational database is made up of tables which are related to each other by shared keys.
+  * primary keys
+  * foreign keys
+  * natural keys
+* Different database management systems (DBMS) use slightly different vocabulary, but they are all based on the same ideas. 
+
+^^ from [Data Carpentry](http://www.datacarpentry.org/sql-ecology-lesson/00-sql-introduction/) 
+> how would you begin to normalize this data set?
 
 ### Lets look at the underlying database
 
@@ -222,13 +232,26 @@ psql
 
 Open the PostgreSQL application in the NDSLabs workbench and enter the connection parameters above.
 
+Connection for use in R and Rmarkdown
+
+```{r dbcon-1}
+library(RPostgreSQL)
+dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
+                dbname = "bety", 
+                password = 'bety', 
+                host = 'terra-bety.default', 
+                user = 'bety', 
+                port = 5432)
+```
+
 ### Tables & Schemas
+
 
 
 ![A simplified entity–relationship diagram for key tables in Biofuel Ecophysiological Traits and Yields database (BETYdb).](http://onlinelibrary.wiley.com/store/10.1111/gcbb.12420/asset/image_n/gcbb12420-fig-0001.png?v=1&t=j2uxcy2q&s=ddb49c4e35c662b8ca120fc2882a17f28f0f50b5)
 
 
-## SQL
+### SQL
 
 Lets start using some basic SQL Commands
 
@@ -236,7 +259,7 @@ Lets start using some basic SQL Commands
 SELECT
 WHERE
 JOIN
-
+DISTINCT
 LIMIT
 ORDER BY
 GROUP BY
@@ -250,12 +273,23 @@ COUNT
 LIKE
 ```
 
-```sql
+
+```{sql connection = dbcon}
 select * from traits limit 10;
 select * from traits where mean < 0;
 ```
 
-* where is all of the useful information????
+```{sql distinct, connection = dbcon}
+select distinct trait from traits_and_yields_view;
+```
+
+```{sql sql-group-order, connection = dbcon}
+select sitename, count(*) as n
+   from traits_and_yields_view 
+   group by sitename order by n desc;
+```
+
+
 
 
 ### Types of Joins
@@ -264,10 +298,59 @@ select * from traits where mean < 0;
 
 From [Grolemund and Wickham "R for Data Science"](http://r4ds.had.co.nz/relational-data.html)
 
-```sql
-select * from traits left join variables 
+```{sql NDVI, connection = dbcon}
+select name, units, date, mean from traits left join variables 
    on traits.variable_id = variables.id
    where variables.name = 'NDVI'
+```
+
+> YOUR TURN: write queries that will 
+>    1. to join the sites table to the traits table
+>    2. join the managements table to the traits table
+
+### Other handy features
+
+#### Quality control
+
+Lets look at this in the PostgreSQL studio
+
+* constraints
+  * foreign key
+  * primary key
+  * uniqueness
+  * check
+* data types
+  * numeric, int, 
+  * character, enum
+  * geometry
+* natural keys
+
+
+#### With
+
+```{sql connection = dbcon}
+With NDVI as 
+  (select name, units, date, mean from traits left join variables 
+     on traits.variable_id = variables.id
+     where variables.name = 'NDVI'
+  )
+  select * from NDVI;
+```
+
+
+#### Views
+
+* Views (stored queries)
+  * Materialized views (pre-computed queries)
+  
+```sql
+drop view if exists NDVI;
+
+create view NDVI as
+select * from traits_and_yields_view_private 
+    where trait = 'NDVI';
+
+select * from NDVI;
 ```
 
 ## Database Management Systems
@@ -281,8 +364,71 @@ Access
 
 ### R: RPostgreSQL and dplyr
 
-```{r}
+```{r rpostgresql}
+library(RPostgreSQL)
+dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
+                dbname = "bety", password = 'bety', host = 'terra-bety.default', user = 'bety', port = 5432)
 
+query <- "select * from traits left join variables 
+             on traits.variable_id = variables.id
+             where variables.name = 'NDVI';"
+
+
+result <- dbSendQuery(dbcon, query)
+df <- fetch(result)
+dbClearResult(result)
+#dbDisconnect(dbcon)
+
+```
+
+
+```{sql, connection = dbcon}
+select count(*) from traitsview_private;
+
+```
+
+
+#### Connecting with dplyr
+
+advantage for larger datasets: can do a lot of server-side summarization and some computing before pulling data into memory. 
+
+https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html
+
+```{r dplyr-dbcon}
+library(dplyr)
+
+bety_src <- src_postgres(dbname = "bety", password = 'bety', host = 'terra-bety.default', user = 'bety', port = 5432)
+
+
+#translate_sql()
+```
+
+```{r complex-query}
+treatments <- tbl(bety_src, 'treatments') %>% 
+  select(treatment_id = id , name, definition, control)
+
+managements_treatments <- tbl(bety_src, 'managements_treatments')
+
+managements <- tbl(bety_src, 'managements') %>% 
+  filter(mgmttype %in% c('Fertilization_N', 'Planting', 'Irrigation')) %>% 
+  select(management_id = id, date, mgmttype, level, units) %>% 
+  left_join(managements_treatments, by = 'management_id') %>% 
+  left_join(treatments, by = 'treatment_id')
+
+planting <-managements %>% 
+  filter(mgmttype == "Planting") %>% 
+  select(treatment_id, planting_date = date, nrate = level)
+
+heights <- tbl(bety_src, 'traits_and_yields_view') %>% 
+  filter(trait %in% c('plant_height', 'canopy_height')) %>% 
+  left_join(planting, by = 'treatment_id') %>%  
+  collect %>% 
+  mutate(age = as.Date(raw_date) - planting_date) 
+
+library(ggplot2)
+ggplot(data = heights, aes(raw_date, mean)) +
+  geom_point(alpha = 0.1) + 
+  facet_wrap(~trait, scales = 'free')
 ```
 
 ### APIs
@@ -293,6 +439,7 @@ Access
 * locate your API key and copy it <!-- sSJzqPF77rRus9BGOZS4T76fzNhQ5Nk01tjcf1Bh-->
 
 * see [terraref tutorials 01- betydb getting started](https://github.com/terraref/tutorials/blob/master/traits/00-BETYdb-getting-started.Rmd)
+* API Documentation terraref.ncsa.illinois.edu/bety/api/beta/docs
 
 #### restful interface
 
