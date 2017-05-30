@@ -1,77 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.20.7" />
-
-
-<title>1. The Terminal (Unix Shell) - PI4 Computational Bootcamp</title>
-<meta property="og:title" content="1. The Terminal (Unix Shell) - PI4 Computational Bootcamp">
-
-
-
-  
+---
+title: "1. The Terminal (Unix Shell)"
+author: "David LeBauer"
+date: '2017-05-26'
+tags: shell
+slug: the-terminal-unix-shell
+type: post
+---
 
 
 
-
-
-
-
-
-<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
-
-
-
-<link rel="stylesheet" href="../../../../css/fonts.css" media="all">
-<link rel="stylesheet" href="../../../../css/main.css" media="all">
-
-
-
-  </head>
-  <body>
-    <div class="wrapper">
-      <header class="header">
-        <nav class="nav">
-  <a href="../../../../" class="nav-logo">
-    <img src="../../../../images/cropped-logo_m.png"
-         width="50"
-         height="50"
-         alt="Logo">
-  </a>
-
-  <ul class="nav-links">
-    
-    <li><a href="../../../../about/">About</a></li>
-    
-    <li><a href="../../../../post/">Class Notes</a></li>
-    
-    <li><a href="../../../../reading/">Reading</a></li>
-    
-    <li><a href="../../../../syllabus/">Syllabus</a></li>
-    
-  </ul>
-</nav>
-
-      </header>
-
-
-<main class="content" role="main">
-
-  <article class="article">
-    
-    <span class="article-duration">12 min read</span>
-    
-
-    <h1 class="article-title">1. The Terminal (Unix Shell)</h1>
-
-    
-    <span class="article-date">2017/05/27</span>
-    
-
-    <div class="article-content">
-      <p>“What is a command shell and why would I use one?”</p>
+<p>“What is a command shell and why would I use one?”</p>
 <p>This tutorial is based on the <a href="http://swcarpentry.github.io/shell-novice/">Software Carpentry Unix Shell</a>) <span class="citation">[@swc_unix_shell]</span> lesson, and will refer to it for background information.</p>
 <p>Today we will learn - how the shell relates to the keyboard, the screen, the operating system, and users’ programs.&quot; - when and why command-line interfaces should be used instead of graphical interfaces. - similarities and differences between a file and a directory. - absolute and relative paths - steps in the shell’s read-run-print cycle. - learn about commands, flags, and filenames in a command-line call</p>
 <div id="background" class="section level3">
@@ -92,21 +30,24 @@
 <p>The <code>$</code> is called the command prompt. The information before it provides information about the computer we are on, in this case the user and computer names. For the purposes of the tutorial, we will enter the command <code>sh PS1='$ 'and press the ‘enter’ key so that only the</code>$` shows up. This isn’t necessary to follow along, but it is useful to know that you can change the information that the command prompt provides. In fact, there are many ways to customize your Shell - the prompt as well as the way it presents text - that are beyond the scope of this course (but easy to find on Google).</p>
 <p>First type the command <code>whoami</code></p>
 <pre class="sh"><code>whoami</code></pre>
-<pre><code>## rstudio</code></pre>
 <p>This tells you the user’s name. You will likely not have the same answer as the computer gave when it ran the code in this book.</p>
 <p>Now type the command <code>pwd</code>, which is short for ‘print working directory’</p>
 <pre class="sh"><code>pwd</code></pre>
-<pre><code>## /home/rstudio/pi4-computational-bootcamp/content/post</code></pre>
 <p>This tells you your current working directory. On OSX it may look like <code>/Users/dlebauer/</code> while on Linux it may look like <code>/home/dlebauer</code> and on Windows <code>C:\Users\David LeBauer</code>.</p>
 <p>What is in this direcotry?</p>
 <p>The program <code>ls</code> will tell you:</p>
 <pre class="sh"><code>ls</code></pre>
-<pre><code>## 2017-05-27-project-day-1.html
-## 2017-05-27-project-day-1.Rmd
-## 2017-05-27-the-terminal-unix-shell.html
-## 2017-05-27-the-terminal-unix-shell.Rmd
-## 2017-05-27-version-control-and-collaborative-development.html
-## 2017-05-27-version-control-and-collaborative-development.Rmd</code></pre>
+<pre><code>## 2017-05-26-project-day-1.html
+## 2017-05-26-project-day-1.Rmd
+## 2017-05-26-the-terminal-unix-shell.html
+## 2017-05-26-the-terminal-unix-shell.Rmd
+## 2017-05-26-version-control-and-collaborative-development.html
+## 2017-05-26-version-control-and-collaborative-development.Rmd
+## data
+## doc
+## reports
+## results
+## src</code></pre>
 <pre class="sh"><code>ls -F</code></pre>
 <p>Most command line programs have many options. Options are often specified as ‘flags’ (perhaps because <code>-</code> looks like a flag pole?)</p>
 <p>Many shell programs provide common flags such as <code>--help</code> and <code>--version</code> (as well as synonyms <code>-h</code> and <code>-v</code>). Lets ask the shell for help with <code>ls</code>:</p>
@@ -226,96 +167,144 @@
 ## GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
 ## Full documentation at: &lt;http://www.gnu.org/software/coreutils/ls&gt;
 ## or available locally via: info &#39;(coreutils) ls invocation&#39;</code></pre>
-<p>for even more information, you can use <code>man ls</code>.</p>
+<p>For even more information, you can use <code>man ls</code>.</p>
 </div>
 <div id="looking-around" class="section level3">
 <h3>Looking around</h3>
+<p>You can use the command <code>ls</code> to look at different directories (without changing the current working directory) as follows:</p>
 <pre class="sh"><code>ls
 ls ~/
-ls /data/terraref/sites/ua-mac
-cd /data/terraref/sites/ua-mac
-ls
-cd ## shortcut brings you home
+ls /data/terraref/sites/ua-mac</code></pre>
+<p>To change to the directory <code>/data/terraref/sites/ua-mac</code> you can use the <code>cd</code> command:</p>
+<pre class="sh"><code>cd /data/terraref/sites/ua-mac
+ls ## reveal the contents
+cd ## shortcut brings you back home
 pwd</code></pre>
+<p>Directories in the shell have a tree-like structure. You can use <code>cd ..</code> to move up one step in the tree, <code>cd ../..</code> to move up two steps, <code>cd ../../..</code> to move up three steps, and so on. Just typing in <code>cd</code> will bring you to your home directory (equivalent to <code>cd ~/</code>.</p>
 </div>
 <div id="environment-variables" class="section level2">
 <h2>Environment Variables</h2>
+<p>Environment variables are variables that affect the way software interacts with the user and are valid systemwide. For example, try echoing the environment variable <code>PATH</code> as follows:</p>
 <pre class="sh"><code>echo $PATH</code></pre>
+<p>You can see the environment variables by doing:</p>
 <pre class="sh"><code>printenv</code></pre>
 </div>
 <div id="useful-tools" class="section level2">
 <h2>Useful Tools</h2>
-<p>First get a file</p>
-<pre class="sh"><code> 
-mkdir project
+<p>Let’s look at some useful tools. First we need a file, so let’s go ahead and make a directory to put some data in:</p>
+<pre class="sh"><code>mkdir project
 mkdir project/data
-cd project/data
-
-### Get some crop trait and yield data
+cd project/data</code></pre>
+<p>Then we get some data, from terraref:</p>
+<pre class="sh"><code>### Get some crop trait and yield data
 for genus in panicum miscanthus salix populus
 do 
-  echo curl -o $genus.csv https://www.betydb.org/search.csv?search=$genus
+  curl -o $genus.csv https://www.betydb.org/search.csv?search=$genus
 done
 
 ### Get some weather data
 cp /data/terraref/sites/uiuc-energyfarm/raw_data/weather_stations/Weather*DayAvg.dat ~/project/data/
 </code></pre>
-<p>look at it</p>
+<p>Let’s take a look at it, <code>head</code> prints out the first 10 lines while <code>tail</code> the last 10 lines:</p>
 <pre class="sh"><code>head data.csv
 tail data.csv
 </code></pre>
-<p>count lines</p>
-<pre><code>wc -l data.csv
-head -n 10 data.csv</code></pre>
-<pre><code>tail -n +11 data.csv </code></pre>
-<p>a pipe</p>
+<p>The -n flag can modify the number of lines shown:</p>
+<pre class="sh"><code>head -n 10 data.csv</code></pre>
+<pre class="sh"><code>tail -n +11 data.csv </code></pre>
+<p>You can also display all of its contents onto the shell (not recommended for big files like this one):</p>
+<pre class="sh"><code>cat data.csv</code></pre>
+<p>We can count the lines, words, and characters (in that order) of a file with:</p>
+<pre class="sh"><code>wc -l data.csv</code></pre>
+<p>You can also save this data into a file:</p>
+<pre class="sh"><code>wc -l data.csv &gt; lengths.txt</code></pre>
+<p>and sort it:</p>
+<pre class="sh"><code>sort lengths.txt</code></pre>
+<p>This doesn’t modify the file <code>lengths.txt</code>, so you need to save it to a new file:</p>
+<pre class="sh"><code>sort lengths.txt &gt; sorted_lengths.txt</code></pre>
+</div>
+<div id="pipes" class="section level2">
+<h2>Pipes</h2>
+<p>A pipe <code>|</code> is used to have the output of the command to its left be used as the input of the command to the right, for example:</p>
 <pre class="sh"><code>tail -n +11 data.csv | head -n 4 </code></pre>
+<p>compare this with:</p>
 <pre class="sh"><code>tail -n +11 data.csv &gt; miscanthus.csv</code></pre>
 </div>
 <div id="find-with-grep" class="section level2">
 <h2>Find with <code>grep</code></h2>
+<p>The command <code>grep</code> can be used to find a pattern in a file, for example to find the pattern <code>yield</code> in the file <code>miscanthus.csv</code>:</p>
 <pre class="sh"><code>grep yield miscanthus.csv</code></pre>
 </div>
 <div id="find-and-replace-with-sed" class="section level2">
 <h2>Find and replace with <code>sed</code></h2>
+<p>The following replaces “willow” for “Willow” in the file <code>willow.csv</code>. The -i flag is to make this interactive (try it with and without it in some small text file of your creation):</p>
 <pre class="sh"><code>sed -i &#39;s/willow/Willow/g&#39; willow.csv</code></pre>
 </div>
 <div id="parse-text-with-cut" class="section level2">
 <h2>Parse text with <code>cut</code></h2>
+<p>The command <code>cut</code> can be used to remove sections of each line of a file:</p>
 <pre class="sh"><code>cut -d, -f3,5 miscanthus.csv</code></pre>
 </div>
 <div id="for-loops" class="section level2">
 <h2>For Loops</h2>
+<p>The shell has <code>for</code> loops to iterate actions. When you enter:</p>
 <pre class="sh"><code>for genus in panicum miscanthus salix 
 </code></pre>
+<p>it enters into a command entry mode in which you need to tell it what it does as it loops through <code>panicum</code>, <code>miscanthus</code>, <code>salix</code>. For example to echo these words into the shell:</p>
+<pre class="sh"><code>for genus in panicum miscanthus salix ; do
+    echo $genus
+done</code></pre>
+<p>To echo the integers:</p>
 <pre class="sh"><code>for $i in in {seq 1 10}; do
    echo $i
 done</code></pre>
 </div>
 <div id="shell-scripts" class="section level2">
 <h2>Shell Scripts</h2>
+<p>You can write short scripts to run commands on the shell. You can use any text editor, here we’ll use <code>nano</code>. Shell scripts end in <code>.sh</code>.</p>
+<p>Create and open with <code>nano</code> a shell script:</p>
 <pre class="sh"><code>nano getdata.sh </code></pre>
-<p>Then type the following</p>
+<p>In the above, notice the terminal was “locked”, there was no command prompt. To avoid this you can use:</p>
+<pre class="sh"><code>nano getdata.sh &amp;</code></pre>
+<p>Now type the following in the file:</p>
 <pre class="sh"><code>#!/bin/bash
 for genus in panicum miscanthus salix populus
 do 
   curl -o $genus https://www.betydb.org/search.csv?search=$genus
 done</code></pre>
-<p>Save the file and exit</p>
-<p>Make the file executable</p>
+<p>Save the file and exit (in nano the <code>^</code> means <code>Ctrl</code>).</p>
+<p>Make the file executable:</p>
 <pre class="sh"><code>chmod +x getdata.sh</code></pre>
-<p>Run the file</p>
+<p>Run the file:</p>
 <pre class="sh"><code>./getdata.sh</code></pre>
-<div id="using-variables" class="section level3">
-<h3>Using variables</h3>
+<p>To run the file in the background and continue using your terminal, you can run it using:</p>
+<pre class="sh"><code>nohup ./getdata.sh &amp;</code></pre>
+<p>To see its progress:</p>
+<pre class="sh"><code>tail -f nohup.out</code></pre>
+<div id="using-variables-in-your-shell-script." class="section level3">
+<h3>Using variables in your shell script.</h3>
+<p>You can write shell scripts that take input variables.</p>
+<p>When you run a bash script, a variable can be added after the name of the script like <code>myscript.sh var1 var2</code>.</p>
+<p>Create a file:</p>
 <pre class="sh"><code>nano getonegenus.sh</code></pre>
+<p>Write the following. Here <code>$1</code> represents the first input variable:</p>
 <pre class="sh"><code>#!/bin/bash
 curl -o $1.csv https://www.betydb.org/search.csv?search=$1</code></pre>
-<p>save, make executable</p>
+<p>Save it and make it executable:</p>
 <pre class="sh"><code>chmod +x getonegenus.sh</code></pre>
-<p>now you can send the search term via the command line</p>
+<p>Now you can send the search term via the command line:</p>
 <pre class="sh"><code>./getonegenus.sh salix</code></pre>
 </div>
+</div>
+<div id="time-saving-tips" class="section level2">
+<h2>Time Saving Tips</h2>
+<ul>
+<li>You can press the <code>Tab</code> on your keyboard to autocomplete.</li>
+<li>You can press <code>Ctrl</code>+<code>A</code> to go to the beginning of a line.</li>
+<li>You can press the up arrow to view previous commands.</li>
+<li>To clear the line use <code>Ctrl</code>+<code>U</code></li>
+<li>There are many more if you Google “Time-saving command line tips”</li>
+</ul>
 </div>
 <div id="regular-expressions-regex" class="section level2">
 <h2>Regular Expressions (‘Regex’)</h2>
@@ -391,70 +380,6 @@ done # !d</code></pre>
 <li>What do you think the following regex characters mean:</li>
 <li><code>[0-9]</code>?</li>
 <li><code>[123]</code></li>
-<li></li>
 </ul>
 </div>
 </div>
-
-    </div>
-  </article>
-
-  
-
-
-</main>
-
-      <footer class="footer">
-        <ul class="footer-links">
-          <li>
-            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
-          </li>
-          <li>
-            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
-          </li>
-        </ul>
-      </footer>
-
-    </div>
-    
-
-
-
-<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
-
-
-
-<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
-<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
-<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/shell.min.js"></script>
-<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
-
-
-
-    
-<script src="../../../../js/math-code.js"></script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    processEscapes: true
-  }
-});
-</script>
-<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-
-    
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-98205888-1', 'auto');
-ga('send', 'pageview');
-</script>
-
-  </body>
-</html>
-

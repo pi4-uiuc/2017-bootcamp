@@ -1,7 +1,7 @@
 ---
 title: "2. Version Control and Collaborative development"
-author: 'null'
-date: '2017-05-27'
+author: 'David LeBauer'
+date: '2017-05-26'
 tags: git
 slug: version-control-git-github
 ---

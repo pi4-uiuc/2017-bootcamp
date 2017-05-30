@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on PI4 Computational Bootcamp</title>
+    <link>/tags/r/</link>
+    <description>Recent content in R on PI4 Computational Bootcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 May 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>5. Databases and SQL</title>
+      <link>/2017/05/30/databases-and-sql/</link>
+      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/30/databases-and-sql/</guid>
+      <description>Introduction   Spreadsheets and Tables A database is a generic term for data. Often these are divided into ‘relational’ and ‘non-relational’… We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.
+In fact, so far we have been working with tables.
+ Miscanthus Yields https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0
+ Sorghum Data from Arizona Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</description>
+    </item>
+    
+  </channel>
+</rss>
