@@ -136,15 +136,21 @@ Friday May 26
 
 Tuesday May 30
 
+1. Best Practices in Scientific Computing
 1. [Getting Started with R and Rstudio (SWC 1-3)](http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/)
-2. Loading and Evaluating Data
-   * data types
+   * Importing data
    * [vectorization](http://swcarpentry.github.io/r-novice-gapminder/09-vectorization/)
-3. Control Flow (if, else, for) [SWC 7](http://swcarpentry.github.io/r-novice-gapminder/07-control-flow/)
-4. Visualization [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
-5. Data Manipulation
-   * [filtering, subsetting, summarizing, new variables with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)
-   * [Converting data from wide to long with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/)
+   * Control Flow (if, else, for) [SWC 7](http://swcarpentry.github.io/r-novice-gapminder/07-control-flow/)
+   * Writing Reports with Rmarkdown
+1. Data structures
+   * Spreadsheets [DC lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)
+   * Relational Databases
+   * non-relational databases
+   * Raster data and databases
+2. Querying databases
+   * SQL
+   * Connecting from R using the dplyr package
+   * Connecting to BETYdb using the traits package
 6. Project 
    * curate data 
    * design data management plan
@@ -154,30 +160,27 @@ The first half of the day will follow the R Novice Gapminder lesson http://swcar
 
 ### Day 3: Databases and Visualization
 
-['Best Practices in Scientific Computing'](http://katyhuff.github.io/2017-05-31-pi4) - Kathryn Huff
-
 Wednesday May 31 
 
-4. Data Cleaning and Exploratory Analysis
+2. Intro to Agile Development (lecture)
+4. Data Cleaning 
    * Data Cleaning with Open Refine [DC lesson 1-4](http://www.datacarpentry.org/OpenRefine-ecology-lesson/)
    * Data Cleaning in R
+5. Exploratory Analysis
+   * Summary Statistics
    * Scatter Plots
-1. Data structures
-   * Spreadsheets [DC lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)
-   * Relational Databases
-   * non-relational databases
-   * Raster data and databases
-2. Querying databases
-   * SQL
-   * Connecting from R using the dplyr package
 5. Data Curation
    * Metadata and Vocabularies
    * Publishing Data, Archives and Repositories
+5. Data Manipulation
+   * [filtering, subsetting, summarizing, new variables with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)
+   * [Converting data from wide to long with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/)
 3. Visualization
    * bestiary of plots, which plots for which data
    * Turning tables into graphs [Gelman et al 2002](http://www.tandfonline.com/doi/abs/10.1198/000313002317572790)
    * Beyond Bar and line graphs [Weissgerber et al 2015](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002128)
-   * Tufte, sparklines 
+   * Tufte, sparklines
+   * ggplot starting with [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
 4. Project: Find data, clean, evaluate, and summarize, publish to GitHub
 
 ### Day 4: Probability and Statistics
