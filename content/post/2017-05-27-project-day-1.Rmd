@@ -1,0 +1,51 @@
+---
+title: "Project: Getting Started"
+author: ~
+date: '2017-05-27'
+slug: project-day-1
+categories: []
+tags: [project]
+---
+
+## Objectives
+
+Students should experience a collaborative development cycle similar to what they might encounter as a research programmer / software engineer / data scientist etc. 
+
+They will have the opportunity to contribute to open source projects (e.g. TERRA REF and PEcAn Projects). Their GitHub repositories, reports, and code will become part of their portfolio. 
+
+Projects will provide the opportunity for students to apply what we have learned in class to new datasets and analyses.
+
+### Project Tasks
+
+* curate data from > 1 source
+* use data from > 1 source in a single analysis
+* perform exploratory data analysis: generating tables and graphs
+* predictions, hypothesis tests and / or inference
+
+### Expectations
+
+* work together as a team
+* use best practices
+* more than one dataset
+* document work as a report that can be automatically updated as new data become available
+* write scripts that can be used for data processing
+
+
+## Introduction to the TERRA REF dataset
+
+* [TERRA REF Documentation](https://terraref.gitbooks.io/terraref-documentation/content/)
+
+<iframe src="https://docs.google.com/presentation/d/1mmBjUGsCGXQbaAIFfQNG3HuDJgm0scY9ltDQMXj_q6k/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+## What to do today
+
+Form a team of 3-4 people
+Discuss project ideas
+
+1. create a team github repository and slack channel
+2. create a README with:
+  * team members
+  * ideas that you want to work on
+  * what types of data you will need
+  * what types of analyses / algorithms you might use
+3. Spend the next three days thinking about your project

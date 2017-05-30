@@ -1,10 +1,10 @@
 ---
-title: The Terminal (Unix Shell)
-author: ~
+title: "1. The Terminal (Unix Shell)"
+author: "David LeBauer"
 date: '2017-05-27'
+tags: shell
 slug: the-terminal-unix-shell
-categories: []
-tags: []
+type: post
 ---
 
 "What is a command shell and why would I use one?"
@@ -71,7 +71,7 @@ dlebauer@dlebauer-desktop:~$
 The `$` is called the command prompt. The information before it provides information about the computer we are on, in this case the user and computer names. For the purposes of the tutorial, we will enter the command `sh PS1='$ 'and press the ‘enter’ key so that only the `$` shows up. This isn’t necessary to follow along, but it is useful to know that you can change the information that the command prompt provides. In fact, there are many ways to customize your Shell - the prompt as well as the way it presents text - that are beyond the scope of this course (but easy to find on Google).
 
 First type the command `whoami`
-```{sh}
+```sh
 whoami
 ```
 
@@ -81,7 +81,7 @@ This tells you the user's name. You will likely not have the same answer as the 
 
 Now type the command `pwd`, which is short for 'print working directory'
 
-```{sh}
+```sh
 pwd
 ```
 
@@ -109,41 +109,71 @@ ls --help
 ```
 
 
-for even more information, you can use `man ls`.
+For even more information, you can use `man ls`.
 
 
 ### Looking around
 
+You can use the command `ls` to look at different directories (without changing the current working directory) as follows:
 
 ```sh
 ls
 ls ~/
 ls /data/terraref/sites/ua-mac
+```
+
+To change to the directory `/data/terraref/sites/ua-mac` you can use the `cd` command:
+
+```sh
 cd /data/terraref/sites/ua-mac
-ls
-cd ## shortcut brings you home
+ls ## reveal the contents
+cd ## shortcut brings you back home
 pwd
 ```
 
+Directories in the shell have a tree-like structure. You can use `cd ..` to move up one step in the tree, `cd ../..` to move up two steps, `cd ../../..` to move up three steps, and so on. Just typing in `cd` will bring you to your home directory (equivalent to `cd ~/`.
+
 ## Environment Variables 
+
+Environment variables are variables that affect the way software interacts with the user and are valid systemwide. For example, try echoing the environment variable `PATH` as follows:
 
 ```sh
 echo $PATH
 ```
 
+You can see the environment variables by doing:
+
 ```sh
 printenv
 ```
 
+
+
 ## Useful Tools
 
-First get a file 
+Let's look at some useful tools. First we need a file, so let's go ahead and make a directory to put some data in: 
 
 ```sh
-data $ curl -o miscanthus.csv "https://www.betydb.org/search.csv?genus=Miscanthus"
+mkdir project
+mkdir project/data
+cd project/data
 ```
 
-look at it 
+Then we get some data, from terraref:
+
+```sh
+### Get some crop trait and yield data
+for genus in panicum miscanthus salix populus
+do 
+  curl -o $genus.csv https://www.betydb.org/search.csv?search=$genus
+done
+
+### Get some weather data
+cp /data/terraref/sites/uiuc-energyfarm/raw_data/weather_stations/Weather*DayAvg.dat ~/project/data/
+
+```
+
+Let's take a look at it, `head` prints out the first 10 lines while `tail` the last 10 lines:
 
 ```sh
 head data.csv
@@ -151,29 +181,62 @@ tail data.csv
 
 ```
 
-count lines 
+The -n flag can modify the number of lines shown:
 
-```
-wc -l data.csv
+```sh
 head -n 10 data.csv
 ```
 
-```
+```sh
 tail -n +11 data.csv 
 ```
 
-a pipe 
+You can also display all of its contents onto the shell (not recommended for big files like this one):
+
+```sh
+cat data.csv
+```
+
+We can count the lines, words, and characters (in that order) of a file with: 
+
+```sh
+wc -l data.csv
+```
+
+You can also save this data into a file:
+
+```sh
+wc -l data.csv > lengths.txt
+```
+
+and sort it:
+
+```sh
+sort lengths.txt
+```
+
+This doesn't modify the file `lengths.txt`, so you need to save it to a new file:
+
+```sh
+sort lengths.txt > sorted_lengths.txt
+```
+
+## Pipes
+A pipe `|` is used to have the output of the command to its left be used as the input of the command to the right, for example:
 
 ```sh
 tail -n +11 data.csv | head -n 4 
 ```
 
+compare this with:
+
 ```sh
 tail -n +11 data.csv > miscanthus.csv
 ```
 
-
 ## Find with `grep`
+
+The command `grep` can be used to find a pattern in a file, for example to find the pattern `yield` in the file `miscanthus.csv`:
 
 ```sh
 grep yield miscanthus.csv
@@ -181,23 +244,38 @@ grep yield miscanthus.csv
 
 ## Find and replace with `sed`
 
+The following replaces "willow" for "Willow" in the file `willow.csv`. The -i flag is to make this interactive (try it with and without it in some small text file of your creation):
+
 ```sh
 sed -i 's/willow/Willow/g' willow.csv
 ```
 
 ## Parse text with `cut`
 
+The command `cut` can be used to remove sections of each line of a file:
+
 ```sh
 cut -d, -f3,5 miscanthus.csv
 ```
 
-
 ## For Loops
+
+The shell has `for` loops to iterate actions. When you enter:
 
 ```sh
 for genus in panicum miscanthus salix 
 
 ```
+
+it enters into a command entry mode in which you need to tell it what it does as it loops through `panicum`, `miscanthus`, `salix`. For example to echo these words into the shell:
+
+```sh
+for genus in panicum miscanthus salix ; do
+    echo $genus
+done
+```
+
+To echo the integers:
 
 ```sh
 for $i in in {seq 1 10}; do
@@ -205,9 +283,97 @@ for $i in in {seq 1 10}; do
 done
 ```
 
-
-
 ## Shell Scripts
+
+You can write short scripts to run commands on the shell. You can use any text editor, here we'll use `nano`. Shell scripts end in `.sh`.
+
+Create and open with `nano` a shell script:
+
+```sh
+nano getdata.sh 
+```
+
+In the above, notice the terminal was "locked", there was no command prompt. To avoid this you can use:
+
+```sh
+nano getdata.sh &
+```
+
+Now type the following in the file:
+
+```sh
+#!/bin/bash
+for genus in panicum miscanthus salix populus
+do 
+  curl -o $genus https://www.betydb.org/search.csv?search=$genus
+done
+```
+
+Save the file and exit (in nano the `^` means `Ctrl`).
+
+Make the file executable:
+
+```sh
+chmod +x getdata.sh
+```
+
+Run the file:
+
+```sh
+./getdata.sh
+```
+
+To run the file in the background and continue using your terminal, you can run it using:
+
+```sh
+nohup ./getdata.sh &
+```
+
+To see its progress:
+
+```sh
+tail -f nohup.out
+```
+
+
+### Using variables in your shell script.
+
+You can write shell scripts that take input variables. 
+
+When you run a bash script, a variable can be added after the name of the script like `myscript.sh var1 var2`. 
+
+Create a file:
+
+```sh
+nano getonegenus.sh
+```
+
+Write the following. Here `$1` represents the first input variable:
+
+```sh
+#!/bin/bash
+curl -o $1.csv https://www.betydb.org/search.csv?search=$1
+```
+
+Save it and make it executable:
+
+```sh
+chmod +x getonegenus.sh
+```
+
+Now you can send the search term via the command line:
+
+```sh
+./getonegenus.sh salix
+```
+
+## Time Saving Tips
+
+* You can press the `Tab` on your keyboard to autocomplete.
+* You can press `Ctrl`+`A` to go to the beginning of a line.
+* You can press the up arrow to view previous commands.
+* To clear the line use `Ctrl`+`U` 
+* There are many more if you Google "Time-saving command line tips"
 
 ## Regular Expressions ('Regex')
 
@@ -270,7 +436,7 @@ This is a clear rule but difficult to enforce without extensive automated testin
 
 When Part 1 fails, write a script to rename all of the files. Lets take a look. 
 
-```{sh}
+```sh
 #!/bin/bash
 
 cd /projects/arpae/terraref/sites/ua-mac/raw_data/SWIR/
@@ -302,4 +468,3 @@ Can you find:
 * What do you think the following regex characters mean:
   * `[0-9]`? 
   * `[123]`
-  * 

@@ -1,16 +1,16 @@
 ---
-title: Version Control, Reproducible Research, Collaborative development
-author: ~
+title: "2. Version Control and Collaborative development"
+author: 'null'
 date: '2017-05-27'
+tags: git
 slug: version-control-git-github
-categories: []
-tags: [git]
 ---
 
 Version control makes it possible to have 'unlimited undo' and histories of your documents (and some smaller datasets)
 
 Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate. 
-If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it make it easier to use heterogeneous environments. 
+
+If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it makes it easier to use heterogeneous environments. 
 
 
 ## Version Control [SWC Git Novice 1-6](http://swcarpentry.github.io/git-novice/)
@@ -18,7 +18,7 @@ If you keep all of your important programs and files somewhere in the cloud, lik
 ### Getting Started
 
 
-Introduce yourself
+Introduce yourself (once you've set this on your machine, you don't have to set it again unless you want to change something):
 
 ```sh
 git config --global user.name "Firstname Lastname"
@@ -29,30 +29,77 @@ If you want your contributions to be recognized:
 
 > Scott Rohde, Carl Crott, mulroony, David LeBauer, Jeremy Kemball, Rob Kooper, Jimmy Chen, andrewshirk, Zhengqi Yang, Max Burnette, MarvinJ, 董伊琳, Uday Saraf, The Gitter Badger and Michael Dietze (2016) “PecanProject/bety: BETYdb 4.13”. Zenodo. doi: 10.5281/zenodo.162409.
 
+To make a directory into a "git directory" you need to initialize it. In the following command we create a directory and initialize it as a git directory:
+
 ```sh
 mkdir myproject
 git init
-git status
-cat "my project" > README.md
+```
+
+The above command creates a hidden directory called `.git` that keeps tracks of changes in the directory. We now call it a "repository"" or "repo" for short. One maintains a log of changes with Git, but you have to tell it what to track. The command `git status` tells you, among other things, the status of changes to the directory:
+
+```sh
 git status
 ```
 
-### commiting changes
+Since we created the empty repo, there shouldn't be any changes to track yet, so let's make a file:
 
-You need to tell git which files to line up for the commit
+```sh
+echo "my project" > README.md
+git status
+```
+
+### Commiting changes
+
+Changes are tracked via "commits", but you need to tell git which files to line up for the commit. The following code moves the file `README.md` to the "staging" are waiting to be committed:
 
 ```sh
 git add README.md
 git status
 ```
 
+You then commit together with a short but descriptive message:
 
 ```sh
 git commit -m "added README as first commit"
 git status
 ```
 
-### branching
+### Git log
+
+If at any time you want to know all that has been committed:
+
+```sh
+git log
+```
+
+### Branching
+
+Branches are a powerful aspect of git, they are like an "alternative history" in which you can make changes. You can later decide if you want to merge these changes into the "main timeline". 
+
+The "main timeline" is itself a branch called "master".
+
+A branch called "first-script" can be created with:
+
+```sh
+git branch first-script
+```
+
+You don't automatically change to this branch. For that:
+
+```sh
+git checkout first-script
+```
+
+You can return to the master branch by:
+
+```sh
+git checkout master
+```
+
+The `git status` command tells you what branch you are on.
+
+A shorter way to create a branch and simultaenously switch to it is:
 
 ```sh
 git checkout -b first-script
@@ -64,8 +111,8 @@ This creates a new branch called your 'first script'. Now lets add something to 
 echo "!#/bin/bash \n echo 'hello world'" > myscript.sh
 ```
 
+Quick-check question:
 * What is `\n`?
-* What does `$` do?
 
 Now commit the changes:
 
@@ -76,7 +123,9 @@ git commit -m 'added hello world script'
 
 ### Merging
 
-```
+Once you're satisfied with changes you can merge the branch with the master branch. You do this from the branch you want to merge into, in this case from master. It's good practice to use `git status` at every step to check what branch you are on and any changes you may have not committed.
+
+```sh
 git status
 git log
 git checkout master
@@ -85,7 +134,11 @@ git merge first-script
 git status
 ```
 
+Note this does not delete the branch.
+
 ### Review 
+
+You may want to know all commits and the branches in which they were made in. As mentioned before, `git log` gives you a history. Adding the `--graph` flag give you a history of commits together with an asterisk `*` telling you to what branch the commit belongs to.
 
 ```sh
 git log --graph
@@ -93,9 +146,45 @@ git log --graph
 
 ##  Collaborative Coding [SWC Git Novice 7-14](http://swcarpentry.github.io/git-novice/)
 
+One of the strenghts of git is its power to facilitate collaboration.
+
 ### GitHub
 
+GitHub is one of the many hosting sites for collaborative coding via Git. You can create a repo in their servers via their website, and then clone it onto your computer via:
+
+```sh
+git clone url-of-repo-goes-here
+```
+
+One works on it locally as you would a local git repo. But after committing changes you need to send them to the repo on the server using:
+
+```sh
+git push
+```
+
+Multiple people can do this, so you should periodically "pull" changes:
+
+```sh
+git pull
+```
+
+There may be conflicts. For the mechanics of resolving such things we refer to the software carpentry notes.
+
 ### Pull Requests & Code Reviews
+
+It's best practice to work with branches, and then to submit a "pull request" on the Github site of your repo. This opens up a forum to discuss the code.
+
+The branch can be pulled via a `git pull` and then revealed by:
+
+```sh
+git branch -a
+```
+
+The branch can be checked out by a `git checkout` and viewed.
+
+Your collaborators then review the code. Those with push access may commit and push changes. The discussion happens on the website. Even individual lines of code can be commented. 
+
+When everybody is satisfied with the new code, it can get accepted and merged to the master branch right from the website (or the command line too).
 
 ### Messaging
 
@@ -104,7 +193,7 @@ git log --graph
 
 ## Git in Practice
 
-This is a very common approach to using Git. It is described in a blog post by Vincent Dressen http://nvie.com/posts/a-successful-git-branching-model/. 
+There are various workflows based around git. The following is a very common approach to using Git. It is described in a blog post by Vincent Dressen http://nvie.com/posts/a-successful-git-branching-model/. 
 
 
 ![image of git workflow](http://justinhileman.info/article/changing-history/git-flow.png)
@@ -115,14 +204,14 @@ Google is where you will often turn for help, and Google will often lead you to 
 
 ### Git in Rstudio
 
-at www.pi4-uiuc open the Rstudio environment
-
+At www.pi4-uiuc open the Rstudio environment.
 
 To add the git repo:
 In top corner 
 Project --> New Project --> Version Control --> https://www.github.com/username/repository
 
-
-
 To create a new R script:
 > File -->  New File --> R Script
+
+Commits and pushes can be made directly from RStudio.
+
