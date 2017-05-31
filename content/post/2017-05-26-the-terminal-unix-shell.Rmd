@@ -159,7 +159,9 @@ mkdir project/data
 cd project/data
 ```
 
-Then we get some data, from terraref:
+Then we get some data from the BETYdb.org database.
+
+Here we use the [`curl`](https://en.wikipedia.org/wiki/CURL) program, which is a command line tool for moving data around the internet. Here, we use `curl` with the `-o $genus.csv` flag to specify where to save output from the url.
 
 ```sh
 ### Get some crop trait and yield data
@@ -250,6 +252,8 @@ The following replaces "willow" for "Willow" in the file `willow.csv`. The -i fl
 sed -i 's/willow/Willow/g' willow.csv
 ```
 
+In `sed -i s/find/replace/g`, `-i` means change the file in place, `s/` means 'substitute'  and `/g` means replace all occurances.
+
 ## Parse text with `cut`
 
 The command `cut` can be used to remove sections of each line of a file:
@@ -311,7 +315,7 @@ done
 
 Save the file and exit (in nano the `^` means `Ctrl`).
 
-Make the file executable:
+Make the file executable using the program [`chmod`](https://en.wikipedia.org/wiki/Chmod). `chmod` modifies the permissions of the file. `+x` makes it executable (`+rw` makes it readable and writable)
 
 ```sh
 chmod +x getdata.sh
