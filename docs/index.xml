@@ -6,71 +6,17 @@
     <description>Recent content on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 31 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Data Cleaning in R</title>
-      <link>/2017/05/31/data-cleaning-in-r/</link>
-      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/31/data-cleaning-in-r/</guid>
-      <description>Data Cleaning and Exploratory Analysis  Data Cleaning with Open Refine DC lesson 1-4 Data Cleaning in R Scatter Plots   Data Manipulation  filtering, subsetting, summarizing, new variables with dplyr Converting data from wide to long with tidyr   </description>
-    </item>
-    
-    <item>
-      <title>Exploratory Data Analysis</title>
-      <link>/2017/05/31/exploratory-data-analysis/</link>
-      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/31/exploratory-data-analysis/</guid>
-      <description>Visualization in R using ggplot  R for data science http://r4ds.had.co.nz/data-visualisation.html SWC 8   </description>
-    </item>
-    
-    <item>
-      <title>Project Day 2: Querying Data</title>
-      <link>/2017/05/31/project-day-2-querying-data/</link>
-      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/31/project-day-2-querying-data/</guid>
-      <description>Flush out ideas from Friday  need to narrow the scope define data sets that are needed clarify questions write hypotheses / predictions draft of methods that you will use to test hypotheses what figures and tables will you create?
- divide tasks within the group
-  Set up project  create appropriate directories create one or more Rmd files  Download data  Download and subset data that you will use from BETYdb  find data that you will need design data management plan  For data not in BETYdb, write down what you will need.</description>
-    </item>
-    
-    <item>
-      <title>5. Databases and SQL</title>
-      <link>/2017/05/30/databases-and-sql/</link>
-      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/30/databases-and-sql/</guid>
-      <description>Introduction   Spreadsheets and Tables A database is a generic term for data. Often these are divided into ‘relational’ and ‘non-relational’… We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.
-In fact, so far we have been working with tables.
- Miscanthus Yields https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0
- Sorghum Data from Arizona Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</description>
-    </item>
-    
-    <item>
-      <title>Best Practices and Collaborative Development</title>
-      <link>/2017/05/30/scrum-and-best-practices/</link>
-      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/30/scrum-and-best-practices/</guid>
-      <description>Objectives:
- Understand Best practices per wilson et al Basic components of Reproducible Research Be familiar with concepts related to Scrum  Best Practices in Scientific Computing Wilson et al 2014 Best practices in Scientific Computing Wilson et al http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745 Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
- Wilson et al 2017 Good enough practices in Scientific Computing https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
- Example: PEcAn Project Please start the day by reading this.
-  Reproducible Research Example 1: Ocean Health Index   Figure 1: Better science in less time, illustrated by the Ocean Health Index project.</description>
-    </item>
-    
-    <item>
       <title>1. The Terminal (Unix Shell)</title>
-      <link>/2017/05/27/the-terminal-unix-shell/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      <link>/2017/05/26/the-terminal-unix-shell/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/27/the-terminal-unix-shell/</guid>
+      <guid>/2017/05/26/the-terminal-unix-shell/</guid>
       <description>“What is a command shell and why would I use one?”
 This tutorial is based on the Software Carpentry Unix Shell) [@swc_unix_shell] lesson, and will refer to it for background information.
 Today we will learn - how the shell relates to the keyboard, the screen, the operating system, and users’ programs.&amp;quot; - when and why command-line interfaces should be used instead of graphical interfaces. - similarities and differences between a file and a directory.</description>
@@ -78,32 +24,22 @@ Today we will learn - how the shell relates to the keyboard, the screen, the ope
     
     <item>
       <title>2. Version Control and Collaborative development</title>
-      <link>/2017/05/27/version-control-git-github/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      <link>/2017/05/26/version-control-git-github/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/27/version-control-git-github/</guid>
+      <guid>/2017/05/26/version-control-git-github/</guid>
       <description>Version control makes it possible to have ‘unlimited undo’ and histories of your documents (and some smaller datasets)
-Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate. If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it make it easier to use heterogeneous environments.
-Version Control SWC Git Novice 1-6 Getting Started Introduce yourself</description>
-    </item>
-    
-    <item>
-      <title>4. Introduction to R</title>
-      <link>/2017/05/27/intro-to-r/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/27/intro-to-r/</guid>
-      <description>This lesson is based on Getting Started with R and Rstudio (SWC 1-3).
-Objectives:
- Understand the utility of R as a language for data analysis To gain familiarity with the Rstudio IDE: panes, buttons, shortcuts, options Where to get help in R. Learn to manage your workspace in an interactive R session Learn to find, install, and use packages / functions Load data call functions Intro to reproducible research w/ R markdown  Getting started with R Why R?</description>
+Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate.
+If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it makes it easier to use heterogeneous environments.
+Version Control SWC Git Novice 1-6 Getting Started Introduce yourself (once you’ve set this on your machine, you don’t have to set it again unless you want to change something):</description>
     </item>
     
     <item>
       <title>Project: Getting Started</title>
-      <link>/2017/05/27/project-day-1/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      <link>/2017/05/26/project-day-1/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/27/project-day-1/</guid>
+      <guid>/2017/05/26/project-day-1/</guid>
       <description>Objectives Students should experience a collaborative development cycle similar to what they might encounter as a research programmer / software engineer / data scientist etc.
 They will have the opportunity to contribute to open source projects (e.g. TERRA REF and PEcAn Projects). Their GitHub repositories, reports, and code will become part of their portfolio.
 Projects will provide the opportunity for students to apply what we have learned in class to new datasets and analyses.</description>

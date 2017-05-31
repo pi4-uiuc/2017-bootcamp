@@ -104,12 +104,7 @@
 ## 2017-05-26-the-terminal-unix-shell.html
 ## 2017-05-26-the-terminal-unix-shell.Rmd
 ## 2017-05-26-version-control-and-collaborative-development.html
-## 2017-05-26-version-control-and-collaborative-development.Rmd
-## data
-## doc
-## reports
-## results
-## src</code></pre>
+## 2017-05-26-version-control-and-collaborative-development.Rmd</code></pre>
 <pre class="sh"><code>ls -F</code></pre>
 <p>Most command line programs have many options. Options are often specified as ‘flags’ (perhaps because <code>-</code> looks like a flag pole?)</p>
 <p>Many shell programs provide common flags such as <code>--help</code> and <code>--version</code> (as well as synonyms <code>-h</code> and <code>-v</code>). Lets ask the shell for help with <code>ls</code>:</p>
@@ -257,7 +252,8 @@ pwd</code></pre>
 <pre class="sh"><code>mkdir project
 mkdir project/data
 cd project/data</code></pre>
-<p>Then we get some data, from terraref:</p>
+<p>Then we get some data from the BETYdb.org database.</p>
+<p>Here we use the <a href="https://en.wikipedia.org/wiki/CURL"><code>curl</code></a> program, which is a command line tool for moving data around the internet. Here, we use <code>curl</code> with the <code>-o $genus.csv</code> flag to specify where to save output from the url.</p>
 <pre class="sh"><code>### Get some crop trait and yield data
 for genus in panicum miscanthus salix populus
 do 
@@ -301,6 +297,7 @@ tail data.csv
 <h2>Find and replace with <code>sed</code></h2>
 <p>The following replaces “willow” for “Willow” in the file <code>willow.csv</code>. The -i flag is to make this interactive (try it with and without it in some small text file of your creation):</p>
 <pre class="sh"><code>sed -i &#39;s/willow/Willow/g&#39; willow.csv</code></pre>
+<p>In <code>sed -i s/find/replace/g</code>, <code>-i</code> means change the file in place, <code>s/</code> means ‘substitute’ and <code>/g</code> means replace all occurances.</p>
 </div>
 <div id="parse-text-with-cut" class="section level2">
 <h2>Parse text with <code>cut</code></h2>
@@ -335,7 +332,7 @@ do
   curl -o $genus https://www.betydb.org/search.csv?search=$genus
 done</code></pre>
 <p>Save the file and exit (in nano the <code>^</code> means <code>Ctrl</code>).</p>
-<p>Make the file executable:</p>
+<p>Make the file executable using the program <a href="https://en.wikipedia.org/wiki/Chmod"><code>chmod</code></a>. <code>chmod</code> modifies the permissions of the file. <code>+x</code> makes it executable (<code>+rw</code> makes it readable and writable)</p>
 <pre class="sh"><code>chmod +x getdata.sh</code></pre>
 <p>Run the file:</p>
 <pre class="sh"><code>./getdata.sh</code></pre>

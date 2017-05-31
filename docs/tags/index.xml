@@ -6,7 +6,7 @@
     <description>Recent content in Tags on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,43 +14,25 @@
     <item>
       <title>Git</title>
       <link>/tags/git/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Programming</title>
-      <link>/tags/programming/</link>
-      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Project</title>
       <link>/tags/project/</link>
-      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/project/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>R</title>
-      <link>/tags/r/</link>
-      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Shell</title>
       <link>/tags/shell/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/shell/</guid>
       <description></description>
