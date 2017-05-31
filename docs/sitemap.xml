@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/2017/05/31/data-cleaning-in-r/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/31/exploratory-data-analysis/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/31/project-day-2-querying-data/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/30/databases-and-sql/</loc>
+    <lastmod>2017-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/30/scrum-and-best-practices/</loc>
+    <lastmod>2017-05-30T00:00:00+00:00</lastmod>
+  </url>
   
   <url>
     <loc>/2017/05/27/the-terminal-unix-shell/</loc>
@@ -8,6 +34,11 @@
   
   <url>
     <loc>/2017/05/27/version-control-git-github/</loc>
+    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/27/intro-to-r/</loc>
     <lastmod>2017-05-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -33,7 +64,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -49,13 +80,25 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/programming/</loc>
+    <lastmod>2017-05-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/project/</loc>
-    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2017-05-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

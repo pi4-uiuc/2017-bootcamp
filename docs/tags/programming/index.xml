@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on PI4 Computational Bootcamp</title>
+    <link>/tags/programming/</link>
+    <description>Recent content in Programming on PI4 Computational Bootcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 May 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Best Practices and Collaborative Development</title>
+      <link>/2017/05/30/scrum-and-best-practices/</link>
+      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/30/scrum-and-best-practices/</guid>
+      <description>Objectives:
+ Understand Best practices per wilson et al Basic components of Reproducible Research Be familiar with concepts related to Scrum  Best Practices in Scientific Computing Wilson et al 2014 Best practices in Scientific Computing Wilson et al http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745 Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
+ Wilson et al 2017 Good enough practices in Scientific Computing https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
+ Example: PEcAn Project Please start the day by reading this.
+  Reproducible Research Example 1: Ocean Health Index   Figure 1: Better science in less time, illustrated by the Ocean Health Index project.</description>
+    </item>
+    
+  </channel>
+</rss>

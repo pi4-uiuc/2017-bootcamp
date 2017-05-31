@@ -6,10 +6,21 @@
     <description>Recent content in Project on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 31 May 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/project/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Project Day 2: Querying Data</title>
+      <link>/2017/05/31/project-day-2-querying-data/</link>
+      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/31/project-day-2-querying-data/</guid>
+      <description>Flush out ideas from Friday  need to narrow the scope define data sets that are needed clarify questions write hypotheses / predictions draft of methods that you will use to test hypotheses what figures and tables will you create?
+ divide tasks within the group
+  Set up project  create appropriate directories create one or more Rmd files  Download data  Download and subset data that you will use from BETYdb  find data that you will need design data management plan  For data not in BETYdb, write down what you will need.</description>
+    </item>
     
     <item>
       <title>Project: Getting Started</title>
