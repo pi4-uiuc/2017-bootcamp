@@ -6,7 +6,6 @@ slug: databases-and-sql
 tags: [r]
 ---
 
-
 ## Introduction 
 
 <iframe src="https://docs.google.com/presentation/d/1dQHlodU9PggM7khqlL_OS4P-X-o96D78ihuvuD2Iong/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
@@ -247,8 +246,12 @@ dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
 ### Tables & Schemas
 
 
+![A simplified entity–relationship diagram for key tables in Biofuel Ecophysiological Traits and Yields database (BETYdb).](https://raw.githubusercontent.com/ebimodeling/betydb_manuscript/master/figures/gcbb12420-fig-0001.png)
 
-![A simplified entity–relationship diagram for key tables in Biofuel Ecophysiological Traits and Yields database (BETYdb).](http://onlinelibrary.wiley.com/store/10.1111/gcbb.12420/asset/image_n/gcbb12420-fig-0001.png?v=1&t=j2uxcy2q&s=ddb49c4e35c662b8ca120fc2882a17f28f0f50b5)
+
+Here is a more comprehensive entity-relationship diagram:
+
+![BETYdb Schema ER diagram](https://raw.githubusercontent.com/PecanProject/betydb-data-access/master/betydb_schema.png)
 
 
 ### SQL
@@ -357,9 +360,7 @@ select * from NDVI;
 
 ### Common software
 
-MySQL, PostgreSQL, Oracle, 
-
-Access
+MySQL, PostgreSQL, Oracle, Access(?!)
 
 
 ### R: RPostgreSQL and dplyr
@@ -463,8 +464,6 @@ https://github.com/terraref/tutorials/blob/master/traits/02-danforth-phenotyping
 * How would you query all of the planting dates associated with a trait record?
 
 ## Real World Application: the Biofuel Ecophysiological Traits and Yields database
-
-![Summary BETYdb schema](https://pecan.gitbooks.io/betydb-data-access/content/betydb_schema.png)
 
 We have created 'views' to make it easier to query data from multiple tables. For example, to lookup the name and location of a site or the names and units of variables. The following query joins multiple tables, and is based on the yieldsview table:
 

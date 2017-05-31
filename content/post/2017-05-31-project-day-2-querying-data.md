@@ -1,10 +1,10 @@
 ---
 title: 'Project Day 2: Querying Data'
-author: ~
+author: 'David LeBauer'
 date: '2017-05-31'
 slug: project-day-2-querying-data
 categories: []
-tags: []
+tags: [project]
 ---
 
 ## Flush out ideas from Friday

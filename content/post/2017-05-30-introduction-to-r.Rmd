@@ -2,8 +2,8 @@
 title: "4. Introduction to R"
 author: "David LeBauer"
 date: '2017-05-27'
+tags: r
 slug: intro-to-r
-tags: [r]
 ---
 
 
@@ -27,8 +27,8 @@ Why R?
 * Most common language used by academic statisticians. Thus, many methods are developed as R packages and not available elsewhere.
   * built around stats, with lots of handy functions
 * data analysis by design
-  * formulas for statistical models e.g. `r yield ~ genotype + nitrogen + irrigation` 
-  * vectorization, eg. `r a <- 4 * X` instead of `for i in `r 1:length(X) a[i] <- 4 * X[i]`
+  * formulas for statistical models e.g. `yield ~ genotype + nitrogen + irrigation` 
+  * vectorization, eg. `a <- 4 * X` instead of `for i in `1:length(X) a[i] <- 4 * X[i]`
   * ggplot 'grammar of graphics' among best graphing programs (only get better w/ graphical design programs like  photoshop/Inkscape)
   * dplyr and tidyr for data munging
 * Integrates with lower level languages (esp C, C++, FORTRAN; Rcpp package for integration w/ C++ excellent)
@@ -67,7 +67,7 @@ Handy buttons
 * Addins
 * rerun on save
 
-
+During this lesson I created the repository https://github.com/pi4-uiuc/day2, generated the file [`src/download_data_betydb.R]( https://github.com/pi4-uiuc/day2/blob/master/src/download_data_betydb.R), and populated the `data/` directory.
 
 
 ### Installing packages
@@ -142,7 +142,6 @@ Contents:
 
 ## Project organization
 
-
 * Put each project in its own directory, which is named after the project.
 * Put text documents associated with the project in the `/doc` directory.
 * Put raw data and metadata in the `/data` directory, and files generated during cleanup and analysis in a results directory.
@@ -152,7 +151,7 @@ Contents:
 
 From [Wilson et al "Good Enough Practices for Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) arXiv:1609.00037
 
-```{r create_dirs}
+```{r create_dirs, warning = FALSE, eval=FALSE}
 lapply(c('doc', 'src', 'reports', 'data', 'results'),
        dir.create)
 ```
@@ -176,11 +175,10 @@ Lets start by downloading the same data that we had last week:
 
 It is great that the import is rendered as reproducible / reuseable R code, so this can be added to your script:
 
-```{r import-salix}
+```{r import-salix, message = FALSE}
 library(readr)
 salix <- read_csv("http://www.betydb.org/search.csv?search=Salix", 
     comment = "#", skip = 2)
-View(salix)
 ```
 
 We also want to save a copy of this to our `/data` folder
@@ -207,7 +205,7 @@ _your turn_
 
 hint: `paste0("http://www.betydb.org/search.csv?search=", genus)`
 
-```{r saveall, echo = FALSE}
+```{r saveall, echo = FALSE, message = FALSE}
 dir.create('data', showWarnings = FALSE, recursive = TRUE)
 genera <- c('salix', 'populus', 'miscanthus', 'panicum')
 for(genus in genera){
@@ -240,7 +238,7 @@ for(i in 1:10){
 
 When you can vectorize ifelse:
 
-```{r}
+```{r ifelse2}
 ifelse(a %% 2 > 0, 
        'even', 
        'odd')
@@ -254,14 +252,14 @@ lets load up all of the csv files we just downloaded into a list of datasets:
 multi_spp_list <- list()
 ```
 
-```{r data-dont-exist-error, eval = FALSE}
+```{r data-dont-exist-error, eval = FALSE, message = FALSE}
 for(genus in  c('salix', 'miscanthus', 'acer')){ # for item(sing) in items(plural) ... 
   multi_spp_list[[genus]] <- read_csv(file.path('data', 
                                                 paste0(genus, '.csv')))
 } ## should break because acer.csv does not exist
 ```
 
-```{r warnings=FALSE, eval = FALSE}
+```{r ifelse3, warnings=FALSE, eval = FALSE, message = FALSE}
 for(genus in genera){ # for item(sing) in items(plural) ... 
   file <- file.path('data', paste0(genus, '.csv'))
   if(file.exists(file)){
@@ -280,7 +278,7 @@ This is where it is handy to recall that we previously defined the vector 'gener
 ### Vectorization
 
 
-```{r}
+```{r vectors}
 a <- c(1, 2, 2, 3)
 b <- c(1, 2, 3, 4)
 
@@ -297,7 +295,7 @@ abc^2
 
 Element-wise vs. matrix multiplication
 
-```{r}
+```{r elements-matrix-x}
 # element-wise
 a * a + b * b 
 abc * abc
@@ -313,7 +311,7 @@ a %*% a + b %*% b
 sapply(1:10, function(x)  x>2)
 ```
 
-```{r files-with-dir}
+```{r files-with-dir, message = FALSE}
 # files <- dir("data", pattern = '.csv', full.names = TRUE)
 files <- sapply(genera, function(x) paste0('data/', x, '.csv'))
 
@@ -321,7 +319,7 @@ multi_spp_list <- lapply(files, function(x) read_csv(x))
 ```
 
 
-```{r}
+```{r vector-logical}
 
 salix <- multi_spp_list$salix
 salix$trait == 'Ayield'         ## becomes a logical vector
@@ -330,11 +328,10 @@ salix_yield <- salix[salix$trait == 'Ayield',] ## can be used for subsetting
 ## what fraction of salix yields are > 10?
 salix_yield <- salix[salix$trait == 'Ayield',] ## can be used for subsetting
 
-sum(salix_yield$mean > 10, na.rm = TRUE)
+mean(salix_yield$mean > 10, na.rm = TRUE)
 ```
 
 ```{r lapply-examples}
-
 lapply(multi_spp_list, class)
 lapply(multi_spp_list, function(x) class(x$mean))
 
@@ -367,3 +364,5 @@ http://swcarpentry.github.io/r-novice-gapminder/15-knitr-markdown/
 
 
 Support for many languages (Python, SQL, bash) http://rmarkdown.rstudio.com/authoring_knitr_engines.html#overview
+
+Examples from class are in https://github.com/pi4-uiuc/day2/blob/master/exploratory-data-analysis.Rmd

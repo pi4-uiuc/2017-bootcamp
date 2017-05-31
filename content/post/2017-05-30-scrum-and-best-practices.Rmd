@@ -15,12 +15,18 @@ Objectives:
 
 ## Best Practices in Scientific Computing
 
-Best practices in Scientific Computing
+### Wilson et al 2014 Best practices in Scientific Computing
 
 Wilson et al http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
-
-
 Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
+
+### Wilson et al 2017 Good enough practices in Scientific Computing
+
+https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
+
+### Example: PEcAn Project
+
+Please start the day by reading this. 
 
 ## Reproducible Research
 
