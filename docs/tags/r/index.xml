@@ -23,5 +23,16 @@ In fact, so far we have been working with tables.
  Sorghum Data from Arizona Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</description>
     </item>
     
+    <item>
+      <title>4. Introduction to R</title>
+      <link>/2017/05/27/intro-to-r/</link>
+      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/27/intro-to-r/</guid>
+      <description>This lesson is based on Getting Started with R and Rstudio (SWC 1-3).
+Objectives:
+ Understand the utility of R as a language for data analysis To gain familiarity with the Rstudio IDE: panes, buttons, shortcuts, options Where to get help in R. Learn to manage your workspace in an interactive R session Learn to find, install, and use packages / functions Load data call functions Intro to reproducible research w/ R markdown  Getting started with R Why R?</description>
+    </item>
+    
   </channel>
 </rss>
