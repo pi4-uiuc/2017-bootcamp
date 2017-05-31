@@ -18,13 +18,12 @@ In fact, so far we have been working with tables.
 
 ## Miscanthus Yields
 
-https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0
-
+https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs
 ## Sorghum Data from Arizona
 
 Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona
 
-https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U/edit#gid=932079509
+https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U
 
 Let's review the pages
 
@@ -181,7 +180,7 @@ The [relational model](https://en.wikipedia.org/wiki/Relational_model) for manag
 
 > process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. [Wikipedia - Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
 
-To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information (that violates the )
+To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information that violates the best practice of having a single canonical representation for each piece of information?
 
 > YOUR TURN: which of these fields has redundant data? 
 
