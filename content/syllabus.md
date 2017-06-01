@@ -189,11 +189,11 @@ Thursday June 1
 
 - Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
 
-1. Pandas
-2. MatPlotLib etc
-3. Data cleaning
-4. Principal Component Analysis
-5. $k$-nearest-neighbor
+1. [Pandas](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/00-pandas.ipynb)
+2. [MatPlotLib](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/00-matplotlib.ipynb)
+3. [Data cleaning](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/01-cleaning.md)
+4. [Principal Component Analysis](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/02-pca.md)
+5. [$k$-nearest-neighbor](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/03-knn.ipynb)
 
 ### Day 7:  Data Mining
 
