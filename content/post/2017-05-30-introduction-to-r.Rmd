@@ -4,6 +4,7 @@ author: "David LeBauer"
 date: '2017-05-27'
 tags: r
 slug: intro-to-r
+type: post
 ---
 
 
@@ -151,7 +152,7 @@ Contents:
 
 From [Wilson et al "Good Enough Practices for Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) arXiv:1609.00037
 
-```{r create_dirs, warning = FALSE, eval=FALSE}
+```{r create_dirs, warning = FALSE}
 lapply(c('doc', 'src', 'reports', 'data', 'results'),
        dir.create)
 ```

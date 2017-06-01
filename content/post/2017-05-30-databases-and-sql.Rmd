@@ -4,6 +4,7 @@ author: "David LeBauer"
 date: '2017-05-30'
 slug: databases-and-sql
 tags: [r]
+type: post
 ---
 
 ## Introduction 
@@ -244,6 +245,13 @@ dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
                 port = 5432)
 ```
 
+```sql
+REFRESH MATERIALIZED VIEW traitsview_private;
+REFRESH MATERIALIZED VIEW yieldsview_private;
+REFRESH MATERIALIZED VIEW traits_and_yields_view_private;
+REFRESH MATERIALIZED VIEW traits_and_yields_view;
+```
+
 ### Tables & Schemas
 
 
@@ -368,24 +376,19 @@ MySQL, PostgreSQL, Oracle, Access(?!)
 
 ```{r rpostgresql}
 library(RPostgreSQL)
+
 dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
                 dbname = "bety", password = 'bety', host = 'terra-bety.default', user = 'bety', port = 5432)
 
 query <- "select * from traits left join variables 
              on traits.variable_id = variables.id
              where variables.name = 'NDVI';"
-
-
+#query <- "select count(*) from traits_and_yields_view_private"
+#dbSendQuery(dbcon, 'select count(*) from traits;'))
 result <- dbSendQuery(dbcon, query)
 df <- fetch(result)
 dbClearResult(result)
-#dbDisconnect(dbcon)
-
-```
-
-
-```{sql, connection = dbcon}
-select count(*) from traitsview_private;
+dbDisconnect(dbcon)
 
 ```
 
