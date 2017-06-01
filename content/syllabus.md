@@ -16,7 +16,7 @@ David LeBauer
 
 Neal Davis
 
-* Deparatment of Computer Science, University of Illinois
+* Department of Computer Science, University of Illinois
 * email:davis68@illinois.edu
 
 Stefan Klajbor (TA) 
@@ -183,18 +183,22 @@ Wednesday May 31
    * ggplot starting with [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
 4. Project: Find data, clean, evaluate, and summarize, publish to GitHub
 
-### Day 4 (Davis)
+
+### Day 4 Data Mining (Davis)
 
 Thursday June 1
 
 - Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
 
-1. Pandas
-2. MatPlotLib etc
-2. Data cleaning
-3. Principal Component Analysis
 
-### Day 5 (Davis)
+1. [Pandas](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/00-pandas.ipynb)
+2. [MatPlotLib](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/00-matplotlib.ipynb)
+3. [Data cleaning](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/01-cleaning.md)
+4. [Principal Component Analysis](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/02-pca.md)
+5. [$k$-nearest-neighbor](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/03-knn.ipynb)
+
+
+### Day 5 Data Mining (Davis)
 
 Friday June 2
 
@@ -202,6 +206,7 @@ Friday June 2
 2. $k$-d tree
 3. Support Vector Machines
 4. Monte Carlo sampling
+
 
 ### Day 6: Probability and Statistics (LeBauer)
 
@@ -235,18 +240,15 @@ Tuesday June 6
    * GLM
    * HB
 
-
-### Day 8 (Davis)
+### Day 8 Data Mining (Davis)
 
 Wednesday June 7
 
-
-1. $k$-means clustering
 2. Hierarchical clustering
 3. Hidden Markov models
 4. Data Mining Project
 
-### Day 9 (Davis)
+### Day 9 Cloud Computing & MapReduce (Davis)
 
 Thursday June 8
 
