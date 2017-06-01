@@ -61,7 +61,7 @@
 
   <article class="article">
     
-    <span class="article-duration">10 min read</span>
+    <span class="article-duration">11 min read</span>
     
 
     <h1 class="article-title">5. Databases and SQL</h1>
@@ -83,12 +83,9 @@
 </div>
 <div id="miscanthus-yields" class="section level2">
 <h2>Miscanthus Yields</h2>
-<p><a href="https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0" class="uri">https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0</a></p>
-</div>
-<div id="sorghum-data-from-arizona" class="section level2">
-<h2>Sorghum Data from Arizona</h2>
+<p><a href="https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs" class="uri">https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs</a> ## Sorghum Data from Arizona</p>
 <p>Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</p>
-<p><a href="https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U/edit#gid=932079509" class="uri">https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U/edit#gid=932079509</a></p>
+<p><a href="https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U" class="uri">https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U</a></p>
 <p>Let’s review the pages</p>
 <ul>
 <li>README is good. They are well ahead of the curve on this!</li>
@@ -113,18 +110,18 @@
 <h3>Importing Data into Open Refine</h3>
 <p>Once OpenRefine is launched in your browser, the left margin has options to Create Project, Open Project, or Import Project. Here we will create a new project:</p>
 <ul>
-<li>click ‘Create Project’; ‘Get data from This Computer’ should be selected</li>
+<li>Click ‘Create Project’; ‘Get data from This Computer’ should be selected</li>
 <li>what other ways can you get data into OpenRefine?</li>
-<li>Click Choose Files and select the file <code>DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv</code></li>
-<li>Click Open –&gt; Next</li>
+<li>Click ‘Choose Files’ and select the file <code>DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv</code></li>
+<li>Click ‘Open’ –&gt; ‘Next’</li>
 <li>OpenRefine gives you a preview - a chance to show you it understood the file.</li>
 <li>did the file show up sensibly?</li>
-<li>in the upper right corner create a meaninful project name and then click “Create Project”</li>
+<li>In the upper right corner create a meaningful project name and then click “Create Project”</li>
 </ul>
 </div>
 <div id="faceting" class="section level3">
 <h3>Faceting</h3>
-<p>OpenRefine supports faceted browsing. This allows you tosee the big picture of your data and then filter down to a subset of rows. Once you have a target set of rows, you can apply changes in bulk.</p>
+<p>OpenRefine supports faceted browsing. This allows you to see the big picture of your data and then filter down to a subset of rows. Once you have a target set of rows, you can apply changes in bulk.</p>
 <ul>
 <li>lets work with one of the columns containing plant height measurements</li>
 <li>next to one of the numeric columns (Plant_ht_Aug24) click the arrow</li>
@@ -163,7 +160,7 @@
 <div id="terra-ref-sites-and-variables" class="section level3">
 <h3>TERRA REF Sites and Variables</h3>
 <p>Your turn:</p>
-<p>Lets review a few datasets from the TERRA REF trait database. These are provided in the .json format by default:</p>
+<p>Lets review a few datasets from the TERRA REF trait database. These are provided in the <a href="https://en.wikipedia.org/wiki/JSON">.json format</a> by default:</p>
 <ol style="list-style-type: decimal">
 <li>Look at the sites table. Where are the sites? Are there redundant names?</li>
 </ol>
@@ -206,7 +203,7 @@
 <li>Method</li>
 <li>Entity</li>
 </ul>
-<p>Now click the “Download Results” button. This will download a .csv file. A .csv file is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:</p>
+<p>Now click the “Download Results” button. This will download a .csv file. A <a href="https://en.wikipedia.org/wiki/Comma-separated_values">.csv file</a> is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:</p>
 <pre><code>row 1 col 1, row 1 col 2, row 1 col 3
 row 2 col 1, row 2 col 2, row 2 col 3
 row 3 col 1, row 3 col 2, row 3 col 3</code></pre>
@@ -214,7 +211,7 @@ row 3 col 1, row 3 col 2, row 3 col 3</code></pre>
 <p>By default, many computers will open the csv file directly into a <a href="https://en.wikipedia.org/wiki/spreadsheet">spreadsheet program</a> like Microsoft Excel or OpenOffice Calc. But because it is a text file, you can also open it in a <a href="https://en.wikipedia.org/wiki/Text_editor">text editor</a> like Notepad, nano, or emacs.</p>
 <p>It can also be easily read by any software or parsed at the command line using tools like <code>cut</code> and <code>sed</code>. Unlike xml and json, it is more intuitive for a human to read.</p>
 <blockquote>
-<p>where are redundancies?</p>
+<p>where are there redundancies?</p>
 </blockquote>
 <ul>
 <li>Site + city + lat + lon</li>
@@ -243,13 +240,14 @@ row 3 col 1, row 3 col 2, row 3 col 3</code></pre>
 </div>
 <div id="relational-databases-and-sql" class="section level2">
 <h2>Relational Databases and SQL</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Relational_model">relational model</a> for managing databases consists of representing the data in terms of tuples of relations. Many modern databases use some version of this. Structured Query Language or <a href="https://en.wikipedia.org/wiki/SQL">SQL</a> is a language implementation based on the relational model, although there are some differences.</p>
 <div id="data-normalization" class="section level3">
 <h3>Data Normalization</h3>
 <p>“Codd’s Normal Forms” from (Codd 1970)</p>
 <blockquote>
 <p>process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. <a href="https://en.wikipedia.org/wiki/Database_normalization">Wikipedia - Database normalization</a></p>
 </blockquote>
-<p>To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information (that violates the )</p>
+<p>To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information that violates the best practice of having a single canonical representation for each piece of information?</p>
 <blockquote>
 <p>YOUR TURN: which of these fields has redundant data?</p>
 </blockquote>
@@ -297,6 +295,10 @@ psql </code></pre>
                 host = &#39;terra-bety.default&#39;, 
                 user = &#39;bety&#39;, 
                 port = 5432)</code></pre>
+<pre class="sql"><code>REFRESH MATERIALIZED VIEW traitsview_private;
+REFRESH MATERIALIZED VIEW yieldsview_private;
+REFRESH MATERIALIZED VIEW traits_and_yields_view_private;
+REFRESH MATERIALIZED VIEW traits_and_yields_view;</code></pre>
 </div>
 </div>
 <div id="tables-schemas" class="section level3">
@@ -647,39 +649,24 @@ select * from NDVI;</code></pre>
 <div id="r-rpostgresql-and-dplyr" class="section level3">
 <h3>R: RPostgreSQL and dplyr</h3>
 <pre class="r"><code>library(RPostgreSQL)
+
 dbcon &lt;- dbConnect(RPostgreSQL::PostgreSQL(),
                 dbname = &quot;bety&quot;, password = &#39;bety&#39;, host = &#39;terra-bety.default&#39;, user = &#39;bety&#39;, port = 5432)
 
 query &lt;- &quot;select * from traits left join variables 
              on traits.variable_id = variables.id
              where variables.name = &#39;NDVI&#39;;&quot;
-
-
+#query &lt;- &quot;select count(*) from traits_and_yields_view_private&quot;
+#dbSendQuery(dbcon, &#39;select count(*) from traits;&#39;))
 result &lt;- dbSendQuery(dbcon, query)
 df &lt;- fetch(result)
 dbClearResult(result)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>#dbDisconnect(dbcon)</code></pre>
-<pre class="sql"><code>select count(*) from traitsview_private;
-</code></pre>
-<div class="knitsql-table">
-<table>
-<caption><span id="tab:unnamed-chunk-3">Table 5: </span>1 records</caption>
-<thead>
-<tr class="header">
-<th align="left">count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">763852</td>
-</tr>
-</tbody>
-</table>
-</div>
+<pre class="r"><code>dbDisconnect(dbcon)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 <div id="connecting-with-dplyr" class="section level4">
 <h4>Connecting with dplyr</h4>
-<p>advantage for larger datasets: can do a lot of server-side summarization and some computing before pulling data into memory.</p>
+<p>Advantage for larger datasets: can do a lot of server-side summarization and some computing before pulling data into memory.</p>
 <p><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html</a></p>
 <pre class="r"><code>library(dplyr)</code></pre>
 <pre><code>## 

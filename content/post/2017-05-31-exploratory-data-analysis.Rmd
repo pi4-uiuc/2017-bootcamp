@@ -7,7 +7,60 @@ categories: []
 tags: []
 ---
 
-## Visualization in R using ggplot
+## Exploratory Data Analysis
+
+
+### Data Cleaning
+   * Data Cleaning with Open Refine [DC lesson 1-4](http://www.datacarpentry.org/OpenRefine-ecology-lesson/)
+   * Data Cleaning in R
+
+### Data Manipulation
+
+   * [filtering, subsetting, summarizing, new variables with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)
+   * [Converting data from wide to long with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/)
+
+
+```{r}
+library(dplyr)
+
+bety_src <- src_postgres(dbname = "bety", 
+                password = 'bety', 
+                host = 'terra-bety.default', 
+                user = 'bety', 
+                port = 5432)
+
+```
+
+
+### filtering / subsetting
+
+```{r}
+
+traits <- tbl(bety_src, 'traits', n=Inf)
+
+variables <- tbl(bety_src, 'variables') %>%
+  mutate(variable_id = id)
+
+sites <- tbl(bety_src, 'sites') %>%
+  mutate(site_id = id)
+
+traits_variables <- traits %>% 
+  left_join(variables, by = 'variable_id') %>% 
+  left_join(sites, by = 'site_id') %>% 
+  select(sitename, name, mean) %>% 
+  filter(name == 'canopy_height') %>% 
+  collect()
+
+#spread(traits_variables, key = sitename, value = mean)
+```
+### Plotting
+
+```{r}
+```
+
+
+
+### Visualization in R using ggplot
 
 * R for data science http://r4ds.had.co.nz/data-visualisation.html
 * [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)

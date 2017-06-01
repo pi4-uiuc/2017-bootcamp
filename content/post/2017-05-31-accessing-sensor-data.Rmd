@@ -1,0 +1,181 @@
+---
+title: Accessing Sensor Data 2
+author: David LeBauer
+date: '2017-05-31'
+slug: accessing-sensor-data
+categories: []
+tags: [sensors,met,r]
+type: post
+---
+
+## Meteorological Data
+
+### Raw Data
+
+```{r raw-met}
+metfile <- "/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger/2017-05-31/2017-05-31_12-19-38_environmentlogger.json"
+met <- jsonlite::fromJSON(metfile)
+
+timestamp <- lubridate::ymd_hms(met$environment_sensor_readings$timestamp)
+
+wavelengths <- met$environment_sensor_readings$spectrometer$wavelength[[1]]
+
+spectra <- do.call('rbind', met$environment_sensor_readings$spectrometer$spectrum)
+
+library(dplyr)
+spectra <- do.call('rbind', met$environment_sensor_readings$spectrometer$spectrum)
+
+#colnames(spectra) <- wavelengths
+#rownames(spectra) <- met$environment_sensor_readings$timestamp
+image(x = timestamp, y = wavelengths, z = spectra)
+```
+
+
+```{r}
+
+get_downwelling_irradiance <- function(date = "2017-05-31"){
+  path <- file.path("/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger", date)
+  files <- dir(path, full.names = TRUE)
+  metdata <- lapply(files, jsonlite::fromJSON)
+  
+  timestamp <- unlist(lapply(metdata, function(x){
+    lubridate::ymd_hms(x$environment_sensor_readings$timestamp)
+  }))
+  
+  wavelengths <- metdata[[1]]$environment_sensor_readings$spectrometer$wavelength[[1]]
+  
+  spectra <- do.call('rbind', lapply(metdata, function(x){
+    do.call('rbind', x$environment_sensor_readings$spectrometer$spectrum)
+    }
+  ))
+
+  met <- do.call('rbind', lapply(metdata, function(x){
+    tmp_met <- x$environment_sensor_readings
+    data.frame(par = tmp_met$`sensor par`$value,
+               co2 = tmp_met$`sensor co2`$value,
+               sundir = tmp_met$weather_station$sunDirection$value,
+               pressure = tmp_met$weather_station$airPressure$value,
+               brightness = tmp_met$weather_station$brightness$value,
+               rh = tmp_met$weather_station$relHumidity$value,
+               temp = tmp_met$weather_station$temperature$value,
+               wind_dir = tmp_met$weather_station$windDirection$value,
+               wind_speed = tmp_met$weather_station$windVelocity$value)
+    
+  })) 
+  
+  z <- met %>% tidyr::gather(key = timestamp, value = value)
+
+  # image(x = timestamp, y = wavelengths, z = spectra)
+  
+}
+
+
+```
+```{r netcdf-met}
+library(ncdf4)
+metnc <- nc_open('/data/terraref/sites/ua-mac/Level_1/EnvironmentLogger/2017-05-16/EnvironmentLogger_lv1_2017-05-16_uamac.nc')
+library(lubridate)
+library(data.table)
+library(udunits2)
+
+time <- ncvar_get(metnc, 'time')
+datetime <- ymd("1970-01-01") + seconds(ud.convert(time, 'd', 's'))
+
+wavelengths <- ncvar_get(metnc, 'wvl_lgr')
+
+f_down_spectrum <- ncvar_get(metnc, 'flx_spc_dwn')
+
+library(ggplot2)
+
+ggplot() + 
+  geom_point(aes(wavelengths, f_down_spectrum[,1])) +
+  geom_line(aes(wavelengths, f_down_spectrum[,1]))
+
+f_down_means <- rowMeans(f_down_spectrum)
+
+ggplot() + 
+  geom_point(aes(wavelengths, f_down_means)) +
+  geom_line(aes(wavelengths, f_down_means))
+
+print(metnc)
+  
+PAR <- ncvar_get(metnc, 'Photosynthetically_Active_Radiation')
+
+ggplot() +
+  geom_line(aes(datetime, PAR))
+
+```
+
+
+### Using the PEcAn workflow
+
+```{r install-pecan-dependencies, message=FALSE}
+devtools::install_github("pecanproject/pecan",  
+                         subdir = 'utils')
+devtools::install_github("pecanproject/pecan",  
+                         subdir = 'db')
+devtools::install_github("rforge/reddyproc",
+                         subdir = "pkg/REddyProc")
+devtools::install_github("pecanproject/pecan",  
+                         subdir = 'modules/data.atmosphere',
+                         ref = 'develop')
+
+source("https://raw.githubusercontent.com/PecanProject/pecan/develop/models/biocro/R/met2model.BIOCRO.R")
+```
+
+
+```{r write-clowder, eval = FALSE}
+writeLines("
+<pecan>
+  <clowder>
+    <hostname>terraref.ncsa.illinois.edu</hostname>
+    <user>dlebauer+energyfarm_met@gmail.com</user>
+    <password>!energyfarmmet??</password>
+  </clowder>
+</pecan>", 
+con =  "~/.pecan.clowder.xml")
+```
+
+
+```{r pecan-met-workflow, message=FALSE, warning=FALSE}
+library("PEcAn.data.atmosphere")
+library("dplyr")
+
+## download raw data
+ne <- download.Geostreams(
+  outfolder="data",
+  sitename="UIUC Energy Farm - NE",
+  start_date="2016-02-28",
+  end_date="2016-04-01")
+
+## convert to standard
+ne_cf <- met2CF.Geostreams(
+  in.path = "data/", 
+  in.prefix = ne$dbfile.name, 
+  outfolder = "data/cf",
+  start_date = "2016-03-01", # note date shift to avoid TZ issues
+  end_date = "2016-04-01")
+
+## convert to model specific input
+met2model.BIOCRO(
+  overwrite = TRUE,
+  in.path = "data/cf", 
+  in.prefix = ne_cf$dbfile.name, 
+  outfolder = "data/biocromet",
+  lat = 40,
+  lon = -88,
+  start_date = "2016-03-01", 
+  end_date = "2016-03-30")
+
+met <- readr::read_csv('data/biocromet/Clowder.UIUC Energy Farm - NE.2016-02-28.2016-04-01.2016.csv')
+```
+
+
+## Laser Scanner Point Clouds
+
+## netCDF hyperspectral data
+
+```{r}
+hsi_nc <- nc_open('/data/terraref/sites/samples/vnir_test_small.nc')
+
+```
