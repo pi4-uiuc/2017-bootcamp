@@ -26,7 +26,7 @@
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/05/31/exploratory-data-analysis/</guid>
-      <description>Visualization in R using ggplot  R for data science http://r4ds.had.co.nz/data-visualisation.html SWC 8   </description>
+      <description>Exploratory Data Analysis Data Cleaning  Data Cleaning with Open Refine DC lesson 1-4 Data Cleaning in R   Data Manipulation  filtering, subsetting, summarizing, new variables with dplyr Converting data from wide to long with tidyr   Visualization in R using ggplot  R for data science http://r4ds.had.co.nz/data-visualisation.html SWC 8    </description>
     </item>
     
     <item>
@@ -41,19 +41,7 @@
     </item>
     
     <item>
-      <title>5. Databases and SQL</title>
-      <link>/2017/05/30/databases-and-sql/</link>
-      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/30/databases-and-sql/</guid>
-      <description>Introduction   Spreadsheets and Tables A database is a generic term for data. Often these are divided into ‘relational’ and ‘non-relational’… We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.
-In fact, so far we have been working with tables.
- Miscanthus Yields https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0
- Sorghum Data from Arizona Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</description>
-    </item>
-    
-    <item>
-      <title>Best Practices and Collaborative Development</title>
+      <title>3. Best Practices and Collaborative Development</title>
       <link>/2017/05/30/scrum-and-best-practices/</link>
       <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
       
@@ -63,6 +51,18 @@ In fact, so far we have been working with tables.
  Wilson et al 2017 Good enough practices in Scientific Computing https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
  Example: PEcAn Project Please start the day by reading this.
   Reproducible Research Example 1: Ocean Health Index   Figure 1: Better science in less time, illustrated by the Ocean Health Index project.</description>
+    </item>
+    
+    <item>
+      <title>5. Databases and SQL</title>
+      <link>/2017/05/30/databases-and-sql/</link>
+      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/30/databases-and-sql/</guid>
+      <description>Introduction   Spreadsheets and Tables A database is a generic term for data. Often these are divided into ‘relational’ and ‘non-relational’… We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.
+In fact, so far we have been working with tables.
+ Miscanthus Yields https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0
+ Sorghum Data from Arizona Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</description>
     </item>
     
     <item>
@@ -99,7 +99,7 @@ Objectives:
     </item>
     
     <item>
-      <title>Project: Getting Started</title>
+      <title>Project Day 1: Getting Started</title>
       <link>/2017/05/27/project-day-1/</link>
       <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
       

@@ -1,5 +1,5 @@
 ---
-title: "Project: Getting Started"
+title: "Project Day 1: Getting Started"
 author: ~
 date: '2017-05-27'
 slug: project-day-1
