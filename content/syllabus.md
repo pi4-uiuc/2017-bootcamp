@@ -100,14 +100,14 @@ We will have a one hour break each day for lunch. On days with a guest lecture, 
 
 All lectures will be from 12:00 to 1:00 unless otherwise noted.
 
-* Tuesday, May 30: "TBD" Aaron Saxton, PhD. Senior Data Scientist, Agrible Inc.
+* Tuesday, May 30: "“Transitioning From Academia to Industry: Marketing your PhD" Aaron Saxton, PhD. Senior Data Scientist, Agrible Inc.
 * Wednesday May 31: "Data in Nuclear Engineering" Katy Huff, PhD, Department of Nuclear, Plasma, and Radiological Engineering, UIUC
 * Friday, June 2: "TBD" Rob Kooper, Senior Research Programmer, National Center for Supercomputing Applications
 
 
 ## Course Schedule
 
-### Day 1: Computing Fundamentals
+### Day 1: Computing Fundamentals (LeBauer)
 
 Friday May 26
 
@@ -132,7 +132,7 @@ Friday May 26
    * Setup GitHub repository
    * Formulate questions and hypotheses
 
-### Day 2: Getting started with R
+### Day 2: Getting started with R (LeBauer)
 
 Tuesday May 30
 
@@ -158,7 +158,7 @@ Tuesday May 30
 
 The first half of the day will follow the R Novice Gapminder lesson http://swcarpentry.github.io/r-novice-gapminder/
 
-### Day 3: Databases and Visualization
+### Day 3: Databases and Visualization (LeBauer)
 
 Wednesday May 31 
 
@@ -183,9 +183,29 @@ Wednesday May 31
    * ggplot starting with [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
 4. Project: Find data, clean, evaluate, and summarize, publish to GitHub
 
-### Day 4: Probability and Statistics
+### Day 4 (Davis)
 
 Thursday June 1
+
+- Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
+
+1. Pandas
+2. MatPlotLib etc
+2. Data cleaning
+3. Principal Component Analysis
+
+### Day 5 (Davis)
+
+Friday June 2
+
+1. $k$-nearest-neighbor
+2. $k$-d tree
+3. Support Vector Machines
+4. Monte Carlo sampling
+
+### Day 6: Probability and Statistics (LeBauer)
+
+Monday June 5
 
 1. Probability Distributions
    * Bestiary, meaning, PDFs (Bolker Ch4, [Dietze EE509](https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd))
@@ -200,9 +220,9 @@ Thursday June 1
    * Functions
    * Dynamic Models
 
-### Day 5
+### Day 7: Statistics II (LeBauer)
 
-Friday June 2
+Tuesday June 6
 
 1. Model Building
    * Descriptive Analysis
@@ -214,28 +234,9 @@ Friday June 2
    * ANOVA ([Gelman et al 2005](https://projecteuclid.org/download/pdfview_1/euclid.aos/1112967698))
    * GLM
    * HB
-  
-### Day 6
 
-Monday June 5
 
-- Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
-
-1. Pandas
-2. MatPlotLib etc
-2. Data cleaning
-3. Principal Component Analysis
-
-### Day 7
-
-Tuesday June 6
-
-1. $k$-nearest-neighbor
-2. $k$-d tree
-3. Support Vector Machines
-4. Monte Carlo sampling
-
-### Day 8
+### Day 8 (Davis)
 
 Wednesday June 7
 
@@ -245,7 +246,7 @@ Wednesday June 7
 3. Hidden Markov models
 4. Data Mining Project
 
-### Day 9
+### Day 9 (Davis)
 
 Thursday June 8
 
