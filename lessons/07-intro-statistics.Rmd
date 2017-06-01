@@ -3,6 +3,9 @@
    * Fitting PDFs - 
       * parameter estimation 
       * goodness of fit (_L_, [A,B,D,]IC)
+      
+a simple MCMC algorithm https://theoreticalecology.wordpress.com/2010/09/17/metropolis-hastings-mcmc-in-r/
+
 3. Statistical Modeling
    * Regression
    * Functions
