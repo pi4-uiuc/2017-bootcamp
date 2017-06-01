@@ -16,7 +16,7 @@ David LeBauer
 
 Neal Davis
 
-* Deparatment of Computer Science, University of Illinois
+* Department of Computer Science, University of Illinois
 * email:davis68@illinois.edu
 
 Stefan Klajbor (TA) 
@@ -183,9 +183,30 @@ Wednesday May 31
    * ggplot starting with [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
 4. Project: Find data, clean, evaluate, and summarize, publish to GitHub
 
-### Day 4: Probability and Statistics
+### Day 6:  Data Mining
 
 Thursday June 1
+
+- Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
+
+1. Pandas
+2. MatPlotLib etc
+3. Data cleaning
+4. Principal Component Analysis
+5. $k$-nearest-neighbor
+
+### Day 7:  Data Mining
+
+Friday June 2
+
+1. $k$-d tree
+2. Support Vector Machines
+3. Monte Carlo sampling
+4. $k$-means clustering
+
+### Day 6: Probability and Statistics
+
+Monday June 5
 
 1. Probability Distributions
    * Bestiary, meaning, PDFs (Bolker Ch4, [Dietze EE509](https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd))
@@ -202,7 +223,7 @@ Thursday June 1
 
 ### Day 5
 
-Friday June 2
+Tuesday June 6
 
 1. Model Building
    * Descriptive Analysis
@@ -215,37 +236,15 @@ Friday June 2
    * GLM
    * HB
   
-### Day 6
-
-Monday June 5
-
-- Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
-
-1. Pandas
-2. MatPlotLib etc
-2. Data cleaning
-3. Principal Component Analysis
-
-### Day 7
-
-Tuesday June 6
-
-1. $k$-nearest-neighbor
-2. $k$-d tree
-3. Support Vector Machines
-4. Monte Carlo sampling
-
-### Day 8
+### Day 8:  Data Mining
 
 Wednesday June 7
 
+1. Hierarchical clustering
+2. Hidden Markov models
+3. Data Mining Project
 
-1. $k$-means clustering
-2. Hierarchical clustering
-3. Hidden Markov models
-4. Data Mining Project
-
-### Day 9
+### Day 9:  Cloud Computing & MapReduce
 
 Thursday June 8
 
