@@ -6,7 +6,11 @@
     <description>Recent content in Posts on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+<<<<<<< HEAD
     <lastBuildDate>Wed, 31 May 2017 00:00:00 +0000</lastBuildDate>
+=======
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -67,10 +71,10 @@ In fact, so far we have been working with tables.
     
     <item>
       <title>1. The Terminal (Unix Shell)</title>
-      <link>/2017/05/27/the-terminal-unix-shell/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      <link>/2017/05/26/the-terminal-unix-shell/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/27/the-terminal-unix-shell/</guid>
+      <guid>/2017/05/26/the-terminal-unix-shell/</guid>
       <description>“What is a command shell and why would I use one?”
 This tutorial is based on the Software Carpentry Unix Shell) [@swc_unix_shell] lesson, and will refer to it for background information.
 Today we will learn - how the shell relates to the keyboard, the screen, the operating system, and users’ programs.&amp;quot; - when and why command-line interfaces should be used instead of graphical interfaces. - similarities and differences between a file and a directory.</description>
@@ -78,16 +82,18 @@ Today we will learn - how the shell relates to the keyboard, the screen, the ope
     
     <item>
       <title>2. Version Control and Collaborative development</title>
-      <link>/2017/05/27/version-control-git-github/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      <link>/2017/05/26/version-control-git-github/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/27/version-control-git-github/</guid>
+      <guid>/2017/05/26/version-control-git-github/</guid>
       <description>Version control makes it possible to have ‘unlimited undo’ and histories of your documents (and some smaller datasets)
-Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate. If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it make it easier to use heterogeneous environments.
-Version Control SWC Git Novice 1-6 Getting Started Introduce yourself</description>
+Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate.
+If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it makes it easier to use heterogeneous environments.
+Version Control SWC Git Novice 1-6 Getting Started Introduce yourself (once you’ve set this on your machine, you don’t have to set it again unless you want to change something):</description>
     </item>
     
     <item>
+<<<<<<< HEAD
       <title>4. Introduction to R</title>
       <link>/2017/05/27/intro-to-r/</link>
       <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
@@ -102,8 +108,13 @@ Objectives:
       <title>Project Day 1: Getting Started</title>
       <link>/2017/05/27/project-day-1/</link>
       <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+=======
+      <title>Project: Getting Started</title>
+      <link>/2017/05/26/project-day-1/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
       
-      <guid>/2017/05/27/project-day-1/</guid>
+      <guid>/2017/05/26/project-day-1/</guid>
       <description>Objectives Students should experience a collaborative development cycle similar to what they might encounter as a research programmer / software engineer / data scientist etc.
 They will have the opportunity to contribute to open source projects (e.g. TERRA REF and PEcAn Projects). Their GitHub repositories, reports, and code will become part of their portfolio.
 Projects will provide the opportunity for students to apply what we have learned in class to new datasets and analyses.</description>

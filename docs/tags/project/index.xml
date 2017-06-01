@@ -6,12 +6,17 @@
     <description>Recent content in Project on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+<<<<<<< HEAD
     <lastBuildDate>Wed, 31 May 2017 00:00:00 +0000</lastBuildDate>
+=======
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
     
 	<atom:link href="/tags/project/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+<<<<<<< HEAD
       <title>Project Day 2: Querying Data</title>
       <link>/2017/05/31/project-day-2-querying-data/</link>
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
@@ -26,8 +31,13 @@
       <title>Project Day 1: Getting Started</title>
       <link>/2017/05/27/project-day-1/</link>
       <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+=======
+      <title>Project: Getting Started</title>
+      <link>/2017/05/26/project-day-1/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
       
-      <guid>/2017/05/27/project-day-1/</guid>
+      <guid>/2017/05/26/project-day-1/</guid>
       <description>Objectives Students should experience a collaborative development cycle similar to what they might encounter as a research programmer / software engineer / data scientist etc.
 They will have the opportunity to contribute to open source projects (e.g. TERRA REF and PEcAn Projects). Their GitHub repositories, reports, and code will become part of their portfolio.
 Projects will provide the opportunity for students to apply what we have learned in class to new datasets and analyses.</description>

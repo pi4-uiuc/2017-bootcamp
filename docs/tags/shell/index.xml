@@ -6,17 +6,17 @@
     <description>Recent content in Shell on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>1. The Terminal (Unix Shell)</title>
-      <link>/2017/05/27/the-terminal-unix-shell/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      <link>/2017/05/26/the-terminal-unix-shell/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/27/the-terminal-unix-shell/</guid>
+      <guid>/2017/05/26/the-terminal-unix-shell/</guid>
       <description>“What is a command shell and why would I use one?”
 This tutorial is based on the Software Carpentry Unix Shell) [@swc_unix_shell] lesson, and will refer to it for background information.
 Today we will learn - how the shell relates to the keyboard, the screen, the operating system, and users’ programs.&amp;quot; - when and why command-line interfaces should be used instead of graphical interfaces. - similarities and differences between a file and a directory.</description>

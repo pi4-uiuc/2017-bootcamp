@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<<<<<<< HEAD
   
   <url>
     <loc>/2017/05/31/data-cleaning-in-r/</loc>
@@ -26,18 +27,21 @@
     <loc>/2017/05/30/databases-and-sql/</loc>
     <lastmod>2017-05-30T00:00:00+00:00</lastmod>
   </url>
+=======
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
   
   <url>
-    <loc>/2017/05/27/the-terminal-unix-shell/</loc>
-    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <loc>/2017/05/26/the-terminal-unix-shell/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2017/05/27/version-control-git-github/</loc>
-    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <loc>/2017/05/26/version-control-git-github/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+<<<<<<< HEAD
     <loc>/2017/05/27/intro-to-r/</loc>
     <lastmod>2017-05-27T00:00:00+00:00</lastmod>
   </url>
@@ -45,6 +49,10 @@
   <url>
     <loc>/2017/05/27/project-day-1/</loc>
     <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+=======
+    <loc>/2017/05/26/project-day-1/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
   </url>
   
   <url>
@@ -64,7 +72,11 @@
   
   <url>
     <loc>/</loc>
+<<<<<<< HEAD
     <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+=======
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
   </url>
   
   <url>
@@ -74,12 +86,13 @@
   
   <url>
     <loc>/tags/git/</loc>
-    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/post/</loc>
+<<<<<<< HEAD
     <lastmod>2017-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -87,11 +100,15 @@
   <url>
     <loc>/tags/programming/</loc>
     <lastmod>2017-05-30T00:00:00+00:00</lastmod>
+=======
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/project/</loc>
+<<<<<<< HEAD
     <lastmod>2017-05-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -99,18 +116,21 @@
   <url>
     <loc>/tags/r/</loc>
     <lastmod>2017-05-30T00:00:00+00:00</lastmod>
+=======
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+>>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/shell/</loc>
-    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

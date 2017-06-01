@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21" />
+
+
+<title>2. Version Control and Collaborative development - PI4 Computational Bootcamp</title>
+<meta property="og:title" content="2. Version Control and Collaborative development - PI4 Computational Bootcamp">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="../../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/cropped-logo_m.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="../../../../post/">Class Notes</a></li>
+    
+    <li><a href="../../../../reading/">Reading</a></li>
+    
+    <li><a href="../../../../syllabus/">Syllabus</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">5 min read</span>
+    
+
+    <h1 class="article-title">2. Version Control and Collaborative development</h1>
+
+    
+    <span class="article-date">2017/05/26</span>
+    
+
+    <div class="article-content">
+      <p>Version control makes it possible to have ‘unlimited undo’ and histories of your documents (and some smaller datasets)</p>
+<p>Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate.</p>
+<p>If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it makes it easier to use heterogeneous environments.</p>
+<div id="version-control-swc-git-novice-1-6" class="section level2">
+<h2>Version Control <a href="http://swcarpentry.github.io/git-novice/">SWC Git Novice 1-6</a></h2>
+<div id="getting-started" class="section level3">
+<h3>Getting Started</h3>
+<p>Introduce yourself (once you’ve set this on your machine, you don’t have to set it again unless you want to change something):</p>
+<pre class="sh"><code>git config --global user.name &quot;Firstname Lastname&quot;
+git config --global user.email you@yourdomain.example.com</code></pre>
+<p>If you want your contributions to be recognized:</p>
+<blockquote>
+<p>Scott Rohde, Carl Crott, mulroony, David LeBauer, Jeremy Kemball, Rob Kooper, Jimmy Chen, andrewshirk, Zhengqi Yang, Max Burnette, MarvinJ, 董伊琳, Uday Saraf, The Gitter Badger and Michael Dietze (2016) “PecanProject/bety: BETYdb 4.13”. Zenodo. doi: 10.5281/zenodo.162409.</p>
+</blockquote>
+<p>To make a directory into a “git directory” you need to initialize it. In the following command we create a directory and initialize it as a git directory:</p>
+<pre class="sh"><code>mkdir myproject
+git init</code></pre>
+<p>The above command creates a hidden directory called <code>.git</code> that keeps tracks of changes in the directory. We now call it a “repository”&quot; or “repo” for short. One maintains a log of changes with Git, but you have to tell it what to track. The command <code>git status</code> tells you, among other things, the status of changes to the directory:</p>
+<pre class="sh"><code>git status</code></pre>
+<p>Since we created the empty repo, there shouldn’t be any changes to track yet, so let’s make a file:</p>
+<pre class="sh"><code>echo &quot;my project&quot; &gt; README.md
+git status</code></pre>
+</div>
+<div id="commiting-changes" class="section level3">
+<h3>Commiting changes</h3>
+<p>Changes are tracked via “commits”, but you need to tell git which files to line up for the commit. The following code moves the file <code>README.md</code> to the “staging” are waiting to be committed:</p>
+<pre class="sh"><code>git add README.md
+git status</code></pre>
+<p>You then commit together with a short but descriptive message:</p>
+<pre class="sh"><code>git commit -m &quot;added README as first commit&quot;
+git status</code></pre>
+</div>
+<div id="git-log" class="section level3">
+<h3>Git log</h3>
+<p>If at any time you want to know all that has been committed:</p>
+<pre class="sh"><code>git log</code></pre>
+</div>
+<div id="branching" class="section level3">
+<h3>Branching</h3>
+<p>Branches are a powerful aspect of git, they are like an “alternative history” in which you can make changes. You can later decide if you want to merge these changes into the “main timeline”.</p>
+<p>The “main timeline” is itself a branch called “master”.</p>
+<p>A branch called “first-script” can be created with:</p>
+<pre class="sh"><code>git branch first-script</code></pre>
+<p>You don’t automatically change to this branch. For that:</p>
+<pre class="sh"><code>git checkout first-script</code></pre>
+<p>You can return to the master branch by:</p>
+<pre class="sh"><code>git checkout master</code></pre>
+<p>The <code>git status</code> command tells you what branch you are on.</p>
+<p>A shorter way to create a branch and simultaenously switch to it is:</p>
+<pre class="sh"><code>git checkout -b first-script</code></pre>
+<p>This creates a new branch called your ‘first script’. Now lets add something to it.</p>
+<pre class="sh"><code>echo &quot;!#/bin/bash \n echo &#39;hello world&#39;&quot; &gt; myscript.sh</code></pre>
+<p>Quick-check question: * What is <code>\n</code>?</p>
+<p>Now commit the changes:</p>
+<pre class="sh"><code>git add myscript.sh
+git commit -m &#39;added hello world script&#39;</code></pre>
+</div>
+<div id="merging" class="section level3">
+<h3>Merging</h3>
+<p>Once you’re satisfied with changes you can merge the branch with the master branch. You do this from the branch you want to merge into, in this case from master. It’s good practice to use <code>git status</code> at every step to check what branch you are on and any changes you may have not committed.</p>
+<pre class="sh"><code>git status
+git log
+git checkout master
+git status
+git merge first-script
+git status</code></pre>
+<p>Note this does not delete the branch.</p>
+</div>
+<div id="review" class="section level3">
+<h3>Review</h3>
+<p>You may want to know all commits and the branches in which they were made in. As mentioned before, <code>git log</code> gives you a history. Adding the <code>--graph</code> flag give you a history of commits together with an asterisk <code>*</code> telling you to what branch the commit belongs to.</p>
+<pre class="sh"><code>git log --graph</code></pre>
+</div>
+</div>
+<div id="collaborative-coding-swc-git-novice-7-14" class="section level2">
+<h2>Collaborative Coding <a href="http://swcarpentry.github.io/git-novice/">SWC Git Novice 7-14</a></h2>
+<p>One of the strenghts of git is its power to facilitate collaboration.</p>
+<div id="github" class="section level3">
+<h3>GitHub</h3>
+<p>GitHub is one of the many hosting sites for collaborative coding via Git. You can create a repo in their servers via their website, and then clone it onto your computer via:</p>
+<pre class="sh"><code>git clone url-of-repo-goes-here</code></pre>
+<p>One works on it locally as you would a local git repo. But after committing changes you need to send them to the repo on the server using:</p>
+<pre class="sh"><code>git push</code></pre>
+<p>Multiple people can do this, so you should periodically “pull” changes:</p>
+<pre class="sh"><code>git pull</code></pre>
+<p>There may be conflicts. For the mechanics of resolving such things we refer to the software carpentry notes.</p>
+</div>
+<div id="pull-requests-code-reviews" class="section level3">
+<h3>Pull Requests &amp; Code Reviews</h3>
+<p>It’s best practice to work with branches, and then to submit a “pull request” on the Github site of your repo. This opens up a forum to discuss the code.</p>
+<p>The branch can be pulled via a <code>git pull</code> and then revealed by:</p>
+<pre class="sh"><code>git branch -a</code></pre>
+<p>The branch can be checked out by a <code>git checkout</code> and viewed.</p>
+<p>Your collaborators then review the code. Those with push access may commit and push changes. The discussion happens on the website. Even individual lines of code can be commented.</p>
+<p>When everybody is satisfied with the new code, it can get accepted and merged to the master branch right from the website (or the command line too).</p>
+</div>
+<div id="messaging" class="section level3">
+<h3>Messaging</h3>
+<ul>
+<li>Slack</li>
+<li>IRC</li>
+</ul>
+</div>
+</div>
+<div id="git-in-practice" class="section level2">
+<h2>Git in Practice</h2>
+<p>There are various workflows based around git. The following is a very common approach to using Git. It is described in a blog post by Vincent Dressen <a href="http://nvie.com/posts/a-successful-git-branching-model/" class="uri">http://nvie.com/posts/a-successful-git-branching-model/</a>.</p>
+<div class="figure">
+<img src="http://justinhileman.info/article/changing-history/git-flow.png" alt="image of git workflow" />
+<p class="caption">image of git workflow</p>
+</div>
+<p>We use this in the PEcAn Project. Here is a <a href="https://github.com/PecanProject/pecan/branches/all">list of branches</a>. Our documentation provides a <a href="https://pecanproject.github.io/pecan-documentation/using-git.html#recommended-git-workflow">recommended git workflow</a> that includes a ‘basic’ and ‘advanced’ section. These are worth reading, and it is not necessary to include the content here.</p>
+<p>Google is where you will often turn for help, and Google will often lead you to <a href="https://stackoverflow.com">Stackoverflow.com</a>. If you read through the most popular <a href="https://stackoverflow.com/questions/tagged/git">stackoverflow questions tagged with ‘git’</a> you will find solutions to most common problems.</p>
+<div id="git-in-rstudio" class="section level3">
+<h3>Git in Rstudio</h3>
+<p>At www.pi4-uiuc open the Rstudio environment.</p>
+<p>To add the git repo: In top corner Project –&gt; New Project –&gt; Version Control –&gt; <a href="https://www.github.com/username/repository" class="uri">https://www.github.com/username/repository</a></p>
+<p>To create a new R script: &gt; File –&gt; New File –&gt; R Script</p>
+<p>Commits and pushes can be made directly from RStudio.</p>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/shell.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="../../../../js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98205888-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+
