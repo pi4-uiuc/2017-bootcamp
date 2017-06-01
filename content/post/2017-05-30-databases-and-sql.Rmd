@@ -18,13 +18,12 @@ In fact, so far we have been working with tables.
 
 ## Miscanthus Yields
 
-https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0
-
+https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs
 ## Sorghum Data from Arizona
 
 Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona
 
-https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U/edit#gid=932079509
+https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U
 
 Let's review the pages
 
@@ -53,17 +52,17 @@ You can learn more about and download Open Refine at [openrefine.org](https://op
 
 Once OpenRefine is launched in your browser, the left margin has options to Create Project, Open Project, or Import Project. Here we will create a new project:
 
-* click 'Create Project'; 'Get data from This Computer' should be selected
+* Click 'Create Project'; 'Get data from This Computer' should be selected
    * what other ways can you get data into OpenRefine?
-* Click Choose Files and select the file `DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv` 
-* Click Open --> Next
+* Click 'Choose Files' and select the file `DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv` 
+* Click 'Open' --> 'Next'
 * OpenRefine gives you a preview - a chance to show you it understood the file. 
    * did the file show up sensibly? 
-* in the upper right corner create a meaninful project name and then click "Create Project"
+* In the upper right corner create a meaningful project name and then click "Create Project"
 
 ### Faceting
 
-OpenRefine supports faceted browsing. This allows you tosee the big picture of your data and
+OpenRefine supports faceted browsing. This allows you to see the big picture of your data and
 then filter down to a subset of rows. Once you have a target set of rows, you can apply changes in bulk.
 
 * lets work with one of the columns containing plant height measurements
@@ -97,7 +96,7 @@ Lets look at the Genotype field
   
 Your turn:
 
-Lets review a few datasets from the TERRA REF trait database. These are provided in the .json format by default:
+Lets review a few datasets from the TERRA REF trait database. These are provided in the [.json format](https://en.wikipedia.org/wiki/JSON) by default:
 
 1. Look at the sites table. Where are the sites? Are there redundant names?
    * import from https://terraref.ncsa.illinois.edu/bety/api/beta/sites?key=9999999999999999999999999999999999999999&limit=none
@@ -134,7 +133,7 @@ Lets review the information in this table.
 * Method
 * Entity
 
-Now click the "Download Results" button. This will download a .csv file. A .csv file is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:
+Now click the "Download Results" button. This will download a .csv file. A [.csv file](https://en.wikipedia.org/wiki/Comma-separated_values) is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:
 
 ```
 row 1 col 1, row 1 col 2, row 1 col 3
@@ -148,7 +147,7 @@ By default, many computers will open the csv file directly into a [spreadsheet p
 
 It can also be easily read by any software or parsed at the command line using tools like `cut` and `sed`. Unlike xml and json, it is more intuitive for a human to read.
 
-> where are redundancies?
+> where are there redundancies?
 
 
 * Site + city + lat + lon
@@ -173,13 +172,15 @@ From [tidyr vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/ti
 
 ## Relational Databases and SQL
 
+The [relational model](https://en.wikipedia.org/wiki/Relational_model) for managing databases consists of representing the data in terms of tuples of relations. Many modern databases use some version of this. Structured Query Language or [SQL](https://en.wikipedia.org/wiki/SQL) is a language implementation based on the relational model, although there are some differences.
+
 ### Data Normalization
 
 "Codd's Normal Forms" from (Codd 1970)  
 
 > process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. [Wikipedia - Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
 
-To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information (that violates the )
+To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information that violates the best practice of having a single canonical representation for each piece of information?
 
 > YOUR TURN: which of these fields has redundant data? 
 
@@ -391,7 +392,7 @@ select count(*) from traitsview_private;
 
 #### Connecting with dplyr
 
-advantage for larger datasets: can do a lot of server-side summarization and some computing before pulling data into memory. 
+Advantage for larger datasets: can do a lot of server-side summarization and some computing before pulling data into memory. 
 
 https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html
 
