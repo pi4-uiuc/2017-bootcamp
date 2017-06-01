@@ -1,10 +1,6 @@
 ---
-title: "Project Day 1: Getting Started"
-author: "David LeBauer"
-date: '2017-05-27'
-slug: project-day-1
-categories: []
-tags: [project]
+title: "Projects"
+date: "2017-06-01"
 ---
 
 ## Objectives
