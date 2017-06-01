@@ -33,6 +33,7 @@ image(x = timestamp, y = wavelengths, z = spectra)
 
 ```{r}
 
+load_loggerfiles <- function(date)
 get_downwelling_irradiance <- function(date = "2017-05-31"){
   path <- file.path("/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger", date)
   files <- dir(path, full.names = TRUE)
@@ -48,7 +49,13 @@ get_downwelling_irradiance <- function(date = "2017-05-31"){
     do.call('rbind', x$environment_sensor_readings$spectrometer$spectrum)
     }
   ))
+  # image(x = timestamp, y = wavelengths, z = spectra)
+  
+}
 
+
+get_raw_met <- function(date){
+  
   met <- do.call('rbind', lapply(metdata, function(x){
     tmp_met <- x$environment_sensor_readings
     data.frame(par = tmp_met$`sensor par`$value,
@@ -63,14 +70,17 @@ get_downwelling_irradiance <- function(date = "2017-05-31"){
     
   })) 
   
-  z <- met %>% tidyr::gather(key = timestamp, value = value)
 
-  # image(x = timestamp, y = wavelengths, z = spectra)
-  
+  z <- met %>% 
+      dplyr::bind_cols(data.frame(date = timestamp)) %>%  
+           tidyr::gather(key = variable, value = value)
+
+
 }
-
-
 ```
+
+### Met from netCDF files
+
 ```{r netcdf-met}
 library(ncdf4)
 metnc <- nc_open('/data/terraref/sites/ua-mac/Level_1/EnvironmentLogger/2017-05-16/EnvironmentLogger_lv1_2017-05-16_uamac.nc')
