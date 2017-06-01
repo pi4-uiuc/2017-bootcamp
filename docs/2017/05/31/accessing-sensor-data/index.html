@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.21" />
+
+
+<title>Accessing Sensor Data 2 - PI4 Computational Bootcamp</title>
+<meta property="og:title" content="Accessing Sensor Data 2 - PI4 Computational Bootcamp">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="../../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/cropped-logo_m.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="../../../../post/">Class Notes</a></li>
+    
+    <li><a href="../../../../reading/">Reading</a></li>
+    
+    <li><a href="../../../../syllabus/">Syllabus</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">6 min read</span>
+    
+
+    <h1 class="article-title">Accessing Sensor Data 2</h1>
+
+    
+    <span class="article-date">2017/05/31</span>
+    
+
+    <div class="article-content">
+      <div id="meteorological-data" class="section level2">
+<h2>Meteorological Data</h2>
+<div id="raw-data" class="section level3">
+<h3>Raw Data</h3>
+<pre class="r"><code>metfile &lt;- &quot;/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger/2017-05-31/2017-05-31_12-19-38_environmentlogger.json&quot;
+met &lt;- jsonlite::fromJSON(metfile)
+
+timestamp &lt;- lubridate::ymd_hms(met$environment_sensor_readings$timestamp)
+
+wavelengths &lt;- met$environment_sensor_readings$spectrometer$wavelength[[1]]
+
+spectra &lt;- do.call(&#39;rbind&#39;, met$environment_sensor_readings$spectrometer$spectrum)
+
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>spectra &lt;- do.call(&#39;rbind&#39;, met$environment_sensor_readings$spectrometer$spectrum)
+
+#colnames(spectra) &lt;- wavelengths
+#rownames(spectra) &lt;- met$environment_sensor_readings$timestamp
+image(x = timestamp, y = wavelengths, z = spectra)</code></pre>
+<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/raw-met-1.png" width="672" /></p>
+<pre class="r"><code>get_downwelling_irradiance &lt;- function(date = &quot;2017-05-31&quot;){
+  path &lt;- file.path(&quot;/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger&quot;, date)
+  files &lt;- dir(path, full.names = TRUE)
+  metdata &lt;- lapply(files, jsonlite::fromJSON)
+  
+  timestamp &lt;- unlist(lapply(metdata, function(x){
+    lubridate::ymd_hms(x$environment_sensor_readings$timestamp)
+  }))
+  
+  wavelengths &lt;- metdata[[1]]$environment_sensor_readings$spectrometer$wavelength[[1]]
+  
+  spectra &lt;- do.call(&#39;rbind&#39;, lapply(metdata, function(x){
+    do.call(&#39;rbind&#39;, x$environment_sensor_readings$spectrometer$spectrum)
+    }
+  ))
+
+  met &lt;- do.call(&#39;rbind&#39;, lapply(metdata, function(x){
+    tmp_met &lt;- x$environment_sensor_readings
+    data.frame(par = tmp_met$`sensor par`$value,
+               co2 = tmp_met$`sensor co2`$value,
+               sundir = tmp_met$weather_station$sunDirection$value,
+               pressure = tmp_met$weather_station$airPressure$value,
+               brightness = tmp_met$weather_station$brightness$value,
+               rh = tmp_met$weather_station$relHumidity$value,
+               temp = tmp_met$weather_station$temperature$value,
+               wind_dir = tmp_met$weather_station$windDirection$value,
+               wind_speed = tmp_met$weather_station$windVelocity$value)
+    
+  })) 
+  
+  z &lt;- met %&gt;% tidyr::gather(key = timestamp, value = value)
+
+  # image(x = timestamp, y = wavelengths, z = spectra)
+  
+}</code></pre>
+<pre class="r"><code>library(ncdf4)
+metnc &lt;- nc_open(&#39;/data/terraref/sites/ua-mac/Level_1/EnvironmentLogger/2017-05-16/EnvironmentLogger_lv1_2017-05-16_uamac.nc&#39;)
+library(lubridate)</code></pre>
+<pre><code>## Loading required package: methods</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     date</code></pre>
+<pre class="r"><code>library(data.table)</code></pre>
+<pre><code>## -------------------------------------------------------------------------</code></pre>
+<pre><code>## data.table + dplyr code now lives in dtplyr.
+## Please library(dtplyr)!</code></pre>
+<pre><code>## -------------------------------------------------------------------------</code></pre>
+<pre><code>## 
+## Attaching package: &#39;data.table&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday,
+##     week, yday, year</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     between, first, last</code></pre>
+<pre class="r"><code>library(udunits2)</code></pre>
+<pre><code>## udunits system database read</code></pre>
+<pre class="r"><code>time &lt;- ncvar_get(metnc, &#39;time&#39;)
+datetime &lt;- ymd(&quot;1970-01-01&quot;) + seconds(ud.convert(time, &#39;d&#39;, &#39;s&#39;))
+
+wavelengths &lt;- ncvar_get(metnc, &#39;wvl_lgr&#39;)
+
+f_down_spectrum &lt;- ncvar_get(metnc, &#39;flx_spc_dwn&#39;)
+
+library(ggplot2)
+
+ggplot() + 
+  geom_point(aes(wavelengths, f_down_spectrum[,1])) +
+  geom_line(aes(wavelengths, f_down_spectrum[,1]))</code></pre>
+<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/netcdf-met-1.png" width="672" /></p>
+<pre class="r"><code>f_down_means &lt;- rowMeans(f_down_spectrum)
+
+ggplot() + 
+  geom_point(aes(wavelengths, f_down_means)) +
+  geom_line(aes(wavelengths, f_down_means))</code></pre>
+<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/netcdf-met-2.png" width="672" /></p>
+<pre class="r"><code>print(metnc)</code></pre>
+<pre><code>## File /data/terraref/sites/ua-mac/Level_1/EnvironmentLogger/2017-05-16/EnvironmentLogger_lv1_2017-05-16_uamac.nc (NC_FORMAT_NETCDF4):
+## 
+##      32 variables (excluding dimension variables):
+##         short sensor_par[]   (Contiguous storage)  
+##             sensor_par_description: Quantum Sensor Produced by Apogee. Measures the Photosynthetically Active Radiation (aka PAR)
+##             sensor_par_created: Mon Jan 09 09:14:22 CST 2017
+##             sensor_par_id: 5873a8ce4f0cad7d8131ad86
+##             sensor_par_authorId: 578f76948e7e1aecb7cad4c5
+##             sensor_par_spaces: 
+##             sensor_par_thumbnail: None
+##             sensor_par_name: Quantum PAR
+##         short sensor_co2[]   (Contiguous storage)  
+##             sensor_co2_description: CO2 Probe Produce by Vaisala, Mark GMP343. Monitors the atmospheric CO2 concentration
+##             sensor_co2_created: Mon Jan 09 09:17:38 CST 2017
+##             sensor_co2_id: 5873a9924f0cad7d8131b648
+##             sensor_co2_authorId: 578f76948e7e1aecb7cad4c5
+##             sensor_co2_spaces: 
+##             sensor_co2_thumbnail: 5873a99e4f0cad7d8131b6dc
+##             sensor_co2_name: Vaisala CO2
+##         short sensor_spectrum[]   (Contiguous storage)  
+##             sensor_spectrum_description: Spectrometer Produced by Skye PRI sensor. Measures the incident and reflected light
+##             sensor_spectrum_created: Mon Jan 09 09:15:35 CST 2017
+##             sensor_spectrum_id: 5873a9174f0cad7d8131b09a
+##             sensor_spectrum_authorId: 578f76948e7e1aecb7cad4c5
+##             sensor_spectrum_spaces: 
+##             sensor_spectrum_thumbnail: None
+##             sensor_spectrum_name: Skye PRI
+##         short sensor_weather_station[]   (Contiguous storage)  
+##             sensor_weather_station_description: Weather Station Produced by Theis CLIMA. Collects atmospheric data (e.g., brightness, precipitation, etc.).
+##             sensor_weather_station_created: Mon Jan 09 09:17:06 CST 2017
+##             sensor_weather_station_id: 5873a9724f0cad7d8131b4d3
+##             sensor_weather_station_authorId: 578f76948e7e1aecb7cad4c5
+##             sensor_weather_station_spaces: 
+##             sensor_weather_station_thumbnail: 5873a97f4f0cad7d8131b56d
+##             sensor_weather_station_name: Thies CLIMA
+##         float temperature[time]   (Chunking: [1024])  
+##             units: celsius
+##             sensor: sensor_weather_station
+##             long_name: Atmosperic Temperature
+##         float raw_temperature[time]   (Chunking: [1024])  
+##         float airPressure[time]   (Chunking: [714])  
+##             units: pascal
+##             sensor: sensor_weather_station
+##             standard_name: atmospheric_air_pressure
+##             long_name: Atmospheric Air Pressure
+##         float raw_airPressure[time]   (Chunking: [714])  
+##         float brightness[time]   (Chunking: [714])  
+##             units: lux
+##             sensor: sensor_weather_station
+##             long_name: Brightness
+##         float raw_brightness[time]   (Chunking: [714])  
+##         float precipitation[time]   (Chunking: [714])  
+##             units: meter second-1
+##             sensor: sensor_weather_station
+##             standard_name: precipitation_flux
+##             long_name: Precipation Rate
+##         float raw_precipitation[time]   (Chunking: [714])  
+##         float sunDirection[time]   (Chunking: [714])  
+##             units: degree
+##             sensor: sensor_weather_station
+##             long_name: Solar zenith (or elevation) angle (under discussion right now)
+##         float raw_sunDirection[time]   (Chunking: [714])  
+##         float windVelocity[time]   (Chunking: [714])  
+##             units: meter second-1
+##             sensor: sensor_weather_station
+##             long_name: Wind Speed
+##         float raw_windVelocity[time]   (Chunking: [714])  
+##         float relHumidity[time]   (Chunking: [714])  
+##             units: percent
+##             sensor: sensor_weather_station
+##             standard_name: relative_humidity
+##             long_name: Relative Humidity
+##             description: Ratio of partial pressure of water vapor to equilibrium vapor pressure at measured temperature
+##         float raw_relHumidity[time]   (Chunking: [714])  
+##         float windDirection[time]   (Chunking: [714])  
+##             units: degree
+##             sensor: sensor_weather_station
+##             standard_name: wind_from_direction
+##             long_name: Wind Direction
+##         float raw_windDirection[time]   (Chunking: [714])  
+##         float spectrum[wvl_lgr,time]   (Chunking: [1024,1])  
+##             sensor: sensor_spectrum
+##             units: meter
+##             long_name: Spectrum from Hyperspectral Camera Spectrometer
+##             notes: 1024*&lt;time&gt; number of discrete wavelengths collected by the spectrometer
+##         float maxFixedIntensity[time]   (Chunking: [714])  
+##             sensor: sensor_spectrum
+##             units: placeholder
+##             long_name: Max Fixed Intensity
+##             notes: maximum_fix_intensity (always equals to 2^14-1=16383)
+##         float Atmosperic_CO2_Concentration[time]   (Chunking: [714])  
+##             units: mol mol-1
+##             sensor: sensor_co2
+##             long_name: Atmosperic CO2 Concentration
+##         float raw_Atmosperic_CO2_Concentration[time]   (Chunking: [714])  
+##         float Photosynthetically_Active_Radiation[time]   (Chunking: [714])  
+##             units: mole second-1
+##             sensor: sensor_par
+##             long_name: Photosynthetically Active Radiation
+##         float raw_Photosynthetically_Active_Radiation[time]   (Chunking: [714])  
+##         double wvl_dlt[wvl_lgr]   (Contiguous storage)  
+##             units: meter
+##             notes: Bandwidth, also called dispersion, is between 0.455-0.495 nm across all channels. Values computed as differences between midpoints of adjacent band-centers.
+##             long_name: Bandwidth of environmental sensor
+##         float flx_sns[wvl_lgr]   (Contiguous storage)  
+##             units: watt meter-2 count-1
+##             long_name: Flux sensitivity of each band (irradiance per count)
+##             provenance: EnvironmentalLogger calibration information from file S05673_08062015.IrradCal provided by TinoDornbusch and discussed here: https://github.com/terraref/reference-data/issues/30#issuecomment-217518434
+##         float flx_spc_dwn[wvl_lgr,time]   (Chunking: [1024,1])  
+##             units: watt meter-2 meter-1
+##             long_name: Downwelling Spectral Irradiance
+##             standard_name: downwelling_spectral_spherical_irradiance_in_air
+##         float flx_dwn[]   (Contiguous storage)  
+##             units: watt meter-2
+##             long_name: Downwelling Irradiance
+##             standard_name: downwelling_spherical_irradiance_in_air
+##         float time_integration[]   (Contiguous storage)  
+##             units: second
+##             long_name: Spectrometer Integration Time
+##         float area_sensor[]   (Contiguous storage)  
+##             units: meter2
+##             long_name: Spectrometer Area
+## 
+##      2 dimensions:
+##         time  Size:714   *** is unlimited ***
+##             units: days since 1970-01-01 00:00:00
+##             long_name: Time
+##             calender: gregorian
+##         wvl_lgr  Size:1024
+##             sensor: sensor_spectrum
+##             units: meter
+##             long_name: Wavelengths
+##             standard_name: radiation_wavelength
+##             notes: these wavelengths are all the same in different collections from the environmental logger. Ranging from 337.7 to 824 nm.
+## 
+##     2 global attributes:
+##         _NCProperties: version=1|netcdflibversion=4.4.1|hdf5libversion=1.8.17
+##         history: Wed May 24 16:25:12 2017 : python terra_envlog2netcdf.py</code></pre>
+<pre class="r"><code>PAR &lt;- ncvar_get(metnc, &#39;Photosynthetically_Active_Radiation&#39;)
+
+ggplot() +
+  geom_line(aes(datetime, PAR))</code></pre>
+<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/netcdf-met-3.png" width="672" /></p>
+</div>
+<div id="using-the-pecan-workflow" class="section level3">
+<h3>Using the PEcAn workflow</h3>
+<pre class="r"><code>devtools::install_github(&quot;pecanproject/pecan&quot;,  
+                         subdir = &#39;utils&#39;)
+devtools::install_github(&quot;pecanproject/pecan&quot;,  
+                         subdir = &#39;db&#39;)
+devtools::install_github(&quot;rforge/reddyproc&quot;,
+                         subdir = &quot;pkg/REddyProc&quot;)
+devtools::install_github(&quot;pecanproject/pecan&quot;,  
+                         subdir = &#39;modules/data.atmosphere&#39;,
+                         ref = &#39;develop&#39;)
+
+source(&quot;https://raw.githubusercontent.com/PecanProject/pecan/develop/models/biocro/R/met2model.BIOCRO.R&quot;)</code></pre>
+<pre class="r"><code>writeLines(&quot;
+&lt;pecan&gt;
+  &lt;clowder&gt;
+    &lt;hostname&gt;terraref.ncsa.illinois.edu&lt;/hostname&gt;
+    &lt;user&gt;dlebauer+energyfarm_met@gmail.com&lt;/user&gt;
+    &lt;password&gt;!energyfarmmet??&lt;/password&gt;
+  &lt;/clowder&gt;
+&lt;/pecan&gt;&quot;, 
+con =  &quot;~/.pecan.clowder.xml&quot;)</code></pre>
+<pre class="r"><code>library(&quot;PEcAn.data.atmosphere&quot;)
+library(&quot;dplyr&quot;)
+
+## download raw data
+ne &lt;- download.Geostreams(
+  outfolder=&quot;data&quot;,
+  sitename=&quot;UIUC Energy Farm - NE&quot;,
+  start_date=&quot;2016-02-28&quot;,
+  end_date=&quot;2016-04-01&quot;)
+
+## convert to standard
+ne_cf &lt;- met2CF.Geostreams(
+  in.path = &quot;data/&quot;, 
+  in.prefix = ne$dbfile.name, 
+  outfolder = &quot;data/cf&quot;,
+  start_date = &quot;2016-03-01&quot;, # note date shift to avoid TZ issues
+  end_date = &quot;2016-04-01&quot;)
+
+## convert to model specific input
+met2model.BIOCRO(
+  overwrite = TRUE,
+  in.path = &quot;data/cf&quot;, 
+  in.prefix = ne_cf$dbfile.name, 
+  outfolder = &quot;data/biocromet&quot;,
+  lat = 40,
+  lon = -88,
+  start_date = &quot;2016-03-01&quot;, 
+  end_date = &quot;2016-03-30&quot;)</code></pre>
+<pre><code>##                                                                             file
+## 2016 data/biocromet/Clowder.UIUC Energy Farm - NE.2016-02-28.2016-04-01.2016.csv
+##                      host mimetype formatname  startdate    enddate
+## 2016 st0hka-rstudio-z9rs4 text/csv  biocromet 2016-03-01 2016-03-30
+##                                              dbfile.name
+## 2016 Clowder.UIUC Energy Farm - NE.2016-02-28.2016-04-01</code></pre>
+<pre class="r"><code>met &lt;- readr::read_csv(&#39;data/biocromet/Clowder.UIUC Energy Farm - NE.2016-02-28.2016-04-01.2016.csv&#39;)</code></pre>
+</div>
+</div>
+<div id="laser-scanner-point-clouds" class="section level2">
+<h2>Laser Scanner Point Clouds</h2>
+</div>
+<div id="netcdf-hyperspectral-data" class="section level2">
+<h2>netCDF hyperspectral data</h2>
+<pre class="r"><code>hsi_nc &lt;- nc_open(&#39;/data/terraref/sites/samples/vnir_test_small.nc&#39;)</code></pre>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/shell.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="../../../../js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98205888-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

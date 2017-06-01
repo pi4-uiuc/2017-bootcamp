@@ -6,22 +6,29 @@
     <description>Recent content on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-<<<<<<< HEAD
-    <lastBuildDate>Wed, 31 May 2017 00:00:00 +0000</lastBuildDate>
-=======
-    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
->>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
+    <lastBuildDate>Thu, 01 Jun 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Data Cleaning in R</title>
-      <link>/2017/05/31/data-cleaning-in-r/</link>
+      <title>Projects</title>
+      <link>/projects/</link>
+      <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/</guid>
+      <description>Objectives Students should experience a collaborative development cycle similar to what they might encounter as a research programmer / software engineer / data scientist etc.
+They will have the opportunity to contribute to open source projects (e.g. TERRA REF and PEcAn Projects). Their GitHub repositories, reports, and code will become part of their portfolio.
+Projects will provide the opportunity for students to apply what we have learned in class to new datasets and analyses.</description>
+    </item>
+    
+    <item>
+      <title>Accessing Sensor Data 2</title>
+      <link>/2017/05/31/accessing-sensor-data/</link>
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/31/data-cleaning-in-r/</guid>
-      <description>Data Cleaning and Exploratory Analysis  Data Cleaning with Open Refine DC lesson 1-4 Data Cleaning in R Scatter Plots   Data Manipulation  filtering, subsetting, summarizing, new variables with dplyr Converting data from wide to long with tidyr   </description>
+      <guid>/2017/05/31/accessing-sensor-data/</guid>
+      <description>Meteorological Data Raw Data metfile &amp;lt;- &amp;quot;/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger/2017-05-31/2017-05-31_12-19-38_environmentlogger.json&amp;quot; met &amp;lt;- jsonlite::fromJSON(metfile) timestamp &amp;lt;- lubridate::ymd_hms(met$environment_sensor_readings$timestamp) wavelengths &amp;lt;- met$environment_sensor_readings$spectrometer$wavelength[[1]] spectra &amp;lt;- do.call(&amp;#39;rbind&amp;#39;, met$environment_sensor_readings$spectrometer$spectrum) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union spectra &amp;lt;- do.call(&amp;#39;rbind&amp;#39;, met$environment_sensor_readings$spectrometer$spectrum) #colnames(spectra) &amp;lt;- wavelengths #rownames(spectra) &amp;lt;- met$environment_sensor_readings$timestamp image(x = timestamp, y = wavelengths, z = spectra) get_downwelling_irradiance &amp;lt;- function(date = &amp;quot;2017-05-31&amp;quot;){ path &amp;lt;- file.</description>
     </item>
     
     <item>
@@ -65,8 +72,19 @@
       <guid>/2017/05/30/databases-and-sql/</guid>
       <description>Introduction   Spreadsheets and Tables A database is a generic term for data. Often these are divided into ‘relational’ and ‘non-relational’… We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.
 In fact, so far we have been working with tables.
- Miscanthus Yields https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/edit#gid=0
- Sorghum Data from Arizona Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</description>
+ Miscanthus Yields https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs ## Sorghum Data from Arizona
+Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</description>
+    </item>
+    
+    <item>
+      <title>4. Introduction to R</title>
+      <link>/2017/05/27/intro-to-r/</link>
+      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/27/intro-to-r/</guid>
+      <description>This lesson is based on Getting Started with R and Rstudio (SWC 1-3).
+Objectives:
+ Understand the utility of R as a language for data analysis To gain familiarity with the Rstudio IDE: panes, buttons, shortcuts, options Where to get help in R. Learn to manage your workspace in an interactive R session Learn to find, install, and use packages / functions Load data call functions Intro to reproducible research w/ R markdown  Getting started with R Why R?</description>
     </item>
     
     <item>
@@ -90,34 +108,6 @@ Today we will learn - how the shell relates to the keyboard, the screen, the ope
 Having everything on a website like GitHub (or Bitbucket or GitLab) makes it easy to share with other people and collaborate.
 If you keep all of your important programs and files somewhere in the cloud, like on box.com, dropbox, github, it makes it easier to use heterogeneous environments.
 Version Control SWC Git Novice 1-6 Getting Started Introduce yourself (once you’ve set this on your machine, you don’t have to set it again unless you want to change something):</description>
-    </item>
-    
-    <item>
-<<<<<<< HEAD
-      <title>4. Introduction to R</title>
-      <link>/2017/05/27/intro-to-r/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/27/intro-to-r/</guid>
-      <description>This lesson is based on Getting Started with R and Rstudio (SWC 1-3).
-Objectives:
- Understand the utility of R as a language for data analysis To gain familiarity with the Rstudio IDE: panes, buttons, shortcuts, options Where to get help in R. Learn to manage your workspace in an interactive R session Learn to find, install, and use packages / functions Load data call functions Intro to reproducible research w/ R markdown  Getting started with R Why R?</description>
-    </item>
-    
-    <item>
-      <title>Project Day 1: Getting Started</title>
-      <link>/2017/05/27/project-day-1/</link>
-      <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
-=======
-      <title>Project: Getting Started</title>
-      <link>/2017/05/26/project-day-1/</link>
-      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
->>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
-      
-      <guid>/2017/05/26/project-day-1/</guid>
-      <description>Objectives Students should experience a collaborative development cycle similar to what they might encounter as a research programmer / software engineer / data scientist etc.
-They will have the opportunity to contribute to open source projects (e.g. TERRA REF and PEcAn Projects). Their GitHub repositories, reports, and code will become part of their portfolio.
-Projects will provide the opportunity for students to apply what we have learned in class to new datasets and analyses.</description>
     </item>
     
     <item>

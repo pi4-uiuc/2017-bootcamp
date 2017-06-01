@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Met</title>
+      <link>/tags/met/</link>
+      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/met/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Programming</title>
       <link>/tags/programming/</link>
       <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
@@ -32,11 +41,7 @@
     <item>
       <title>Project</title>
       <link>/tags/project/</link>
-<<<<<<< HEAD
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
-=======
-      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
->>>>>>> 6658fe33e5535d44cb4899b83db1faa48b2c860a
       
       <guid>/tags/project/</guid>
       <description></description>
@@ -45,9 +50,18 @@
     <item>
       <title>R</title>
       <link>/tags/r/</link>
-      <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sensors</title>
+      <link>/tags/sensors/</link>
+      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/sensors/</guid>
       <description></description>
     </item>
     

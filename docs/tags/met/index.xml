@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Met on PI4 Computational Bootcamp</title>
+    <link>/tags/met/</link>
+    <description>Recent content in Met on PI4 Computational Bootcamp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 31 May 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/met/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Accessing Sensor Data 2</title>
+      <link>/2017/05/31/accessing-sensor-data/</link>
+      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/31/accessing-sensor-data/</guid>
+      <description>Meteorological Data Raw Data metfile &amp;lt;- &amp;quot;/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger/2017-05-31/2017-05-31_12-19-38_environmentlogger.json&amp;quot; met &amp;lt;- jsonlite::fromJSON(metfile) timestamp &amp;lt;- lubridate::ymd_hms(met$environment_sensor_readings$timestamp) wavelengths &amp;lt;- met$environment_sensor_readings$spectrometer$wavelength[[1]] spectra &amp;lt;- do.call(&amp;#39;rbind&amp;#39;, met$environment_sensor_readings$spectrometer$spectrum) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union spectra &amp;lt;- do.call(&amp;#39;rbind&amp;#39;, met$environment_sensor_readings$spectrometer$spectrum) #colnames(spectra) &amp;lt;- wavelengths #rownames(spectra) &amp;lt;- met$environment_sensor_readings$timestamp image(x = timestamp, y = wavelengths, z = spectra) get_downwelling_irradiance &amp;lt;- function(date = &amp;quot;2017-05-31&amp;quot;){ path &amp;lt;- file.</description>
+    </item>
+    
+  </channel>
+</rss>
