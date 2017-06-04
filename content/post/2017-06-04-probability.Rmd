@@ -1,0 +1,72 @@
+---
+title: Probability
+author: "David LeBauer"
+date: '2017-06-05'
+slug: probability
+categories: []
+tags: [r,statistics]
+---
+
+## Probability Distributions in R
+
+
+Distribution | R name | Parameters
+------------ | ------ | ----------
+beta         | beta   | shape1, shape2, ncp 
+Binomial     | binom  | size, prob
+Cauchy       | cauchy | location, scale 
+chi-squared  | chisq  | df, ncp
+exponential  | exp    | rate
+F            | f      | df1, df2, ncp
+gamma        | gamma  | shape, scale 
+geometric    | geom   | prob
+hypergeometric | hyper | m, n, k 
+log-normal   | lnorm  | meanlog, sdlog 
+logistic     | logis  | location, scale 
+Negative binomial | nbinom | size, prob
+normal       | norm   | mean, sd
+Poisson      | pois   | lambda
+Student's t  | t      | df, ncp
+uniform      | unif   | min, max 
+Weibull      | weibull | shape, scale 
+Wilcoxon     | wilcox | m, n
+
+
+
+* "d" = density: probability density function (PDF)
+* "p" = cumulative distribution function (CDF)
+* "q" = quantile: calculates the value associated with a specified tail probability, inverse of "p"
+* “r” = random: simulates random numbers
+
+### Bestiary, meaning, PDFs (Bolker Ch4, [Dietze EE509](https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd))
+   
+
+### Stochastic Simulation (Bolker Ch5)
+
+![](bestiary_distns_table.jpg)
+
+---
+
+**Probability distributions content derived from Dietze 2014 as well as Bolker**
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Michael Dietze
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
