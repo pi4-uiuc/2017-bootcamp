@@ -1,0 +1,45 @@
+---
+title: Bayesian Analysis
+author: ~
+date: '2017-06-06'
+slug: bayesian-analysis
+categories: []
+tags: []
+---
+
+
+## Bayesian regression
+
+
+```{r setup, include=FALSE}
+
+grass_yields <- read.csv('~/dev/bety_manuscript/data/ba_rawdata.csv') %>% 
+  filter(genus %in% c("Miscanthus", "Panicum") & age >=3) %>%
+  mutate(sqrt_yield = sqrt(yield_annual), 
+         genus = as.character(genus), 
+         site = as.factor(lat+lon))
+
+```
+
+```{r}
+
+library(rstanarm)
+options(mc.cores = parallel::detectCores())
+glm1 <- stan_glmer(yield_annual ~ fertilizer_n + age + genus:fertilizer_n + genus:age + (1 | site ), #prior = normal(30, 4),
+                    
+                  data = grass_yields)
+
+glm1
+plot(glm1)
+plot(glm1, plotfun = 'hist')
+pairs(glm1)
+posterior_interval(glm1)
+
+summary(glm1)
+library(sjPlot)
+sjPlot::sjp.lmer(glm1)
+```
+
+http://topepo.github.io/caret/train-models-by-tag.html
+https://thinkinator.com/2016/01/12/r-users-will-now-inevitably-become-bayesians/
+

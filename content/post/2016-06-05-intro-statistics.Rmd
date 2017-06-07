@@ -1,0 +1,571 @@
+---
+title: Intro Statistics
+author: "David LeBauer"
+date: '2016-06-05'
+slug: intro-statistics
+categories: []
+tags: [statistics,r]
+---
+
+
+## Summary statistics
+
+Objectives:
+* learn to summarize data with basic measures of central tendancy and spread
+* learn to fit parametric distributions to data
+
+### Data analysis: Sorghum height data
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+theme_set(theme_bw())
+
+bety_src <- src_postgres(dbname = "bety", password = 'bety', host = 'terra-bety.default', user = 'bety', port = 5432)
+
+```
+
+```{r complex-query}
+treatments <- tbl(bety_src, 'treatments') %>% 
+  select(treatment_id = id , name, definition, control)
+
+managements_treatments <- tbl(bety_src, 'managements_treatments')
+
+managements <- tbl(bety_src, 'managements') %>% 
+  filter(mgmttype %in% c('Fertilization_N', 'Planting', 'Irrigation')) %>% 
+  select(management_id = id, date, mgmttype, level, units) %>% 
+  left_join(managements_treatments, by = 'management_id') %>% 
+  left_join(treatments, by = 'treatment_id')
+
+planting <-managements %>% 
+  filter(mgmttype == "Planting") %>% 
+  select(treatment_id, planting_date = date, nrate = level)
+
+canopy_height <- tbl(bety_src, 'traits_and_yields_view') %>% 
+  filter(trait == 'canopy_height') %>% 
+  left_join(planting, by = 'treatment_id') %>%  
+  collect
+```
+
+
+```{r}
+ggplot(data = canopy_height) + 
+  geom_histogram(aes(x = mean), binwidth = 10) 
+
+
+```
+
+```{r}
+x <- canopy_height$mean
+mean(x)
+var(x)
+sd(x)
+
+cv <- function(x){
+  cv <- sd(x)/mean(x)
+  return(cv)
+}
+
+cv(x)
+
+### need to install moments package to compute skewness and kurtosis
+```
+
+```{r}
+height_season1 <- canopy_height %>% filter(grepl('Season 1', sitename))
+
+ggplot(data = height_season1) +
+  geom_point(aes(date, mean))
+
+
+```
+
+### Fitting distributions to data
+
+
+```{r}
+install.packages('fitdistrplus')
+
+library(fitdistrplus)
+
+descdist(x)
+
+plotdist(x)
+
+w <- fitdist(x, 'weibull')
+ln <- fitdist(x, 'lnorm')
+g <- fitdist(x, 'gamma')
+n <- fitdist(x, 'norm')
+
+which.min(c(w$aic, ln$aic, g$aic, n$aic))
+
+plot(g)
+plot(ln)
+plot(n)
+plot(w)
+
+hist(x, probability = TRUE, ylim = c(0, 0.012))
+lines(sort(x), dgamma(sort(x), g$estimate['shape'], g$estimate['rate']))
+lines(sort(x), dlnorm(sort(x), ln$estimate['meanlog'], ln$estimate['sdlog']), col = 2)
+lines(sort(x), dnorm(sort(x), n$estimate['mean'], n$estimate['sd']), col = 3)
+lines(sort(x), dnorm(sort(x), w$estimate['shape'], n$estimate['scale']), col = 3)
+
+```
+
+```{r}
+mean(x)
+plot(x)
+lm(x~1)
+```
+
+
+## Regression 
+
+Objectives:
+
+* learn to convert deterministic functions into statistical models
+* fit parameters
+* evaluate key assumptions
+* learn to interpret model summaries / parameters / output
+* use model comparison to test hypotheses 
+
+
+We are starting with hypotheses / preidctions that the yield of two perennial grasses, _Miscanthus_ spp. and Switchgrass (_Panicum spp._)) depend on age, fertilization rate, and genotype. We expect that the functional form of the response to nitrogen and age will either be monotonically increasing, asymptotic, or hump-shaped. This follows [LeBauer et al 2017](http://onlinelibrary.wiley.com/doi/10.1111/gcbb.12420/full) using a subset of the data that is balanced data from Miscanthus and Switchgrass field trials within Il and across the US ([Arundale et al 2012](http://hdl.handle.net/2142/34422) and [Arundale et al 2014](http://onlinelibrary.wiley.com/doi/10.1111/gcbb.12077/full))
+
+
+
+
+```{r}
+library(traits)
+
+options(
+  betydb_url = "https://betydb.org",
+  betydb_api_version = 'beta')
+
+yields <- betydb_query(table = 'search', 
+                       trait = 'Ayield', 
+                       limit = "none")
+
+yields <- yields %>% filter(genus %in% c('Miscanthus', 'Panicum', 'Salix', 'Populus'))
+
+library(ggplot2)
+
+#if(!require(tableplot))install.packages('tableplot')
+#tableplot::tableplot(yields %>% select())
+
+```
+
+```{r all.yieldata, fig.width=9, fig.height=9}
+library(dplyr)
+
+grass_yields <- read.csv('../../grass_yield.csv')
+
+lattice::splom(grass_yields)
+pairs(grass_yields, pch='.')
+
+grass_yields <- grass_yields %>% filter(genus %in% c("Miscanthus", "Panicum"))
+```
+
+
+```{r}
+h0 <- lm(yield_annual ~ 1, data = grass_yields)
+
+plot(h0$fitted.values, h0$residuals)
+hist(h0$residuals)
+
+
+plot(h0, which = c(1,2))
+```
+
+### Data Transformation 
+
+```{r}
+grass_yields <- grass_yields %>% mutate(log_yield = log10(yield_annual))
+
+h0 <- lm(log_yield ~ 1, data = grass_yields)
+
+
+plot(h0$fitted.values, h0$residuals)
+hist(h0$residuals)
+```
+
+### extending the models
+```{r}
+mod1 <- lm(yield_annual ~ genus, data = grass_yields)
+summary(mod1)
+
+methods(class = class(mod1))
+```
+
+
+### Assumptions
+
+```{r}
+par(mar = c(4, 4, 2, 2), mfrow = c(1, 2)) #optional
+plot(mod1, which = c(1, 2)) # "which" argument optional
+```
+
+1. residuals vs fitted: are residuals distributed consistently along axis of predictor variables?
+2. qqplot: are errors distributed normally?
+
+see http://data.library.virginia.edu/diagnostic-plots/
+
+### Extending the model
+
+```{r}
+
+mod3 <- lm(yield_annual ~ genus + mat + map, data = grass_yields)
+mod6 <- lm(yield_annual ~ genus + mat + map + age + fertilizer_n + planting_density, data = grass_yields)
+
+summary(mod3)
+
+```
+
+### Comparing models
+
+```{r}
+mod4 <- lm(yield_annual ~ genus + mat + map + age, data = grass_yields)
+AIC(mod1, mod4, mod6)
+
+BIC(mod1, mod2)
+```
+
+### Interactions
+
+```{r}
+mod4 <- lm(yield_annual ~ genus * age + mat + map, data = grass_yields)
+```
+
+how do you know which interactions to include?
+
+
+```{r}
+anova(mod1, mod2)
+
+```
+refining the model
+
+```{r}
+library(MASS)
+mod4 <- lm(yield_annual ~ genus * age + genus * mat + genus * map, data = grass_yields)
+
+```
+
+```{r}
+ggplot(data = grass_yield) +
+  geom_histogram(aes(mean, y = ..density.., fill = genus), position = 'dodge', binwidth = 5)
+```
+
+
+```{r}
+
+#----
+
+grass_yields <- readr::read_csv('~/2017-bootcamp/grass_yield.csv')
+
+x <- grass_yields$yield_annual
+mean(x)
+var(x)
+sd(x)
+cv <- function(x){
+  sd(x)/mean(x)
+}
+cv(x)
+
+library(ggplot2)
+ggplot() +
+  geom_histogram(aes(x), bins = 25)
+
+u <- runif(1000)
+sum(u < 0.11)
+z <- ifelse(u < 0.11, runif(1000), rgamma(1000, 6, 1))
+
+yield <- grass_yields$yield_annual
+x <- seq(0, 50, by = 0.1)
+
+hist(yield, breaks = 25, probability = TRUE)
+lines(x, dnorm(x, mean = mean(yield), sd = sd(yield)))
+
+yield_subset <- yield[yield>1]
+hist(yield_subset, breaks = 25, probability = TRUE)
+lines(x, dnorm(x, mean = mean(yield), sd = sd(yield)))
+
+install.packages('fitdistrplus')
+library(fitdistrplus)
+
+w <- fitdist(yield_subset, distr = 'weibull')
+ln <- fitdist(yield_subset, distr = 'lnorm')
+g <- fitdist(yield_subset, distr = 'gamma')
+n <- fitdist(yield_subset, distr = 'norm')
+
+plot(g)
+plot(n)
+plot(ln)
+
+names(g)
+g$estimate
+
+n$loglik
+g$loglik
+
+x <- yield_subset
+hist(x, probability = TRUE, ylim = c(0, 0.10))
+lines(sort(x), dgamma(sort(x), g$estimate['shape'], g$estimate['rate']))
+lines(sort(x), dlnorm(sort(x), ln$estimate['meanlog'], ln$estimate['sdlog']), col = 2)
+lines(sort(x), dnorm(sort(x), n$estimate['mean'], n$estimate['sd']), col = 3)
+
+
+unique(grass_yields$genus)
+
+grass_yields$genus <- ifelse(grass_yields$genus == 'Freedom-', 
+                             "Miscanthus",
+                             grass_yields$genus)
+grass_yields <- grass_yields %>% filter(!genus == 'root-mis')
+
+theme_set(theme_bw())
+ggplot(data = grass_yields) +
+  geom_histogram(aes(x = yield_annual), binwidth = 4) +
+  facet_wrap(~genus)
+
+ggplot(data = grass_yields) +
+  geom_point(aes(x = year, y = yield_annual)) +
+  facet_wrap(~genus)
+
+ggplot(data = grass_yields) +
+  geom_point(aes(x = age, y = yield_annual)) +
+  facet_wrap(~genus)
+
+ggplot(data = grass_yields) +
+  geom_point(aes(x = year, y = map)) +
+  facet_wrap(~lat)
+
+ggplot(data = grass_yields) +
+  geom_point(aes(x = year, y = mat)) +
+  facet_wrap(~lat)
+
+ggplot(data = grass_yields) +
+  geom_point(aes(x = lon, y = lat, color = genus), alpha = 0.25, position = 'jitter')
+
+lattice::splom(grass_yields)
+lines(sort(x), dweibull(sort(x), w$estimate['shape'], w$estimate['scale']), col = 4)
+
+
+
+h0 <- lm(yield_annual ~ 1, data = grass_yields)
+
+hist(grass_yields$yield_annual)
+abline(v = mean(grass_yields$yield_annual))
+
+plot(h0, which = c(1))
+plot(h0, which = c(2))
+
+## log
+## power (incl. sqrt)
+## Box-Cox transform
+## rank
+library(dplyr)
+grass_yields <- grass_yields %>% 
+  mutate(sqrt_yield = sqrt(yield_annual))
+
+h0 <- lm(sqrt_yield ~ 1, data = grass_yields)
+
+plot(h0, which = c(1))
+plot(h0, which = c(2))
+
+h1 <- lm(sqrt_yield ~ 1 + genus, data = grass_yields)
+
+plot(h1, which = c(1))
+plot(h1, which = c(2))
+
+summary(h1)
+
+class(h1)
+methods(class = 'lm')
+
+plot(h1$fitted.values, h1$residuals)
+
+tmp_grass <- cbind(grass_yields, residuals = h1$residuals)
+h1.5 <- lm(residuals ~ fertilizer_n, data = tmp_grass)
+
+summary(h1.5)
+
+h2 <- lm(sqrt_yield ~ genus + fertilizer_n, 
+         data = grass_yields)
+
+summary(h2)
+
+h3 <- lm(sqrt_yield ~ 1 + genus + fertilizer_n + genus : fertilizer_n, data = grass_yields)
+# h3 <- lm(sqrt_yield ~ 1 + genus + fertilizer_n + genus : fertilizer_n, data = grass_yields)
+# h3 <- lm(sqrt_yield ~ 1 + genus * fertilizer_n , data = grass_yields)
+library(ggplot2)
+ggplot(data = grass_yields) +
+  geom_point(aes(fertilizer_n, sqrt_yield, color = genus )) +
+  geom_abline(aes(slope = 0.0125, intercept = 3.2),color = 'pink') +
+  geom_abline(aes(slope = 0.0125 - 0.0066, intercept = 3.2 - 0.65),color = 'blue')
+
+ggplot(data = grass_yields) +
+  geom_point(aes(fertilizer_n, sqrt_yield, color = genus )) +
+  geom_abline(aes(slope = 0.0125, intercept = 3.2),color = 'pink') +
+  geom_abline(aes(slope = 0.0125 - 0.0066, intercept = 3.2 - 0.65),color = 'blue')
+summary(h3)
+
+ggplot(data = grass_yields) +
+  geom_point(aes(age, sqrt_yield, color = genus ))
+
+h5 <- lm(sqrt_yield ~ 1+ genus * mat, 
+         data = grass_yields )
+summary(h5)
+
+h6 <- lm(sqrt_yield ~ 1+ genus * mat + genus * fertilizer_n + genus *age, 
+         data = grass_yields )
+
+h7 <- lm(sqrt_yield ~ 1+ genus + genus , 
+         data = grass_yields )
+summary(h6)
+
+plot(h6, which = c(1))
+
+lapply(list(h0, h1, h3, h5, h6, h8), AIC)
+AIC(h0)
+
+library(MASS)
+
+stepAIC(h6, direction = 'both')
+
+h8 <- lm(formula = sqrt_yield ~ genus + fertilizer_n + age + I(age^2) + genus:fertilizer_n + 
+     genus:age, data = grass_yields)
+
+plot(h8)
+
+?stepAIC
+
+```
+
+
+## Issues with stepAIC
+
+https://stats.stackexchange.com/questions/20836/algorithms-for-automatic-model-selection
+
+
+```{r}
+grass_yields <- read.csv('../../grass_yield.csv') %>% 
+  filter(genus %in% c("Miscanthus", "Panicum")) %>%
+  mutate(sqrt_yield = sqrt(yield_annual), genus = as.character(genus))
+
+```
+
+### Model fitting
+
+```{r}
+#install.packages('caret')
+require(caret)
+
+ctrl <- trainControl(method = "repeatedcv", repeats = 10, savePred = TRUE)
+
+train_lm_yield <- train(yield_annual ~  genus * fertilizer_n + genus * poly(age, 2) + genus * mat + genus * map, 
+                  data = grass_yields,
+                  preProcess = 'BoxCox',
+                  method = "lmStepAIC", 
+                  direction = 'both',
+                  trControl = ctrl)
+
+class(train_lm_yield$finalModel$call)
+```
+
+Alternative: lasso
+```{r}
+
+yield_lasso <- train(yield_annual ~  genus * fertilizer_n + genus * poly(age, 2) + genus * mat + genus * map, 
+                  data = grass_yields,
+                  preProcess = 'BoxCox',
+                  method = "glmnet")
+
+varImp(lasso_yield)
+
+library(sjPlot)
+
+sjPlot::sjp.lm(train_lm_yield$finalModel)
+summary(train_lm_yield)
+
+```
+
+## Random Effects
+
+```{r}
+## create a category for site
+grass_yields <- grass_yields %>% 
+  mutate(site = as.factor(lat))
+
+library(lme4)
+
+grass_re <- lme4::lmer(sqrt_yield ~ fertilizer_n + age + I(age^2) +
+                       genus:fertilizer_n + genus:age + (1 | site), 
+                  data = grass_yields)
+
+
+sjPlot::sjp.lmer(grass_re)
+```
+
+### the Predict method
+
+take an argument 'new data' and predict output from the model
+
+```{r}
+
+grass_lm <- lm(sqrt_yield ~ genus * fertilizer_n + poly(age, 2), data = grass_yields)
+
+newdata <- expand.grid(fertilizer_n = 1:5*100, age = 5, genus = 'Miscanthus', year = 2000)
+
+y_n <- predict(grass_lm, newdata = newdata)
+
+plot(1:5*100, y_n)
+```
+
+The danger of 'out of sample prediction'
+
+```{r}
+newdata2 <- expand.grid(fertilizer_n = 100, age = 1:20, genus = 'Miscanthus', year = 2000)
+
+y_age <- predict(grass_lm, newdata = newdata2)
+plot(1:20, y_age)
+```
+
+
+#### References
+
+Arundale R (2012) The higher productivity of the bioenergy feedstock Miscanthus x giganteus relative to Panicum virgatum is seen both into the long term and beyond Illinois (Doctoral dissertation, University of Illinois at Urbana-Champaign). http://hdl.handle.net/2142/34422.
+
+Arundale RA, Dohleman FG, Heaton EA, Mcgrath JM, Voigt TB, Long SP (2014) Yields of Miscanthus × giganteus and Panicum virgatum decline with stand age in the Midwestern USA. Global Change Biology Bioenergy, 6, 1–13.
+http://onlinelibrary.wiley.com/doi/10.1111/gcbb.12077/full
+
+LeBauer, D., Kooper, R., Mulrooney, P., Rohde, S., Wang, D., Long, S. P. and Dietze, M. C. (2017), BETYdb: a yield, trait, and ecosystem service database applied to second-generation bioenergy feedstock production. GCB Bioenergy. doi:10.1111/gcbb.12420
+
+### Fitting mathematical models
+
+
+functional forms https://ms.mcmaster.ca/~bolker/emdbook/book.pdf
+
+
+The following is an illustrative collection of the mathematical functions based on those described in Bolker 2009.
+
+```{r eval = false}
+foo.null  <- lm (y ~ 1, ...)
+foo.poly1 <- lm(y ~ poly(x,1),...)
+foo.poly2 <- lm(y ~ poly(x,2)+poly(x2,2),...)
+foo.poly3 <- lm(y ~ poly(x,3),...)
+foo.mm <- nls ( y~ (a*x)/(b + x) , start = list(a=1, b=1),...)
+foo.ne <- nls ( y ~ a*exp(-b*x) , start = list(a=1, b=1),...)
+foo.ricker <- nls ( y ~ a*x*exp(-b*x) , start = list(a=1, b=1),...)
+foo.powricker <- nls ( y ~ b * (x/a * exp(1 - x/a))^alpha , start = list(a=1, b=1, alpha = 1),...)
+foo.modlog <- nls ( y ~ exp(eps * (phi - x))/(1+exp(beta * eps * ( phi - x)))
+ , start = list(eps = 1, beta = 1, phi = 15),...)
+foo.aov <- aov( y ~ x, ...)
+
+```
+
+### Now ... this leads us to mechanistic modeling
+
+stochastic simulation 
+
+then ... Crop modeling https://1drv.ms/p/s!ArD2PjXBzadikgBlYGE-eA-HIFou

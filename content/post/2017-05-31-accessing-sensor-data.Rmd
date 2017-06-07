@@ -15,7 +15,7 @@ type: post
 These were collected on April 15 2017 every ~15 minutes
 
 
-```{r}
+```{r get-vnir-calibration, eval=FALSE}
 library(ncdf4)
 library(dplyr)
 
@@ -44,7 +44,7 @@ rfl <- ncvar_get(calibration_nc, 'rfl_img',
           #start = c(1, xstart, ystart), 
           #count = c(955, x_length, y_length)
           start = c(2, 2, 2),
-          count = c(1320, 160, 954)
+          count = c(1320, 10, 954)
           )
 x <- ncvar_get(calibration_nc, 'x', start = 100, count = 160)
 y <- ncvar_get(calibration_nc, 'y', start = 100, count = 1324)
@@ -223,8 +223,8 @@ writeLines("
 <pecan>
   <clowder>
     <hostname>terraref.ncsa.illinois.edu</hostname>
-    <user>your login email</user>
-    <password>ask for password</password>
+    <user>user@illinois.edu</user>
+    <password>ask</password>
   </clowder>
 </pecan>", 
 con =  "~/.pecan.clowder.xml")
@@ -239,9 +239,10 @@ library("dplyr")
 ## download raw data
 ne <- download.Geostreams(
   outfolder="data",
-  sitename="UIUC Energy Farm - NE",
+  sitename="EnvironmentLogger sensor_weather_station",
   start_date="2016-02-28",
-  end_date="2016-04-01")
+  end_date="2016-04-01",
+  overwrite = TRUE)
 
 ## convert to standard
 ne_cf <- met2CF.Geostreams(
@@ -249,7 +250,8 @@ ne_cf <- met2CF.Geostreams(
   in.prefix = ne$dbfile.name, 
   outfolder = "data/cf",
   start_date = "2016-03-01", # note date shift to avoid TZ issues
-  end_date = "2016-04-01")
+  end_date = "2016-04-01",
+  overwrite = TRUE)
 
 ## convert to model specific input
 met2model.BIOCRO(
