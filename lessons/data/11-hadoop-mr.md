@@ -131,8 +131,8 @@ This assignment is based on an AWS Hadoop Streaming [tutorial](https://aws.amazo
 -   What other sorts of problems can you think of that MapReduce would work well for?  _classification problems, network problems ([some ideas](https://stackoverflow.com/questions/12375761/good-mapreduce-examples#12375878))_
 
 -   This exercise will focus on using MapReduce to sift electrical grid data for threshold-level power excursions.  The base data set contains *phasor measurement unit* (PMU) data.  It is fairly dirty and may require cleaning (or the algorithm may be robust against dirty data).
-    -   Examine [`pmu_map.py`](	https://s3.us-east-2.amazonaws.com/math-su17/scripts/pmu_map.py).  What does this program do, in an MR sense?
-    -   Implement a Hadoop Streaming realization of this code from start to finish, as above.
+    -   Examine [`pmu_map.py`](	https://s3.us-east-2.amazonaws.com/math-su17/scripts/pmu_map.py).  What does this program do, in an MR sense?  You will need to use `s3://math-su17/scripts/pmu_map.py` for the Mapper.
+    -   Implement a Hadoop Streaming realization of this code from start to finish, as above.  Use `aggregate` as the Reducer again.  Send the data to an S3 bucket you control.  (Create one ahead of time.)
     -   How could these data, once identified, be useful?  (correlate with weather, solar magnetic activity, other nonlocal grid events)
 
 
