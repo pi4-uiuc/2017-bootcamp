@@ -7,7 +7,7 @@ tags: [r]
 type: post
 ---
 
-## Introduction 
+## Introduction
 
 <iframe src="https://docs.google.com/presentation/d/1dQHlodU9PggM7khqlL_OS4P-X-o96D78ihuvuD2Iong/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
@@ -22,7 +22,7 @@ In fact, so far we have been working with tables.
 https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs
 ## Sorghum Data from Arizona
 
-Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona
+Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona:
 
 https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U
 
@@ -31,110 +31,112 @@ Let's review the pages
 * README is good. They are well ahead of the curve on this!
 * What additional information is here?
 * Where is the data we want to look at?
-* What information is redundant
+* What information is redundant?
 
 
-* Download the table "PlantHeights_AllPlots" as CSV
+Download the table "PlantHeights_AllPlots" as CSV
 
 
-## Data Cleaning 
+## Data Cleaning
 
-* In this lesson, we will use Open Refine to find errors, sort, and clean our dataset. 
-* Open the OpenRefine container in the NDSLabs workbench
+* In this lesson, we will use Open Refine to find errors, sort, and clean our dataset.
+* Open the OpenRefine container in the NDSLabs workbench.
 
 ### About Open Refine
 
 This tutorial is based on the [Data Carpentry Open Refine for Ecology lesson](http://www.datacarpentry.org/OpenRefine-ecology-lesson/01-working-with-openrefine/), modified to use our datasets.
 
-You can learn more about and download Open Refine at [openrefine.org](https://openrefine.org). 
+You can learn more about and download Open Refine at [openrefine.org](https://openrefine.org).
 
 
 ### Importing Data into Open Refine
 
-Once OpenRefine is launched in your browser, the left margin has options to Create Project, Open Project, or Import Project. Here we will create a new project:
+Once OpenRefine is launched in your browser, the left margin has options to `Create Project`, `Open Project`, or `Import Project`. Here we will create a new project:
 
-* Click 'Create Project'; 'Get data from This Computer' should be selected
+* Click `Create Project`; `Get data from this computer` should be selected
    * what other ways can you get data into OpenRefine?
-* Click 'Choose Files' and select the file `DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv` 
-* Click 'Open' --> 'Next'
-* OpenRefine gives you a preview - a chance to show you it understood the file. 
-   * did the file show up sensibly? 
-* In the upper right corner create a meaningful project name and then click "Create Project"
+* Click `Choose Files` and select the file:
+<p align="center">
+ `DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv`
+</p>
+* Click `Open` --> `Next`
+* OpenRefine gives you a preview - a chance to show you it understood the file.
+   * did the file show up sensibly?
+* In the upper right corner create a meaningful project name and then click `Create Project`.
 
 ### Faceting
 
-OpenRefine supports faceted browsing. This allows you to see the big picture of your data and
-then filter down to a subset of rows. Once you have a target set of rows, you can apply changes in bulk.
+OpenRefine supports faceted browsing. This allows you to see the big picture of your data and then filter down to a subset of rows. Once you have a target set of rows, you can apply changes in bulk.
 
-* lets work with one of the columns containing plant height measurements
-  * next to one of the numeric columns (Plant_ht_Aug24) click the arrow
-  * facet --> Numeric facet.
+Let's work with one of the columns containing plant height measurements:
+
+  * next to one of the numeric columns "Plant_ht_Aug24" click the arrow
+  * `facet` --> `Numeric facet`.
     * what went wrong?
-  * click 'edit cells' --> common transforms --> numeric
-  * now try to click facet --> numeric again
-    * what do you see this time? 
+  * click `edit cells` --> `common transforms` --> `numeric`
+  * now try to click `facet` --> `numeric` again
+    * what do you see this time?
     * How is a numeric facet different than a text facet?
-  * click Plant_ht_Sep15
+  * click "Plant_ht_Sep15"
     * how many rows are there with non-numeric data?
     * what to do here?
-    
-Lets look at the Genotype field
+
+Let's look at the Genotype field:
 
 * select the arrow next to the column named "Genotype"
-* select "Facet" --> "Text Facet"
-* sort by "count"
-  * what do you notice? 
-  * What is the level of replication in this study? 
+* select `Facet` --> `Text Facet`
+* sort by `count`
+  * what do you notice?
+  * What is the level of replication in this study?
   * Which genotypes are not like the others?
-  * why are there so many Genotypes named "Great Scott" and "border"?
-* Lets clean up all whitespace problems
+  * why are there so many genotypes named "Great Scott" and "border"?
+* Let's clean up all whitespace problems
   * trim leading and trailing whitespace
   * trim consecutive white space
   * now how many groups do we have?
 * Edit "border" --> "Border"
 
 ### TERRA REF Sites and Variables
-  
+
 Your turn:
 
 Lets review a few datasets from the TERRA REF trait database. These are provided in the [.json format](https://en.wikipedia.org/wiki/JSON) by default:
 
 1. Look at the sites table. Where are the sites? Are there redundant names?
    * import from https://terraref.ncsa.illinois.edu/bety/api/beta/sites?key=9999999999999999999999999999999999999999&limit=none
-   * when you review the data, select the lowest level of hierarchy so column names aren't long concatenations of the entire tree. 
-2. See if you can find any redundant variables    
+   * when you review the data, select the lowest level of hierarchy so column names aren't long concatenations of the entire tree.
+2. See if you can find any redundant variables:   
   * import from https://terraref.ncsa.illinois.edu/bety/api/beta/variables.xml?key=9999999999999999999999999999999999999999&limit=none
-  * note that this is an XML format (the BETYdb API provide json, xml, and csv)
+  * note that this is in XML format (the BETYdb API provide json, xml, and csv)
 
 
+##### Open Refine
 
-#### Open Refine
-
-* Lets look at the Miscanthus Yield dataset again
-* Open --> Create Project --> From URL
+* Let's look at the Miscanthus Yield dataset again
+* `Open` --> `Create Project` --> `From URL`
   * Enter https://www.betydb.org/search.csv?search=Ayield
-* What is the matter here? Lets clean up the imported dataset.
+* What is the matter here? Let's clean up the imported dataset:
   * columns are csv
   * discard first 8 lines, parse next 1 line as column headers
-  * also, 'parse cells to numbers, dates, etc'
-* Create Project
+  * parse cells to numbers, dates, etc
+* `Create Project`
 
-#### From a Web Interface
+##### From a Web Interface
 
 Go to [betydb.org](https://betydb.org) and enter "Miscanthus Yield" into the search box and click the search glass icon.
 
-Lets review the information in this table.
+Let's review the information in this table:
 
 * Site with city
 * Date + time + timezone
-* Species + common name 
+* Species + common name
 * Cultivar
-* Trait 
+* Trait
 * Mean (with units)
 * Method
 * Entity
 
-Now click the "Download Results" button. This will download a .csv file. A [.csv file](https://en.wikipedia.org/wiki/Comma-separated_values) is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:
+Now click the `Download Results` button. This will download a .csv file. A [.csv file](https://en.wikipedia.org/wiki/Comma-separated_values) is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:
 
 ```
 row 1 col 1, row 1 col 2, row 1 col 3
@@ -150,72 +152,65 @@ It can also be easily read by any software or parsed at the command line using t
 
 > where are there redundancies?
 
-
 * Site + city + lat + lon
 * Date + time + timezone
-* genus + scientificname + common name 
+* genus + scientificname + common name
 * Cultivar
-* Trait + units & description 
-* Mean 
+* Trait + units & description
+* Mean
 * Method
 * Entity
 
 ### Tidy data
 
-
+Tidy data means that:
 * Each variable forms a column.
 * Each observation forms a row.
 * Each type of observational unit forms a table.
 
 From [tidyr vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
 
-> YOUR TURN Is the Miscanthus dataset tidy? What would we need to do to make it tidy?
+> Is the Miscanthus dataset tidy? What would we need to do to make it tidy?
+
 
 ## Relational Databases and SQL
+
+Some of the following is based on the [Data Carpentry SQL Introduction for Ecology lesson](http://www.datacarpentry.org/sql-ecology-lesson/00-sql-introduction/).
+
 
 The [relational model](https://en.wikipedia.org/wiki/Relational_model) for managing databases consists of representing the data in terms of tuples of relations. Many modern databases use some version of this. Structured Query Language or [SQL](https://en.wikipedia.org/wiki/SQL) is a language implementation based on the relational model, although there are some differences.
 
 ### Data Normalization
 
-"Codd's Normal Forms" from (Codd 1970)  
+"Codd's Normal Forms" from [Codd 1970](http://dl.acm.org/citation.cfm?doid=362384.362685):  
 
 > process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. [Wikipedia - Database normalization](https://en.wikipedia.org/wiki/Database_normalization)
 
-To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information that violates the best practice of having a single canonical representation for each piece of information?
+To motivate the use of a relational databases, let's start by looking at a table. We want to see if there is redundant information that violates the best practice of having a single canonical representation for each piece of information.
 
-> YOUR TURN: which of these fields has redundant data? 
-
+> Which of these fields has redundant data?
 
 * SQL allows us to select and group subsets of data, do math and other calculations, and combine data.
 * A relational database is made up of tables which are related to each other by shared keys.
   * primary keys
   * foreign keys
   * natural keys
-* Different database management systems (DBMS) use slightly different vocabulary, but they are all based on the same ideas. 
+* Different database management systems (DBMS) use slightly different vocabulary, but they are all based on the same ideas.
 
-^^ from [Data Carpentry](http://www.datacarpentry.org/sql-ecology-lesson/00-sql-introduction/) 
-> how would you begin to normalize this data set?
+> How would you begin to normalize this data set?
 
-### Lets look at the underlying database
+### Let's look at the underlying database
 
 #### Connecting to a database server
 
-connection parameters:
+To connect to a database server you need the following connection parameters:
 
 * host
 * login
-* user 
+* user
 * database (database name)
 
-Lets connect to the terraref instance of betydb. Until now we have been accessing betydb.org. Now we will access (a copy of) the database behind terraref.ncsa.illinois.edu/bety
-
-```
-Host: terra-bety.default
-Port: 5432
-User: bety
-Password: bety
-DB: bety
-```
+Let's connect to the terraref instance of betydb. Until now we have been accessing betydb.org. Now we will access (a copy of) the database behind `terraref.ncsa.illinois.edu/bety`
 
 From the command line:
 
@@ -228,23 +223,31 @@ The hidden .pgpass file:
 ```sh
 echo "terra-bety.default:5432:bety:bety:bety" >> ~/.pgpass
 chmod 0600 ~/.pgpass # why?
-psql 
+psql
 ```
 
-Open the PostgreSQL application in the NDSLabs workbench and enter the connection parameters above.
+Open the PostgreSQL application in the NDSLabs workbench and enter the connection parameters:
+```
+Host: terra-bety.default
+Port: 5432
+User: bety
+Password: bety
+DB: bety
+```
 
-Connection for use in R and Rmarkdown
+To connect in R and RMarkdown use:
 
 ```{r dbcon-1}
 library(RPostgreSQL)
 dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
-                dbname = "bety", 
-                password = 'bety', 
-                host = 'terra-bety.default', 
-                user = 'bety', 
+                dbname = "bety",
+                password = 'bety',
+                host = 'terra-bety.default',
+                user = 'bety',
                 port = 5432)
 ```
 
+You can run the following from RMarkdown:
 ```sql
 REFRESH MATERIALIZED VIEW traitsview_private;
 REFRESH MATERIALIZED VIEW yieldsview_private;
@@ -254,6 +257,7 @@ REFRESH MATERIALIZED VIEW traits_and_yields_view;
 
 ### Tables & Schemas
 
+This is an entity-relationship diagram:
 
 ![A simplified entity–relationship diagram for key tables in Biofuel Ecophysiological Traits and Yields database (BETYdb).](https://raw.githubusercontent.com/ebimodeling/betydb_manuscript/master/figures/gcbb12420-fig-0001.png)
 
@@ -265,7 +269,7 @@ Here is a more comprehensive entity-relationship diagram:
 
 ### SQL
 
-Lets start using some basic SQL Commands
+Let's start using some basic SQL Commands from the following list:
 
 ```sql
 SELECT
@@ -285,39 +289,46 @@ COUNT
 LIKE
 ```
 
+`Select` can be used to view from a table, the symbol `*` is a wildcard:
 
 ```{sql connection = dbcon}
 select * from traits limit 10;
 select * from traits where mean < 0;
 ```
 
+`select distinct` can also be used:
+
 ```{sql distinct, connection = dbcon}
 select distinct trait from traits_and_yields_view;
 ```
 
+We can also group what we view and organize them:
+
 ```{sql sql-group-order, connection = dbcon}
 select sitename, count(*) as n
-   from traits_and_yields_view 
+   from traits_and_yields_view
    group by sitename order by n desc;
 ```
 
 
-
-
 ### Types of Joins
+
+Joins are used to put together tables in different ways:
 
 ![types of joins](http://r4ds.had.co.nz/diagrams/join-venn.png)
 
 From [Grolemund and Wickham "R for Data Science"](http://r4ds.had.co.nz/relational-data.html)
 
+An example:
+
 ```{sql NDVI, connection = dbcon}
-select name, units, date, mean from traits left join variables 
+select name, units, date, mean from traits left join variables
    on traits.variable_id = variables.id
    where variables.name = 'NDVI'
 ```
 
-> YOUR TURN: write queries that will 
->    1. to join the sites table to the traits table
+> Write queries that will
+>    1. join the sites table to the traits table
 >    2. join the managements table to the traits table
 
 ### Other handy features
@@ -332,7 +343,7 @@ Lets look at this in the PostgreSQL studio
   * uniqueness
   * check
 * data types
-  * numeric, int, 
+  * numeric, int,
   * character, enum
   * geometry
 * natural keys
@@ -341,8 +352,8 @@ Lets look at this in the PostgreSQL studio
 #### With
 
 ```{sql connection = dbcon}
-With NDVI as 
-  (select name, units, date, mean from traits left join variables 
+With NDVI as
+  (select name, units, date, mean from traits left join variables
      on traits.variable_id = variables.id
      where variables.name = 'NDVI'
   )
@@ -354,12 +365,12 @@ With NDVI as
 
 * Views (stored queries)
   * Materialized views (pre-computed queries)
-  
+
 ```sql
 drop view if exists NDVI;
 
 create view NDVI as
-select * from traits_and_yields_view_private 
+select * from traits_and_yields_view_private
     where trait = 'NDVI';
 
 select * from NDVI;
@@ -380,7 +391,7 @@ library(RPostgreSQL)
 dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
                 dbname = "bety", password = 'bety', host = 'terra-bety.default', user = 'bety', port = 5432)
 
-query <- "select * from traits left join variables 
+query <- "select * from traits left join variables
              on traits.variable_id = variables.id
              where variables.name = 'NDVI';"
 #query <- "select count(*) from traits_and_yields_view_private"
@@ -389,76 +400,85 @@ result <- dbSendQuery(dbcon, query)
 df <- fetch(result)
 dbClearResult(result)
 dbDisconnect(dbcon)
-
 ```
 
 
 #### Connecting with dplyr
 
-Advantage for larger datasets: can do a lot of server-side summarization and some computing before pulling data into memory. 
+Using the [dplyr library](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) has the advantage for larger datasets that one can do a lot of server-side summarization and some computing before pulling data into memory.
 
-https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html
+Here is an example of its use:
 
 ```{r dplyr-dbcon}
 library(dplyr)
 
-bety_src <- src_postgres(dbname = "bety", password = 'bety', host = 'terra-bety.default', user = 'bety', port = 5432)
-
+bety_src <- src_postgres(dbname = "bety",
+                        password = 'bety',
+                        host = 'terra-bety.default',
+                        user = 'bety',
+                        port = 5432)
 
 #translate_sql()
 ```
 
 ```{r complex-query}
-treatments <- tbl(bety_src, 'treatments') %>% 
+treatments <- tbl(bety_src, 'treatments') %>%
   select(treatment_id = id , name, definition, control)
 
 managements_treatments <- tbl(bety_src, 'managements_treatments')
 
-managements <- tbl(bety_src, 'managements') %>% 
-  filter(mgmttype %in% c('Fertilization_N', 'Planting', 'Irrigation')) %>% 
-  select(management_id = id, date, mgmttype, level, units) %>% 
-  left_join(managements_treatments, by = 'management_id') %>% 
+managements <- tbl(bety_src, 'managements') %>%
+  filter(mgmttype %in% c('Fertilization_N', 'Planting', 'Irrigation')) %>%
+  select(management_id = id, date, mgmttype, level, units) %>%
+  left_join(managements_treatments, by = 'management_id') %>%
   left_join(treatments, by = 'treatment_id')
 
-planting <-managements %>% 
-  filter(mgmttype == "Planting") %>% 
+planting <-managements %>%
+  filter(mgmttype == "Planting") %>%
   select(treatment_id, planting_date = date, nrate = level)
 
-heights <- tbl(bety_src, 'traits_and_yields_view') %>% 
-  filter(trait %in% c('plant_height', 'canopy_height')) %>% 
+heights <- tbl(bety_src, 'traits_and_yields_view') %>%
+  filter(trait %in% c('plant_height', 'canopy_height')) %>%
   left_join(planting, by = 'treatment_id') %>%  
-  collect %>% 
-  mutate(age = as.Date(raw_date) - planting_date) 
+  collect %>%
+  mutate(age = as.Date(raw_date) - planting_date)
 
 library(ggplot2)
 ggplot(data = heights, aes(raw_date, mean)) +
-  geom_point(alpha = 0.1) + 
+  geom_point(alpha = 0.1) +
   facet_wrap(~trait, scales = 'free')
 ```
 
 ### APIs
 
+The data at teraref can also be accessed via an API:
+
 * sign into terraref.ncsa.illinois.edu/bety
   * username: `pi4-student`
-  * password: `ask-instructor` <!--pi4student!!-->
-* locate your API key and copy it <!-- sSJzqPF77rRus9BGOZS4T76fzNhQ5Nk01tjcf1Bh-->
+  * password: `ask-instructor`
+
+* locate your API key and copy it
 
 * see [terraref tutorials 01- betydb getting started](https://github.com/terraref/tutorials/blob/master/traits/00-BETYdb-getting-started.Rmd)
+
 * API Documentation terraref.ncsa.illinois.edu/bety/api/beta/docs
 
 #### restful interface
 
-get put delete 
+get put delete
 https://en.wikipedia.org/wiki/Representational_state_transfer
 
 #### json data structures
 
+Another way of getting the data is via [JSON](https://en.wikipedia.org/wiki/JSON).
+
 
 ### R traits package
 
-Example: query indoor data from terraref database using the R traits package:
+Example on querying indoor data from terraref database using the R traits package can be found at:
 
 https://github.com/terraref/tutorials/blob/master/traits/02-danforth-phenotyping-facility.Rmd
+
 
 ## Real World Examples
 
@@ -467,7 +487,7 @@ https://github.com/terraref/tutorials/blob/master/traits/02-danforth-phenotyping
 * Full Schema betydb.org/schemas
 * How would you query all of the planting dates associated with a trait record?
 
-## Real World Application: the Biofuel Ecophysiological Traits and Yields database
+### Real World Application: the Biofuel Ecophysiological Traits and Yields database
 
 We have created 'views' to make it easier to query data from multiple tables. For example, to lookup the name and location of a site or the names and units of variables. The following query joins multiple tables, and is based on the yieldsview table:
 
@@ -507,12 +527,12 @@ SELECT 'yields'::character(10) AS result_type,
      LEFT JOIN treatments ON ((yields.treatment_id = treatments.id)))
      LEFT JOIN variables ON (((variables.name)::text = 'Ayield'::text)))
      LEFT JOIN users ON ((yields.user_id = users.id)));
-     
+
 ```
 
 For more information, see the [BETYdb data access documentation](https://pecan.gitbooks.io/betydb-data-access/content/sqlqueries.html)
 
-## references and further reading
+## References and further reading
 
 * https://www.dataquest.io/blog/sql-basics/
 * Codd, E.F. (June 1970). "A Relational Model of Data for Large Shared Data Banks". Communications of the ACM. 13 (6): 377–387. doi:10.1145/362384.362685.
