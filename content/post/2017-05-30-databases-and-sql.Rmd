@@ -1,5 +1,5 @@
 ---
-title: "5. Databases and SQL"
+title: "Databases and SQL"
 author: "David LeBauer"
 date: '2017-05-30'
 slug: databases-and-sql
@@ -7,7 +7,9 @@ tags: [r]
 type: post
 ---
 
-## Introduction 
+## Overview 
+
+We started with an overview of data management, including the data lifecycle, metadata, and databases, using the TERRA REF to illustrate applications.
 
 <iframe src="https://docs.google.com/presentation/d/1dQHlodU9PggM7khqlL_OS4P-X-o96D78ihuvuD2Iong/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
@@ -17,29 +19,40 @@ A database is a generic term for data. Often these are divided into 'relational'
 
 In fact, so far we have been working with tables.
 
-## Miscanthus Yields
+### Example Spreadsheets
 
-https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs
-## Sorghum Data from Arizona
+Later we will see how these data were re-organized in a relational database. These examples illustrate some common issues with organizing data in spreadsheets.
 
-Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona
+#### A collection of [Miscanthus Yield](https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs) data as a spreadsheet. 
 
-https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U
+These data were found in published articles and organized in a spreadsheet. 
+
+<iframe src="https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/pubhtml?widget=true&amp;headers=false"></iframe>
+
+> What about this spreadsheet would make it difficult for a machine to interpret?
+
+#### [Sorghum Data from Arizona](https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U)
+
+These data were collected in Arizona, and will be used as 'ground truth' to calibrate and validate sensor-based data collections.
+
+<iframe src="https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U/pubhtml?widget=true&amp;headers=false"></iframe>
+
 
 Let's review the pages
 
-* README is good. They are well ahead of the curve on this!
-* What additional information is here?
-* Where is the data we want to look at?
-* What information is redundant
+* README is good. These researchers provide necessary information in a clearly identified worksheet.
+* What additional information about the experiment are included?
+* Where is the 'primary' data that a scientist might wish to analyze?
+* What information is redundant?
+* Is any useful information missing?
 
 
 * Download the table "PlantHeights_AllPlots" as CSV
 
-
 ## Data Cleaning 
 
 * In this lesson, we will use Open Refine to find errors, sort, and clean our dataset. 
+  * Note that some of the errors we find were introduced explicitly for teaching.
 * Open the OpenRefine container in the NDSLabs workbench
 
 ### About Open Refine
@@ -103,14 +116,15 @@ Lets review a few datasets from the TERRA REF trait database. These are provided
    * import from https://terraref.ncsa.illinois.edu/bety/api/beta/sites?key=9999999999999999999999999999999999999999&limit=none
    * when you review the data, select the lowest level of hierarchy so column names aren't long concatenations of the entire tree. 
 2. See if you can find any redundant variables    
-  * import from https://terraref.ncsa.illinois.edu/bety/api/beta/variables.xml?key=9999999999999999999999999999999999999999&limit=none
-  * note that this is an XML format (the BETYdb API provide json, xml, and csv)
+  * import from https://terraref.ncsa.illinois.edu/bety/api/beta/variables?key=9999999999999999999999999999999999999999&limit=none
+3. Different formats
+   * note that you can also download these data as xml format by appending `.xml` to the table name, e.g. `...api/beta/variables.xml?...`
+   * Import the same variables table thus: https://terraref.ncsa.illinois.edu/bety/api/beta/variables?key=9999999999999999999999999999999999999999&limit=none
 
+### Miscanthus Yields
 
+Lets look at the Miscanthus Yield dataset from earlier. This version of the data have been imported from the data we looked at in the spreadsheet above.
 
-#### Open Refine
-
-* Lets look at the Miscanthus Yield dataset again
 * Open --> Create Project --> From URL
   * Enter https://www.betydb.org/search.csv?search=Ayield
 * What is the matter here? Lets clean up the imported dataset.
@@ -119,7 +133,7 @@ Lets review a few datasets from the TERRA REF trait database. These are provided
   * also, 'parse cells to numbers, dates, etc'
 * Create Project
 
-#### From a Web Interface
+### Downloading Data from a Web Interface
 
 Go to [betydb.org](https://betydb.org) and enter "Miscanthus Yield" into the search box and click the search glass icon.
 
@@ -134,7 +148,15 @@ Lets review the information in this table.
 * Method
 * Entity
 
-Now click the "Download Results" button. This will download a .csv file. A [.csv file](https://en.wikipedia.org/wiki/Comma-separated_values) is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:
+Now click the "Download Results" button. This will download a .csv file. 
+
+> How does this approach compare to accessing data using a URL?
+
+> How are the data in this database different from the data in the spreadsheets above?
+
+#### About csv files 
+
+A [.csv file](https://en.wikipedia.org/wiki/Comma-separated_values) is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:
 
 ```
 row 1 col 1, row 1 col 2, row 1 col 3
@@ -148,6 +170,18 @@ By default, many computers will open the csv file directly into a [spreadsheet p
 
 It can also be easily read by any software or parsed at the command line using tools like `cut` and `sed`. Unlike xml and json, it is more intuitive for a human to read.
 
+### Tidy data
+
+
+* Each variable forms a column.
+* Each observation forms a row.
+* Each type of observational unit forms a table.
+
+From [tidyr vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
+
+> YOUR TURN Is the Miscanthus dataset tidy? What would we need to do to make it tidy?
+
+
 > where are there redundancies?
 
 
@@ -160,16 +194,6 @@ It can also be easily read by any software or parsed at the command line using t
 * Method
 * Entity
 
-### Tidy data
-
-
-* Each variable forms a column.
-* Each observation forms a row.
-* Each type of observational unit forms a table.
-
-From [tidyr vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
-
-> YOUR TURN Is the Miscanthus dataset tidy? What would we need to do to make it tidy?
 
 ## Relational Databases and SQL
 
@@ -196,11 +220,49 @@ To motivate the use of a relational databases, lets start by looking at a table.
 ^^ from [Data Carpentry](http://www.datacarpentry.org/sql-ecology-lesson/00-sql-introduction/) 
 > how would you begin to normalize this data set?
 
-### Lets look at the underlying database
+### Database Management Systems
 
-#### Connecting to a database server
+Common software: MySQL, PostgreSQL, Oracle, Access(?!)
 
-connection parameters:
+These are the programs that store data and process queries.
+
+## Lets look at the BETYdb relational database
+
+### Database Connections
+
+There are many ways to connect to a relational database. 
+
+Two connection types: 
+1. via an API by constructing a URL as we did above (betydb.org/search?search=Miscanthus+Yield)
+2. directly to the database server
+
+For both of these approaches, there are 'direct connections' and 'clients'. A 'client' is a way of making the interface easier. 
+
+For example with the R `traits` package, the function `betydb_search("Miscanthus Yield")` returns the table as an R dataframe. Otherwise, it would be necessary to determine the corresponding URL, download the csv, and then import it into R.
+
+We can also either directly connect to the database and use SQL or connect to it with an R client. 
+
+Some different ways of connecting to BETYdb:
+
+| connection type | language | package | comments |
+|---|---|---|
+|SQL | SQL | N/A| 
+|SQL/ODBC | R + SQL | RPostgreSQL |
+|SQL/ODBC | R / dplyr | dplyr|
+|API | R | traits |
+|API | URL |  |
+
+Why use an API? 
+* it is more secure
+* it can abstract the database structure into a more familiar / human-friendly format
+
+Why use SQL connection
+
+* faster
+* more access to all tables / joins in database
+* can handle larger datasets and subset / summarize / filter before bringing into memory.
+
+SQL Connection parameters include:
 
 * host
 * login
@@ -208,6 +270,8 @@ connection parameters:
 * database (database name)
 
 Lets connect to the terraref instance of betydb. Until now we have been accessing betydb.org. Now we will access (a copy of) the database behind terraref.ncsa.illinois.edu/bety
+
+This connection is only available on the local *ncsa.illinois.edu network, and can be accessed through the NDS Labs workbench.
 
 ```
 Host: terra-bety.default
@@ -217,21 +281,29 @@ Password: bety
 DB: bety
 ```
 
-From the command line:
+#### Command line access
+
+You can access the PostgreSQL command line in a terminal using the following command:
 
 ```sh
 psql -U bety -d bety -h terra-bety.default
 ```
 
-The hidden .pgpass file:
+For security, you can hide your connection parameters in a hidden file called `~/.pgpass` in your home directory that contains the following line:
 
 ```sh
-echo "terra-bety.default:5432:bety:bety:bety" >> ~/.pgpass
-chmod 0600 ~/.pgpass # why?
-psql 
+terra-bety.default:5432:bety:bety:bety
 ```
 
-Open the PostgreSQL application in the NDSLabs workbench and enter the connection parameters above.
+It must have appropriate permissions, so after creating the above file run `chmod 0600 ~/.pgpass`.
+
+Then you only need to type `psql` to log in
+
+### PostgreSQL Studio
+
+There are many Graphical User Interface applications that make it easier to explore and manage databases. We will use PostgreSQL.
+
+Open the PostgreSQL Studio application in the NDSLabs workbench and enter the connection parameters above.
 
 Connection for use in R and Rmarkdown
 
@@ -243,13 +315,6 @@ dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
                 host = 'terra-bety.default', 
                 user = 'bety', 
                 port = 5432)
-```
-
-```sql
-REFRESH MATERIALIZED VIEW traitsview_private;
-REFRESH MATERIALIZED VIEW yieldsview_private;
-REFRESH MATERIALIZED VIEW traits_and_yields_view_private;
-REFRESH MATERIALIZED VIEW traits_and_yields_view;
 ```
 
 ### Tables & Schemas
@@ -265,7 +330,7 @@ Here is a more comprehensive entity-relationship diagram:
 
 ### SQL
 
-Lets start using some basic SQL Commands
+Here is a list of SQL Commands
 
 ```sql
 SELECT
@@ -285,23 +350,29 @@ COUNT
 LIKE
 ```
 
+### Examples
+
+Filter with `where`
 
 ```{sql connection = dbcon}
 select * from traits limit 10;
 select * from traits where mean < 0;
 ```
 
+What distinct traits are available in the `traits_and_yields_view` table?
+
+
 ```{sql distinct, connection = dbcon}
 select distinct trait from traits_and_yields_view;
 ```
+
+Summarize counts
 
 ```{sql sql-group-order, connection = dbcon}
 select sitename, count(*) as n
    from traits_and_yields_view 
    group by sitename order by n desc;
 ```
-
-
 
 
 ### Types of Joins
@@ -337,8 +408,9 @@ Lets look at this in the PostgreSQL studio
   * geometry
 * natural keys
 
-
 #### With
+
+With is handy for constructing larger queries. This function effectively creates a temporary table that can be queried.
 
 ```{sql connection = dbcon}
 With NDVI as 
@@ -353,7 +425,11 @@ With NDVI as
 #### Views
 
 * Views (stored queries)
-  * Materialized views (pre-computed queries)
+* Materialized views (pre-computed queries)
+
+Views help to store common queries. They are based on existing tables, but may include joins with auxillary tables and / or summaries.
+
+In BETYdb we use views to join metadata in sites, citations, treatments, variables, and other tables to the 'primary' tables named traits and yields. We have a view called 'traits_and_yields_view' that is used by the search API endpoint and search page in the Web interface. 
   
 ```sql
 drop view if exists NDVI;
@@ -364,13 +440,6 @@ select * from traits_and_yields_view_private
 
 select * from NDVI;
 ```
-
-## Database Management Systems
-
-### Common software
-
-MySQL, PostgreSQL, Oracle, Access(?!)
-
 
 ### R: RPostgreSQL and dplyr
 
