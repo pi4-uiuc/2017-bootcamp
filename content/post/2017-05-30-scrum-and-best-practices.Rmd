@@ -7,40 +7,41 @@ categories: []
 tags: [programming]
 ---
 
-Objectives:
+## Objectives:
 
-* Understand Best practices per wilson et al
+* Understand best practices by Wilson et al
 * Basic components of Reproducible Research
-* Be familiar with concepts related to Scrum 
+* Be familiar with concepts related to Scrum
 
 ## Best Practices in Scientific Computing
 
 ### Wilson et al 2014 Best practices in Scientific Computing
 
-Wilson et al http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
+Wilson et al paper:  http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
+
 Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
 
 ### Wilson et al 2017 Good enough practices in Scientific Computing
 
-https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
+Wilson et al paper: https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
 
 ### Example: PEcAn Project
 
-Please start the day by reading this. 
+Please start the day by reading this.
 
 ## Reproducible Research
 
 ### Example 1: Ocean Health Index
 ![](https://www.nature.com/article-assets/npg/natecolevol/2017/s41559-017-0160/images_hires/w926/s41559-017-0160-f1.jpg)
 
-> Figure 1: Better science in less time, illustrated by the Ocean Health Index project. 
+> Figure 1: Better science in less time, illustrated by the Ocean Health Index project.
 
 From: [Lowndes et al 2017 "Our path to better science in less time using open data science tools" Nature Ecology & Evolution
 doi:10.1038/s41559-017-0160](https://www.nature.com/articles/s41559-017-0160)
 
 ### Example 2: BAAD database
 
-* [D Falster "The challenge of combining 176 x #otherpeoplesdata to create the Biomass And Allometry Database"](https://ropensci.org/blog/2015/06/03/baad/) Blog Post 
+* [D Falster "The challenge of combining 176 x #otherpeoplesdata to create the Biomass And Allometry Database"](https://ropensci.org/blog/2015/06/03/baad/) Blog Post
 * [BAAD GitHub Repository](https://github.com/dfalster/baad)
 * [Falster et al 2015 "BAAD: a Biomass And Allometry Database for woody plants" Ecological Archives E096-128](http://onlinelibrary.wiley.com/doi/10.1890/14-1889.1/abstract)
 
@@ -48,5 +49,5 @@ doi:10.1038/s41559-017-0160](https://www.nature.com/articles/s41559-017-0160)
 
 ## Scrum
 
-X% of companies use Scrum 
+X% of companies use Scrum:
 https://drive.google.com/drive/u/0/search?q=scrum
