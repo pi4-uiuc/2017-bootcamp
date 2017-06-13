@@ -56,6 +56,9 @@ variables <- tbl(bety_src, 'variables') %>%
 
 sites <- tbl(bety_src, 'sites') %>%
   mutate(site_id = id)
+
+cultivars <- tbl(bety_src, 'cultivars') %>%
+  mutate(cultivar_id = id, cultivar = 'name')
 ```
 
 In the above code the symbol `%>%` is a pipe from the `dplyr` library, it passes the left hand side to the first argument slot of the right hand side.
