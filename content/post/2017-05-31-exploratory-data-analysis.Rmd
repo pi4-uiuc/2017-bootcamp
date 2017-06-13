@@ -1,41 +1,54 @@
 ---
 title: Exploratory Data Analysis
-author: ~
+author: "David LeBauer"
 date: '2017-05-31'
 slug: exploratory-data-analysis
 categories: []
 tags: []
 ---
 
+> **Note**: Some of the commands below, particularly those accessing the terraref database from within RStudio, require being logged into the [NDS Analytics Workbench](http://www.terraref.ndslabs.org/#/). This requires signing up for the [TERRA REF Alpha User program](https://docs.google.com/forms/d/e/1FAIpQLScBsD042RrRok70BCGCRwARTcm9etvVHqvQaz1c5X7c5y0H3w/viewform?c=0&w=1).
 
+## Objectives
 
-### Data Cleaning
-   * Data Cleaning with Open Refine [DC lesson 1-4](http://www.datacarpentry.org/OpenRefine-ecology-lesson/)
-   * Data Cleaning in R
+* Learning how to access data on terraref database via PostgreSQL
 
-### Data Manipulation
-
+* Learning how to manipulate dat using the `dplyr` library, in particular:
    * [filtering, subsetting, summarizing, new variables with dplyr](http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)
-   * [Converting data from wide to long with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/)
+   * [converting data from wide to long with tidyr](http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/)
 
-## Access via PostgreSQL
+## Accessing TERRA REF via PostgreSQL
+
+We want to access the TERRA REF database. We will do it using the RPostgreSQL package:
+
+```{r}
+install.packages("RPostgreSQL")
+```
+
+You can then connect to the database using (**note:** this is one of those commands that require you to be working in the NDS Analytics Workbench):
+
+```{r}
+bety_src <- src_postgres(dbname = 'bety',
+                password = 'bety',
+                host = 'terra-bety.default',
+                user = 'bety',
+                port = 5432)
+```
+
+## The dplyr library
+
+We will be using the library [dplyr](https://cran.rstudio.com/web/packages/dplyr/README.html), which provides helps with data manipulation.
 
 ```{r}
 library(dplyr)
-
-bety_src <- src_postgres(dbname = "bety", 
-                password = 'bety', 
-                host = 'terra-bety.default', 
-                user = 'bety', 
-                port = 5432)
-
 ```
 
+#### filtering / subsetting
 
-### filtering / subsetting
+
+Let's get some data:
 
 ```{r}
-
 traits <- tbl(bety_src, 'traits', n=Inf)
 
 variables <- tbl(bety_src, 'variables') %>%
@@ -43,76 +56,61 @@ variables <- tbl(bety_src, 'variables') %>%
 
 sites <- tbl(bety_src, 'sites') %>%
   mutate(site_id = id)
+```
 
-traits_variables <- traits %>% 
-  left_join(variables, by = 'variable_id') %>% 
-  left_join(sites, by = 'site_id') %>% 
-  select(sitename, name, mean) %>% 
-  filter(name == 'canopy_height') %>% 
+In the above code the symbol `%>%` is a pipe from the `dplyr` library, it passes the left hand side to the first argument slot of the right hand side.
+
+Using `filter` we can pick what we see based on their values:
+
+```{r}
+traits_variables <- traits %>%
+  left_join(variables, by = 'variable_id') %>%
+  left_join(sites, by = 'site_id') %>%
+  select(sitename, name, mean) %>%
+  filter(name == 'canopy_height') %>%
   collect()
 
-#spread(traits_variables, key = sitename, value = mean)
-```
-
-### filtering / subsetting
-
-```{r}
-
-traits <- tbl(bety_src, 'traits', n=Inf)
-
-variables <- tbl(bety_src, 'variables') %>%
-  mutate(variable_id = id)
-
-sites <- tbl(bety_src, 'sites') %>%
-  mutate(site_id = id)
-
-#cultivars <- tbl(bety_src, 'cultivars') %>%
-#  mutate(cultivar_id = id, cultivar = 'name')
-
-traits_variables <- traits %>% 
-  left_join(variables, by = 'variable_id') %>%
-  left_join(sites, by = 'site_id') %>% 
-  select(sitename, date, name, mean, cultivar_id) %>% 
-  filter(name == 'canopy_height') %>% collect
-
 traits_variables_season_2 <- traits_variables %>%
-    filter(grepl("Season 2",sitename))
-
+      filter(grepl("Season 2",sitename))
 ```
 
 ### grouping and summarizing
 
+One can combine the `group_by` and `summarize` functions to get a summary of the data we pulled:
+
 ```{r}
-traits_variables_season_2 %>% 
-  group_by(date) %>% 
+traits_variables_season_2 %>%
+  group_by(date) %>%
   summarize(mean = mean(mean), n =n())
 
-canopy_heights <- traits_variables_season_2 %>% 
-  group_by(date, cultivar_id) %>% 
+canopy_heights <- traits_variables_season_2 %>%
+  group_by(date, cultivar_id) %>%
   summarize(mean = mean(mean), n =n())
-
-
 ```
 
 
-### Plotting with ggplot
+## Plotting with ggplot
+
+The `ggplot2` library (for more see [here](https://cran.r-project.org/web/packages/ggplot2/index.html)) can be used to create graphics.
 
 ```{r}
 library(ggplot2)
+```
 
+An example using the data we pulled before:
+
+```{r}
 ggplot(data = traits_variables_season_2,
        aes(x = date, y = mean, group = cultivar_id)) +
   geom_smooth(se = FALSE, alpha = 0.25, size = 0.5) +
   geom_point(alpha = 0.25, size = 0.5, position = 'jitter')
-
-
 ```
 
+Another example:
 
 ```{r}
-
 ### filter a subset of 25 genotypes
-height_season_2_subset <- traits_variables_season_2 %>% 
+height_season_2_subset <- traits_variables_season_2 %>%
   filter(cultivar_id < min(traits_variables_season_2$cultivar_id)+25)
 
 # how many unique values of cultivar_id?
@@ -124,10 +122,11 @@ ggplot(data = height_season_2_subset,
        aes(x = date, y = mean, color = as.factor(cultivar_id))) +
   geom_smooth(se = FALSE, alpha = 0.25, size = 0.5) +
   geom_point(alpha = 0.25, size = 0.5)
-
 ```
 
 ### Faceting
+
+Using `ggplot2` we can partition a plot into a matrix of panels. Here's an example:
 
 ```{r}
 ggplot(data = height_season_2_subset,
@@ -136,12 +135,13 @@ ggplot(data = height_season_2_subset,
   geom_point() +
   facet_wrap(~cultivar_id) +
   ggthemes::theme_tufte()
+```
 
-# geom_boxplot
-# geom_violin
-# geom_histogram
+### Other plots
 
+Here is an example of a histogram:
 
+```{r}
 ggplot(data = height_season_2_subset,
        aes(mean, fill = date)) +
   geom_histogram() +
@@ -149,12 +149,16 @@ ggplot(data = height_season_2_subset,
   theme_bw()
 ```
 
+> Try making plots using the following functions:
+> * `geom_boxplot`
+> * `geom_violin`
+
+
+
 
 ### Visualization in R using ggplot
 
-* R for data science http://r4ds.had.co.nz/data-visualisation.html
-* [SWC 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
+Some references for using ggplot:
 
-```{r}
-
-```
+* R for data science  [data-visualization](http://r4ds.had.co.nz/data-visualisation.html)
+* [Software Carpentry 8](http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/)
