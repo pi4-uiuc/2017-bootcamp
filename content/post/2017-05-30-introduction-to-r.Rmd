@@ -8,17 +8,17 @@ type: post
 ---
 
 
-This lesson is based on [Getting Started with R and Rstudio (SWC 1-3)](http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/). 
+This lesson is based on [Getting Started with R and Rstudio (SWC 1-3)](http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/).
 
-Objectives: 
+## Objectives:
 
-* Understand the utility of R as a language for data analysis 
+* Understand the utility of R as a language for data analysis
 * To gain familiarity with the Rstudio IDE: panes, buttons, shortcuts, options
 * Where to get help in R.
 * Learn to manage your workspace in an interactive R session
 * Learn to find, install, and use packages / functions
-* Load data
-* call functions 
+* Learn how to load data
+* Learn how to call functions
 * Intro to reproducible research w/ R markdown
 
 ## Getting started with R
@@ -28,25 +28,25 @@ Why R?
 * Most common language used by academic statisticians. Thus, many methods are developed as R packages and not available elsewhere.
   * built around stats, with lots of handy functions
 * data analysis by design
-  * formulas for statistical models e.g. `yield ~ genotype + nitrogen + irrigation` 
+  * formulas for statistical models e.g. `yield ~ genotype + nitrogen + irrigation`
   * vectorization, eg. `a <- 4 * X` instead of `for i in `1:length(X) a[i] <- 4 * X[i]`
   * ggplot 'grammar of graphics' among best graphing programs (only get better w/ graphical design programs like  photoshop/Inkscape)
   * dplyr and tidyr for data munging
 * Integrates with lower level languages (esp C, C++, FORTRAN; Rcpp package for integration w/ C++ excellent)
-* can do anything 
+* can do anything
 
 Why not R?
 
 * different than many programming languages
 * not good as a "first language" if you plan to use lower level languages in the future
-* has a reputation for being slow. 
+* has a reputation for being slow.
   * It can't be as fast as a compiled language (like C / FORTRAN)
   * Recent changes and new packages make it faster and better at handling big data (e.g. by leveraging back-end databases).
 
 
 ## Intro to Rstudio
 
-Rstudio is the best IDE for programming in R. Developed by the [Rstudio](https://www.rstudio.com/) company, which leads the R community as a whole. Many leading R developers including Hadley Wickham (lead author of tidyverse, dplyr, ggplot2) and Yihui Xie (Rmarkdown, Shiny) work there. Now there are lots of 'plugins' that facilitate developing in R. 
+Rstudio is the best IDE for programming in R. Developed by the [Rstudio](https://www.rstudio.com/) company, which leads the R community as a whole. Many leading R developers including Hadley Wickham (lead author of tidyverse, dplyr, ggplot2) and Yihui Xie (Rmarkdown, Shiny) work there. Now there are lots of 'plugins' that facilitate developing in R.
 
 If you love emacs, try the emacs-ess package. Especially if you are mostly writing scripts. It is really quite awesome. However, it doesn't compare to Rstudio once you start developing packages and writing reports or websites.
 
@@ -56,13 +56,13 @@ There are four panes (CCW from top left):
 * interactive environment
 * files/plots/packages/help/viewer
 * environment/history/build/git
-  * environment: summaries of objects (e.g. data, variables, functions) 
+  * environment: summaries of objects (e.g. data, variables, functions)
   * history to source / console
-  * git (we will use this alot). Often have to use command line
+  * git (we will use this a lot).
 
-Handy buttons
+Handy buttons:
 
-* tools 
+* tools
   * global options
   * shell
 * Addins
@@ -82,7 +82,7 @@ devtools::install_packages("daattali/addinslist")
 ## R packages
 
 * CRAN
-* lots of packages on GitHub 
+* lots of packages on GitHub
   * can get dev. versions
   * some packages not released through CRAN
 * finding packages
@@ -92,20 +92,20 @@ devtools::install_packages("daattali/addinslist")
 
 ## Learning more about R and Getting Help
 
-Hadley Wickham's books
+Hadley Wickham's books:
 
 * [R for Data Science](http://r4ds.had.co.nz/)
 * [Advanced R](http://adv-r.had.co.nz/)
 * [R Packages](http://r-pkgs.had.co.nz/)
 
-The following provide real-world examples and announcements of new packages / releases / features.
+The following provide real-world examples and announcements of new packages / releases / features:
 
 * [R bloggers](https://www.r-bloggers.com/)
 * [Journal of Statistical Software](https://www.jstatsoft.org/index)
 * [R Journal](https://journal.r-project.org/)
 * [Stackoverflow](https://stackoverflow.com/questions/tagged/r) and [Cross Validated](https://crossvalidated.com/questions/tagged/r)
 
-### handy help functions
+### Handy help functions
 
 ```r
 ?function
@@ -113,17 +113,17 @@ vignette(package = 'dplyr')
 help.search('bayesian')
 ```
 
-### stackoverflow, crossvalidated Q&A sites
+### Stackoverflow, crossvalidated Q&A sites
 
-Google works well. For errors / warnings copy parts of the message text (excluding information like variable names, paths, filenames specific to your environment).
+Google works well: For errors / warnings copy parts of the message text (excluding information like variable names, paths, filenames specific to your environment) and search on Google.
 
 What about beyond Google?
 
-Stackexchange family of Q&A sites are excellent. These will frequently show up in your Google searches. When you go there, answers are ranked and often the 'best' answer is selected by the question asker. When you ask questions, in many cases you will get an answer in a few hours or a day. 
+Stackexchange family of Q&A sites are excellent. These will frequently show up in your Google searches. When you go there, answers are ranked and often the 'best' answer is selected by the question asker. When you ask questions, in many cases you will get an answer in a few hours or a day.
 
 I learned a lot from these sites - they were instrumental in my education as a computational scientist. I have learned by reading existing answers as well as by asking and answering questions. You can see some of these on [various stackexchange websites](https://stackexchange.com/users/68240/david-lebauer).
 
-[This question](https://stats.stackexchange.com/questions/5543/for-which-distributions-are-the-parameterizations-in-bugs-and-r-different) turned into [a journal article](https://journal.r-project.org/archive/2013/RJ-2013-020/index.html). 
+[This question](https://stats.stackexchange.com/questions/5543/for-which-distributions-are-the-parameterizations-in-bugs-and-r-different) turned into [a journal article](https://journal.r-project.org/archive/2013/RJ-2013-020/index.html).
 
 #### How to ask a question?
 
@@ -147,7 +147,7 @@ Contents:
 * Put text documents associated with the project in the `/doc` directory.
 * Put raw data and metadata in the `/data` directory, and files generated during cleanup and analysis in a results directory.
 * Put source for the project’s scripts and programs in the `/src` or `/scripts` directory
-* programs brought in from elsewhere or compiled locally in the `/bin` directory.
+* Put programs brought in from elsewhere or compiled locally in the `/bin` directory.
 * Name all files to reflect their content or function.
 
 From [Wilson et al "Good Enough Practices for Scientific Computing"](https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf) arXiv:1609.00037
@@ -163,48 +163,44 @@ Here is one that I recently published: https://github.com/ebimodeling/betydb_man
 
 Once you start using functions, the R packaging system and its associated functions provide a good framework for R projects.
 
-Lets look at one that I am currently working on: https://github.com/ebimodeling/willow_da
+Let's look at one that I am currently working on: https://github.com/ebimodeling/willow_da
 
 ## Loading and Evaluating Data
 
-Lets start by downloading the same data that we had last week:
+Let's start by downloading the same data that we had last week:
 
-* file --> import dataset --> from csv
-  * source
-  http://www.betydb.org/search.csv?search=Salix
+* `file` --> `import dataset` --> `from csv`
+  * source: `http://www.betydb.org/search.csv?search=Salix`
   * comment symbol = `#`, skip = `2`, name = `salix`
 
 It is great that the import is rendered as reproducible / reuseable R code, so this can be added to your script:
 
 ```{r import-salix, message = FALSE}
 library(readr)
-salix <- read_csv("http://www.betydb.org/search.csv?search=Salix", 
+salix <- read_csv("http://www.betydb.org/search.csv?search=Salix",
     comment = "#", skip = 2)
 ```
 
-We also want to save a copy of this to our `/data` folder
+We also want to save a copy of this to our `/data` folder:
 
 ```{r save-salix}
 write_csv(salix, path = 'data/salix.csv')
 ```
 
 
+## Control Flow (if, else, for)
 
-## Control Flow (if, else, for) 
+### for loops
 
-Here is how you write a 'for' loop in R:
+How to write a `for` loop in R:
 
 ```{r for-download-csv}
 for(i in 1:10){
   print(paste('I am on iteration', i))
 }
 ```
-_your turn_
 
-> import Poplar (_Populus_ spp), Miscanthus, and Switchgrass (_Panicum_ spp) data and save these as csv files
-
-
-hint: `paste0("http://www.betydb.org/search.csv?search=", genus)`
+> import Poplar (_Populus_ spp), Miscanthus, and Switchgrass (_Panicum_ spp) data and save these as csv files using a for loop. Hint: `paste0("http://www.betydb.org/search.csv?search=", genus)`
 
 ```{r saveall, echo = FALSE, message = FALSE}
 dir.create('data', showWarnings = FALSE, recursive = TRUE)
@@ -212,7 +208,7 @@ genera <- c('salix', 'populus', 'miscanthus', 'panicum')
 for(genus in genera){
   # read in
   tmp <- read_csv(
-    paste0("http://www.betydb.org/search.csv?search=", genus), 
+    paste0("http://www.betydb.org/search.csv?search=", genus),
     comment = "#", skip = 2)
   file <- file.path('data',paste0(genus, '.csv'))
   write_csv(tmp, path = file)
@@ -224,6 +220,7 @@ for(genus in genera){
 
 ### if, else
 
+How to write `if, else` statements in R:
 
 ```{r if-else}
 a <- 1:10
@@ -240,28 +237,28 @@ for(i in 1:10){
 When you can vectorize ifelse:
 
 ```{r ifelse2}
-ifelse(a %% 2 > 0, 
-       'even', 
+ifelse(a %% 2 > 0,
+       'even',
        'odd')
-       
+
 ```
 
 
-lets load up all of the csv files we just downloaded into a list of datasets:
+Let's load up all of the csv files we just downloaded into a list of datasets:
 
 ```{r if-else-start}
 multi_spp_list <- list()
 ```
 
 ```{r data-dont-exist-error, eval = FALSE, message = FALSE}
-for(genus in  c('salix', 'miscanthus', 'acer')){ # for item(sing) in items(plural) ... 
-  multi_spp_list[[genus]] <- read_csv(file.path('data', 
+for(genus in  c('salix', 'miscanthus', 'acer')){ # for item(sing) in items(plural) ...
+  multi_spp_list[[genus]] <- read_csv(file.path('data',
                                                 paste0(genus, '.csv')))
 } ## should break because acer.csv does not exist
 ```
 
 ```{r ifelse3, warnings=FALSE, eval = FALSE, message = FALSE}
-for(genus in genera){ # for item(sing) in items(plural) ... 
+for(genus in genera){ # for item(sing) in items(plural) ...
   file <- file.path('data', paste0(genus, '.csv'))
   if(file.exists(file)){
     multi_spp_list[[genus]] <- read_csv(file)
@@ -273,11 +270,12 @@ for(genus in genera){ # for item(sing) in items(plural) ...
 
 ```
 
-This is where it is handy to recall that we previously defined the vector 'genera' and use it. 
+This is where it is handy to recall that we previously defined the vector 'genera' and use it.
 
 
-### Vectorization
+## Vectorization
 
+Defining and using vectors in R:
 
 ```{r vectors}
 a <- c(1, 2, 2, 3)
@@ -294,15 +292,15 @@ abc^2
 ```
 
 
-Element-wise vs. matrix multiplication
+Element-wise vs. matrix multiplication:
 
 ```{r elements-matrix-x}
 # element-wise
-a * a + b * b 
+a * a + b * b
 abc * abc
 
 # matrix multiplication:
-a %*% a + b %*% b 
+a %*% a + b %*% b
 
 # abc %*% abc # error ... not allowed
 
@@ -311,6 +309,10 @@ a %*% a + b %*% b
 ```{r vectorization}
 sapply(1:10, function(x)  x>2)
 ```
+
+## Files
+
+Saving and using files:
 
 ```{r files-with-dir, message = FALSE}
 # files <- dir("data", pattern = '.csv', full.names = TRUE)
@@ -336,14 +338,14 @@ mean(salix_yield$mean > 10, na.rm = TRUE)
 lapply(multi_spp_list, class)
 lapply(multi_spp_list, function(x) class(x$mean))
 
-multi_spp_list2 <- lapply(multi_spp_list, 
+multi_spp_list2 <- lapply(multi_spp_list,
                           function(x){
                             dplyr::mutate(x, mean = as.numeric(mean))
                           } )
 multi_spp_df <- dplyr::bind_rows(multi_spp_list2)
 
 
-## check that all rows made it 
+## check that all rows made it
 lapply(multi_spp_list, nrow)
 sum(unlist(lapply(multi_spp_list, nrow)))
 nrow(multi_spp_df)
@@ -351,9 +353,9 @@ nrow(multi_spp_df)
 ```
 
 
-> your turn: write the above lapply statement as a for loop
+> Write the above lapply statement as a for loop
 
-Save the dataframe in results folder
+Save the dataframe in `results` folder
 
 ```{r save-results}
 write_csv(multi_spp_df, path = 'results/multi_spp_df.csv')
@@ -361,9 +363,10 @@ write_csv(multi_spp_df, path = 'results/multi_spp_df.csv')
 
 ## Writing reports with R markdown
 
-http://swcarpentry.github.io/r-novice-gapminder/15-knitr-markdown/
+RMarkdown can be used to generate reports that mix R code and markdown.
 
+More detials can be found at: http://swcarpentry.github.io/r-novice-gapminder/15-knitr-markdown/
 
-Support for many languages (Python, SQL, bash) http://rmarkdown.rstudio.com/authoring_knitr_engines.html#overview
+It also has support for many languages (Python, SQL, bash) http://rmarkdown.rstudio.com/authoring_knitr_engines.html#overview
 
-Examples from class are in https://github.com/pi4-uiuc/day2/blob/master/exploratory-data-analysis.Rmd
+Examples from class can be found in https://github.com/pi4-uiuc/day2/blob/master/exploratory-data-analysis.Rmd
