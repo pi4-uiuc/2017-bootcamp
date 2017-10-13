@@ -1,14 +1,13 @@
 ---
 title: Probability
 author: "David LeBauer"
-date: '2017-06-05'
+date: '2017-06-04'
 slug: probability
 categories: []
 tags: [r,statistics]
 ---
 
-
-```{r echo=FALSE}
+```{r include=FALSE}
 library(dplyr)
 library(ggplot2)
 theme_set(theme_bw())
@@ -19,29 +18,34 @@ library(ggfortify)
 
 ### Objectives:
 
-* become familiar with common probability distributions in R
-* understand how probability distributions are related to each other
+* Become familiar with common probability distributions in R
+* Understand how probability distributions are related to each other
 
 #### Summarizing Data
 
 **Expectation**
 
-$$E[x]=\sum_{i=1}{N}\frac{x_i}{N}$$
+If the random variable $x$ can take values $x_1,...,x_N$ with equal probability, the expected value $E[x]$ of $x$ is defined to be:
 
+$$E[x]=\sum_{i=1}^N\frac{x_i}{N}$$
+Properties of the expected value:
 * $E[x+y]=E[x]+E[y]$
 * $E[cx]=cE[x]$
 
 **Variance**
 
+The variance of the random variable $x$ is defined to be:
+
 $$Var[x]=E[(x-\bar{x})^2]=E[x^2]-(\bar{x})^2$$
 
-Standard deviation is easier to interpret than Var because it is in the same scale as the mean.
+The standard deviation is easier to interpret than $Var$ because it is in the same scale as the mean. It is defined by:
 
 $$\textrm{SD}=\sqrt{Var[x]}$$
 
-$$\textrm{CV}=\textrm{SD}/\bar{x}$$ 
+The relative standard deviation or coefficient of variation is defined by:
+$$\textrm{CV}=\textrm{SD}/\bar{x}$$
 
-Is useful because it is scale independent.
+This quantity is useful because it is scale independent.
 
 **Higher Moments**
 
@@ -49,9 +53,9 @@ Skew: are the data symmetric about the mean?
 
 $$\textrm{Skew}=(x-E[x])^2$$
 
-Kurtosis: how 'pointy' are the data.
+Kurtosis: how 'pointy' are the data?
 
-$$E[(x-E[x])^4]$$
+$$Kurt[x]=E[(x-E[x])^4]$$
 
 
 ## Probability distributions
@@ -64,59 +68,65 @@ see also [CRAN Distributions Task View](https://cran.r-project.org/web/views/Dis
 from  [Aswath Damodaran](http://people.stern.nyu.edu/adamodar/pdfiles/papers/probabilistic.pdf)
 
 
-### Discrete
+### Discrete probability distributions
 
 #### Poisson
 
 * Describes number of events in a given amount of time / or number of individuals expected in a given area
-* parameter $\lambda$ is average density or arrival rate
-* as $\lambda \rightarrow \infty$, $Poisson(\lambda)\rightarrow N(\lambda, \sqrt{\lambda})$ 
+* Parameter $\lambda$ is average density or arrival rate
+* As $\lambda \rightarrow \infty$, $Poisson(\lambda)\rightarrow N(\lambda, \sqrt{\lambda})$
 
 #### Binomial
 
-Parameters:
-* $n$ = number of trials
-* $p$ = probability of success
+* Number of successes in $n$ independent experiments
+* Parameters:
+   - $n$ = number of trials
+   - $p$ = probability of success
+   - pdf: $p^x(1-p)^{N-x}$
 
-* pdf: $p^x(1-p)^{N-x}$
-
-Lets flip a coin:
+Let's flip a coin:
 
 ```{r}
 ifelse(rbinom(100, 1, 0.5), "H", "T")
 ```
 
-### Continuous
+### Continuous probability distributions
 
 #### Uniform
 
-* $Uniform(a,b)$ defines equal probability over a range
-* often used as prior distribution in a Bayesian framework to indicate that 'nothing is known'
-  * however: 1) usually it is not true that nothing is known, or that $P(event) = \frac{1}{(b-a)}$ over range $[a,b]$ but $P= 0$ elsewhere.
-  * the fact that $U(a,b)$ indicates that 'nothing is known' is scale dependent.
-  * good for quick and dirty priors, but not much else
+* $Uniform(a,b)$ defines equal probability over the range $[a,b]$
+* Often used as prior distribution in a Bayesian framework to indicate that 'nothing is known'. However:
+  + usually it is not true that nothing is known, or that $P(event) = \frac{1}{(b-a)}$ over range $[a,b]$ but $P= 0$ elsewhere.
+  + the fact that $U(a,b)$ indicates that 'nothing is known' is scale dependent.
+  + good for quick and dirty priors, but not much else
 
 #### Normal
 
-Ubiquitous, because Central Limit Thm. "a large number of independent samples from the same distribution, the distribution of the sum will be approx. normal"
+Ubiquitous because of the Central Limit Theorem: "a large number of independent samples from the same distribution, the distribution of the sum will be approximately normal"
 
 $$x\sim N(\mu,s)$$
+Here is a short example of the Central Limit Theorem, sampling from the gamma distribution (see below):
 
 ```{r}
 samps <- matrix(data = rgamma(10000, 5, 2), nrow = 1000)
 #samps <- matrix(data = rbeta(10000, 1, 2), nrow = 1000)
-hist(rowMeans(samps), breaks = 20, main = 'demo of central limit thm')
+hist(rowMeans(samps), breaks = 20, main = 'Demonstration of Central Limit Thm')
+```
 
+Here is a short example of the Central Limit Theorem, sampling from the beta distribution (see below):
+
+```{r}
+samps <- matrix(data = rbeta(10000, 1, 2), nrow = 1000)
+hist(rowMeans(samps), breaks = 20, main = 'Demonstration of Central Limit Thm')
 ```
 
 #### Gamma
 
-
-distribution of waiting times until a certain # of events take place
+Distribution of waiting times until a certain number of events take place.
 
 $$Gamma(shape, rate)$$
 
-* parameters: waiting time for `shape` events given `rate` 
+* parameters: waiting time for `shape` events given `rate`
 * e.g. $Gamma(shape = 3, rate = 2)$ is time until three events if avg time to event is 2 per day
 * mean = shape / rate = 1.5
 
@@ -127,8 +137,8 @@ plot(x, dgamma(x, shape = 3, rate = 1/2), type = 'l')
 ```
 
 
-Applications: 
-* any distribution where $x\in[0,\infty)$ 
+Applications:
+* any distribution where $x\in[0,\infty)$
 * conjugate prior on $\sigma$, e.g. $x\sim N(\mu,\sigma); \sigma~Gamma(0.001,0.001)$ is a broad prior on $\sigma$
 
 #### Exponential
@@ -137,6 +147,7 @@ Applications:
 
 
 Applications:
+
 * times between events, lifespans, survival times
 * random samples of anything that decreases exponentially
 
@@ -161,7 +172,7 @@ lines(t, l)
 Table 4.1 from Bolker 2009
 
 
-### R functions for Probability distribution 
+### R functions for Probability distribution
 
 
 ```{r}
@@ -172,23 +183,23 @@ help.search('distribution', package = 'stats')
 
 Distribution | R name | Parameters
 ------------ | ------ | ----------
-beta         | beta   | shape1, shape2, ncp 
+beta         | beta   | shape1, shape2, ncp
 Binomial     | binom  | size, prob
-Cauchy       | cauchy | location, scale 
+Cauchy       | cauchy | location, scale
 chi-squared  | chisq  | df, ncp
 exponential  | exp    | rate
 F            | f      | df1, df2, ncp
-gamma        | gamma  | shape, scale 
+gamma        | gamma  | shape, scale
 geometric    | geom   | prob
-hypergeometric | hyper | m, n, k 
-log-normal   | lnorm  | meanlog, sdlog 
-logistic     | logis  | location, scale 
+hypergeometric | hyper | m, n, k
+log-normal   | lnorm  | meanlog, sdlog
+logistic     | logis  | location, scale
 Negative binomial | nbinom | size, prob
 normal       | norm   | mean, sd
 Poisson      | pois   | lambda
 Student's t  | t      | df, ncp
-uniform      | unif   | min, max 
-Weibull      | weibull | shape, scale 
+uniform      | unif   | min, max
+Weibull      | weibull | shape, scale
 Wilcoxon     | wilcox | m, n
 
 
@@ -222,7 +233,7 @@ dnorm(0.5,-1,2)
 
 This shows that the first distribution has a higher likelihood than the other two, which are about the same.  We interpret this as saying that the observed data point was more likely to have been generated by the first distribution than the other two.  This is consistent with where the dashed blue line intersects each of the curves.  
 
-This plot of the normal distribution and the effects of varying the parameters in the normal are both probably familiar to you already – changing the mean changes where the distribution is centered while changing the standard deviation changes the spread of the distribution. 
+This plot of the normal distribution and the effects of varying the parameters in the normal are both probably familiar to you already – changing the mean changes where the distribution is centered while changing the standard deviation changes the spread of the distribution.
 
 ### CDF functions `qnorm` etc
 
@@ -238,7 +249,7 @@ abline(v=-1,col=3)
 ```
 
 
- 
+
 Using the CDF we can calculate $Pr(X \leq x)$ for our data point
 
 ```{r}
@@ -275,7 +286,7 @@ plot(x,dnorm(x,0,1),type='l')		# plot the corresponding pdf
 abline(v=qnorm(c(0.025,0.975)),lty=2)
 ```
 
-Finally, let's investigate the rnorm function for generating random numbers that have a normal distribution.  Here we generate histograms that have a progressively larger sample size and compare that to the actual density of the standard normal. 
+Finally, let's investigate the rnorm function for generating random numbers that have a normal distribution.  Here we generate histograms that have a progressively larger sample size and compare that to the actual density of the standard normal.
 
 ```{r fig.width=8, fig.height=8}
 
@@ -297,11 +308,11 @@ You can combine distributions.
 
 For example, if you have two distributions, $D_1$ and $D_2$ and $p(D_1) = p_1 = 1-P(D_2)$
 
-If $D_1\simN(1,2)$ and $D_2\sim N(5,1)$ and $P(D_1)=0.3$ it is a 30:70 mixture of the two distributions:
+If $D_1\sim N(1,2)$ and $D_2\sim N(5,1)$ and $P(D_1)=0.3$ it is a 30:70 mixture of the two distributions:
 
 ```{r}
 u1 <- runif(1000)
-z <- ifelse(u1 < 0.3, 
+z <- ifelse(u1 < 0.3,
             rnorm(1000, mean = 1, sd = 2),
             rnorm(1000, mean = 5, sd = 1))
 hist(z, breaks = 100, freq = FALSE)
@@ -316,11 +327,11 @@ hist(z, breaks = 0:25)
 
 ```
 
-### Functions 
+### Functions
 
 [Bolker 2009 p 118](https://ms.mcmaster.ca/~bolker/emdbook/book.pdf)
 
-![](../../static/images/bestiary_functions.png)
+<!--![](../../static/images/bestiary_functions.png)-->
 ```{r}
 set.seed(1)
 x <- rnorm(100)
@@ -367,7 +378,7 @@ abline(h=qnorm(c(0.025,0.975)),lty=2)	#add horizontal lines at the threshold val
 plot(x,dnorm(x,0,1),type='l')		# plot the corresponding pdf
 abline(v=qnorm(c(0.025,0.975)),lty=2)
 
-## 
+##
 rbinom(n = 100, 1, 0.5)
 ifelse(rbinom(100, 1, 0.5), "H", "T")
 
@@ -400,7 +411,7 @@ abline(v = qgamma(0.5, shape = 3, rate = 2))
 
 ---
 
-## References 
+## References
 
 Bolker 2009 "Ecological Models and Data in R"
 

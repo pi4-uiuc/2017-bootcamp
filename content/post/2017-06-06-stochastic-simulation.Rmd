@@ -7,6 +7,8 @@ categories: []
 tags: []
 ---
 
+> **Note**: Some of the commands below, particularly those accessing the terraref database from within RStudio, require being logged into the [NDS Analytics Workbench](http://www.terraref.ndslabs.org/#/). This requires signing up for the [TERRA REF Alpha User program](https://docs.google.com/forms/d/e/1FAIpQLScBsD042RrRok70BCGCRwARTcm9etvVHqvQaz1c5X7c5y0H3w/viewform?c=0&w=1)
+
 ```{r}
 library(ggplot2)
 ```
@@ -43,8 +45,8 @@ Y <- rnorm(length(x), mean = y_det, sd = sd)
 
 plot(x, y_det, type = 'l')
 points(x, Y)
-lines(x, y_det+1, lty = 2)
-lines(x, y_det-1, lty = 2)
+lines(x, y_det+sd, lty = 2)
+lines(x, y_det-sd, lty = 2)
 
 ```
 
@@ -75,7 +77,7 @@ sd(b)
 ```
 
 
-Your turn what if 
+> What if $a$ and $b$ have the following disrtibutions?
 
 $$a\sim N(2,0.1) \\\textrm{and}\\ b\sim N(1,0.01)\\$$
 
@@ -88,8 +90,6 @@ Y <- A + B * x + error
 
 ggplot() +
   geom_point(aes(x, Y))
-
-
 ```
 
 ## Metropolis hastings
@@ -114,7 +114,7 @@ sample_size <- 41
 x <- -20:20
 
 ## prediction y
-y <- trueA + trueB * x + rnorm(n = length(x), mean = 0, sd = trueSD) 
+y <- trueA + trueB * x + rnorm(n = length(x), mean = 0, sd = trueSD)
 
 plot(x, y)
 ```
@@ -128,7 +128,7 @@ likelihood <- function(param){
   a <- param[1]
   b <- param[2]
   sd <- param[3]
-  
+
   pred <- a + b*x
   lls <- dnorm(y, mean = pred, sd = sd, log = TRUE)
   sumlls <- sum(lls)
@@ -145,6 +145,7 @@ plot(seq(from = 0, to = 7, by = 0.05), slopelikelihoods, type = 'l', xlab = 'val
 
 abline(v = 1.5, col = 'red')
 ```
+
 ### specifying your priors
 
 ```{r}
@@ -240,7 +241,7 @@ where $g_s$ is stomatal conducatnce, $A_n$ is net photosynthesis, $h_s$ is relat
 and Photosynthesis is
 
 $$A_n=min(A_c, A_L)-R_d$$
-Where Rubisco-limited rate is $A_c$ and RuBP limited rate is $A_L$ 
+Where Rubisco-limited rate is $A_c$ and RuBP limited rate is $A_L$
 
 $$A_c=V_m\left[\frac{c_i-\Gamma}{c_i+K_c(1+O_2/K_o)}\right]$$
 
@@ -271,7 +272,7 @@ In the end:
 
 $$[Gs, A, C_i]=f(T, RH, Light, CO_2, v_{max}, \alpha, k, \theta, R_d, b_0, b_1)$$
 
-### Lets run this model!
+### Let's run this model!
 
 First, retrieve some meteorological data:
 
@@ -290,7 +291,9 @@ temp <- as.numeric(met$environment_sensor_readings$weather_station$temperature$v
 ```{r}
 devtools::install_github('ebimodeling/biocro')
 library(BioCro)
+```
 
+```{r}
 A <- c4photo(Qp = par, Tl = temp, RH = rh)$Assim
 
 pairs(data.frame(A, par, temp, rh))
@@ -299,7 +302,6 @@ ggplot()+
   geom_line(aes(time, A))
 ggplot()+
   geom_line(aes(time, rh))
-
 ```
 
 > question: is f(mean(X)) = mean(f(X))?
@@ -309,8 +311,8 @@ ggplot()+
 testQp <- 11:20*100
 testTl <- 21:30
 testRH <- 21:30/50
-A1 <- c4photo(Qp = mean(testQp), 
-              Tl = mean(testTl), 
+A1 <- c4photo(Qp = mean(testQp),
+              Tl = mean(testTl),
               RH = mean(testRH))
 A2 <- lapply(c4photo(Qp = testQp, Tl = testTl, RH = testRH), mean)
 
@@ -324,7 +326,7 @@ For non-linear functions see  Jensen's Inequality ([Wikipedia](https://en.wikipe
 This means - be careful when and how you use averages - everywhere!!! Spatial and temporal downscaling is how crop modelers deal with lower resolution atmospheric model forecasts. For example the most recent IPCC 100 y climate forecasts were generated on ~100km grids ([Taylor et al 2012](http://journals.ametsoc.org/doi/pdf/10.1175/BAMS-D-11-00094.1)), thus one data point may simultaneously represent a month that is $60\degreee$F and foggy in San Fransicsco and $100\degree$F and dry in Davis, CA. At the same time, crop models need to run on local hourly data while also capturing the uncertainty represented by within and across model variability.
 
 
-#### Model sensitivity 
+#### Model sensitivity
 
 ```{r}
 meanQp <- mean(par)
@@ -376,7 +378,7 @@ ggplot() +
 #  geom_smooth(aes(time, A))+
   geom_line(aes(time, A[,median])) +
   geom_line(aes(time, y = A[,lcl]), linetype = 2) +
-  geom_line(aes(time, y = A[,ucl]), linetype = 2) 
+  geom_line(aes(time, y = A[,ucl]), linetype = 2)
 
 ```
 ### Use met as a variable, sample over variation within the hour
@@ -414,7 +416,7 @@ The lm is pretty much a sensitivity analysis: what is the slope of the effect of
 lm(A2 ~ vmax + Rd + b1 + Qp + Tl + RH)
 ```
 
-The analysis of variance partitions the variance - how much if the total variance in A2 is contributed by each of the following parameters (recall that the domain for met variables is << the domain for physiological parameters ... 
+The analysis of variance partitions the variance - how much if the total variance in A2 is contributed by each of the following parameters (recall that the domain for met variables is << the domain for physiological parameters ...
 
 > What would happen if we used a whole year of meteorological data instead of the one hour of met data that we used?
 
@@ -446,4 +448,4 @@ http://journals.ametsoc.org/doi/pdf/10.1175/BAMS-D-11-00094.1
 
 Wang et al
 
-Miguez et al 
+Miguez et al
