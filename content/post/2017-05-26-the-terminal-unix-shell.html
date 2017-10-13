@@ -1,0 +1,395 @@
+---
+title: "1. The Terminal (Unix Shell)"
+author: "David LeBauer"
+date: '2017-05-26'
+tags: shell
+slug: the-terminal-unix-shell
+type: post
+---
+
+
+
+<p>“What is a command shell and why would I use one?”</p>
+<p>This tutorial is based on the <a href="http://swcarpentry.github.io/shell-novice/">Software Carpentry Unix Shell</a>) <span class="citation">[@swc_unix_shell]</span> lesson, and will refer to it for background information.</p>
+<p>Today we will learn - how the shell relates to the keyboard, the screen, the operating system, and users’ programs.&quot; - when and why command-line interfaces should be used instead of graphical interfaces. - similarities and differences between a file and a directory. - absolute and relative paths - steps in the shell’s read-run-print cycle. - learn about commands, flags, and filenames in a command-line call</p>
+<div id="background" class="section level3">
+<h3>Background</h3>
+<p>A shell also known as a ‘terminal’ or ‘command line interface’ (CLI). A CLI is different from a graphical user interface (GUI), in that the CLI only responds to text whereas a GUI can respond to text as well as mouse inputs.</p>
+<p>Many GUI programs have a command line interface, although even if you don’t know it. In addition, the standard Unix shell provides access to a diverse range of standard programs. These make it easier to automate repetitive tasks as well as access other computers and servers. While the shell is powerful, at first it is unfamiliar with cryptic commands and operations.</p>
+<p>The heart of a CLI is a <strong>read-evaluate-print loop</strong>, or REPL: when the user types a command and then presses the Enter (or Return) key, the computer reads it, executes it, and prints its output. The user then types another command, and so on until the user logs off.</p>
+<p>Using Bash or any other shell sometimes feels more like programming than like using a mouse. Commands are terse (often only a couple of characters long), their names are frequently cryptic, and their output is lines of text rather than something visual like a graph. On the other hand, with only a few keystrokes, the shell allows us to combine existing tools into powerful pipelines and handle large volumes of data automatically. This automation not only makes us more productive but also improves the reproducibility of our workflows by allowing us to repeat them with few simple commands.</p>
+<p>In addition, the command line is often the easiest way to interact with remote machines and supercomputers. Familiarity with the shell is near essential to run a variety of specialized tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching, being able to interact with the shell is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges.</p>
+</div>
+<div id="navigating-files-and-directories" class="section level3">
+<h3>Navigating Files and Directories</h3>
+<p>In this section we will learn to move around on the computer, see what files and directories are there, and specify the location of a directory or file on your computer.</p>
+<p>Moving around on the computer:</p>
+<p>You will be used to navigating directories and files via a program such as Finder on Apple computers or File explorer on Windows. We can also navigate directories and look at files from the shell.</p>
+<p>Lets get started. When you open a terminal, you will see something like:</p>
+<pre class="sh"><code>dlebauer@dlebauer-desktop:~$</code></pre>
+<p>The <code>$</code> is called the command prompt. The information before it provides information about the computer we are on, in this case the user and computer names. For the purposes of the tutorial, we will enter the command <code>sh PS1='$ 'and press the ‘enter’ key so that only the</code>$` shows up. This isn’t necessary to follow along, but it is useful to know that you can change the information that the command prompt provides. In fact, there are many ways to customize your Shell - the prompt as well as the way it presents text - that are beyond the scope of this course (but easy to find on Google).</p>
+<p>First type the command <code>whoami</code></p>
+<pre class="sh"><code>whoami</code></pre>
+<p>This tells you the user’s name. You will likely not have the same answer as the computer gave when it ran the code in this book.</p>
+<p>Now type the command <code>pwd</code>, which is short for ‘print working directory’</p>
+<pre class="sh"><code>pwd</code></pre>
+<p>This tells you your current working directory. On OSX it may look like <code>/Users/dlebauer/</code> while on Linux it may look like <code>/home/dlebauer</code> and on Windows <code>C:\Users\David LeBauer</code>.</p>
+<p>What is in this direcotry?</p>
+<p>The program <code>ls</code> will tell you:</p>
+<pre class="sh"><code>ls</code></pre>
+<pre><code>## 04-introduction-to-R.html
+## 2017-05-26-the-terminal-unix-shell.Rmd
+## 2017-05-26-version-control-and-collaborative-development.Rmd
+## 2017-05-30-databases-and-sql_files
+## 2017-05-30-databases-and-sql.Rmd
+## 2017-05-30-introduction-to-r.html
+## 2017-05-30-introduction-to-r.Rmd
+## 2017-05-30-scrum-and-best-practices.html
+## 2017-05-30-scrum-and-best-practices.Rmd
+## 2017-05-31-accessing-sensor-data.Rmd
+## 2017-05-31-exploratory-data-analysis.Rmd
+## 2017-05-31-project-day-2-querying-data.md
+## data
+## data.csv
+## doc
+## reports
+## results
+## salix2.csv
+## src</code></pre>
+<pre class="sh"><code>ls -F</code></pre>
+<p>Most command line programs have many options. Options are often specified as ‘flags’ (perhaps because <code>-</code> looks like a flag pole?)</p>
+<p>Many shell programs provide common flags such as <code>--help</code> and <code>--version</code> (as well as synonyms <code>-h</code> and <code>-v</code>). Lets ask the shell for help with <code>ls</code>:</p>
+<pre class="sh"><code>ls --help</code></pre>
+<pre><code>## Usage: ls [OPTION]... [FILE]...
+## List information about the FILEs (the current directory by default).
+## Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
+## 
+## Mandatory arguments to long options are mandatory for short options too.
+##   -a, --all                  do not ignore entries starting with .
+##   -A, --almost-all           do not list implied . and ..
+##       --author               with -l, print the author of each file
+##   -b, --escape               print C-style escapes for nongraphic characters
+##       --block-size=SIZE      scale sizes by SIZE before printing them; e.g.,
+##                                &#39;--block-size=M&#39; prints sizes in units of
+##                                1,048,576 bytes; see SIZE format below
+##   -B, --ignore-backups       do not list implied entries ending with ~
+##   -c                         with -lt: sort by, and show, ctime (time of last
+##                                modification of file status information);
+##                                with -l: show ctime and sort by name;
+##                                otherwise: sort by ctime, newest first
+##   -C                         list entries by columns
+##       --color[=WHEN]         colorize the output; WHEN can be &#39;never&#39;, &#39;auto&#39;,
+##                                or &#39;always&#39; (the default); more info below
+##   -d, --directory            list directories themselves, not their contents
+##   -D, --dired                generate output designed for Emacs&#39; dired mode
+##   -f                         do not sort, enable -aU, disable -ls --color
+##   -F, --classify             append indicator (one of */=&gt;@|) to entries
+##       --file-type            likewise, except do not append &#39;*&#39;
+##       --format=WORD          across -x, commas -m, horizontal -x, long -l,
+##                                single-column -1, verbose -l, vertical -C
+##       --full-time            like -l --time-style=full-iso
+##   -g                         like -l, but do not list owner
+##       --group-directories-first
+##                              group directories before files;
+##                                can be augmented with a --sort option, but any
+##                                use of --sort=none (-U) disables grouping
+##   -G, --no-group             in a long listing, don&#39;t print group names
+##   -h, --human-readable       with -l and/or -s, print human readable sizes
+##                                (e.g., 1K 234M 2G)
+##       --si                   likewise, but use powers of 1000 not 1024
+##   -H, --dereference-command-line
+##                              follow symbolic links listed on the command line
+##       --dereference-command-line-symlink-to-dir
+##                              follow each command line symbolic link
+##                                that points to a directory
+##       --hide=PATTERN         do not list implied entries matching shell PATTERN
+##                                (overridden by -a or -A)
+##       --indicator-style=WORD  append indicator with style WORD to entry names:
+##                                none (default), slash (-p),
+##                                file-type (--file-type), classify (-F)
+##   -i, --inode                print the index number of each file
+##   -I, --ignore=PATTERN       do not list implied entries matching shell PATTERN
+##   -k, --kibibytes            default to 1024-byte blocks for disk usage
+##   -l                         use a long listing format
+##   -L, --dereference          when showing file information for a symbolic
+##                                link, show information for the file the link
+##                                references rather than for the link itself
+##   -m                         fill width with a comma separated list of entries
+##   -n, --numeric-uid-gid      like -l, but list numeric user and group IDs
+##   -N, --literal              print raw entry names (don&#39;t treat e.g. control
+##                                characters specially)
+##   -o                         like -l, but do not list group information
+##   -p, --indicator-style=slash
+##                              append / indicator to directories
+##   -q, --hide-control-chars   print ? instead of nongraphic characters
+##       --show-control-chars   show nongraphic characters as-is (the default,
+##                                unless program is &#39;ls&#39; and output is a terminal)
+##   -Q, --quote-name           enclose entry names in double quotes
+##       --quoting-style=WORD   use quoting style WORD for entry names:
+##                                literal, locale, shell, shell-always, c, escape
+##   -r, --reverse              reverse order while sorting
+##   -R, --recursive            list subdirectories recursively
+##   -s, --size                 print the allocated size of each file, in blocks
+##   -S                         sort by file size
+##       --sort=WORD            sort by WORD instead of name: none (-U), size (-S),
+##                                time (-t), version (-v), extension (-X)
+##       --time=WORD            with -l, show time as WORD instead of default
+##                                modification time: atime or access or use (-u)
+##                                ctime or status (-c); also use specified time
+##                                as sort key if --sort=time
+##       --time-style=STYLE     with -l, show times using style STYLE:
+##                                full-iso, long-iso, iso, locale, or +FORMAT;
+##                                FORMAT is interpreted like in &#39;date&#39;; if FORMAT
+##                                is FORMAT1&lt;newline&gt;FORMAT2, then FORMAT1 applies
+##                                to non-recent files and FORMAT2 to recent files;
+##                                if STYLE is prefixed with &#39;posix-&#39;, STYLE
+##                                takes effect only outside the POSIX locale
+##   -t                         sort by modification time, newest first
+##   -T, --tabsize=COLS         assume tab stops at each COLS instead of 8
+##   -u                         with -lt: sort by, and show, access time;
+##                                with -l: show access time and sort by name;
+##                                otherwise: sort by access time
+##   -U                         do not sort; list entries in directory order
+##   -v                         natural sort of (version) numbers within text
+##   -w, --width=COLS           assume screen width instead of current value
+##   -x                         list entries by lines instead of by columns
+##   -X                         sort alphabetically by entry extension
+##   -Z, --context              print any security context of each file
+##   -1                         list one file per line
+##       --help     display this help and exit
+##       --version  output version information and exit
+## 
+## The SIZE argument is an integer and optional unit (example: 10K is 10*1024).
+## Units are K,M,G,T,P,E,Z,Y (powers of 1024) or KB,MB,... (powers of 1000).
+## 
+## Using color to distinguish file types is disabled both by default and
+## with --color=never.  With --color=auto, ls emits color codes only when
+## standard output is connected to a terminal.  The LS_COLORS environment
+## variable can change the settings.  Use the dircolors command to set it.
+## 
+## Exit status:
+##  0  if OK,
+##  1  if minor problems (e.g., cannot access subdirectory),
+##  2  if serious trouble (e.g., cannot access command-line argument).
+## 
+## GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
+## Full documentation at: &lt;http://www.gnu.org/software/coreutils/ls&gt;
+## or available locally via: info &#39;(coreutils) ls invocation&#39;</code></pre>
+<p>For even more information, you can use <code>man ls</code>.</p>
+</div>
+<div id="looking-around" class="section level3">
+<h3>Looking around</h3>
+<p>You can use the command <code>ls</code> to look at different directories (without changing the current working directory) as follows:</p>
+<pre class="sh"><code>ls
+ls ~/
+ls /data/terraref/sites/ua-mac</code></pre>
+<p>To change to the directory <code>/data/terraref/sites/ua-mac</code> you can use the <code>cd</code> command:</p>
+<pre class="sh"><code>cd /data/terraref/sites/ua-mac
+ls ## reveal the contents
+cd ## shortcut brings you back home
+pwd</code></pre>
+<p>Directories in the shell have a tree-like structure. You can use <code>cd ..</code> to move up one step in the tree, <code>cd ../..</code> to move up two steps, <code>cd ../../..</code> to move up three steps, and so on. Just typing in <code>cd</code> will bring you to your home directory (equivalent to <code>cd ~/</code>.</p>
+</div>
+<div id="environment-variables" class="section level2">
+<h2>Environment Variables</h2>
+<p>Environment variables are variables that affect the way software interacts with the user and are valid systemwide. For example, try echoing the environment variable <code>PATH</code> as follows:</p>
+<pre class="sh"><code>echo $PATH</code></pre>
+<p>You can see the environment variables by doing:</p>
+<pre class="sh"><code>printenv</code></pre>
+</div>
+<div id="useful-tools" class="section level2">
+<h2>Useful Tools</h2>
+<p>Let’s look at some useful tools. First we need a file, so let’s go ahead and make a directory to put some data in:</p>
+<pre class="sh"><code>mkdir project
+mkdir project/data
+cd project/data</code></pre>
+<p>Then we get some data from the BETYdb.org database.</p>
+<p>Here we use the <a href="https://en.wikipedia.org/wiki/CURL"><code>curl</code></a> program, which is a command line tool for moving data around the internet. Here, we use <code>curl</code> with the <code>-o $genus.csv</code> flag to specify where to save output from the url.</p>
+<pre class="sh"><code>### Get some crop trait and yield data
+for genus in panicum miscanthus salix populus
+do 
+  curl -o $genus.csv https://www.betydb.org/search.csv?search=$genus
+done
+
+### Get some weather data
+cp /data/terraref/sites/uiuc-energyfarm/raw_data/weather_stations/Weather*DayAvg.dat ~/project/data/
+</code></pre>
+<p>Let’s take a look at it, <code>head</code> prints out the first 10 lines while <code>tail</code> the last 10 lines:</p>
+<pre class="sh"><code>head data.csv
+tail data.csv
+</code></pre>
+<p>The -n flag can modify the number of lines shown:</p>
+<pre class="sh"><code>head -n 10 data.csv</code></pre>
+<pre class="sh"><code>tail -n +11 data.csv </code></pre>
+<p>You can also display all of its contents onto the shell (not recommended for big files like this one):</p>
+<pre class="sh"><code>cat data.csv</code></pre>
+<p>We can count the lines, words, and characters (in that order) of a file with:</p>
+<pre class="sh"><code>wc -l data.csv</code></pre>
+<p>You can also save this data into a file:</p>
+<pre class="sh"><code>wc -l data.csv &gt; lengths.txt</code></pre>
+<p>and sort it:</p>
+<pre class="sh"><code>sort lengths.txt</code></pre>
+<p>This doesn’t modify the file <code>lengths.txt</code>, so you need to save it to a new file:</p>
+<pre class="sh"><code>sort lengths.txt &gt; sorted_lengths.txt</code></pre>
+</div>
+<div id="pipes" class="section level2">
+<h2>Pipes</h2>
+<p>A pipe <code>|</code> is used to have the output of the command to its left be used as the input of the command to the right, for example:</p>
+<pre class="sh"><code>tail -n +11 data.csv | head -n 4 </code></pre>
+<p>compare this with:</p>
+<pre class="sh"><code>tail -n +11 data.csv &gt; miscanthus.csv</code></pre>
+</div>
+<div id="find-with-grep" class="section level2">
+<h2>Find with <code>grep</code></h2>
+<p>The command <code>grep</code> can be used to find a pattern in a file, for example to find the pattern <code>yield</code> in the file <code>miscanthus.csv</code>:</p>
+<pre class="sh"><code>grep yield miscanthus.csv</code></pre>
+</div>
+<div id="find-and-replace-with-sed" class="section level2">
+<h2>Find and replace with <code>sed</code></h2>
+<p>The following replaces “willow” for “Willow” in the file <code>willow.csv</code>. The -i flag is to make this interactive (try it with and without it in some small text file of your creation):</p>
+<pre class="sh"><code>sed -i &#39;s/willow/Willow/g&#39; willow.csv</code></pre>
+<p>In <code>sed -i s/find/replace/g</code>, <code>-i</code> means change the file in place, <code>s/</code> means ‘substitute’ and <code>/g</code> means replace all occurances.</p>
+</div>
+<div id="parse-text-with-cut" class="section level2">
+<h2>Parse text with <code>cut</code></h2>
+<p>The command <code>cut</code> can be used to remove sections of each line of a file:</p>
+<pre class="sh"><code>cut -d, -f3,5 miscanthus.csv</code></pre>
+</div>
+<div id="for-loops" class="section level2">
+<h2>For Loops</h2>
+<p>The shell has <code>for</code> loops to iterate actions. When you enter:</p>
+<pre class="sh"><code>for genus in panicum miscanthus salix 
+</code></pre>
+<p>it enters into a command entry mode in which you need to tell it what it does as it loops through <code>panicum</code>, <code>miscanthus</code>, <code>salix</code>. For example to echo these words into the shell:</p>
+<pre class="sh"><code>for genus in panicum miscanthus salix ; do
+    echo $genus
+done</code></pre>
+<p>To echo the integers:</p>
+<pre class="sh"><code>for $i in in {seq 1 10}; do
+   echo $i
+done</code></pre>
+</div>
+<div id="shell-scripts" class="section level2">
+<h2>Shell Scripts</h2>
+<p>You can write short scripts to run commands on the shell. You can use any text editor, here we’ll use <code>nano</code>. Shell scripts end in <code>.sh</code>.</p>
+<p>Create and open with <code>nano</code> a shell script:</p>
+<pre class="sh"><code>nano getdata.sh </code></pre>
+<p>In the above, notice the terminal was “locked”, there was no command prompt. To avoid this you can use:</p>
+<pre class="sh"><code>nano getdata.sh &amp;</code></pre>
+<p>Now type the following in the file:</p>
+<pre class="sh"><code>#!/bin/bash
+for genus in panicum miscanthus salix populus
+do 
+  curl -o $genus https://www.betydb.org/search.csv?search=$genus
+done</code></pre>
+<p>Save the file and exit (in nano the <code>^</code> means <code>Ctrl</code>).</p>
+<p>Make the file executable using the program <a href="https://en.wikipedia.org/wiki/Chmod"><code>chmod</code></a>. <code>chmod</code> modifies the permissions of the file. <code>+x</code> makes it executable (<code>+rw</code> makes it readable and writable)</p>
+<pre class="sh"><code>chmod +x getdata.sh</code></pre>
+<p>Run the file:</p>
+<pre class="sh"><code>./getdata.sh</code></pre>
+<p>To run the file in the background and continue using your terminal, you can run it using:</p>
+<pre class="sh"><code>nohup ./getdata.sh &amp;</code></pre>
+<p>To see its progress:</p>
+<pre class="sh"><code>tail -f nohup.out</code></pre>
+<div id="using-variables-in-your-shell-script." class="section level3">
+<h3>Using variables in your shell script.</h3>
+<p>You can write shell scripts that take input variables.</p>
+<p>When you run a bash script, a variable can be added after the name of the script like <code>myscript.sh var1 var2</code>.</p>
+<p>Create a file:</p>
+<pre class="sh"><code>nano getonegenus.sh</code></pre>
+<p>Write the following. Here <code>$1</code> represents the first input variable:</p>
+<pre class="sh"><code>#!/bin/bash
+curl -o $1.csv https://www.betydb.org/search.csv?search=$1</code></pre>
+<p>Save it and make it executable:</p>
+<pre class="sh"><code>chmod +x getonegenus.sh</code></pre>
+<p>Now you can send the search term via the command line:</p>
+<pre class="sh"><code>./getonegenus.sh salix</code></pre>
+</div>
+</div>
+<div id="time-saving-tips" class="section level2">
+<h2>Time Saving Tips</h2>
+<ul>
+<li>You can press the <code>Tab</code> on your keyboard to autocomplete.</li>
+<li>You can press <code>Ctrl</code>+<code>A</code> to go to the beginning of a line.</li>
+<li>You can press the up arrow to view previous commands.</li>
+<li>To clear the line use <code>Ctrl</code>+<code>U</code></li>
+<li>There are many more if you Google “Time-saving command line tips”</li>
+</ul>
+</div>
+<div id="regular-expressions-regex" class="section level2">
+<h2>Regular Expressions (‘Regex’)</h2>
+<p>Too long for today, difficult to learn, but examples are Googleable, like</p>
+<p><a href="https://www.google.com/search?q=Regex+any+date+at+end+of+string&amp;oq=Regex+any+date+at+end+of+string&amp;aqs=chrome..69i57.3518j0j7&amp;sourceid=chrome&amp;ie=UTF-8">“Regex date range at end of string”</a></p>
+</div>
+<div id="real-world-examples" class="section level2">
+<h2>Real World Examples:</h2>
+<div id="advanced" class="section level3">
+<h3>Advanced:</h3>
+<p><strong>Problem:</strong> changing file naming conventions broke a computing pipeline</p>
+<blockquote>
+<p>The recent calibration images brought to my attention that the SWIR naming convention has diverged from the VNIR. SWIR files now have an extra date string (right after the UUID) in their names, and also are missing an underscore before the english suffix. Was there a good reason for changing the naming convention? It would be helpful if SWIR used the same convention as VNIR. Otherwise we need to re-write the extractors to handle both conventions and be backwards compatible, etc.</p>
+</blockquote>
+<p><strong>Questions</strong> * What is the UUID? * Why is having an extra date a problem? * How many dates can you find in the following code snippet? Are they consistent?</p>
+<pre class="sh"><code>zender@cg-gpu01:~/nco$ ls -l /projects/arpae/terraref/sites/ua-mac/raw_data/SWIR/2017-04-15/2017-04-15__11-59-12-426
+total 481696
+-rw-r--r-- 1 dlebauer grp_202     55123 Apr 15 12:03 f130c910-7887-49b0-97bb-db49e8c85e63_2017_04_15_12_05_11frameIndex.txt
+-rw-r--r-- 1 dlebauer grp_202     27533 Apr 15 12:03 f130c910-7887-49b0-97bb-db49e8c85e63_2017_04_15_12_05_11image.jpg
+-rw-r--r-- 1 dlebauer grp_202 493129728 Apr 15 12:03 f130c910-7887-49b0-97bb-db49e8c85e63_2017_04_15_12_05_11raw
+-rw-r--r-- 1 dlebauer grp_202      3503 Apr 15 12:03 f130c910-7887-49b0-97bb-db49e8c85e63_2017_04_15_12_05_11raw.hdr
+-rw-r--r-- 1 dlebauer grp_202       869 Apr 15 12:03 f130c910-7887-49b0-97bb-db49e8c85e63_2017_04_15_12_05_11settings.txt
+-rw-r--r-- 1 dlebauer grp_202      3561 Apr 15 12:03 f130c910-7887-49b0-97bb-db49e8c85e63_metadata.json
+
+
+zender@cg-gpu01:~/nco$ ls -l /projects/arpae/terraref/sites/ua-mac/raw_data/VNIR/2017-04-15/2017-04-15__11-56-59-902/
+total 5204960
+-rw-r--r-- 1 dlebauer grp_202      40591 Apr 15 12:00 ca045a19-7b12-4627-b700-9f51f5829b64_frameIndex.txt
+-rw-r--r-- 1 dlebauer grp_202      69299 Apr 15 12:00 ca045a19-7b12-4627-b700-9f51f5829b64_image.jpg
+-rw-r--r-- 1 dlebauer grp_202       3605 Apr 15 12:00 ca045a19-7b12-4627-b700-9f51f5829b64_metadata.json
+-rw-r--r-- 1 dlebauer grp_202 5329664000 Apr 15 12:02 ca045a19-7b12-4627-b700-9f51f5829b64_raw
+-rw-r--r-- 1 dlebauer grp_202      10257 Apr 15 12:01 ca045a19-7b12-4627-b700-9f51f5829b64_raw.hdr
+-rw-r--r-- 1 dlebauer grp_202        872 Apr 15 12:02 ca045a19-7b12-4627-b700-9f51f5829b64_settings.txt</code></pre>
+<ul>
+<li>date is in directory name, date-time subdirectory, filename (for SWIR but not VNIR) and in the output from <code>ls -l</code>.</li>
+<li>note that there is a ~6 minute discrepancy between SWIR directory and filename. File timestamp is in between.</li>
+</ul>
+<p><strong>Solution Part 1</strong></p>
+<p>Don’t change upstream formats / conventions without alerting downstream developers!</p>
+<ul>
+<li>After a few similar issues we created a protocol:</li>
+<li>upstream developers alert downstream developers before changing formats</li>
+<li>downstream developers write tests to catch errors upstream before they cause errors (in most cases, for the pipeline to break)</li>
+</ul>
+<p>This is a clear rule but difficult to enforce without extensive automated testing (in this case the tests are written, but the pipeline was lagging a few months behind and did not catch it).</p>
+<p><strong>Solution Part 2</strong></p>
+<p>When Part 1 fails, write a script to rename all of the files. Lets take a look.</p>
+<pre class="sh"><code>#!/bin/bash
+
+cd /projects/arpae/terraref/sites/ua-mac/raw_data/SWIR/
+for d in `/bin/ls -d 2016-11-0[89] 2016-11-[123]? 2016-12-?? 2017-??-??`; do 
+    yyyymmdd=$d
+    drc_top=&quot;/projects/arpae/terraref/sites/ua-mac/raw_data/SWIR/${yyyymmdd}&quot;
+    cd ${drc_top}
+    for drc_sub in `/bin/ls -d ${yyyymmdd}*` ; do
+        echo &quot;Renaming in directory ${drc_sub}...&quot;
+        cd ${drc_top}/${drc_sub}
+        for fl in `/bin/ls *raw` ; do
+          dt_sng=`expr match &quot;${fl}&quot; &#39;.*\([0-9][0-9][0-9][0-9]_[0-9][0-9]_[0-9][0-9]_[0-9][0-9]_[0-9][0-9]_[0-9][0-9]\)\.*&#39;`
+          uuid_sng=${fl:0:36}
+        done # !fl
+        echo &quot;uuid=${uuid_sng}, dt=${dt_sng}&quot;
+        for sfx in frameIndex.txt image.jpg raw raw.hdr settings.txt ; do
+          mv_cmd=&quot;/bin/mv ${uuid_sng}_${dt_sng}${sfx} ${uuid_sng}_${sfx}&quot;
+          echo &quot;/bin/mv ${uuid_sng}_${dt_sng}${sfx} ${uuid_sng}_${sfx}&quot;
+          eval ${mv_cmd}
+        done # !sfx
+   done # !drc_sub
+done # !d</code></pre>
+<p>Can you find:</p>
+<ul>
+<li>How many for-loops are there? How deeply are they nested?</li>
+<li>What do you think the following regex characters mean:</li>
+<li><code>[0-9]</code>?</li>
+<li><code>[123]</code></li>
+</ul>
+</div>
+</div>
