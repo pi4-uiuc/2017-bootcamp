@@ -17,34 +17,37 @@ Objectives:
 ### Data analysis: Sorghum height data
 
 ```{r}
-
+knitr::opts_chunk$set(cache = TRUE)
 library(dplyr)
 library(ggplot2)
 theme_set(theme_bw())
 
-bety_src <- src_postgres(dbname = "bety", password = 'bety', host = 'terra-bety.default', user = 'bety', port = 5432)
+#bety_src <- RPostgreSQL::dbConnect(odbc::odbc(), "TERRA-REF traits copy BETYdb")
+#bety_src <- src_postgres(dbname = "bety", password = 'bety', host = 'bety.terraref', user = 'bety', port = 5432)
+bety_src <- src_postgres(dbname = "bety", password = 'DelchevskoOro', host = 'bety6.ncsa.illinois.edu', user = 'viewer', port = 5432)
+#bety_src <- RPostgreSQL::dbConnect(odbc::odbc(), "TERRA-REF traits viewer")
 
 ```
 
 ```{r complex-query}
 treatments <- tbl(bety_src, 'treatments') %>% 
-  select(treatment_id = id , name, definition, control)
+  dplyr::select(treatment_id = id , name, definition, control)
 
 managements_treatments <- tbl(bety_src, 'managements_treatments')
 
 managements <- tbl(bety_src, 'managements') %>% 
   filter(mgmttype %in% c('Fertilization_N', 'Planting', 'Irrigation')) %>% 
-  select(management_id = id, date, mgmttype, level, units) %>% 
+  dplyr::select(management_id = id, date, mgmttype, level, units) %>% 
   left_join(managements_treatments, by = 'management_id') %>% 
   left_join(treatments, by = 'treatment_id')
 
 planting <-managements %>% 
   filter(mgmttype == "Planting") %>% 
-  select(treatment_id, planting_date = date, nrate = level)
+  dplyr::select(treatment_id, planting_date = date, nrate = level)
 
 canopy_height <- tbl(bety_src, 'traits_and_yields_view') %>% 
   filter(trait == 'canopy_height') %>% 
-  left_join(planting, by = 'treatment_id') %>%  
+  left_join(planting, by = 'treatment_id') %>% 
   collect
 ```
 
@@ -55,6 +58,24 @@ ggplot(data = canopy_height) +
 
 
 ```
+
+
+## Basic Statistics
+
+These are some key statistics that are useful for describing a random variable $X$:
+
+* Mean $\bar{x}=\frac{1}{n}\sum_{i=1}^{n}{x_i}$
+* [Median](https://en.wikipedia.org/wiki/Median) 
+* Variance $\rm{Var}(X) = \frac{1}{n}\sum_{i=1}^{n}{(x_i-\mu)^2}$
+* Standard Deviation $\rm{SD}(X) = \sqrt{\rm{Var}(X)}$
+* Coefficient of Variance $\rm{CV}(X) = \frac{\rm{SD}(X)}{\bar{x}}$
+* [Skewness](https://en.wikipedia.org/wiki/Skewness): does the distribution skew left, or right? 
+   * when is median > mean?
+* [Kurtosis](https://en.wikipedia.org/wiki/Kurtosis): how fat are the tails of the distribution? 
+
+![https://en.wikipedia.org/wiki/Skewness#/media/File:Negative_and_positive_skew_diagrams_(English).svg] [Rodolfo Hermans](https://en.wikipedia.org/wiki/User:Rodolfo_Hermans)
+
+
 
 ```{r}
 x <- canopy_height$mean
@@ -70,22 +91,27 @@ cv <- function(x){
 cv(x)
 
 ### need to install moments package to compute skewness and kurtosis
+# install.packages('moments')
+moments::skewness(x)
+moments::kurtosis(x)
 ```
 
 ```{r}
 height_season1 <- canopy_height %>% filter(grepl('Season 1', sitename))
 
-ggplot(data = height_season1) +
-  geom_point(aes(date, mean))
+ggplot(data = height_season1, aes(date, mean)) +
+  geom_point(alpha = 0.25)
 
 
 ```
 
 ### Fitting distributions to data
 
+Probability distributions provide a convenient way of describing a random variable. In many cases, the parameters can be interpereted in a meaningful way (e.g. shape, rate, scale).
+
 
 ```{r}
-install.packages('fitdistrplus')
+#install.packages('fitdistrplus')
 
 library(fitdistrplus)
 
@@ -147,22 +173,21 @@ yields <- betydb_query(table = 'search',
                        trait = 'Ayield', 
                        limit = "none")
 
-yields <- yields %>% filter(genus %in% c('Miscanthus', 'Panicum', 'Salix', 'Populus'))
+grass_yields <- yields %>% 
+  filter(genus %in% c('Miscanthus', 'Panicum')) %>% 
+  dplyr::rename(yield_annual = mean)
 
-library(ggplot2)
-
-#if(!require(tableplot))install.packages('tableplot')
-#tableplot::tableplot(yields %>% select())
 
 ```
 
+We are going to use a version of this dataset that already has climate data: MAP (Mean Annual Precipitation) and Mean Annual Temperature (MAT)
+
 ```{r all.yieldata, fig.width=9, fig.height=9}
-library(dplyr)
 
-grass_yields <- read.csv('../../grass_yield.csv')
+grass_yields <- read.csv('data/grass_yield.csv')
 
-lattice::splom(grass_yields)
-pairs(grass_yields, pch='.')
+#lattice::splom(grass_yields)
+#pairs(grass_yields, pch='.')
 
 grass_yields <- grass_yields %>% filter(genus %in% c("Miscanthus", "Panicum"))
 ```
@@ -181,10 +206,13 @@ plot(h0, which = c(1,2))
 ### Data Transformation 
 
 ```{r}
-grass_yields <- grass_yields %>% mutate(log_yield = log10(yield_annual))
+grass_yields <- grass_yields %>% mutate(log_yield = log10(yield_annual + 1))
+```
 
-h0 <- lm(log_yield ~ 1, data = grass_yields)
+Why add 1 to `yield_annual`? How does this affect interpretation?
 
+```{r}
+h0 <- lm(log_yield ~ 1, data = as.data.frame(grass_yields))
 
 plot(h0$fitted.values, h0$residuals)
 hist(h0$residuals)
@@ -566,6 +594,7 @@ foo.aov <- aov( y ~ x, ...)
 
 ### Now ... this leads us to mechanistic modeling
 
-stochastic simulation 
 
-then ... Crop modeling https://1drv.ms/p/s!ArD2PjXBzadikgBlYGE-eA-HIFou
+Next lecture on Crop modeling 
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRkb_-BtuFGBh0erv_yuE6BApuZ0rVMti9NN2XmGWcT9iC-muHZo2MyCMno4HLmIcSGlkCfpSat2fVw/embed?start=false&loop=false&delayms=3000" frameborder="0" width="1280" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
