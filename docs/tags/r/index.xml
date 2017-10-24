@@ -37,6 +37,16 @@ Add normally distributed errors, modeling \(\epsilon\sim(N(0,\sigma))\)
     </item>
     
     <item>
+      <title>9. Intro Statistics</title>
+      <link>/2017/06/05/intro-statistics/</link>
+      <pubDate>Mon, 05 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/06/05/intro-statistics/</guid>
+      <description>Summary statistics Objectives: * learn to summarize data with basic measures of central tendancy and spread * learn to fit parametric distributions to data
+Data analysis: Sorghum height data knitr::opts_chunk$set(cache = TRUE) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union library(ggplot2) theme_set(theme_bw()) #bety_src &amp;lt;- RPostgreSQL::dbConnect(odbc::odbc(), &amp;quot;TERRA-REF traits copy BETYdb&amp;quot;) #bety_src &amp;lt;- src_postgres(dbname = &amp;quot;bety&amp;quot;, password = &amp;#39;bety&amp;#39;, host = &amp;#39;bety.</description>
+    </item>
+    
+    <item>
       <title>8. Probability</title>
       <link>/2017/06/04/probability/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
@@ -78,16 +88,6 @@ In fact, so far we have been working with tables.</description>
       <guid>/2017/05/27/intro-to-r/</guid>
       <description>This lesson is based on Getting Started with R and Rstudio (SWC 1-3).
 Getting started with R Why R? * by design “a programming language and environment for statistical computing” * Most common language used by academic statisticians. Thus, many methods are developed as R packages and not available elsewhere. * built around stats, with lots of handy functions * data analysis by design * formulas for statistical models * ggplot ‘grammar of graphics’ among best graphing programs (only get better w/ graphical design programs like photoshop/Inkscape) * dplyr and tidyr for data munging * Integrates with lower level languages (esp C, C++, FORTRAN; Rcpp package for integration w/ C++ excellent) * can do anything * has a reputation for being slow.</description>
-    </item>
-    
-    <item>
-      <title>9. Intro Statistics</title>
-      <link>/2016/06/05/intro-statistics/</link>
-      <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/06/05/intro-statistics/</guid>
-      <description>Summary statistics Objectives: * learn to summarize data with basic measures of central tendancy and spread * learn to fit parametric distributions to data
-Data analysis: Sorghum height data knitr::opts_chunk$set(cache = TRUE) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union library(ggplot2) theme_set(theme_bw()) #bety_src &amp;lt;- RPostgreSQL::dbConnect(odbc::odbc(), &amp;quot;TERRA-REF traits copy BETYdb&amp;quot;) #bety_src &amp;lt;- src_postgres(dbname = &amp;quot;bety&amp;quot;, password = &amp;#39;bety&amp;#39;, host = &amp;#39;bety.</description>
     </item>
     
   </channel>

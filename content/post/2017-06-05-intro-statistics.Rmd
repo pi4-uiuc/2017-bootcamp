@@ -1,7 +1,7 @@
 ---
 title: "9. Intro Statistics"
 author: "David LeBauer"
-date: '2016-06-05'
+date: '2017-06-05'
 slug: intro-statistics
 categories: []
 tags: [statistics,r]

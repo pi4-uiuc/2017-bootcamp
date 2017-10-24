@@ -37,6 +37,16 @@ Add normally distributed errors, modeling \(\epsilon\sim(N(0,\sigma))\)
     </item>
     
     <item>
+      <title>9. Intro Statistics</title>
+      <link>/2017/06/05/intro-statistics/</link>
+      <pubDate>Mon, 05 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/06/05/intro-statistics/</guid>
+      <description>Summary statistics Objectives: * learn to summarize data with basic measures of central tendancy and spread * learn to fit parametric distributions to data
+Data analysis: Sorghum height data knitr::opts_chunk$set(cache = TRUE) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union library(ggplot2) theme_set(theme_bw()) #bety_src &amp;lt;- RPostgreSQL::dbConnect(odbc::odbc(), &amp;quot;TERRA-REF traits copy BETYdb&amp;quot;) #bety_src &amp;lt;- src_postgres(dbname = &amp;quot;bety&amp;quot;, password = &amp;#39;bety&amp;#39;, host = &amp;#39;bety.</description>
+    </item>
+    
+    <item>
       <title>8. Probability</title>
       <link>/2017/06/04/probability/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
@@ -47,16 +57,6 @@ If the random variable \(x\) can take values \(x_1,...,x_N\) with equal probabil
 \[E[x]=\sum_{i=1}^N\frac{x_i}{N}\] Properties of the expected value: * \(E[x+y]=E[x]+E[y]\) * \(E[cx]=cE[x]\)
 Variance
 The variance of the random variable \(x\) is defined to be:</description>
-    </item>
-    
-    <item>
-      <title>9. Intro Statistics</title>
-      <link>/2016/06/05/intro-statistics/</link>
-      <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/06/05/intro-statistics/</guid>
-      <description>Summary statistics Objectives: * learn to summarize data with basic measures of central tendancy and spread * learn to fit parametric distributions to data
-Data analysis: Sorghum height data knitr::opts_chunk$set(cache = TRUE) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union library(ggplot2) theme_set(theme_bw()) #bety_src &amp;lt;- RPostgreSQL::dbConnect(odbc::odbc(), &amp;quot;TERRA-REF traits copy BETYdb&amp;quot;) #bety_src &amp;lt;- src_postgres(dbname = &amp;quot;bety&amp;quot;, password = &amp;#39;bety&amp;#39;, host = &amp;#39;bety.</description>
     </item>
     
   </channel>
