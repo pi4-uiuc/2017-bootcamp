@@ -1,5 +1,5 @@
 ---
-title: Exploratory Data Analysis
+title: "7. Exploratory Data Analysis"
 author: "David LeBauer"
 date: '2017-05-31'
 slug: exploratory-data-analysis

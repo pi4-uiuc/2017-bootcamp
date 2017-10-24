@@ -1,5 +1,5 @@
 ---
-title: Intro Statistics
+title: "9. Intro Statistics"
 author: "David LeBauer"
 date: '2016-06-05'
 slug: intro-statistics

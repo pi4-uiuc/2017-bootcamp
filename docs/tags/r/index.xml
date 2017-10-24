@@ -6,13 +6,38 @@
     <description>Recent content in R on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Jun 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Probability</title>
+      <title>10. Bayesian Analysis</title>
+      <link>/2017/06/06/bayesian-analysis/</link>
+      <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/06/06/bayesian-analysis/</guid>
+      <description>Bayesian regression library(rstanarm) options(mc.cores = parallel::detectCores()) glm1 &amp;lt;- stan_glmer(yield_annual ~ fertilizer_n + age + genus:fertilizer_n + genus:age + (1 | site ), #prior = normal(30, 4), data = grass_yields) glm1 plot(glm1) plot(glm1, plotfun = &amp;#39;hist&amp;#39;) pairs(glm1) posterior_interval(glm1) summary(glm1) library(sjPlot) sjPlot::sjp.lmer(glm1) http://topepo.github.io/caret/train-models-by-tag.html https://thinkinator.com/2016/01/12/r-users-will-now-inevitably-become-bayesians/
+ </description>
+    </item>
+    
+    <item>
+      <title>11. Stochastic Simulation</title>
+      <link>/2017/06/06/stochastic-simulation/</link>
+      <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/06/06/stochastic-simulation/</guid>
+      <description>Note: Some of the commands below, particularly those accessing the terraref database from within RStudio, require being logged into the NDS Analytics Workbench. This requires signing up for the TERRA REF Alpha User program
+ library(ggplot2) Stochastic Simulation (Bolker Ch5) A deterministic linear function:
+\[y_\rm{det}=a+bx\]
+Add normally distributed errors, modeling \(\epsilon\sim(N(0,\sigma))\)
+\[Y\sim N(a+bx, \sigma)\] Or equivalently:
+\[Y\sim N(\mu, \sigma)\]
+\[\mu = a+bx\] Lets first plot the deterministic function as a line</description>
+    </item>
+    
+    <item>
+      <title>8. Probability</title>
       <link>/2017/06/04/probability/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
       
@@ -25,7 +50,7 @@ The variance of the random variable \(x\) is defined to be:</description>
     </item>
     
     <item>
-      <title>Accessing Sensor Data 2</title>
+      <title>6. Accessing Sensor Data</title>
       <link>/2017/05/31/accessing-sensor-data/</link>
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
       
@@ -56,7 +81,7 @@ Getting started with R Why R? * by design “a programming language and environm
     </item>
     
     <item>
-      <title>Intro Statistics</title>
+      <title>9. Intro Statistics</title>
       <link>/2016/06/05/intro-statistics/</link>
       <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
       

@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Bayesian Analysis</title>
+      <title>10. Bayesian Analysis</title>
       <link>/2017/06/06/bayesian-analysis/</link>
       <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
       
@@ -22,7 +22,7 @@
     </item>
     
     <item>
-      <title>Stochastic Simulation</title>
+      <title>11. Stochastic Simulation</title>
       <link>/2017/06/06/stochastic-simulation/</link>
       <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
       
@@ -37,7 +37,7 @@ Add normally distributed errors, modeling \(\epsilon\sim(N(0,\sigma))\)
     </item>
     
     <item>
-      <title>Probability</title>
+      <title>8. Probability</title>
       <link>/2017/06/04/probability/</link>
       <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
       
@@ -61,7 +61,7 @@ Projects will provide the opportunity for students to apply what we have learned
     </item>
     
     <item>
-      <title>Accessing Sensor Data 2</title>
+      <title>6. Accessing Sensor Data</title>
       <link>/2017/05/31/accessing-sensor-data/</link>
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
       
@@ -71,7 +71,7 @@ library(ncdf4) library(dplyr) hsi_calibration_dir &amp;lt;- &amp;#39;/data/terra
     </item>
     
     <item>
-      <title>Exploratory Data Analysis</title>
+      <title>7. Exploratory Data Analysis</title>
       <link>/2017/05/31/exploratory-data-analysis/</link>
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
       
@@ -168,7 +168,7 @@ Version Control SWC Git Novice 1-6 Getting Started Introduce yourself (once youâ
     </item>
     
     <item>
-      <title>Intro Statistics</title>
+      <title>9. Intro Statistics</title>
       <link>/2016/06/05/intro-statistics/</link>
       <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
       

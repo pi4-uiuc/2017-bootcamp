@@ -1,10 +1,10 @@
 ---
-title: Bayesian Analysis
-author: ~
+title: "10. Bayesian Analysis"
+author: David LeBauer
 date: '2017-06-06'
 slug: bayesian-analysis
 categories: []
-tags: []
+tags: [r, statistics]
 ---
 
 

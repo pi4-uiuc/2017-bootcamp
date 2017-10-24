@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.30.2" />
 
 
-<title>Stochastic Simulation - PI4 Computational Bootcamp</title>
-<meta property="og:title" content="Stochastic Simulation - PI4 Computational Bootcamp">
+<title>11. Stochastic Simulation - PI4 Computational Bootcamp</title>
+<meta property="og:title" content="11. Stochastic Simulation - PI4 Computational Bootcamp">
 
 
 
@@ -68,7 +68,7 @@
     <span class="article-duration">304 min read</span>
     
 
-    <h1 class="article-title">Stochastic Simulation</h1>
+    <h1 class="article-title">11. Stochastic Simulation</h1>
 
     
     <span class="article-date">2017/06/06</span>
@@ -753,8 +753,9 @@ time &lt;- lubridate::ymd_hms(met$environment_sensor_readings$timestamp)
 par &lt;- as.numeric(met$environment_sensor_readings$`sensor par`$value)
 rh &lt;- as.numeric(met$environment_sensor_readings$weather_station$relHumidity$value) / 100
 temp &lt;- as.numeric(met$environment_sensor_readings$weather_station$temperature$value)</code></pre>
-<pre class="r"><code>#devtools::install_github(&#39;ebimodeling/biocro&#39;)
-library(BioCro)</code></pre>
+<pre class="r"><code>if(!require(BioCro)) devtools::install_github(&#39;ebimodeling/biocro&#39;)</code></pre>
+<pre><code>## Loading required package: BioCro</code></pre>
+<pre class="r"><code>library(BioCro)</code></pre>
 <pre class="r"><code>A &lt;- c4photo(Qp = par, Tl = temp, RH = rh)$Assim
 
 pairs(data.frame(A, par, temp, rh))</code></pre>

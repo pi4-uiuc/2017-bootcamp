@@ -1,5 +1,5 @@
 ---
-title: Probability
+title: "8. Probability"
 author: "David LeBauer"
 date: '2017-06-04'
 slug: probability
