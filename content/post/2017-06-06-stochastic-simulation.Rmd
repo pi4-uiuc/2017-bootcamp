@@ -10,6 +10,7 @@ tags: [r, statistics]
 > **Note**: Some of the commands below, particularly those accessing the terraref database from within RStudio, require being logged into the [NDS Analytics Workbench](http://www.terraref.ndslabs.org/#/). This requires signing up for the [TERRA REF Alpha User program](https://docs.google.com/forms/d/e/1FAIpQLScBsD042RrRok70BCGCRwARTcm9etvVHqvQaz1c5X7c5y0H3w/viewform?c=0&w=1)
 
 ```{r}
+options(warn=-1)
 library(ggplot2)
 ```
 
@@ -212,7 +213,7 @@ mean(duplicated(chain))
 burnin <- nrow(chain)/2
 
 chain2 <- chain[burnin:nrow(chain), ]
-(1:nrow(chain2)/2)*2
+#(1:nrow(chain2)/2)*2
 
 
 ```
@@ -323,7 +324,7 @@ Why are these different?
 
 For non-linear functions see  Jensen's Inequality ([Wikipedia](https://en.wikipedia.org/wiki/Jensen%27s_inequality))
 
-This means - be careful when and how you use averages - everywhere!!! Spatial and temporal downscaling is how crop modelers deal with lower resolution atmospheric model forecasts. For example the most recent IPCC 100 y climate forecasts were generated on ~100km grids ([Taylor et al 2012](http://journals.ametsoc.org/doi/pdf/10.1175/BAMS-D-11-00094.1)), thus one data point may simultaneously represent a month that is $60\degreee$F and foggy in San Fransicsco and $100\degree$F and dry in Davis, CA. At the same time, crop models need to run on local hourly data while also capturing the uncertainty represented by within and across model variability.
+This means - be careful when and how you use averages - everywhere!!! Spatial and temporal downscaling is how crop modelers deal with lower resolution atmospheric model forecasts. For example the most recent IPCC 100 y climate forecasts were generated on ~100km grids ([Taylor et al 2012](http://journals.ametsoc.org/doi/pdf/10.1175/BAMS-D-11-00094.1)), thus one data point may simultaneously represent a month that is $60^o$F and foggy in San Fransicsco and $100^o$F and dry in Davis, CA. At the same time, crop models need to run on local hourly data while also capturing the uncertainty represented by within and across model variability.
 
 
 #### Model sensitivity

@@ -28,7 +28,7 @@
       
       <guid>/2017/06/06/stochastic-simulation/</guid>
       <description>Note: Some of the commands below, particularly those accessing the terraref database from within RStudio, require being logged into the NDS Analytics Workbench. This requires signing up for the TERRA REF Alpha User program
- library(ggplot2) Stochastic Simulation (Bolker Ch5) A deterministic linear function:
+ options(warn=-1) library(ggplot2) Stochastic Simulation (Bolker Ch5) A deterministic linear function:
 \[y_\rm{det}=a+bx\]
 Add normally distributed errors, modeling \(\epsilon\sim(N(0,\sigma))\)
 \[Y\sim N(a+bx, \sigma)\] Or equivalently:

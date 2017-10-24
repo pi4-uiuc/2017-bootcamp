@@ -482,8 +482,8 @@ grass_yields <- read.csv('data/grass_yield.csv') %>%
 
 ### Model fitting
 
-```{r}
-#install.packages('caret')
+```{r caret, eval=FALSE}
+install.packages('caret')
 require(caret)
 
 ctrl <- trainControl(method = "repeatedcv", repeats = 10, savePred = TRUE)
