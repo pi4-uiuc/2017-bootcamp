@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.21" />
+<meta name="generator" content="Hugo 0.30.2" />
 
 
-<title>5. Databases and SQL - PI4 Computational Bootcamp</title>
-<meta property="og:title" content="5. Databases and SQL - PI4 Computational Bootcamp">
+<title>Databases and SQL - PI4 Computational Bootcamp</title>
+<meta property="og:title" content="Databases and SQL - PI4 Computational Bootcamp">
 
 
 
@@ -47,6 +47,10 @@
     
     <li><a href="../../../../post/">Class Notes</a></li>
     
+    <li><a href="https://github.com/pi4-uiuc">GitHub</a></li>
+    
+    <li><a href="../../../../projects/">Projects</a></li>
+    
     <li><a href="../../../../reading/">Reading</a></li>
     
     <li><a href="../../../../syllabus/">Syllabus</a></li>
@@ -61,18 +65,19 @@
 
   <article class="article">
     
-    <span class="article-duration">11 min read</span>
+    <span class="article-duration">15 min read</span>
     
 
-    <h1 class="article-title">5. Databases and SQL</h1>
+    <h1 class="article-title">Databases and SQL</h1>
 
     
     <span class="article-date">2017/05/30</span>
     
 
     <div class="article-content">
-      <div id="introduction" class="section level2">
-<h2>Introduction</h2>
+      <div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>We started with an overview of data management, including the data lifecycle, metadata, and databases, using the TERRA REF to illustrate applications.</p>
 <iframe src="https://docs.google.com/presentation/d/1dQHlodU9PggM7khqlL_OS4P-X-o96D78ihuvuD2Iong/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
 </iframe>
 </div>
@@ -80,26 +85,41 @@
 <h2>Spreadsheets and Tables</h2>
 <p>A database is a generic term for data. Often these are divided into ‘relational’ and ‘non-relational’… We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.</p>
 <p>In fact, so far we have been working with tables.</p>
+<div id="example-spreadsheets" class="section level3">
+<h3>Example Spreadsheets</h3>
+<p>Later we will see how these data were re-organized in a relational database. These examples illustrate some common issues with organizing data in spreadsheets.</p>
+<div id="a-collection-of-miscanthus-yield-data-as-a-spreadsheet." class="section level4">
+<h4>A collection of <a href="https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs">Miscanthus Yield</a> data as a spreadsheet.</h4>
+<p>These data were found in published articles and organized in a spreadsheet.</p>
+<iframe src="https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs/pubhtml?widget=true&amp;headers=false">
+</iframe>
+<blockquote>
+<p>What about this spreadsheet would make it difficult for a machine to interpret?</p>
+</blockquote>
 </div>
-<div id="miscanthus-yields" class="section level2">
-<h2>Miscanthus Yields</h2>
-<p><a href="https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs" class="uri">https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs</a> ## Sorghum Data from Arizona</p>
-<p>Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</p>
-<p><a href="https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U" class="uri">https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U</a></p>
+<div id="sorghum-data-from-arizona" class="section level4">
+<h4><a href="https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U">Sorghum Data from Arizona</a></h4>
+<p>These data were collected in Arizona, and will be used as ‘ground truth’ to calibrate and validate sensor-based data collections.</p>
+<iframe src="https://docs.google.com/spreadsheets/d/1ESwAR2-BpQ2HfaCoSDCQaiBJVab_5sHawEltyYcLP8U/pubhtml?widget=true&amp;headers=false">
+</iframe>
 <p>Let’s review the pages</p>
 <ul>
-<li>README is good. They are well ahead of the curve on this!</li>
-<li>What additional information is here?</li>
-<li>Where is the data we want to look at?</li>
-<li><p>What information is redundant</p></li>
-<li><p>Download the table “PlantHeights_AllPlots” as CSV</p></li>
+<li>README is good. These researchers provide necessary information in a clearly identified worksheet.</li>
+<li>What additional information about the experiment are included?</li>
+<li>Where is the ‘primary’ data that a scientist might wish to analyze?</li>
+<li>What information is redundant?</li>
+<li>Is any useful information missing?</li>
 </ul>
+<p>Download the table “PlantHeights_AllPlots” as CSV</p>
+</div>
+</div>
 </div>
 <div id="data-cleaning" class="section level2">
 <h2>Data Cleaning</h2>
 <ul>
 <li>In this lesson, we will use Open Refine to find errors, sort, and clean our dataset.</li>
-<li>Open the OpenRefine container in the NDSLabs workbench</li>
+<li>Note that some of the errors we find were introduced explicitly for teaching.</li>
+<li>Open the OpenRefine container in the NDSLabs workbench.</li>
 </ul>
 <div id="about-open-refine" class="section level3">
 <h3>About Open Refine</h3>
@@ -108,49 +128,52 @@
 </div>
 <div id="importing-data-into-open-refine" class="section level3">
 <h3>Importing Data into Open Refine</h3>
-<p>Once OpenRefine is launched in your browser, the left margin has options to Create Project, Open Project, or Import Project. Here we will create a new project:</p>
+<p>Once OpenRefine is launched in your browser, the left margin has options to <code>Create Project</code>, <code>Open Project</code>, or <code>Import Project</code>. Here we will create a new project:</p>
 <ul>
-<li>Click ‘Create Project’; ‘Get data from This Computer’ should be selected</li>
+<li>Click <code>Create Project</code>; <code>Get data from this computer</code> should be selected</li>
 <li>what other ways can you get data into OpenRefine?</li>
-<li>Click ‘Choose Files’ and select the file <code>DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv</code></li>
-<li>Click ‘Open’ –&gt; ‘Next’</li>
+<li>Click <code>Choose Files</code> and select the file:
+<p align="center">
+<code>DRAFT_Sorghum2_PlantHeights_AugustPlanting-training-sample - PlantHeights_AllPlots.csv</code>
+</p></li>
+<li>Click <code>Open</code> –&gt; <code>Next</code></li>
 <li>OpenRefine gives you a preview - a chance to show you it understood the file.</li>
 <li>did the file show up sensibly?</li>
-<li>In the upper right corner create a meaningful project name and then click “Create Project”</li>
+<li>In the upper right corner create a meaningful project name and then click <code>Create Project</code>.</li>
 </ul>
 </div>
 <div id="faceting" class="section level3">
 <h3>Faceting</h3>
 <p>OpenRefine supports faceted browsing. This allows you to see the big picture of your data and then filter down to a subset of rows. Once you have a target set of rows, you can apply changes in bulk.</p>
+<p>Let’s work with one of the columns containing plant height measurements:</p>
 <ul>
-<li>lets work with one of the columns containing plant height measurements</li>
-<li>next to one of the numeric columns (Plant_ht_Aug24) click the arrow</li>
-<li>facet –&gt; Numeric facet.
+<li>next to one of the numeric columns “Plant_ht_Aug24” click the arrow</li>
+<li><code>facet</code> –&gt; <code>Numeric facet</code>.
 <ul>
 <li>what went wrong?</li>
 </ul></li>
-<li>click ‘edit cells’ –&gt; common transforms –&gt; numeric</li>
-<li>now try to click facet –&gt; numeric again
+<li>click <code>edit cells</code> –&gt; <code>common transforms</code> –&gt; <code>numeric</code></li>
+<li>now try to click <code>facet</code> –&gt; <code>numeric</code> again
 <ul>
 <li>what do you see this time?</li>
 <li>How is a numeric facet different than a text facet?</li>
 </ul></li>
-<li>click Plant_ht_Sep15
+<li>click “Plant_ht_Sep15”
 <ul>
 <li>how many rows are there with non-numeric data?</li>
 <li>what to do here?</li>
 </ul></li>
 </ul>
-<p>Lets look at the Genotype field</p>
+<p>Let’s look at the Genotype field:</p>
 <ul>
 <li>select the arrow next to the column named “Genotype”</li>
-<li>select “Facet” –&gt; “Text Facet”</li>
-<li>sort by “count”</li>
+<li>select <code>Facet</code> –&gt; <code>Text Facet</code></li>
+<li>sort by <code>count</code></li>
 <li>what do you notice?</li>
 <li>What is the level of replication in this study?</li>
 <li>Which genotypes are not like the others?</li>
-<li>why are there so many Genotypes named “Great Scott” and “border”?</li>
-<li>Lets clean up all whitespace problems</li>
+<li>why are there so many genotypes named “Great Scott” and “border”?</li>
+<li>Let’s clean up all whitespace problems</li>
 <li>trim leading and trailing whitespace</li>
 <li>trim consecutive white space</li>
 <li>now how many groups do we have?</li>
@@ -173,26 +196,49 @@
 </li>
 </ol>
 <ul>
-<li>import from <a href="https://terraref.ncsa.illinois.edu/bety/api/beta/variables.xml?key=9999999999999999999999999999999999999999&amp;limit=none" class="uri">https://terraref.ncsa.illinois.edu/bety/api/beta/variables.xml?key=9999999999999999999999999999999999999999&amp;limit=none</a></li>
-<li>note that this is an XML format (the BETYdb API provide json, xml, and csv)</li>
+<li>import from <a href="https://terraref.ncsa.illinois.edu/bety/api/beta/variables?key=9999999999999999999999999999999999999999&amp;limit=none" class="uri">https://terraref.ncsa.illinois.edu/bety/api/beta/variables?key=9999999999999999999999999999999999999999&amp;limit=none</a></li>
 </ul>
-<div id="open-refine" class="section level4">
-<h4>Open Refine</h4>
+<ol start="3" style="list-style-type: decimal">
+<li>Different formats</li>
+</ol>
 <ul>
-<li>Lets look at the Miscanthus Yield dataset again</li>
-<li>Open –&gt; Create Project –&gt; From URL</li>
-<li>Enter <a href="https://www.betydb.org/search.csv?search=Ayield" class="uri">https://www.betydb.org/search.csv?search=Ayield</a></li>
-<li>What is the matter here? Lets clean up the imported dataset.</li>
-<li>columns are csv</li>
-<li>discard first 8 lines, parse next 1 line as column headers</li>
-<li>also, ‘parse cells to numbers, dates, etc’</li>
-<li>Create Project</li>
+<li>note that you can also download these data as xml format by appending <code>.xml</code> to the table name, e.g. <code>...api/beta/variables.xml?...</code></li>
+<li>Import the same variables table thus: <a href="https://terraref.ncsa.illinois.edu/bety/api/beta/variables?key=9999999999999999999999999999999999999999&amp;limit=none" class="uri">https://terraref.ncsa.illinois.edu/bety/api/beta/variables?key=9999999999999999999999999999999999999999&amp;limit=none</a></li>
 </ul>
 </div>
-<div id="from-a-web-interface" class="section level4">
-<h4>From a Web Interface</h4>
+<div id="miscanthus-yields" class="section level3">
+<h3>Miscanthus Yields</h3>
+<p>Lets look at the Miscanthus Yield dataset from earlier. This version of the data have been imported from the data we looked at in the spreadsheet above.</p>
+<ul>
+<li>Open –&gt; Create Project –&gt; From URL</li>
+<li>when you review the data, select the lowest level of hierarchy so column names aren’t long concatenations of the entire tree.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>See if you can find any redundant variables:<br />
+</li>
+</ol>
+<ul>
+<li>import from <a href="https://terraref.ncsa.illinois.edu/bety/api/beta/variables.xml?key=9999999999999999999999999999999999999999&amp;limit=none" class="uri">https://terraref.ncsa.illinois.edu/bety/api/beta/variables.xml?key=9999999999999999999999999999999999999999&amp;limit=none</a></li>
+<li>note that this is in XML format (the BETYdb API provide json, xml, and csv)</li>
+</ul>
+<div id="open-refine" class="section level5">
+<h5>Open Refine</h5>
+<ul>
+<li>Let’s look at the Miscanthus Yield dataset again</li>
+<li><code>Open</code> –&gt; <code>Create Project</code> –&gt; <code>From URL</code></li>
+<li>Enter <a href="https://www.betydb.org/search.csv?search=Ayield" class="uri">https://www.betydb.org/search.csv?search=Ayield</a></li>
+<li>What is the matter here? Let’s clean up the imported dataset:</li>
+<li>columns are csv</li>
+<li>discard first 8 lines, parse next 1 line as column headers</li>
+<li>parse cells to numbers, dates, etc</li>
+<li><code>Create Project</code></li>
+</ul>
+</div>
+</div>
+<div id="downloading-data-from-a-web-interface" class="section level3">
+<h3>Downloading Data from a Web Interface</h3>
 <p>Go to <a href="https://betydb.org">betydb.org</a> and enter “Miscanthus Yield” into the search box and click the search glass icon.</p>
-<p>Lets review the information in this table.</p>
+<p>Let’s review the information in this table:</p>
 <ul>
 <li>Site with city</li>
 <li>Date + time + timezone</li>
@@ -203,13 +249,35 @@
 <li>Method</li>
 <li>Entity</li>
 </ul>
-<p>Now click the “Download Results” button. This will download a .csv file. A <a href="https://en.wikipedia.org/wiki/Comma-separated_values">.csv file</a> is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:</p>
+<p>Now click the “Download Results” button. This will download a .csv file.</p>
+<blockquote>
+<p>How does this approach compare to accessing data using a URL?</p>
+</blockquote>
+<blockquote>
+<p>How are the data in this database different from the data in the spreadsheets above?</p>
+</blockquote>
+<p>Now click the <code>Download Results</code> button. This will download a .csv file. A <a href="https://en.wikipedia.org/wiki/Comma-separated_values">.csv file</a> is a table where each column is defined by a comma, e.g. a 3x3 matrix would be formatted thus:</p>
 <pre><code>row 1 col 1, row 1 col 2, row 1 col 3
 row 2 col 1, row 2 col 2, row 2 col 3
 row 3 col 1, row 3 col 2, row 3 col 3</code></pre>
-<p><em>a brief note about csv files</em></p>
+<div id="a-brief-note-about-csv-files" class="section level4">
+<h4><em>a brief note about csv files</em></h4>
 <p>By default, many computers will open the csv file directly into a <a href="https://en.wikipedia.org/wiki/spreadsheet">spreadsheet program</a> like Microsoft Excel or OpenOffice Calc. But because it is a text file, you can also open it in a <a href="https://en.wikipedia.org/wiki/Text_editor">text editor</a> like Notepad, nano, or emacs.</p>
 <p>It can also be easily read by any software or parsed at the command line using tools like <code>cut</code> and <code>sed</code>. Unlike xml and json, it is more intuitive for a human to read.</p>
+</div>
+</div>
+<div id="tidy-data" class="section level3">
+<h3>Tidy data</h3>
+<p>Tidy data means that:</p>
+<ul>
+<li>Each variable forms a column.</li>
+<li>Each observation forms a row.</li>
+<li>Each type of observational unit forms a table.</li>
+</ul>
+<p>From <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">tidyr vignette</a></p>
+<blockquote>
+<p>YOUR TURN Is the Miscanthus dataset tidy? What would we need to do to make it tidy?</p>
+</blockquote>
 <blockquote>
 <p>where are there redundancies?</p>
 </blockquote>
@@ -225,31 +293,19 @@ row 3 col 1, row 3 col 2, row 3 col 3</code></pre>
 </ul>
 </div>
 </div>
-<div id="tidy-data" class="section level3">
-<h3>Tidy data</h3>
-<ul>
-<li>Each variable forms a column.</li>
-<li>Each observation forms a row.</li>
-<li>Each type of observational unit forms a table.</li>
-</ul>
-<p>From <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">tidyr vignette</a></p>
-<blockquote>
-<p>YOUR TURN Is the Miscanthus dataset tidy? What would we need to do to make it tidy?</p>
-</blockquote>
-</div>
-</div>
 <div id="relational-databases-and-sql" class="section level2">
 <h2>Relational Databases and SQL</h2>
+<p>Some of the following is based on the <a href="http://www.datacarpentry.org/sql-ecology-lesson/00-sql-introduction/">Data Carpentry SQL Introduction for Ecology lesson</a>.</p>
 <p>The <a href="https://en.wikipedia.org/wiki/Relational_model">relational model</a> for managing databases consists of representing the data in terms of tuples of relations. Many modern databases use some version of this. Structured Query Language or <a href="https://en.wikipedia.org/wiki/SQL">SQL</a> is a language implementation based on the relational model, although there are some differences.</p>
 <div id="data-normalization" class="section level3">
 <h3>Data Normalization</h3>
-<p>“Codd’s Normal Forms” from (Codd 1970)</p>
+<p>“Codd’s Normal Forms” from <a href="http://dl.acm.org/citation.cfm?doid=362384.362685">Codd 1970</a>:</p>
 <blockquote>
 <p>process of organizing the columns (attributes) and tables (relations) of a relational database to reduce data redundancy and improve data integrity. <a href="https://en.wikipedia.org/wiki/Database_normalization">Wikipedia - Database normalization</a></p>
 </blockquote>
-<p>To motivate the use of a relational databases, lets start by looking at a table. Is there redundant information that violates the best practice of having a single canonical representation for each piece of information?</p>
+<p>To motivate the use of a relational databases, let’s start by looking at a table. We want to see if there is redundant information that violates the best practice of having a single canonical representation for each piece of information.</p>
 <blockquote>
-<p>YOUR TURN: which of these fields has redundant data?</p>
+<p>Which of these fields has redundant data?</p>
 </blockquote>
 <ul>
 <li>SQL allows us to select and group subsets of data, do math and other calculations, and combine data.</li>
@@ -259,50 +315,118 @@ row 3 col 1, row 3 col 2, row 3 col 3</code></pre>
 <li>natural keys</li>
 <li>Different database management systems (DBMS) use slightly different vocabulary, but they are all based on the same ideas.</li>
 </ul>
-<p>^^ from <a href="http://www.datacarpentry.org/sql-ecology-lesson/00-sql-introduction/">Data Carpentry</a> &gt; how would you begin to normalize this data set?</p>
+<blockquote>
+<p>How would you begin to normalize this data set?</p>
+</blockquote>
 </div>
-<div id="lets-look-at-the-underlying-database" class="section level3">
-<h3>Lets look at the underlying database</h3>
-<div id="connecting-to-a-database-server" class="section level4">
-<h4>Connecting to a database server</h4>
-<p>connection parameters:</p>
+</div>
+<div id="lets-look-at-the-betydb-relational-database" class="section level2">
+<h2>Lets look at the BETYdb relational database</h2>
+<div id="database-management-systems" class="section level3">
+<h3>Database Management Systems</h3>
+<p>Common software: MySQL, PostgreSQL, Oracle, Access</p>
+<p>These are the programs that store data and process queries.</p>
+</div>
+<div id="database-connections" class="section level3">
+<h3>Database Connections</h3>
+<p>There are many ways to connect to a relational database.</p>
+<p>Two connection types: 1. via an API by constructing a URL as we did above (betydb.org/search?search=Miscanthus+Yield) 2. directly to the database server</p>
+<p>For both of these approaches, there are ‘direct connections’ and ‘clients’. A ‘client’ is a way of making the interface easier.</p>
+<p>For example with the R <code>traits</code> package, the function <code>betydb_search(&quot;Miscanthus Yield&quot;)</code> returns the table as an R dataframe. Otherwise, it would be necessary to determine the corresponding URL, download the csv, and then import it into R.</p>
+<p>We can also either directly connect to the database and use SQL or connect to it with an R client.</p>
+<p>Some different ways of connecting to BETYdb:</p>
+<table>
+<thead>
+<tr class="header">
+<th>connection type</th>
+<th>language</th>
+<th>package</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SQL</td>
+<td>SQL</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>SQL/ODBC</td>
+<td>R + SQL</td>
+<td>RPostgreSQL</td>
+</tr>
+<tr class="odd">
+<td>SQL/ODBC</td>
+<td>R / dplyr</td>
+<td>dplyr</td>
+</tr>
+<tr class="even">
+<td>API</td>
+<td>R</td>
+<td>traits</td>
+</tr>
+<tr class="odd">
+<td>API</td>
+<td>URL</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>We will run through these different connections below.</p>
+<p>Why use an API? * it is more secure * it can abstract the database structure into a more familiar / human-friendly format</p>
+<p>Why use SQL connection</p>
+<ul>
+<li>faster</li>
+<li>more access to all tables / joins in database</li>
+<li>can handle larger datasets and subset / summarize / filter before bringing into memory.</li>
+</ul>
+<p>To connect to a database server you need the following connection parameters:</p>
 <ul>
 <li>host</li>
 <li>login</li>
 <li>user</li>
 <li>database (database name)</li>
 </ul>
-<p>Lets connect to the terraref instance of betydb. Until now we have been accessing betydb.org. Now we will access (a copy of) the database behind terraref.ncsa.illinois.edu/bety</p>
+<p>Lets connect to the terraref instance of betydb. Until now we have been accessing betydb.org. Now we will access (a copy of) the database behind <code>terraref.ncsa.illinois.edu/bety</code></p>
+<p>This connection is only available on the local *ncsa.illinois.edu network, and can be accessed through the NDS Labs workbench.</p>
 <pre><code>Host: terra-bety.default
 Port: 5432
 User: bety
 Password: bety
 DB: bety</code></pre>
-<p>From the command line:</p>
+<div id="command-line-access" class="section level4">
+<h4>Command line access</h4>
+<p>You can access the PostgreSQL command line in a terminal using the following command:</p>
 <pre class="sh"><code>psql -U bety -d bety -h terra-bety.default</code></pre>
-<p>The hidden .pgpass file:</p>
-<pre class="sh"><code>echo &quot;terra-bety.default:5432:bety:bety:bety&quot; &gt;&gt; ~/.pgpass
-chmod 0600 ~/.pgpass # why?
-psql </code></pre>
-<p>Open the PostgreSQL application in the NDSLabs workbench and enter the connection parameters above.</p>
-<p>Connection for use in R and Rmarkdown</p>
+<p>For security, you can hide your connection parameters in a hidden file called <code>~/.pgpass</code> in your home directory that contains the following line:</p>
+<pre class="sh"><code>terra-bety.default:5432:bety:bety:bety</code></pre>
+<p>It must have appropriate permissions, so after creating the above file run <code>chmod 0600 ~/.pgpass</code>.</p>
+<p>Then you only need to type <code>psql</code> to log in</p>
+</div>
+</div>
+<div id="postgresql-studio" class="section level3">
+<h3>PostgreSQL Studio</h3>
+<p>There are many Graphical User Interface applications that make it easier to explore and manage databases. We will use PostgreSQL.</p>
+<p>Open the PostgreSQL Studio application in the NDSLabs workbench and enter the connection parameters:</p>
+<pre><code>Host: bety6.ncsa.illinois.edu
+Port: 5432
+User: viewer
+Password: DelchevskoOro
+DB: bety</code></pre>
+</div>
+<div id="to-connect-in-r-and-rmarkdown-use" class="section level3">
+<h3>To connect in R and RMarkdown use:</h3>
 <pre class="r"><code>library(RPostgreSQL)</code></pre>
-<pre><code>## Loading required package: methods</code></pre>
 <pre><code>## Loading required package: DBI</code></pre>
 <pre class="r"><code>dbcon &lt;- dbConnect(RPostgreSQL::PostgreSQL(),
-                dbname = &quot;bety&quot;, 
-                password = &#39;bety&#39;, 
-                host = &#39;terra-bety.default&#39;, 
-                user = &#39;bety&#39;, 
-                port = 5432)</code></pre>
-<pre class="sql"><code>REFRESH MATERIALIZED VIEW traitsview_private;
-REFRESH MATERIALIZED VIEW yieldsview_private;
-REFRESH MATERIALIZED VIEW traits_and_yields_view_private;
-REFRESH MATERIALIZED VIEW traits_and_yields_view;</code></pre>
-</div>
+                   dbname = &quot;bety&quot;, 
+                   password = &#39;DelchevskoOro&#39;, 
+                   host = &#39;bety6.ncsa.illinois.edu&#39;, 
+                   user = &#39;viewer&#39;, 
+                   port = 5432)</code></pre>
 </div>
 <div id="tables-schemas" class="section level3">
 <h3>Tables &amp; Schemas</h3>
+<p>This is an entity-relationship diagram:</p>
 <div class="figure">
 <img src="https://raw.githubusercontent.com/ebimodeling/betydb_manuscript/master/figures/gcbb12420-fig-0001.png" alt="A simplified entity–relationship diagram for key tables in Biofuel Ecophysiological Traits and Yields database (BETYdb)." />
 <p class="caption">A simplified entity–relationship diagram for key tables in Biofuel Ecophysiological Traits and Yields database (BETYdb).</p>
@@ -315,7 +439,8 @@ REFRESH MATERIALIZED VIEW traits_and_yields_view;</code></pre>
 </div>
 <div id="sql" class="section level3">
 <h3>SQL</h3>
-<p>Lets start using some basic SQL Commands</p>
+<p>Here is a list of SQL Commands</p>
+<p>Let’s start using some basic SQL Commands from the following list:</p>
 <pre class="sql"><code>SELECT
 WHERE
 JOIN
@@ -331,12 +456,118 @@ AVG
 SUM
 COUNT
 LIKE</code></pre>
+</div>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+<p>Filter with <code>where</code></p>
+<p><code>Select</code> can be used to view from a table, the symbol <code>*</code> is a wildcard:</p>
 <pre class="sql"><code>select * from traits limit 10;
 select * from traits where mean &lt; 0;</code></pre>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-1">Table 1: </span>2 records</caption>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">site_id</th>
+<th align="right">specie_id</th>
+<th align="right">citation_id</th>
+<th align="right">cultivar_id</th>
+<th align="right">treatment_id</th>
+<th align="left">date</th>
+<th align="right">dateloc</th>
+<th align="left">time</th>
+<th align="right">timeloc</th>
+<th align="right">mean</th>
+<th align="right">n</th>
+<th align="left">statname</th>
+<th align="right">stat</th>
+<th align="left">notes</th>
+<th align="left">created_at</th>
+<th align="left">updated_at</th>
+<th align="right">variable_id</th>
+<th align="right">user_id</th>
+<th align="right">checked</th>
+<th align="right">access_level</th>
+<th align="right">entity_id</th>
+<th align="right">method_id</th>
+<th align="right">date_year</th>
+<th align="right">date_month</th>
+<th align="right">date_day</th>
+<th align="right">time_hour</th>
+<th align="right">time_minute</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">6001791881</td>
+<td align="right">6000003524</td>
+<td align="right">2588</td>
+<td align="right">6e+09</td>
+<td align="right">6e+09</td>
+<td align="right">6e+09</td>
+<td align="left">2016-11-28 06:00:00</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">9</td>
+<td align="right">-0.79</td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">2017-07-22 23:48:01</td>
+<td align="left">2017-10-13 15:28:49</td>
+<td align="right">6e+09</td>
+<td align="right">6e+09</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">6000021326</td>
+<td align="right">6e+09</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">6001791888</td>
+<td align="right">6000003524</td>
+<td align="right">2588</td>
+<td align="right">6e+09</td>
+<td align="right">6e+09</td>
+<td align="right">6e+09</td>
+<td align="left">2016-11-28 06:00:00</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">9</td>
+<td align="right">-0.77</td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="right">NA</td>
+<td align="left"></td>
+<td align="left">2017-07-22 23:48:01</td>
+<td align="left">2017-10-13 15:28:49</td>
+<td align="right">6e+09</td>
+<td align="right">6e+09</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">6000021327</td>
+<td align="right">6e+09</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>What distinct traits are available in the <code>traits_and_yields_view</code> table?</p>
+<p><code>select distinct</code> can also be used:</p>
 <pre class="sql"><code>select distinct trait from traits_and_yields_view;</code></pre>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:distinct">Table 1: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:distinct">Table 2: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="left">trait</th>
@@ -344,44 +575,45 @@ select * from traits where mean &lt; 0;</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">sv_area</td>
+<td align="left">planter_seed_drop</td>
 </tr>
 <tr class="even">
-<td align="left">height</td>
+<td align="left">stem_width</td>
 </tr>
 <tr class="odd">
-<td align="left">panicle_height</td>
+<td align="left">coleoptile_color</td>
 </tr>
 <tr class="even">
-<td align="left">perimeter</td>
+<td align="left">grain_moisture_content</td>
 </tr>
 <tr class="odd">
-<td align="left">leaf_width</td>
+<td align="left">ground_level_PAR</td>
 </tr>
 <tr class="even">
-<td align="left">NDVI</td>
+<td align="left">Sugar_content</td>
 </tr>
 <tr class="odd">
-<td align="left">emergence_count</td>
+<td align="left">Minutes_after_first_Incident_PAR</td>
 </tr>
 <tr class="even">
-<td align="left">spike_height</td>
+<td align="left">aboveground_dry_biomass_handharvest</td>
 </tr>
 <tr class="odd">
-<td align="left">hull_area</td>
+<td align="left">leaf_stomatal_conductance</td>
 </tr>
 <tr class="even">
-<td align="left">tv_area</td>
+<td align="left">canopy_height</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>We can also group what we view and organize them to summarize the number of records for each trait:</p>
 <pre class="sql"><code>select sitename, count(*) as n
-   from traits_and_yields_view 
+   from traits_and_yields_view
    group by sitename order by n desc;</code></pre>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:sql-group-order">Table 2: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:sql-group-order">Table 3: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="left">sitename</th>
@@ -394,40 +626,40 @@ select * from traits where mean &lt; 0;</code></pre>
 <td align="right">5490</td>
 </tr>
 <tr class="even">
-<td align="left">MAC Field Scanner Field Plot 565 Season 2</td>
-<td align="right">4474</td>
+<td align="left">MAC Field Scanner Season 2 Range 25 Pass 4</td>
+<td align="right">271</td>
 </tr>
 <tr class="odd">
-<td align="left">MAC Field Scanner Field Plot 556 Season 2</td>
-<td align="right">4217</td>
+<td align="left">MAC Field Scanner Season 2 Range 13 Pass 1</td>
+<td align="right">268</td>
 </tr>
 <tr class="even">
-<td align="left">MAC Field Scanner Field Plot 557 Season 2</td>
-<td align="right">3979</td>
+<td align="left">MAC Field Scanner Season 2 Range 3 Pass 3</td>
+<td align="right">268</td>
 </tr>
 <tr class="odd">
-<td align="left">MAC Field Scanner Field Plot 566 Season 2</td>
-<td align="right">3833</td>
+<td align="left">MAC Field Scanner Season 2 Range 16 Pass 4</td>
+<td align="right">267</td>
 </tr>
 <tr class="even">
-<td align="left">MAC Field Scanner Field Plot 567 Season 2</td>
-<td align="right">3742</td>
+<td align="left">MAC Field Scanner Season 2 Range 20 Pass 6</td>
+<td align="right">261</td>
 </tr>
 <tr class="odd">
-<td align="left">MAC Field Scanner Field Plot 564 Season 2</td>
-<td align="right">3712</td>
+<td align="left">MAC Field Scanner Season 2 Range 26 Pass 5</td>
+<td align="right">260</td>
 </tr>
 <tr class="even">
-<td align="left">MAC Field Scanner Field Plot 558 Season 2</td>
-<td align="right">3666</td>
+<td align="left">MAC Field Scanner Season 2 Range 19 Pass 4</td>
+<td align="right">259</td>
 </tr>
 <tr class="odd">
-<td align="left">MAC Field Scanner Field Plot 563 Season 2</td>
-<td align="right">3659</td>
+<td align="left">MAC Field Scanner Season 2 Range 32 Pass 6</td>
+<td align="right">259</td>
 </tr>
 <tr class="even">
-<td align="left">MAC Field Scanner Field Plot 555 Season 2</td>
-<td align="right">3648</td>
+<td align="left">MAC Field Scanner Season 2 Range 27 Pass 6</td>
+<td align="right">257</td>
 </tr>
 </tbody>
 </table>
@@ -435,17 +667,19 @@ select * from traits where mean &lt; 0;</code></pre>
 </div>
 <div id="types-of-joins" class="section level3">
 <h3>Types of Joins</h3>
+<p>Joins are used to put together tables in different ways:</p>
 <div class="figure">
 <img src="http://r4ds.had.co.nz/diagrams/join-venn.png" alt="types of joins" />
 <p class="caption">types of joins</p>
 </div>
 <p>From <a href="http://r4ds.had.co.nz/relational-data.html">Grolemund and Wickham “R for Data Science”</a></p>
-<pre class="sql"><code>select name, units, date, mean from traits left join variables 
+<p>An example:</p>
+<pre class="sql"><code>select name, units, date, mean from traits left join variables
    on traits.variable_id = variables.id
    where variables.name = &#39;NDVI&#39;</code></pre>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:NDVI">Table 3: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:NDVI">Table 4: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="left">name</th>
@@ -458,68 +692,68 @@ select * from traits where mean &lt; 0;</code></pre>
 <tr class="odd">
 <td align="left">NDVI</td>
 <td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.09779</td>
-</tr>
-<tr class="even">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.01321</td>
-</tr>
-<tr class="odd">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.11550</td>
-</tr>
-<tr class="even">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.03440</td>
-</tr>
-<tr class="odd">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.02625</td>
-</tr>
-<tr class="even">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.11210</td>
-</tr>
-<tr class="odd">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.04800</td>
-</tr>
-<tr class="even">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
 <td align="left">2016-09-08 07:00:00</td>
-<td align="right">0.29210</td>
+<td align="right">0.4646</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-09-16 07:00:00</td>
+<td align="right">0.6949</td>
+</tr>
+<tr class="odd">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-10-25 07:00:00</td>
+<td align="right">0.7440</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-10-01 07:00:00</td>
+<td align="right">0.7723</td>
 </tr>
 <tr class="odd">
 <td align="left">NDVI</td>
 <td align="left">ratio</td>
 <td align="left">2016-09-08 07:00:00</td>
-<td align="right">0.28910</td>
+<td align="right">0.4212</td>
 </tr>
 <tr class="even">
 <td align="left">NDVI</td>
 <td align="left">ratio</td>
-<td align="left">2016-09-08 07:00:00</td>
-<td align="right">0.36270</td>
+<td align="left">2016-09-16 07:00:00</td>
+<td align="right">0.6967</td>
+</tr>
+<tr class="odd">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-10-25 07:00:00</td>
+<td align="right">0.7431</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-10-01 07:00:00</td>
+<td align="right">0.7906</td>
+</tr>
+<tr class="odd">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-08-08 07:00:00</td>
+<td align="right">0.1919</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-09-16 07:00:00</td>
+<td align="right">0.6171</td>
 </tr>
 </tbody>
 </table>
 </div>
 <blockquote>
-<p>YOUR TURN: write queries that will 1. to join the sites table to the traits table 2. join the managements table to the traits table</p>
+<p>Write queries that will 1. join the sites table to the traits table 2. join the managements table to the traits table</p>
 </blockquote>
 </div>
 <div id="other-handy-features" class="section level3">
@@ -542,15 +776,16 @@ select * from traits where mean &lt; 0;</code></pre>
 </div>
 <div id="with" class="section level4">
 <h4>With</h4>
-<pre class="sql"><code>With NDVI as 
-  (select name, units, date, mean from traits left join variables 
+<p>With is handy for constructing larger queries. This function effectively creates a temporary table that can be queried.</p>
+<pre class="sql"><code>With NDVI as
+  (select name, units, date, mean from traits left join variables
      on traits.variable_id = variables.id
      where variables.name = &#39;NDVI&#39;
   )
   select * from NDVI;</code></pre>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:unnamed-chunk-2">Table 4: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:unnamed-chunk-2">Table 5: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="left">name</th>
@@ -563,62 +798,62 @@ select * from traits where mean &lt; 0;</code></pre>
 <tr class="odd">
 <td align="left">NDVI</td>
 <td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.09779</td>
-</tr>
-<tr class="even">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.01321</td>
-</tr>
-<tr class="odd">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.11550</td>
-</tr>
-<tr class="even">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.03440</td>
-</tr>
-<tr class="odd">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.02625</td>
-</tr>
-<tr class="even">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.11210</td>
-</tr>
-<tr class="odd">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
-<td align="left">2016-08-08 07:00:00</td>
-<td align="right">0.04800</td>
-</tr>
-<tr class="even">
-<td align="left">NDVI</td>
-<td align="left">ratio</td>
 <td align="left">2016-09-08 07:00:00</td>
-<td align="right">0.29210</td>
+<td align="right">0.4646</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-09-16 07:00:00</td>
+<td align="right">0.6949</td>
+</tr>
+<tr class="odd">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-10-25 07:00:00</td>
+<td align="right">0.7440</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-10-01 07:00:00</td>
+<td align="right">0.7723</td>
 </tr>
 <tr class="odd">
 <td align="left">NDVI</td>
 <td align="left">ratio</td>
 <td align="left">2016-09-08 07:00:00</td>
-<td align="right">0.28910</td>
+<td align="right">0.4212</td>
 </tr>
 <tr class="even">
 <td align="left">NDVI</td>
 <td align="left">ratio</td>
-<td align="left">2016-09-08 07:00:00</td>
-<td align="right">0.36270</td>
+<td align="left">2016-09-16 07:00:00</td>
+<td align="right">0.6967</td>
+</tr>
+<tr class="odd">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-10-25 07:00:00</td>
+<td align="right">0.7431</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-10-01 07:00:00</td>
+<td align="right">0.7906</td>
+</tr>
+<tr class="odd">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-08-08 07:00:00</td>
+<td align="right">0.1919</td>
+</tr>
+<tr class="even">
+<td align="left">NDVI</td>
+<td align="left">ratio</td>
+<td align="left">2016-09-16 07:00:00</td>
+<td align="right">0.6171</td>
 </tr>
 </tbody>
 </table>
@@ -630,30 +865,20 @@ select * from traits where mean &lt; 0;</code></pre>
 <li>Views (stored queries)</li>
 <li>Materialized views (pre-computed queries)</li>
 </ul>
+<p>Views help to store common queries. They are based on existing tables, but may include joins with auxillary tables and / or summaries.</p>
+<p>In BETYdb we use views to join metadata in sites, citations, treatments, variables, and other tables to the ‘primary’ tables named traits and yields. We have a view called ‘traits_and_yields_view’ that is used by the search API endpoint and search page in the Web interface.</p>
 <pre class="sql"><code>drop view if exists NDVI;
 
 create view NDVI as
-select * from traits_and_yields_view_private 
+select * from traits_and_yields_view_private
     where trait = &#39;NDVI&#39;;
 
 select * from NDVI;</code></pre>
 </div>
 </div>
-</div>
-<div id="database-management-systems" class="section level2">
-<h2>Database Management Systems</h2>
-<div id="common-software" class="section level3">
-<h3>Common software</h3>
-<p>MySQL, PostgreSQL, Oracle, Access(?!)</p>
-</div>
 <div id="r-rpostgresql-and-dplyr" class="section level3">
 <h3>R: RPostgreSQL and dplyr</h3>
-<pre class="r"><code>library(RPostgreSQL)
-
-dbcon &lt;- dbConnect(RPostgreSQL::PostgreSQL(),
-                dbname = &quot;bety&quot;, password = &#39;bety&#39;, host = &#39;terra-bety.default&#39;, user = &#39;bety&#39;, port = 5432)
-
-query &lt;- &quot;select * from traits left join variables 
+<pre class="r"><code>query &lt;- &quot;select * from traits left join variables
              on traits.variable_id = variables.id
              where variables.name = &#39;NDVI&#39;;&quot;
 #query &lt;- &quot;select count(*) from traits_and_yields_view_private&quot;
@@ -666,8 +891,8 @@ dbClearResult(result)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <div id="connecting-with-dplyr" class="section level4">
 <h4>Connecting with dplyr</h4>
-<p>Advantage for larger datasets: can do a lot of server-side summarization and some computing before pulling data into memory.</p>
-<p><a href="https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html</a></p>
+<p>Using the <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html">dplyr library</a> has the advantage for larger datasets that one can do a lot of server-side summarization and some computing before pulling data into memory.</p>
+<p>Here is an example of its use:</p>
 <pre class="r"><code>library(dplyr)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
@@ -677,47 +902,51 @@ dbClearResult(result)</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>bety_src &lt;- src_postgres(dbname = &quot;bety&quot;, password = &#39;bety&#39;, host = &#39;terra-bety.default&#39;, user = &#39;bety&#39;, port = 5432)
+<pre class="r"><code>bety_src &lt;- src_postgres(dbname = &quot;bety&quot;, 
+                         password = &#39;DelchevskoOro&#39;, 
+                         host = &#39;bety6.ncsa.illinois.edu&#39;, 
+                         user = &#39;viewer&#39;, 
+                         port = 5432)
 
 
 #translate_sql()</code></pre>
-<pre class="r"><code>treatments &lt;- tbl(bety_src, &#39;treatments&#39;) %&gt;% 
-  select(treatment_id = id , name, definition, control)
+<pre class="r"><code>treatments &lt;- tbl(bety_src, &#39;treatments&#39;) %&gt;%
+  dplyr::select(treatment_id = id , name, definition, control)
 
 managements_treatments &lt;- tbl(bety_src, &#39;managements_treatments&#39;)
 
-managements &lt;- tbl(bety_src, &#39;managements&#39;) %&gt;% 
-  filter(mgmttype %in% c(&#39;Fertilization_N&#39;, &#39;Planting&#39;, &#39;Irrigation&#39;)) %&gt;% 
-  select(management_id = id, date, mgmttype, level, units) %&gt;% 
-  left_join(managements_treatments, by = &#39;management_id&#39;) %&gt;% 
+managements &lt;- tbl(bety_src, &#39;managements&#39;) %&gt;%
+  filter(mgmttype %in% c(&#39;Fertilization_N&#39;, &#39;Planting&#39;, &#39;Irrigation&#39;)) %&gt;%
+  dplyr::select(management_id = id, date, mgmttype, level, units) %&gt;%
+  left_join(managements_treatments, by = &#39;management_id&#39;) %&gt;%
   left_join(treatments, by = &#39;treatment_id&#39;)
 
-planting &lt;-managements %&gt;% 
-  filter(mgmttype == &quot;Planting&quot;) %&gt;% 
-  select(treatment_id, planting_date = date, nrate = level)
+planting &lt;-managements %&gt;%
+  filter(mgmttype == &quot;Planting&quot;) %&gt;%
+  dplyr::select(treatment_id, planting_date = date, nrate = level)
 
-heights &lt;- tbl(bety_src, &#39;traits_and_yields_view&#39;) %&gt;% 
-  filter(trait %in% c(&#39;plant_height&#39;, &#39;canopy_height&#39;)) %&gt;% 
+heights &lt;- tbl(bety_src, &#39;traits_and_yields_view&#39;) %&gt;%
+  filter(trait %in% c(&#39;plant_height&#39;, &#39;canopy_height&#39;)) %&gt;%
   left_join(planting, by = &#39;treatment_id&#39;) %&gt;%  
-  collect %&gt;% 
-  mutate(age = as.Date(raw_date) - planting_date) 
+  collect %&gt;%
+  mutate(age = as.Date(raw_date) - planting_date)
 
 library(ggplot2)
 ggplot(data = heights, aes(raw_date, mean)) +
-  geom_point(alpha = 0.1) + 
+  geom_point(alpha = 0.1) +
   facet_wrap(~trait, scales = &#39;free&#39;)</code></pre>
-<pre><code>## Warning: Removed 7020 rows containing missing values (geom_point).</code></pre>
 <p><img src="../../../../post/2017-05-30-databases-and-sql_files/figure-html/complex-query-1.png" width="672" /></p>
 </div>
 </div>
 <div id="apis" class="section level3">
 <h3>APIs</h3>
+<p>The data at teraref can also be accessed via an API:</p>
 <ul>
 <li>sign into terraref.ncsa.illinois.edu/bety</li>
 <li>username: <code>pi4-student</code></li>
-<li>password: <code>ask-instructor</code> <!--pi4student!!--></li>
-<li><p>locate your API key and copy it <!-- sSJzqPF77rRus9BGOZS4T76fzNhQ5Nk01tjcf1Bh--></p></li>
-<li>see <a href="https://github.com/terraref/tutorials/blob/master/traits/00-BETYdb-getting-started.Rmd">terraref tutorials 01- betydb getting started</a></li>
+<li><p>password: <code>ask-instructor</code></p></li>
+<li><p>locate your API key and copy it</p></li>
+<li><p>see <a href="https://github.com/terraref/tutorials/blob/master/traits/00-BETYdb-getting-started.Rmd">terraref tutorials 01- betydb getting started</a></p></li>
 <li><p>API Documentation terraref.ncsa.illinois.edu/bety/api/beta/docs</p></li>
 </ul>
 <div id="restful-interface" class="section level4">
@@ -726,11 +955,12 @@ ggplot(data = heights, aes(raw_date, mean)) +
 </div>
 <div id="json-data-structures" class="section level4">
 <h4>json data structures</h4>
+<p>Another way of getting the data is via <a href="https://en.wikipedia.org/wiki/JSON">JSON</a>.</p>
 </div>
 </div>
 <div id="r-traits-package" class="section level3">
 <h3>R traits package</h3>
-<p>Example: query indoor data from terraref database using the R traits package:</p>
+<p>Example on querying indoor data from terraref database using the R traits package can be found at:</p>
 <p><a href="https://github.com/terraref/tutorials/blob/master/traits/02-danforth-phenotyping-facility.Rmd" class="uri">https://github.com/terraref/tutorials/blob/master/traits/02-danforth-phenotyping-facility.Rmd</a></p>
 </div>
 </div>
@@ -743,9 +973,8 @@ ggplot(data = heights, aes(raw_date, mean)) +
 <li>How would you query all of the planting dates associated with a trait record?</li>
 </ul>
 </div>
-</div>
-<div id="real-world-application-the-biofuel-ecophysiological-traits-and-yields-database" class="section level2">
-<h2>Real World Application: the Biofuel Ecophysiological Traits and Yields database</h2>
+<div id="real-world-application-the-biofuel-ecophysiological-traits-and-yields-database" class="section level3">
+<h3>Real World Application: the Biofuel Ecophysiological Traits and Yields database</h3>
 <p>We have created ‘views’ to make it easier to query data from multiple tables. For example, to lookup the name and location of a site or the names and units of variables. The following query joins multiple tables, and is based on the yieldsview table:</p>
 <pre class="sql"><code>SELECT &#39;yields&#39;::character(10) AS result_type,
     yields.id,
@@ -782,11 +1011,12 @@ ggplot(data = heights, aes(raw_date, mean)) +
      LEFT JOIN treatments ON ((yields.treatment_id = treatments.id)))
      LEFT JOIN variables ON (((variables.name)::text = &#39;Ayield&#39;::text)))
      LEFT JOIN users ON ((yields.user_id = users.id)));
-     </code></pre>
+</code></pre>
 <p>For more information, see the <a href="https://pecan.gitbooks.io/betydb-data-access/content/sqlqueries.html">BETYdb data access documentation</a></p>
 </div>
+</div>
 <div id="references-and-further-reading" class="section level2">
-<h2>references and further reading</h2>
+<h2>References and further reading</h2>
 <ul>
 <li><a href="https://www.dataquest.io/blog/sql-basics/" class="uri">https://www.dataquest.io/blog/sql-basics/</a></li>
 <li>Codd, E.F. (June 1970). “A Relational Model of Data for Large Shared Data Banks”. Communications of the ACM. 13 (6): 377–387. <a href="doi:10.1145/362384.362685" class="uri">doi:10.1145/362384.362685</a>.</li>

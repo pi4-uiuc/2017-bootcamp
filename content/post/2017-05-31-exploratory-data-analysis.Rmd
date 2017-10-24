@@ -19,29 +19,24 @@ tags: []
 
 ## Accessing TERRA REF via PostgreSQL
 
-We want to access the TERRA REF database. We will do it using the RPostgreSQL package:
+We want to access the TERRA REF database. We will do it using the [dplyr](https://cran.rstudio.com/web/packages/dplyr/README.html), library which makes it easier to connect to databases and work with data inside the database. This can be particularly useful with large datasets, where processing can be done before reading the data into memory.
+
 
 ```{r}
-install.packages("RPostgreSQL")
+library(dplyr)
 ```
 
 You can then connect to the database using (**note:** this is one of those commands that require you to be working in the NDS Analytics Workbench):
 
 ```{r}
-bety_src <- src_postgres(dbname = 'bety',
-                password = 'bety',
-                host = 'terra-bety.default',
-                user = 'bety',
-                port = 5432)
+bety_src <- src_postgres(dbname = "bety", 
+                         password = 'DelchevskoOro', 
+                         host = 'bety6.ncsa.illinois.edu', 
+                         user = 'viewer', 
+                         port = 5432)
 ```
 
-## The dplyr library
 
-We will be using the library [dplyr](https://cran.rstudio.com/web/packages/dplyr/README.html), which provides helps with data manipulation.
-
-```{r}
-library(dplyr)
-```
 
 #### filtering / subsetting
 
@@ -52,13 +47,14 @@ Let's get some data:
 traits <- tbl(bety_src, 'traits', n=Inf)
 
 variables <- tbl(bety_src, 'variables') %>%
-  mutate(variable_id = id)
+  mutate(variable_id = id, trait = name)
 
 sites <- tbl(bety_src, 'sites') %>%
-  mutate(site_id = id)
+  mutate(site_id = id) %>% 
+  dplyr::select(-geometry)
 
 cultivars <- tbl(bety_src, 'cultivars') %>%
-  mutate(cultivar_id = id, cultivar = 'name')
+  mutate(cultivar_id = id, cultivar = name)
 ```
 
 In the above code the symbol `%>%` is a pipe from the `dplyr` library, it passes the left hand side to the first argument slot of the right hand side.
@@ -69,8 +65,9 @@ Using `filter` we can pick what we see based on their values:
 traits_variables <- traits %>%
   left_join(variables, by = 'variable_id') %>%
   left_join(sites, by = 'site_id') %>%
-  select(sitename, name, mean) %>%
-  filter(name == 'canopy_height') %>%
+  left_join(cultivars, by = 'cultivar_id') %>%
+  dplyr::select(date, sitename, cultivar, trait, mean) %>% 
+  filter(trait == 'canopy_height') %>%
   collect()
 
 traits_variables_season_2 <- traits_variables %>%
@@ -87,7 +84,7 @@ traits_variables_season_2 %>%
   summarize(mean = mean(mean), n =n())
 
 canopy_heights <- traits_variables_season_2 %>%
-  group_by(date, cultivar_id) %>%
+  group_by(date, cultivar) %>%
   summarize(mean = mean(mean), n =n())
 ```
 
@@ -104,7 +101,7 @@ An example using the data we pulled before:
 
 ```{r}
 ggplot(data = traits_variables_season_2,
-       aes(x = date, y = mean, group = cultivar_id)) +
+       aes(x = date, y = mean, group = cultivar)) +
   geom_smooth(se = FALSE, alpha = 0.25, size = 0.5) +
   geom_point(alpha = 0.25, size = 0.5, position = 'jitter')
 ```
@@ -113,8 +110,9 @@ Another example:
 
 ```{r}
 ### filter a subset of 25 genotypes
+set.seed(1000) # to reproducibly return the same 25
 height_season_2_subset <- traits_variables_season_2 %>%
-  filter(cultivar_id < min(traits_variables_season_2$cultivar_id)+25)
+  filter(cultivar %in% sample(unique(traits_variables_season_2$cultivar, 25)))
 
 # how many unique values of cultivar_id?
 
@@ -122,7 +120,7 @@ height_season_2_subset <- traits_variables_season_2 %>%
 
 
 ggplot(data = height_season_2_subset,
-       aes(x = date, y = mean, color = as.factor(cultivar_id))) +
+       aes(x = date, y = mean, color = as.factor(cultivar))) +
   geom_smooth(se = FALSE, alpha = 0.25, size = 0.5) +
   geom_point(alpha = 0.25, size = 0.5)
 ```
@@ -136,7 +134,7 @@ ggplot(data = height_season_2_subset,
        aes(x = date, y = mean)) +
   geom_smooth(se = FALSE) +
   geom_point() +
-  facet_wrap(~cultivar_id) +
+  facet_wrap(~cultivar) +
   ggthemes::theme_tufte()
 ```
 
@@ -148,7 +146,7 @@ Here is an example of a histogram:
 ggplot(data = height_season_2_subset,
        aes(mean, fill = date)) +
   geom_histogram() +
-  facet_wrap(~cultivar_id) +
+  facet_wrap(~cultivar) +
   theme_bw()
 ```
 

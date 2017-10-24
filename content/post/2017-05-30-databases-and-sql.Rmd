@@ -49,7 +49,6 @@ Let's review the pages
 
 Download the table "PlantHeights_AllPlots" as CSV
 
-<<<<<<< HEAD
 ## Data Cleaning 
 
 * In this lesson, we will use Open Refine to find errors, sort, and clean our dataset. 
@@ -118,7 +117,6 @@ Lets review a few datasets from the TERRA REF trait database. These are provided
 
 1. Look at the sites table. Where are the sites? Are there redundant names?
    * import from https://terraref.ncsa.illinois.edu/bety/api/beta/sites?key=9999999999999999999999999999999999999999&limit=none
-<<<<<<< HEAD
    * when you review the data, select the lowest level of hierarchy so column names aren't long concatenations of the entire tree. 
 2. See if you can find any redundant variables    
   * import from https://terraref.ncsa.illinois.edu/bety/api/beta/variables?key=9999999999999999999999999999999999999999&limit=none
@@ -131,7 +129,6 @@ Lets review a few datasets from the TERRA REF trait database. These are provided
 Lets look at the Miscanthus Yield dataset from earlier. This version of the data have been imported from the data we looked at in the spreadsheet above.
 
 * Open --> Create Project --> From URL
-=======
    * when you review the data, select the lowest level of hierarchy so column names aren't long concatenations of the entire tree.
 2. See if you can find any redundant variables:   
   * import from https://terraref.ncsa.illinois.edu/bety/api/beta/variables.xml?key=9999999999999999999999999999999999999999&limit=none
@@ -142,7 +139,6 @@ Lets look at the Miscanthus Yield dataset from earlier. This version of the data
 
 * Let's look at the Miscanthus Yield dataset again
 * `Open` --> `Create Project` --> `From URL`
->>>>>>> bb951015889c821428ab555ca93996d45164bec1
   * Enter https://www.betydb.org/search.csv?search=Ayield
 * What is the matter here? Let's clean up the imported dataset:
   * columns are csv
@@ -330,11 +326,24 @@ There are many Graphical User Interface applications that make it easier to expl
 Open the PostgreSQL Studio application in the NDSLabs workbench and enter the connection parameters:
 
 ```
-Host: terra-bety.default
+Host: bety6.ncsa.illinois.edu
 Port: 5432
-User: bety
-Password: bety
+User: viewer
+Password: DelchevskoOro
 DB: bety
+```
+
+### To connect in R and RMarkdown use:
+
+```{r dbcon-1}
+library(RPostgreSQL)
+dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
+                   dbname = "bety", 
+                   password = 'DelchevskoOro', 
+                   host = 'bety6.ncsa.illinois.edu', 
+                   user = 'viewer', 
+                   port = 5432)
+
 ```
 
 ### Tables & Schemas
@@ -479,27 +488,9 @@ select * from NDVI;
 ```
 
 
-### To connect in R and RMarkdown use:
-
-```{r dbcon-1}
-library(RPostgreSQL)
-dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
-                dbname = "bety",
-                password = 'bety',
-                host = 'terra-bety.default',
-                user = 'bety',
-                port = 5432)
-```
-
-
 ### R: RPostgreSQL and dplyr
 
 ```{r rpostgresql}
-library(RPostgreSQL)
-
-dbcon <- dbConnect(RPostgreSQL::PostgreSQL(),
-                dbname = "bety", password = 'bety', host = 'terra-bety.default', user = 'bety', port = 5432)
-
 query <- "select * from traits left join variables
              on traits.variable_id = variables.id
              where variables.name = 'NDVI';"
@@ -521,30 +512,31 @@ Here is an example of its use:
 ```{r dplyr-dbcon}
 library(dplyr)
 
-bety_src <- src_postgres(dbname = "bety",
-                        password = 'bety',
-                        host = 'terra-bety.default',
-                        user = 'bety',
-                        port = 5432)
+bety_src <- src_postgres(dbname = "bety", 
+                         password = 'DelchevskoOro', 
+                         host = 'bety6.ncsa.illinois.edu', 
+                         user = 'viewer', 
+                         port = 5432)
+
 
 #translate_sql()
 ```
 
 ```{r complex-query}
 treatments <- tbl(bety_src, 'treatments') %>%
-  select(treatment_id = id , name, definition, control)
+  dplyr::select(treatment_id = id , name, definition, control)
 
 managements_treatments <- tbl(bety_src, 'managements_treatments')
 
 managements <- tbl(bety_src, 'managements') %>%
   filter(mgmttype %in% c('Fertilization_N', 'Planting', 'Irrigation')) %>%
-  select(management_id = id, date, mgmttype, level, units) %>%
+  dplyr::select(management_id = id, date, mgmttype, level, units) %>%
   left_join(managements_treatments, by = 'management_id') %>%
   left_join(treatments, by = 'treatment_id')
 
 planting <-managements %>%
   filter(mgmttype == "Planting") %>%
-  select(treatment_id, planting_date = date, nrate = level)
+  dplyr::select(treatment_id, planting_date = date, nrate = level)
 
 heights <- tbl(bety_src, 'traits_and_yields_view') %>%
   filter(trait %in% c('plant_height', 'canopy_height')) %>%

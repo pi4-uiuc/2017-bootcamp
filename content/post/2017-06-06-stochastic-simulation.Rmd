@@ -289,7 +289,7 @@ temp <- as.numeric(met$environment_sensor_readings$weather_station$temperature$v
 ```
 
 ```{r}
-devtools::install_github('ebimodeling/biocro')
+#devtools::install_github('ebimodeling/biocro')
 library(BioCro)
 ```
 
@@ -434,6 +434,7 @@ aov(Ci ~ vmax + Rd + b1 + Qp + Tl + RH)
 This is how you might evaluate the model for a year (2005) of climate data from Champaign, Il.
 
 ```{r illinois-met-c4photo}
+data(weather05)
 resA <- c4photo(Qp = weather05$solarR, Tl = weather05$DailyTemp.C -2, RH = weather05$RH)$Assim
 
 pairs(data.frame(resA, Qp = weather05$solarR, Tl = weather05$DailyTemp.C -2, RH = weather05$RH))

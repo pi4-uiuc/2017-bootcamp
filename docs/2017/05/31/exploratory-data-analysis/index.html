@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.21" />
+<meta name="generator" content="Hugo 0.30.2" />
 
 
 <title>Exploratory Data Analysis - PI4 Computational Bootcamp</title>
@@ -16,6 +16,11 @@
 
 
 
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
 
 
 
@@ -42,6 +47,10 @@
     
     <li><a href="../../../../post/">Class Notes</a></li>
     
+    <li><a href="https://github.com/pi4-uiuc">GitHub</a></li>
+    
+    <li><a href="../../../../projects/">Projects</a></li>
+    
     <li><a href="../../../../reading/">Reading</a></li>
     
     <li><a href="../../../../syllabus/">Syllabus</a></li>
@@ -56,7 +65,7 @@
 
   <article class="article">
     
-    <span class="article-duration">1 min read</span>
+    <span class="article-duration">4 min read</span>
     
 
     <h1 class="article-title">Exploratory Data Analysis</h1>
@@ -66,27 +75,146 @@
     
 
     <div class="article-content">
-      <div id="exploratory-data-analysis" class="section level2">
-<h2>Exploratory Data Analysis</h2>
-<div id="data-cleaning" class="section level3">
-<h3>Data Cleaning</h3>
+      <blockquote>
+<p><strong>Note</strong>: Some of the commands below, particularly those accessing the terraref database from within RStudio, require being logged into the <a href="http://www.terraref.ndslabs.org/#/">NDS Analytics Workbench</a>. This requires signing up for the <a href="https://docs.google.com/forms/d/e/1FAIpQLScBsD042RrRok70BCGCRwARTcm9etvVHqvQaz1c5X7c5y0H3w/viewform?c=0&amp;w=1">TERRA REF Alpha User program</a>.</p>
+</blockquote>
+<div id="objectives" class="section level2">
+<h2>Objectives</h2>
 <ul>
-<li>Data Cleaning with Open Refine <a href="http://www.datacarpentry.org/OpenRefine-ecology-lesson/">DC lesson 1-4</a></li>
-<li>Data Cleaning in R</li>
+<li><p>Learning how to access data on terraref database via PostgreSQL</p></li>
+<li>Learning how to manipulate dat using the <code>dplyr</code> library, in particular:</li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/">filtering, subsetting, summarizing, new variables with dplyr</a></li>
+<li><p><a href="http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/">converting data from wide to long with tidyr</a></p></li>
 </ul>
 </div>
-<div id="data-manipulation" class="section level3">
-<h3>Data Manipulation</h3>
-<ul>
-<li><a href="http://swcarpentry.github.io/r-novice-gapminder/13-dplyr/">filtering, subsetting, summarizing, new variables with dplyr</a></li>
-<li><a href="http://swcarpentry.github.io/r-novice-gapminder/14-tidyr/">Converting data from wide to long with tidyr</a></li>
-</ul>
+<div id="accessing-terra-ref-via-postgresql" class="section level2">
+<h2>Accessing TERRA REF via PostgreSQL</h2>
+<p>We want to access the TERRA REF database. We will do it using the <a href="https://cran.rstudio.com/web/packages/dplyr/README.html">dplyr</a>, library which makes it easier to connect to databases and work with data inside the database. This can be particularly useful with large datasets, where processing can be done before reading the data into memory.</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<p>You can then connect to the database using (<strong>note:</strong> this is one of those commands that require you to be working in the NDS Analytics Workbench):</p>
+<pre class="r"><code>bety_src &lt;- src_postgres(dbname = &quot;bety&quot;, 
+                         password = &#39;DelchevskoOro&#39;, 
+                         host = &#39;bety6.ncsa.illinois.edu&#39;, 
+                         user = &#39;viewer&#39;, 
+                         port = 5432)</code></pre>
+<div id="filtering-subsetting" class="section level4">
+<h4>filtering / subsetting</h4>
+<p>Let’s get some data:</p>
+<pre class="r"><code>traits &lt;- tbl(bety_src, &#39;traits&#39;, n=Inf)
+
+variables &lt;- tbl(bety_src, &#39;variables&#39;) %&gt;%
+  mutate(variable_id = id, trait = name)
+
+sites &lt;- tbl(bety_src, &#39;sites&#39;) %&gt;%
+  mutate(site_id = id) %&gt;% 
+  dplyr::select(-geometry)</code></pre>
+<pre><code>## Warning in postgresqlExecStatement(conn, statement, ...): RS-DBI driver
+## warning: (unrecognized PostgreSQL field type geometry (id:18962) in column
+## 17)</code></pre>
+<pre class="r"><code>cultivars &lt;- tbl(bety_src, &#39;cultivars&#39;) %&gt;%
+  mutate(cultivar_id = id, cultivar = name)</code></pre>
+<p>In the above code the symbol <code>%&gt;%</code> is a pipe from the <code>dplyr</code> library, it passes the left hand side to the first argument slot of the right hand side.</p>
+<p>Using <code>filter</code> we can pick what we see based on their values:</p>
+<pre class="r"><code>traits_variables &lt;- traits %&gt;%
+  left_join(variables, by = &#39;variable_id&#39;) %&gt;%
+  left_join(sites, by = &#39;site_id&#39;) %&gt;%
+  left_join(cultivars, by = &#39;cultivar_id&#39;) %&gt;%
+  dplyr::select(date, sitename, cultivar, trait, mean) %&gt;% 
+  filter(trait == &#39;canopy_height&#39;) %&gt;%
+  collect()
+
+traits_variables_season_2 &lt;- traits_variables %&gt;%
+      filter(grepl(&quot;Season 2&quot;,sitename))</code></pre>
+</div>
+<div id="grouping-and-summarizing" class="section level3">
+<h3>grouping and summarizing</h3>
+<p>One can combine the <code>group_by</code> and <code>summarize</code> functions to get a summary of the data we pulled:</p>
+<pre class="r"><code>traits_variables_season_2 %&gt;%
+  group_by(date) %&gt;%
+  summarize(mean = mean(mean), n =n())</code></pre>
+<pre><code>## # A tibble: 7 × 3
+##                  date     mean     n
+##                &lt;dttm&gt;    &lt;dbl&gt; &lt;int&gt;
+## 1 2016-08-24 05:00:00 16.09714   700
+## 2 2016-08-31 05:00:00 31.79857   700
+## 3 2016-09-08 05:00:00 50.62000   700
+## 4 2016-09-15 05:00:00 65.55000   700
+## 5 2016-09-22 05:00:00 74.89000   700
+## 6 2016-09-29 05:00:00 75.52647   699
+## 7 2016-10-06 05:00:00 79.28755   699</code></pre>
+<pre class="r"><code>canopy_heights &lt;- traits_variables_season_2 %&gt;%
+  group_by(date, cultivar) %&gt;%
+  summarize(mean = mean(mean), n =n())</code></pre>
+</div>
+</div>
+<div id="plotting-with-ggplot" class="section level2">
+<h2>Plotting with ggplot</h2>
+<p>The <code>ggplot2</code> library (for more see <a href="https://cran.r-project.org/web/packages/ggplot2/index.html">here</a>) can be used to create graphics.</p>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<p>An example using the data we pulled before:</p>
+<pre class="r"><code>ggplot(data = traits_variables_season_2,
+       aes(x = date, y = mean, group = cultivar)) +
+  geom_smooth(se = FALSE, alpha = 0.25, size = 0.5) +
+  geom_point(alpha = 0.25, size = 0.5, position = &#39;jitter&#39;)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="../../../../post/2017-05-31-exploratory-data-analysis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Another example:</p>
+<pre class="r"><code>### filter a subset of 25 genotypes
+set.seed(1000) # to reproducibly return the same 25
+height_season_2_subset &lt;- traits_variables_season_2 %&gt;%
+  filter(cultivar %in% sample(unique(traits_variables_season_2$cultivar, 25)))
+
+# how many unique values of cultivar_id?
+
+#height_season_2_subset %&gt;% group_by(cultivar_id, date) %&gt;% summarize(n())
+
+
+ggplot(data = height_season_2_subset,
+       aes(x = date, y = mean, color = as.factor(cultivar))) +
+  geom_smooth(se = FALSE, alpha = 0.25, size = 0.5) +
+  geom_point(alpha = 0.25, size = 0.5)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="../../../../post/2017-05-31-exploratory-data-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="faceting" class="section level3">
+<h3>Faceting</h3>
+<p>Using <code>ggplot2</code> we can partition a plot into a matrix of panels. Here’s an example:</p>
+<pre class="r"><code>ggplot(data = height_season_2_subset,
+       aes(x = date, y = mean)) +
+  geom_smooth(se = FALSE) +
+  geom_point() +
+  facet_wrap(~cultivar) +
+  ggthemes::theme_tufte()</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="../../../../post/2017-05-31-exploratory-data-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="other-plots" class="section level3">
+<h3>Other plots</h3>
+<p>Here is an example of a histogram:</p>
+<pre class="r"><code>ggplot(data = height_season_2_subset,
+       aes(mean, fill = date)) +
+  geom_histogram() +
+  facet_wrap(~cultivar) +
+  theme_bw()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="../../../../post/2017-05-31-exploratory-data-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<blockquote>
+<p>Try making plots using the following functions: * <code>geom_boxplot</code> * <code>geom_violin</code></p>
+</blockquote>
 </div>
 <div id="visualization-in-r-using-ggplot" class="section level3">
 <h3>Visualization in R using ggplot</h3>
+<p>Some references for using ggplot:</p>
 <ul>
-<li>R for data science <a href="http://r4ds.had.co.nz/data-visualisation.html" class="uri">http://r4ds.had.co.nz/data-visualisation.html</a></li>
-<li><a href="http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/">SWC 8</a></li>
+<li>R for data science <a href="http://r4ds.had.co.nz/data-visualisation.html">data-visualization</a></li>
+<li><a href="http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/">Software Carpentry 8</a></li>
 </ul>
 </div>
 </div>
@@ -113,7 +241,31 @@
     </div>
     
 
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/shell.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
     
+<script src="../../../../js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 
     
 <script>

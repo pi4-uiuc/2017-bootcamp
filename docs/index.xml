@@ -6,10 +6,48 @@
     <description>Recent content on PI4 Computational Bootcamp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Jun 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bayesian Analysis</title>
+      <link>/2017/06/06/bayesian-analysis/</link>
+      <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/06/06/bayesian-analysis/</guid>
+      <description>Bayesian regression library(rstanarm) options(mc.cores = parallel::detectCores()) glm1 &amp;lt;- stan_glmer(yield_annual ~ fertilizer_n + age + genus:fertilizer_n + genus:age + (1 | site ), #prior = normal(30, 4), data = grass_yields) glm1 plot(glm1) plot(glm1, plotfun = &amp;#39;hist&amp;#39;) pairs(glm1) posterior_interval(glm1) summary(glm1) library(sjPlot) sjPlot::sjp.lmer(glm1) http://topepo.github.io/caret/train-models-by-tag.html https://thinkinator.com/2016/01/12/r-users-will-now-inevitably-become-bayesians/
+ </description>
+    </item>
+    
+    <item>
+      <title>Stochastic Simulation</title>
+      <link>/2017/06/06/stochastic-simulation/</link>
+      <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/06/06/stochastic-simulation/</guid>
+      <description>Note: Some of the commands below, particularly those accessing the terraref database from within RStudio, require being logged into the NDS Analytics Workbench. This requires signing up for the TERRA REF Alpha User program
+ library(ggplot2) Stochastic Simulation (Bolker Ch5) A deterministic linear function:
+\[y_\rm{det}=a+bx\]
+Add normally distributed errors, modeling \(\epsilon\sim(N(0,\sigma))\)
+\[Y\sim N(a+bx, \sigma)\] Or equivalently:
+\[Y\sim N(\mu, \sigma)\]
+\[\mu = a+bx\] Lets first plot the deterministic function as a line</description>
+    </item>
+    
+    <item>
+      <title>Probability</title>
+      <link>/2017/06/04/probability/</link>
+      <pubDate>Sun, 04 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/06/04/probability/</guid>
+      <description>Probability Distributions in R Objectives:  Become familiar with common probability distributions in R Understand how probability distributions are related to each other  Summarizing Data Expectation
+If the random variable \(x\) can take values \(x_1,...,x_N\) with equal probability, the expected value \(E[x]\) of \(x\) is defined to be:
+\[E[x]=\sum_{i=1}^N\frac{x_i}{N}\] Properties of the expected value: * \(E[x+y]=E[x]+E[y]\) * \(E[cx]=cE[x]\)
+Variance
+The variance of the random variable \(x\) is defined to be:</description>
+    </item>
     
     <item>
       <title>Projects</title>
@@ -28,7 +66,8 @@ Projects will provide the opportunity for students to apply what we have learned
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/05/31/accessing-sensor-data/</guid>
-      <description>Meteorological Data Raw Data metfile &amp;lt;- &amp;quot;/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger/2017-05-31/2017-05-31_12-19-38_environmentlogger.json&amp;quot; met &amp;lt;- jsonlite::fromJSON(metfile) timestamp &amp;lt;- lubridate::ymd_hms(met$environment_sensor_readings$timestamp) wavelengths &amp;lt;- met$environment_sensor_readings$spectrometer$wavelength[[1]] spectra &amp;lt;- do.call(&amp;#39;rbind&amp;#39;, met$environment_sensor_readings$spectrometer$spectrum) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union spectra &amp;lt;- do.call(&amp;#39;rbind&amp;#39;, met$environment_sensor_readings$spectrometer$spectrum) #colnames(spectra) &amp;lt;- wavelengths #rownames(spectra) &amp;lt;- met$environment_sensor_readings$timestamp image(x = timestamp, y = wavelengths, z = spectra) get_downwelling_irradiance &amp;lt;- function(date = &amp;quot;2017-05-31&amp;quot;){ path &amp;lt;- file.</description>
+      <description>Hyperspectral Data Calibration Targets These were collected on April 15 2017 every ~15 minutes
+library(ncdf4) library(dplyr) hsi_calibration_dir &amp;lt;- &amp;#39;/data/terraref/sites/ua-mac/Level_1/hyperspectral/2017-04-15&amp;#39; hsi_calibration_files &amp;lt;- dir(hsi_calibration_dir, recursive = TRUE, full.names = TRUE) fileinfo &amp;lt;- bind_rows(lapply(hsi_calibration_files, file.info)) %&amp;gt;% mutate(size_gb = size/1073741824) calibration_nc &amp;lt;- nc_open(hsi_calibration_files[200]) a &amp;lt;- calibration_nc$var$rfl_img #calibration_nc$dim$x$len 1600 #calibration_nc$dim$y$len x_length &amp;lt;- round(calibration_nc$dim$x$len / 10) y_length &amp;lt;- round(calibration_nc$dim$y$len * 3/4) xstart &amp;lt;- ceiling(calibration_nc$dim$x$len / 2) - floor(x_length / 2) + 1 ystart &amp;lt;- ceiling(calibration_nc$dim$y$len / 2) - floor(y_length / 2) + 1 rfl &amp;lt;- ncvar_get(calibration_nc, &amp;#39;rfl_img&amp;#39;, #start = c(1, xstart, ystart), #count = c(955, x_length, y_length) start = c(2, 2, 2), count = c(1320, 10, 954) ) x &amp;lt;- ncvar_get(calibration_nc, &amp;#39;x&amp;#39;, start = 100, count = 160) y &amp;lt;- ncvar_get(calibration_nc, &amp;#39;y&amp;#39;, start = 100, count = 1324) lambda &amp;lt;- calibration_nc$dim$wavelength$vals for(i in 1 + 0:10*95){ image(x = x, y = y, z = rfl[i,,], xlab = &amp;#39;x (m)&amp;#39;, ylab = &amp;#39;y (m)&amp;#39;, col = rainbow(n=100), main = paste(&amp;#39;wavelength&amp;#39;, udunits2::ud.</description>
     </item>
     
     <item>
@@ -37,18 +76,9 @@ Projects will provide the opportunity for students to apply what we have learned
       <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/05/31/exploratory-data-analysis/</guid>
-      <description>Exploratory Data Analysis Data Cleaning  Data Cleaning with Open Refine DC lesson 1-4 Data Cleaning in R   Data Manipulation  filtering, subsetting, summarizing, new variables with dplyr Converting data from wide to long with tidyr   Visualization in R using ggplot  R for data science http://r4ds.had.co.nz/data-visualisation.html SWC 8    </description>
-    </item>
-    
-    <item>
-      <title>Project Day 2: Querying Data</title>
-      <link>/2017/05/31/project-day-2-querying-data/</link>
-      <pubDate>Wed, 31 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/31/project-day-2-querying-data/</guid>
-      <description>Flush out ideas from Friday  need to narrow the scope define data sets that are needed clarify questions write hypotheses / predictions draft of methods that you will use to test hypotheses what figures and tables will you create?
- divide tasks within the group
-  Set up project  create appropriate directories create one or more Rmd files  Download data  Download and subset data that you will use from BETYdb  find data that you will need design data management plan  For data not in BETYdb, write down what you will need.</description>
+      <description>Note: Some of the commands below, particularly those accessing the terraref database from within RStudio, require being logged into the NDS Analytics Workbench. This requires signing up for the TERRA REF Alpha User program.
+ Objectives  Learning how to access data on terraref database via PostgreSQL
+ Learning how to manipulate dat using the dplyr library, in particular: filtering, subsetting, summarizing, new variables with dplyr converting data from wide to long with tidyr</description>
     </item>
     
     <item>
@@ -57,34 +87,31 @@ Projects will provide the opportunity for students to apply what we have learned
       <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/05/30/scrum-and-best-practices/</guid>
-      <description>Objectives:
- Understand Best practices per wilson et al Basic components of Reproducible Research Be familiar with concepts related to Scrum  Best Practices in Scientific Computing Wilson et al 2014 Best practices in Scientific Computing Wilson et al http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745 Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
- Wilson et al 2017 Good enough practices in Scientific Computing https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
- Example: PEcAn Project Please start the day by reading this.
-  Reproducible Research Example 1: Ocean Health Index   Figure 1: Better science in less time, illustrated by the Ocean Health Index project.</description>
+      <description>Objectives:  Understand best practices by Wilson et al Basic components of Reproducible Research Be familiar with concepts related to Scrum   Best Practices in Scientific Computing Wilson et al 2014 Best practices in Scientific Computing Wilson et al paper: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
+Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
+ Wilson et al 2017 Good enough practices in Scientific Computing Wilson et al paper: https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
+ Example: PEcAn Project Please start the day by reading this.</description>
     </item>
     
     <item>
-      <title>5. Databases and SQL</title>
+      <title>Databases and SQL</title>
       <link>/2017/05/30/databases-and-sql/</link>
       <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/05/30/databases-and-sql/</guid>
-      <description>Introduction   Spreadsheets and Tables A database is a generic term for data. Often these are divided into ‘relational’ and ‘non-relational’… We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.
-In fact, so far we have been working with tables.
- Miscanthus Yields https://docs.google.com/spreadsheets/d/1MNG5BH6oDaRH4Ii1ZO7tVRV7pTZRKPv81In1NFdLFbs ## Sorghum Data from Arizona
-Lets start with a spreadsheet that was prepared by a colleague of mine, Maria Newcomb, in Arizona</description>
+      <description>Overview We started with an overview of data management, including the data lifecycle, metadata, and databases, using the TERRA REF to illustrate applications.
+  Spreadsheets and Tables A database is a generic term for data. Often these are divided into ‘relational’ and ‘non-relational’… We will get to these later. First, lets start with Spreadsheets, which are a simple, and very common format for data.
+In fact, so far we have been working with tables.</description>
     </item>
     
     <item>
-      <title>4. Introduction to R</title>
+      <title>3. Introduction to R</title>
       <link>/2017/05/27/intro-to-r/</link>
       <pubDate>Sat, 27 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/05/27/intro-to-r/</guid>
       <description>This lesson is based on Getting Started with R and Rstudio (SWC 1-3).
-Objectives:
- Understand the utility of R as a language for data analysis To gain familiarity with the Rstudio IDE: panes, buttons, shortcuts, options Where to get help in R. Learn to manage your workspace in an interactive R session Learn to find, install, and use packages / functions Load data call functions Intro to reproducible research w/ R markdown  Getting started with R Why R?</description>
+Getting started with R Why R? * by design “a programming language and environment for statistical computing” * Most common language used by academic statisticians. Thus, many methods are developed as R packages and not available elsewhere. * built around stats, with lots of handy functions * data analysis by design * formulas for statistical models * ggplot ‘grammar of graphics’ among best graphing programs (only get better w/ graphical design programs like photoshop/Inkscape) * dplyr and tidyr for data munging * Integrates with lower level languages (esp C, C++, FORTRAN; Rcpp package for integration w/ C++ excellent) * can do anything * has a reputation for being slow.</description>
     </item>
     
     <item>
@@ -136,8 +163,18 @@ Version Control SWC Git Novice 1-6 Getting Started Introduce yourself (once you�
       <guid>/syllabus/</guid>
       <description>Instructors: David LeBauer
  Carl R Woese Institute for Genomic Biology and National Center for Supercomputing Applications, University of Illinois email:dlebauer@illinois.edu  Neal Davis
- Deparatment of Computer Science, University of Illinois email:davis68@illinois.edu  Stefan Klajbor (TA)
+ Department of Computer Science, University of Illinois email:davis68@illinois.edu  Stefan Klajbor (TA)
  Department of Mathematics, University of Illinois email:klajbor2@illinois.edu  Course Objectives A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation.</description>
+    </item>
+    
+    <item>
+      <title>Intro Statistics</title>
+      <link>/2016/06/05/intro-statistics/</link>
+      <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/06/05/intro-statistics/</guid>
+      <description>Summary statistics Objectives: * learn to summarize data with basic measures of central tendancy and spread * learn to fit parametric distributions to data
+Data analysis: Sorghum height data knitr::opts_chunk$set(cache = TRUE) library(dplyr) ## ## Attaching package: &amp;#39;dplyr&amp;#39; ## The following objects are masked from &amp;#39;package:stats&amp;#39;: ## ## filter, lag ## The following objects are masked from &amp;#39;package:base&amp;#39;: ## ## intersect, setdiff, setequal, union library(ggplot2) theme_set(theme_bw()) #bety_src &amp;lt;- RPostgreSQL::dbConnect(odbc::odbc(), &amp;quot;TERRA-REF traits copy BETYdb&amp;quot;) #bety_src &amp;lt;- src_postgres(dbname = &amp;quot;bety&amp;quot;, password = &amp;#39;bety&amp;#39;, host = &amp;#39;bety.</description>
     </item>
     
   </channel>

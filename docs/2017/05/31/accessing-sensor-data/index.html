@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.21" />
+<meta name="generator" content="Hugo 0.30.2" />
 
 
 <title>Accessing Sensor Data 2 - PI4 Computational Bootcamp</title>
@@ -47,6 +47,10 @@
     
     <li><a href="../../../../post/">Class Notes</a></li>
     
+    <li><a href="https://github.com/pi4-uiuc">GitHub</a></li>
+    
+    <li><a href="../../../../projects/">Projects</a></li>
+    
     <li><a href="../../../../reading/">Reading</a></li>
     
     <li><a href="../../../../syllabus/">Syllabus</a></li>
@@ -61,7 +65,7 @@
 
   <article class="article">
     
-    <span class="article-duration">6 min read</span>
+    <span class="article-duration">5 min read</span>
     
 
     <h1 class="article-title">Accessing Sensor Data 2</h1>
@@ -71,7 +75,54 @@
     
 
     <div class="article-content">
-      <div id="meteorological-data" class="section level2">
+      <div id="hyperspectral-data" class="section level2">
+<h2>Hyperspectral Data</h2>
+<div id="calibration-targets" class="section level3">
+<h3>Calibration Targets</h3>
+<p>These were collected on April 15 2017 every ~15 minutes</p>
+<pre class="r"><code>library(ncdf4)
+library(dplyr)
+
+hsi_calibration_dir &lt;- &#39;/data/terraref/sites/ua-mac/Level_1/hyperspectral/2017-04-15&#39;
+hsi_calibration_files &lt;- dir(hsi_calibration_dir, 
+                             recursive = TRUE,
+                             full.names = TRUE)
+
+fileinfo &lt;- bind_rows(lapply(hsi_calibration_files, file.info)) %&gt;%
+  mutate(size_gb = size/1073741824)
+
+calibration_nc &lt;- nc_open(hsi_calibration_files[200])
+a &lt;- calibration_nc$var$rfl_img
+
+
+#calibration_nc$dim$x$len 1600
+#calibration_nc$dim$y$len
+x_length &lt;- round(calibration_nc$dim$x$len / 10)
+y_length &lt;- round(calibration_nc$dim$y$len * 3/4)
+
+xstart &lt;- ceiling(calibration_nc$dim$x$len / 2) - floor(x_length / 2) + 1
+
+ystart &lt;- ceiling(calibration_nc$dim$y$len / 2) - floor(y_length / 2) + 1
+
+rfl &lt;- ncvar_get(calibration_nc, &#39;rfl_img&#39;, 
+          #start = c(1, xstart, ystart), 
+          #count = c(955, x_length, y_length)
+          start = c(2, 2, 2),
+          count = c(1320, 10, 954)
+          )
+x &lt;- ncvar_get(calibration_nc, &#39;x&#39;, start = 100, count = 160)
+y &lt;- ncvar_get(calibration_nc, &#39;y&#39;, start = 100, count = 1324)
+lambda &lt;- calibration_nc$dim$wavelength$vals
+for(i in 1 + 0:10*95){
+  image(x = x, y = y, z = rfl[i,,],
+        xlab = &#39;x (m)&#39;, ylab = &#39;y (m)&#39;,
+        col = rainbow(n=100),
+        main = paste(&#39;wavelength&#39;, 
+                      udunits2::ud.convert(lambda[i],&#39;m&#39;,&#39;nm&#39;)))
+} </code></pre>
+</div>
+</div>
+<div id="meteorological-data" class="section level2">
 <h2>Meteorological Data</h2>
 <div id="raw-data" class="section level3">
 <h3>Raw Data</h3>
@@ -99,23 +150,43 @@ library(dplyr)</code></pre>
 #rownames(spectra) &lt;- met$environment_sensor_readings$timestamp
 image(x = timestamp, y = wavelengths, z = spectra)</code></pre>
 <p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/raw-met-1.png" width="672" /></p>
-<pre class="r"><code>get_downwelling_irradiance &lt;- function(date = &quot;2017-05-31&quot;){
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(readr)
+date = &#39;2017-04-15&#39;
+load_loggerdata &lt;- function(date){
   path &lt;- file.path(&quot;/data/terraref/sites/ua-mac/raw_data/EnvironmentLogger&quot;, date)
   files &lt;- dir(path, full.names = TRUE)
-  metdata &lt;- lapply(files, jsonlite::fromJSON)
-  
-  timestamp &lt;- unlist(lapply(metdata, function(x){
-    lubridate::ymd_hms(x$environment_sensor_readings$timestamp)
+  loggerdata &lt;- lapply(files, jsonlite::fromJSON) 
+  timestamp &lt;- combine(sapply(loggerdata, function(x){
+    t &lt;- x$environment_sensor_readings$timestamp
+    lubridate::ymd_hms(t)
   }))
+  return(list(data = loggerdata, timestamp = timestamp))
+}
+
+extract_downwelling_irradiance &lt;- function(logdata){
+
+  wavelengths &lt;- logdata$data[[1]]$environment_sensor_readings$spectrometer$wavelength[[1]]
   
-  wavelengths &lt;- metdata[[1]]$environment_sensor_readings$spectrometer$wavelength[[1]]
-  
-  spectra &lt;- do.call(&#39;rbind&#39;, lapply(metdata, function(x){
+  spectra &lt;- do.call(&#39;rbind&#39;, lapply(logdata$data, function(x){
     do.call(&#39;rbind&#39;, x$environment_sensor_readings$spectrometer$spectrum)
     }
   ))
+  # image(x = timestamp, y = wavelengths, z = spectra)
+  return(list(spectra = spectra, wavelengths = wavelengths, timestamp = logdata$timestamp))
+}
 
-  met &lt;- do.call(&#39;rbind&#39;, lapply(metdata, function(x){
+extract_logger_met &lt;- function(logdata){
+  
+  met &lt;- do.call(&#39;rbind&#39;, lapply(logdata$data, function(x){
     tmp_met &lt;- x$environment_sensor_readings
     data.frame(par = tmp_met$`sensor par`$value,
                co2 = tmp_met$`sensor co2`$value,
@@ -128,207 +199,110 @@ image(x = timestamp, y = wavelengths, z = spectra)</code></pre>
                wind_speed = tmp_met$weather_station$windVelocity$value)
     
   })) 
-  
-  z &lt;- met %&gt;% tidyr::gather(key = timestamp, value = value)
+  return(met)
+}
 
-  # image(x = timestamp, y = wavelengths, z = spectra)
-  
-}</code></pre>
-<pre class="r"><code>library(ncdf4)
-metnc &lt;- nc_open(&#39;/data/terraref/sites/ua-mac/Level_1/EnvironmentLogger/2017-05-16/EnvironmentLogger_lv1_2017-05-16_uamac.nc&#39;)
-library(lubridate)</code></pre>
-<pre><code>## Loading required package: methods</code></pre>
+env_log_data &lt;- load_loggerdata(date = &#39;2017-04-15&#39;)
+env_log_spectra &lt;- extract_downwelling_irradiance(env_log_data)
+env_log_met &lt;- extract_logger_met(env_log_data)</code></pre>
+<div id="plots" class="section level4">
+<h4>Plots</h4>
+<pre class="r"><code>library(lubridate)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;lubridate&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:base&#39;:
 ## 
 ##     date</code></pre>
-<pre class="r"><code>library(data.table)</code></pre>
-<pre><code>## -------------------------------------------------------------------------</code></pre>
-<pre><code>## data.table + dplyr code now lives in dtplyr.
-## Please library(dtplyr)!</code></pre>
-<pre><code>## -------------------------------------------------------------------------</code></pre>
-<pre><code>## 
-## Attaching package: &#39;data.table&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
-## 
-##     hour, isoweek, mday, minute, month, quarter, second, wday,
-##     week, yday, year</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     between, first, last</code></pre>
-<pre class="r"><code>library(udunits2)</code></pre>
-<pre><code>## udunits system database read</code></pre>
-<pre class="r"><code>time &lt;- ncvar_get(metnc, &#39;time&#39;)
-datetime &lt;- ymd(&quot;1970-01-01&quot;) + seconds(ud.convert(time, &#39;d&#39;, &#39;s&#39;))
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+time &lt;- env_log_data$timestamp
 
-wavelengths &lt;- ncvar_get(metnc, &#39;wvl_lgr&#39;)
+hourly_index &lt;- 1+0:23*720
 
-f_down_spectrum &lt;- ncvar_get(metnc, &#39;flx_spc_dwn&#39;)
+time_hr &lt;- time[hourly_index]
+hourly_spectra &lt;- env_log_spectra$spectra[hourly_index,]
+wavelengths &lt;- env_log_spectra$wavelengths
 
-library(ggplot2)
+colnames(hourly_spectra) &lt;- wavelengths
 
-ggplot() + 
-  geom_point(aes(wavelengths, f_down_spectrum[,1])) +
-  geom_line(aes(wavelengths, f_down_spectrum[,1]))</code></pre>
-<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/netcdf-met-1.png" width="672" /></p>
-<pre class="r"><code>f_down_means &lt;- rowMeans(f_down_spectrum)
+image(x = time_hr, y = wavelengths, z = hourly_spectra, 
+      xlab = &#39;local time&#39;, ylab = &#39;wavelength (nm)&#39;)</code></pre>
+<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>spectra_df &lt;- data.frame(hour = 1:24, hourly_spectra)
 
-ggplot() + 
-  geom_point(aes(wavelengths, f_down_means)) +
-  geom_line(aes(wavelengths, f_down_means))</code></pre>
-<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/netcdf-met-2.png" width="672" /></p>
-<pre class="r"><code>print(metnc)</code></pre>
-<pre><code>## File /data/terraref/sites/ua-mac/Level_1/EnvironmentLogger/2017-05-16/EnvironmentLogger_lv1_2017-05-16_uamac.nc (NC_FORMAT_NETCDF4):
-## 
-##      32 variables (excluding dimension variables):
-##         short sensor_par[]   (Contiguous storage)  
-##             sensor_par_description: Quantum Sensor Produced by Apogee. Measures the Photosynthetically Active Radiation (aka PAR)
-##             sensor_par_created: Mon Jan 09 09:14:22 CST 2017
-##             sensor_par_id: 5873a8ce4f0cad7d8131ad86
-##             sensor_par_authorId: 578f76948e7e1aecb7cad4c5
-##             sensor_par_spaces: 
-##             sensor_par_thumbnail: None
-##             sensor_par_name: Quantum PAR
-##         short sensor_co2[]   (Contiguous storage)  
-##             sensor_co2_description: CO2 Probe Produce by Vaisala, Mark GMP343. Monitors the atmospheric CO2 concentration
-##             sensor_co2_created: Mon Jan 09 09:17:38 CST 2017
-##             sensor_co2_id: 5873a9924f0cad7d8131b648
-##             sensor_co2_authorId: 578f76948e7e1aecb7cad4c5
-##             sensor_co2_spaces: 
-##             sensor_co2_thumbnail: 5873a99e4f0cad7d8131b6dc
-##             sensor_co2_name: Vaisala CO2
-##         short sensor_spectrum[]   (Contiguous storage)  
-##             sensor_spectrum_description: Spectrometer Produced by Skye PRI sensor. Measures the incident and reflected light
-##             sensor_spectrum_created: Mon Jan 09 09:15:35 CST 2017
-##             sensor_spectrum_id: 5873a9174f0cad7d8131b09a
-##             sensor_spectrum_authorId: 578f76948e7e1aecb7cad4c5
-##             sensor_spectrum_spaces: 
-##             sensor_spectrum_thumbnail: None
-##             sensor_spectrum_name: Skye PRI
-##         short sensor_weather_station[]   (Contiguous storage)  
-##             sensor_weather_station_description: Weather Station Produced by Theis CLIMA. Collects atmospheric data (e.g., brightness, precipitation, etc.).
-##             sensor_weather_station_created: Mon Jan 09 09:17:06 CST 2017
-##             sensor_weather_station_id: 5873a9724f0cad7d8131b4d3
-##             sensor_weather_station_authorId: 578f76948e7e1aecb7cad4c5
-##             sensor_weather_station_spaces: 
-##             sensor_weather_station_thumbnail: 5873a97f4f0cad7d8131b56d
-##             sensor_weather_station_name: Thies CLIMA
-##         float temperature[time]   (Chunking: [1024])  
-##             units: celsius
-##             sensor: sensor_weather_station
-##             long_name: Atmosperic Temperature
-##         float raw_temperature[time]   (Chunking: [1024])  
-##         float airPressure[time]   (Chunking: [714])  
-##             units: pascal
-##             sensor: sensor_weather_station
-##             standard_name: atmospheric_air_pressure
-##             long_name: Atmospheric Air Pressure
-##         float raw_airPressure[time]   (Chunking: [714])  
-##         float brightness[time]   (Chunking: [714])  
-##             units: lux
-##             sensor: sensor_weather_station
-##             long_name: Brightness
-##         float raw_brightness[time]   (Chunking: [714])  
-##         float precipitation[time]   (Chunking: [714])  
-##             units: meter second-1
-##             sensor: sensor_weather_station
-##             standard_name: precipitation_flux
-##             long_name: Precipation Rate
-##         float raw_precipitation[time]   (Chunking: [714])  
-##         float sunDirection[time]   (Chunking: [714])  
-##             units: degree
-##             sensor: sensor_weather_station
-##             long_name: Solar zenith (or elevation) angle (under discussion right now)
-##         float raw_sunDirection[time]   (Chunking: [714])  
-##         float windVelocity[time]   (Chunking: [714])  
-##             units: meter second-1
-##             sensor: sensor_weather_station
-##             long_name: Wind Speed
-##         float raw_windVelocity[time]   (Chunking: [714])  
-##         float relHumidity[time]   (Chunking: [714])  
-##             units: percent
-##             sensor: sensor_weather_station
-##             standard_name: relative_humidity
-##             long_name: Relative Humidity
-##             description: Ratio of partial pressure of water vapor to equilibrium vapor pressure at measured temperature
-##         float raw_relHumidity[time]   (Chunking: [714])  
-##         float windDirection[time]   (Chunking: [714])  
-##             units: degree
-##             sensor: sensor_weather_station
-##             standard_name: wind_from_direction
-##             long_name: Wind Direction
-##         float raw_windDirection[time]   (Chunking: [714])  
-##         float spectrum[wvl_lgr,time]   (Chunking: [1024,1])  
-##             sensor: sensor_spectrum
-##             units: meter
-##             long_name: Spectrum from Hyperspectral Camera Spectrometer
-##             notes: 1024*&lt;time&gt; number of discrete wavelengths collected by the spectrometer
-##         float maxFixedIntensity[time]   (Chunking: [714])  
-##             sensor: sensor_spectrum
-##             units: placeholder
-##             long_name: Max Fixed Intensity
-##             notes: maximum_fix_intensity (always equals to 2^14-1=16383)
-##         float Atmosperic_CO2_Concentration[time]   (Chunking: [714])  
-##             units: mol mol-1
-##             sensor: sensor_co2
-##             long_name: Atmosperic CO2 Concentration
-##         float raw_Atmosperic_CO2_Concentration[time]   (Chunking: [714])  
-##         float Photosynthetically_Active_Radiation[time]   (Chunking: [714])  
-##             units: mole second-1
-##             sensor: sensor_par
-##             long_name: Photosynthetically Active Radiation
-##         float raw_Photosynthetically_Active_Radiation[time]   (Chunking: [714])  
-##         double wvl_dlt[wvl_lgr]   (Contiguous storage)  
-##             units: meter
-##             notes: Bandwidth, also called dispersion, is between 0.455-0.495 nm across all channels. Values computed as differences between midpoints of adjacent band-centers.
-##             long_name: Bandwidth of environmental sensor
-##         float flx_sns[wvl_lgr]   (Contiguous storage)  
-##             units: watt meter-2 count-1
-##             long_name: Flux sensitivity of each band (irradiance per count)
-##             provenance: EnvironmentalLogger calibration information from file S05673_08062015.IrradCal provided by TinoDornbusch and discussed here: https://github.com/terraref/reference-data/issues/30#issuecomment-217518434
-##         float flx_spc_dwn[wvl_lgr,time]   (Chunking: [1024,1])  
-##             units: watt meter-2 meter-1
-##             long_name: Downwelling Spectral Irradiance
-##             standard_name: downwelling_spectral_spherical_irradiance_in_air
-##         float flx_dwn[]   (Contiguous storage)  
-##             units: watt meter-2
-##             long_name: Downwelling Irradiance
-##             standard_name: downwelling_spherical_irradiance_in_air
-##         float time_integration[]   (Contiguous storage)  
-##             units: second
-##             long_name: Spectrometer Integration Time
-##         float area_sensor[]   (Contiguous storage)  
-##             units: meter2
-##             long_name: Spectrometer Area
-## 
-##      2 dimensions:
-##         time  Size:714   *** is unlimited ***
-##             units: days since 1970-01-01 00:00:00
-##             long_name: Time
-##             calender: gregorian
-##         wvl_lgr  Size:1024
-##             sensor: sensor_spectrum
-##             units: meter
-##             long_name: Wavelengths
-##             standard_name: radiation_wavelength
-##             notes: these wavelengths are all the same in different collections from the environmental logger. Ranging from 337.7 to 824 nm.
-## 
-##     2 global attributes:
-##         _NCProperties: version=1|netcdflibversion=4.4.1|hdf5libversion=1.8.17
-##         history: Wed May 24 16:25:12 2017 : python terra_envlog2netcdf.py</code></pre>
-<pre class="r"><code>PAR &lt;- ncvar_get(metnc, &#39;Photosynthetically_Active_Radiation&#39;)
+spectra_long &lt;- spectra_df %&gt;% 
+  gather(key = wavelength, value = radiance, -hour) %&gt;% 
+  mutate(wavelength = as.numeric(gsub(&quot;X&quot;, &quot;&quot;, wavelength))) 
 
-ggplot() +
-  geom_line(aes(datetime, PAR))</code></pre>
-<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/netcdf-met-3.png" width="672" /></p>
+colnames(spectra_long)</code></pre>
+<pre><code>## [1] &quot;hour&quot;       &quot;wavelength&quot; &quot;radiance&quot;</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(data = spectra_long, aes(x = wavelength, y = radiance)) +
+  geom_line(size = 0.1) +
+  ggthemes::theme_tufte() +
+  facet_wrap(~hour, ncol = 6) +
+  ggtitle(paste(&#39;spectra on&#39;, date))</code></pre>
+<p><img src="../../../../post/2017-05-31-accessing-sensor-data_files/figure-html/spectra-ggplot-1.png" width="672" /></p>
 </div>
-<div id="using-the-pecan-workflow" class="section level3">
-<h3>Using the PEcAn workflow</h3>
+</div>
+<div id="clowder-geostreams-database" class="section level3">
+<h3>Clowder Geostreams database</h3>
+<p>Locations with met data</p>
+<table>
+<thead>
+<tr class="header">
+<th>stream id</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>300</td>
+<td>MAC weather</td>
+</tr>
+<tr class="even">
+<td>750</td>
+<td>MAC irrigation</td>
+</tr>
+<tr class="odd">
+<td>746</td>
+<td>EnvironmentLogger sensor_weather_station</td>
+</tr>
+<tr class="even">
+<td>747</td>
+<td>EnvironmentLogger sensor_par</td>
+</tr>
+<tr class="odd">
+<td>748</td>
+<td>EnvironmentLogger sensor_spectrum</td>
+</tr>
+<tr class="even">
+<td>749</td>
+<td>EnvironmentLogger sensor_co2</td>
+</tr>
+<tr class="odd">
+<td>1219</td>
+<td>UIUC Energy Farm SE</td>
+</tr>
+<tr class="even">
+<td>1222</td>
+<td>UIUC Energy Farm CEN</td>
+</tr>
+<tr class="odd">
+<td>1223</td>
+<td>UIUC Energy Farm NE</td>
+</tr>
+</tbody>
+</table>
+<pre class="sh"><code>curl -O spectra.json -X GET https://terraref.ncsa.illinois.edu/clowder/api/geostreams/datapoints?key=Pb3AUSqnUw&amp;stream_id=743
+</code></pre>
+</div>
+<div id="using-the-pecan-atmospheric-data-utilities" class="section level3">
+<h3>Using the PEcAn atmospheric data utilities</h3>
 <pre class="r"><code>devtools::install_github(&quot;pecanproject/pecan&quot;,  
-                         subdir = &#39;utils&#39;)
+                         subdir = &#39;base/utils&#39;, ref = &#39;develop&#39;, dependencies = FALSE)
 devtools::install_github(&quot;pecanproject/pecan&quot;,  
-                         subdir = &#39;db&#39;)
+                         subdir = &#39;base/db&#39;)
 devtools::install_github(&quot;rforge/reddyproc&quot;,
                          subdir = &quot;pkg/REddyProc&quot;)
 devtools::install_github(&quot;pecanproject/pecan&quot;,  
@@ -336,24 +310,31 @@ devtools::install_github(&quot;pecanproject/pecan&quot;,
                          ref = &#39;develop&#39;)
 
 source(&quot;https://raw.githubusercontent.com/PecanProject/pecan/develop/models/biocro/R/met2model.BIOCRO.R&quot;)</code></pre>
+<div id="pecan-met-workflow" class="section level4">
+<h4>PEcAn Met Workflow</h4>
 <pre class="r"><code>writeLines(&quot;
 &lt;pecan&gt;
   &lt;clowder&gt;
     &lt;hostname&gt;terraref.ncsa.illinois.edu&lt;/hostname&gt;
-    &lt;user&gt;dlebauer+energyfarm_met@gmail.com&lt;/user&gt;
-    &lt;password&gt;!energyfarmmet??&lt;/password&gt;
+    &lt;user&gt;user@illinois.edu&lt;/user&gt;
+    &lt;password&gt;ask&lt;/password&gt;
   &lt;/clowder&gt;
 &lt;/pecan&gt;&quot;, 
 con =  &quot;~/.pecan.clowder.xml&quot;)</code></pre>
+<div class="figure">
+<img src="pecan.clowder.xml.png" />
+
+</div>
 <pre class="r"><code>library(&quot;PEcAn.data.atmosphere&quot;)
 library(&quot;dplyr&quot;)
 
 ## download raw data
 ne &lt;- download.Geostreams(
   outfolder=&quot;data&quot;,
-  sitename=&quot;UIUC Energy Farm - NE&quot;,
+  sitename=&quot;EnvironmentLogger sensor_weather_station&quot;,
   start_date=&quot;2016-02-28&quot;,
-  end_date=&quot;2016-04-01&quot;)
+  end_date=&quot;2016-04-01&quot;,
+  overwrite = TRUE)
 
 ## convert to standard
 ne_cf &lt;- met2CF.Geostreams(
@@ -361,7 +342,8 @@ ne_cf &lt;- met2CF.Geostreams(
   in.prefix = ne$dbfile.name, 
   outfolder = &quot;data/cf&quot;,
   start_date = &quot;2016-03-01&quot;, # note date shift to avoid TZ issues
-  end_date = &quot;2016-04-01&quot;)
+  end_date = &quot;2016-04-01&quot;,
+  overwrite = TRUE)
 
 ## convert to model specific input
 met2model.BIOCRO(
@@ -372,22 +354,85 @@ met2model.BIOCRO(
   lat = 40,
   lon = -88,
   start_date = &quot;2016-03-01&quot;, 
-  end_date = &quot;2016-03-30&quot;)</code></pre>
-<pre><code>##                                                                             file
-## 2016 data/biocromet/Clowder.UIUC Energy Farm - NE.2016-02-28.2016-04-01.2016.csv
-##                      host mimetype formatname  startdate    enddate
-## 2016 st0hka-rstudio-z9rs4 text/csv  biocromet 2016-03-01 2016-03-30
-##                                              dbfile.name
-## 2016 Clowder.UIUC Energy Farm - NE.2016-02-28.2016-04-01</code></pre>
-<pre class="r"><code>met &lt;- readr::read_csv(&#39;data/biocromet/Clowder.UIUC Energy Farm - NE.2016-02-28.2016-04-01.2016.csv&#39;)</code></pre>
+  end_date = &quot;2016-03-30&quot;)
+
+met &lt;- readr::read_csv(&#39;data/biocromet/Clowder.UIUC Energy Farm - NE.2016-02-28.2016-04-01.2016.csv&#39;)</code></pre>
 </div>
 </div>
-<div id="laser-scanner-point-clouds" class="section level2">
-<h2>Laser Scanner Point Clouds</h2>
 </div>
-<div id="netcdf-hyperspectral-data" class="section level2">
-<h2>netCDF hyperspectral data</h2>
-<pre class="r"><code>hsi_nc &lt;- nc_open(&#39;/data/terraref/sites/samples/vnir_test_small.nc&#39;)</code></pre>
+<div id="netcdf-files---hyperspectral-images" class="section level2">
+<h2>netCDF Files - Hyperspectral images</h2>
+<div id="sample-data" class="section level3">
+<h3>Sample data</h3>
+<pre class="r"><code>library(ncdf4)
+hsi_nc &lt;- nc_open(&#39;/data/terraref/sites/samples/vnir_test_small.nc&#39;)</code></pre>
+</div>
+<div id="met-from-netcdf-files" class="section level3">
+<h3>Met from netCDF files</h3>
+<pre class="r"><code>library(ncdf4)
+library(udunits2)
+library(lubridate)
+
+for(date in c(&#39;2016-06-21&#39;, &#39;2016-09-21&#39;, &#39;2016-12-21&#39;, &#39;2017-03-21&#39;, &#39;2017-05-21&#39;)){
+  
+  directory &lt;- file.path(&quot;/data/terraref/sites/ua-mac/Level_1/EnvironmentLogger&quot;, date)
+  files &lt;- dir(directory, full.names = TRUE)
+  spectra_list &lt;- lapply(files, function(x){
+    metnc &lt;- nc_open(x)
+    spc &lt;- ncvar_get(metnc, &#39;flx_spc_dwn&#39;)
+    datetime &lt;- ymd(&quot;1970-01-01&quot;) + 
+      seconds(ud.convert(ncvar_get(metnc, &#39;time&#39;), &#39;day&#39;, &#39;s&#39;))
+    wvl &lt;- ncvar_get(metnc, &#39;wvl_lgr&#39;)
+    time &lt;- hour(datetime) + 
+      minute(datetime)/60 + 
+      second(datetime)/3600
+    return(list(spc = spc, wvl = wvl, date = ymd(strftime(datetime, &#39;%Y%m%d&#39;)), datetime = datetime))
+    
+  })
+  
+  spectra_df &lt;- do.call(&#39;cbind&#39;,(lapply(spectra_list, &#39;[[&#39;, &#39;spc&#39;) ))
+  dim(spectra_df)
+  
+  time &lt;- do.call(&#39;c&#39;,lapply(spectra_list,&#39;[[&#39;,&#39;datetime&#39;))
+  wavelengths &lt;- spectra_list[[1]]$wvl
+  save(spectra_df, time, wavelengths, file = file.path(&#39;data&#39;, paste0(&quot;spectra&quot;,date,&quot;.Rdata&quot;)))
+  idx &lt;- 1+0:700*24
+  i &lt;- 1:length(hr)[!is.na(hr)]
+  library(lubridate)
+  hr &lt;- hour(time) + minute(time)/60 + second(time)/3600
+  png(filename = paste0(&#39;data/spectra&#39;,date,&#39;.png&#39;))
+  image(x = wavelengths, y = as.numeric(hr[idx]), spectra_df[,idx],
+        ylab = &#39;hour of day&#39;, 
+        xlab = &#39;wavelength (nm)&#39;,
+        col = cm.colors(n=100),zlim = c(-1,2.1),
+        main = paste0(&#39;diurnal solar spectral radiation\n&#39;,date))
+  dev.off()
+  
+}  
+library(lubridate)
+library(data.table)
+library(udunits2)
+
+time &lt;- ncvar_get(metnc, &#39;time&#39;)
+
+wavelengths &lt;- ncvar_get(metnc, &#39;wvl_lgr&#39;)
+
+f_down_spectrum &lt;- ncvar_get(metnc, &#39;flx_spc_dwn&#39;)
+
+library(ggplot2)
+
+ggplot() + 
+  geom_point(aes(wavelengths, f_down_spectrum[,1])) +
+  geom_line(aes(wavelengths, f_down_spectrum[,1]))
+
+f_down_means &lt;- rowMeans(f_down_spectrum)
+
+ggplot() + 
+  geom_point(aes(wavelengths, f_down_means)) +
+  geom_line(aes(wavelengths, f_down_means))
+
+print(metnc)</code></pre>
+</div>
 </div>
 
     </div>

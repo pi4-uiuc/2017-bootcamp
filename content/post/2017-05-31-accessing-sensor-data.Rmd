@@ -193,7 +193,7 @@ Locations with met data
 
 
 
-```{sh}
+```{sh eval=FALSE}
 curl -O spectra.json -X GET https://terraref.ncsa.illinois.edu/clowder/api/geostreams/datapoints?key=Pb3AUSqnUw&stream_id=743
 
 ```
@@ -201,11 +201,12 @@ curl -O spectra.json -X GET https://terraref.ncsa.illinois.edu/clowder/api/geost
 
 ### Using the PEcAn atmospheric data utilities
 
-```{r install-pecan-dependencies, message=FALSE}
+```{r install-pecan-dependencies, message=FALSE, eval = FALSE}
+
 devtools::install_github("pecanproject/pecan",  
-                         subdir = 'utils')
+                         subdir = 'base/utils', ref = 'develop', dependencies = FALSE)
 devtools::install_github("pecanproject/pecan",  
-                         subdir = 'db')
+                         subdir = 'base/db')
 devtools::install_github("rforge/reddyproc",
                          subdir = "pkg/REddyProc")
 devtools::install_github("pecanproject/pecan",  
@@ -232,7 +233,7 @@ con =  "~/.pecan.clowder.xml")
 
 ![](pecan.clowder.xml.png)
 
-```{r pecan-met-workflow, message=FALSE, warning=FALSE}
+```{r pecan-met-workflow, message=FALSE, warning=FALSE, eval = FALSE}
 library("PEcAn.data.atmosphere")
 library("dplyr")
 
@@ -268,21 +269,19 @@ met <- readr::read_csv('data/biocromet/Clowder.UIUC Energy Farm - NE.2016-02-28.
 ```
 
 
-## Laser Scanner Point Clouds
 
-## netCDF Files
-
-## Hyperspectral images
+## netCDF Files - Hyperspectral images
 
 ### Sample data
 
 ```{r}
+library(ncdf4)
 hsi_nc <- nc_open('/data/terraref/sites/samples/vnir_test_small.nc')
 ```
 
 ### Met from netCDF files
 
-```{r netcdf-met}
+```{r netcdf-met, eval=FALSE}
 library(ncdf4)
 library(udunits2)
 library(lubridate)

@@ -24,7 +24,11 @@ theme_set(theme_bw())
 
 #bety_src <- RPostgreSQL::dbConnect(odbc::odbc(), "TERRA-REF traits copy BETYdb")
 #bety_src <- src_postgres(dbname = "bety", password = 'bety', host = 'bety.terraref', user = 'bety', port = 5432)
-bety_src <- src_postgres(dbname = "bety", password = 'DelchevskoOro', host = 'bety6.ncsa.illinois.edu', user = 'viewer', port = 5432)
+bety_src <- src_postgres(dbname = "bety", 
+                         password = 'DelchevskoOro', 
+                         host = 'bety6.ncsa.illinois.edu', 
+                         user = 'viewer', 
+                         port = 5432)
 #bety_src <- RPostgreSQL::dbConnect(odbc::odbc(), "TERRA-REF traits viewer")
 
 ```
@@ -189,7 +193,7 @@ grass_yields <- read.csv('data/grass_yield.csv')
 #lattice::splom(grass_yields)
 #pairs(grass_yields, pch='.')
 
-grass_yields <- grass_yields %>% filter(genus %in% c("Miscanthus", "Panicum"))
+#grass_yields <- grass_yields %>% filter(genus %in% c("Miscanthus", "Panicum"))
 ```
 
 
@@ -256,7 +260,7 @@ summary(mod3)
 mod4 <- lm(yield_annual ~ genus + mat + map + age, data = grass_yields)
 AIC(mod1, mod4, mod6)
 
-BIC(mod1, mod2)
+BIC(mod1, mod4)
 ```
 
 ### Interactions
@@ -269,7 +273,7 @@ how do you know which interactions to include?
 
 
 ```{r}
-anova(mod1, mod2)
+anova(mod1, mod4)
 
 ```
 refining the model
@@ -280,18 +284,13 @@ mod4 <- lm(yield_annual ~ genus * age + genus * mat + genus * map, data = grass_
 
 ```
 
-```{r}
-ggplot(data = grass_yield) +
+```{r eval=FALSE}
+ggplot(data = grass_yields) +
   geom_histogram(aes(mean, y = ..density.., fill = genus), position = 'dodge', binwidth = 5)
 ```
 
 
-```{r}
-
-#----
-
-grass_yields <- readr::read_csv('~/2017-bootcamp/grass_yield.csv')
-
+```{r eval = FALSE}
 x <- grass_yields$yield_annual
 mean(x)
 var(x)
@@ -318,9 +317,6 @@ lines(x, dnorm(x, mean = mean(yield), sd = sd(yield)))
 yield_subset <- yield[yield>1]
 hist(yield_subset, breaks = 25, probability = TRUE)
 lines(x, dnorm(x, mean = mean(yield), sd = sd(yield)))
-
-install.packages('fitdistrplus')
-library(fitdistrplus)
 
 w <- fitdist(yield_subset, distr = 'weibull')
 ln <- fitdist(yield_subset, distr = 'lnorm')
@@ -454,7 +450,6 @@ summary(h6)
 
 plot(h6, which = c(1))
 
-lapply(list(h0, h1, h3, h5, h6, h8), AIC)
 AIC(h0)
 
 library(MASS)
@@ -468,6 +463,8 @@ plot(h8)
 
 ?stepAIC
 
+lapply(list(h0, h1, h3, h5, h6, h8), AIC)
+
 ```
 
 
@@ -477,7 +474,7 @@ https://stats.stackexchange.com/questions/20836/algorithms-for-automatic-model-s
 
 
 ```{r}
-grass_yields <- read.csv('../../grass_yield.csv') %>% 
+grass_yields <- read.csv('data/grass_yield.csv') %>% 
   filter(genus %in% c("Miscanthus", "Panicum")) %>%
   mutate(sqrt_yield = sqrt(yield_annual), genus = as.character(genus))
 
@@ -502,7 +499,7 @@ class(train_lm_yield$finalModel$call)
 ```
 
 Alternative: lasso
-```{r}
+```{r eval = FALSE}
 
 yield_lasso <- train(yield_annual ~  genus * fertilizer_n + genus * poly(age, 2) + genus * mat + genus * map, 
                   data = grass_yields,
@@ -530,7 +527,6 @@ library(lme4)
 grass_re <- lme4::lmer(sqrt_yield ~ fertilizer_n + age + I(age^2) +
                        genus:fertilizer_n + genus:age + (1 | site), 
                   data = grass_yields)
-
 
 sjPlot::sjp.lmer(grass_re)
 ```
@@ -577,7 +573,7 @@ functional forms https://ms.mcmaster.ca/~bolker/emdbook/book.pdf
 
 The following is an illustrative collection of the mathematical functions based on those described in Bolker 2009.
 
-```{r eval = false}
+```{r eval = FALSE}
 foo.null  <- lm (y ~ 1, ...)
 foo.poly1 <- lm(y ~ poly(x,1),...)
 foo.poly2 <- lm(y ~ poly(x,2)+poly(x2,2),...)

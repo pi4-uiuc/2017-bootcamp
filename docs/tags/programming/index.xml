@@ -17,11 +17,10 @@
       <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/05/30/scrum-and-best-practices/</guid>
-      <description>Objectives:
- Understand Best practices per wilson et al Basic components of Reproducible Research Be familiar with concepts related to Scrum  Best Practices in Scientific Computing Wilson et al 2014 Best practices in Scientific Computing Wilson et al http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745 Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
- Wilson et al 2017 Good enough practices in Scientific Computing https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
- Example: PEcAn Project Please start the day by reading this.
-  Reproducible Research Example 1: Ocean Health Index   Figure 1: Better science in less time, illustrated by the Ocean Health Index project.</description>
+      <description>Objectives:  Understand best practices by Wilson et al Basic components of Reproducible Research Be familiar with concepts related to Scrum   Best Practices in Scientific Computing Wilson et al 2014 Best practices in Scientific Computing Wilson et al paper: http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
+Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
+ Wilson et al 2017 Good enough practices in Scientific Computing Wilson et al paper: https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
+ Example: PEcAn Project Please start the day by reading this.</description>
     </item>
     
   </channel>

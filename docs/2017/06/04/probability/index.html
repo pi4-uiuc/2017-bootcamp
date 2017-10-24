@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.30.2" />
+
+
+<title>Probability - PI4 Computational Bootcamp</title>
+<meta property="og:title" content="Probability - PI4 Computational Bootcamp">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="../../../../css/fonts.css" media="all">
+<link rel="stylesheet" href="../../../../css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="../../../../" class="nav-logo">
+    <img src="../../../../images/cropped-logo_m.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="../../../../about/">About</a></li>
+    
+    <li><a href="../../../../post/">Class Notes</a></li>
+    
+    <li><a href="https://github.com/pi4-uiuc">GitHub</a></li>
+    
+    <li><a href="../../../../projects/">Projects</a></li>
+    
+    <li><a href="../../../../reading/">Reading</a></li>
+    
+    <li><a href="../../../../syllabus/">Syllabus</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">11 min read</span>
+    
+
+    <h1 class="article-title">Probability</h1>
+
+    
+    <span class="article-date">2017/06/04</span>
+    
+
+    <div class="article-content">
+      <div id="probability-distributions-in-r" class="section level2">
+<h2>Probability Distributions in R</h2>
+<div id="objectives" class="section level3">
+<h3>Objectives:</h3>
+<ul>
+<li>Become familiar with common probability distributions in R</li>
+<li>Understand how probability distributions are related to each other</li>
+</ul>
+<div id="summarizing-data" class="section level4">
+<h4>Summarizing Data</h4>
+<p><strong>Expectation</strong></p>
+<p>If the random variable <span class="math inline">\(x\)</span> can take values <span class="math inline">\(x_1,...,x_N\)</span> with equal probability, the expected value <span class="math inline">\(E[x]\)</span> of <span class="math inline">\(x\)</span> is defined to be:</p>
+<p><span class="math display">\[E[x]=\sum_{i=1}^N\frac{x_i}{N}\]</span> Properties of the expected value: * <span class="math inline">\(E[x+y]=E[x]+E[y]\)</span> * <span class="math inline">\(E[cx]=cE[x]\)</span></p>
+<p><strong>Variance</strong></p>
+<p>The variance of the random variable <span class="math inline">\(x\)</span> is defined to be:</p>
+<p><span class="math display">\[Var[x]=E[(x-\bar{x})^2]=E[x^2]-(\bar{x})^2\]</span></p>
+<p>The standard deviation is easier to interpret than <span class="math inline">\(Var\)</span> because it is in the same scale as the mean. It is defined by:</p>
+<p><span class="math display">\[\textrm{SD}=\sqrt{Var[x]}\]</span></p>
+<p>The relative standard deviation or coefficient of variation is defined by: <span class="math display">\[\textrm{CV}=\textrm{SD}/\bar{x}\]</span></p>
+<p>This quantity is useful because it is scale independent.</p>
+<p><strong>Higher Moments</strong></p>
+<p>Skew: are the data symmetric about the mean?</p>
+<p><span class="math display">\[\textrm{Skew}=(x-E[x])^2\]</span></p>
+<p>Kurtosis: how ‘pointy’ are the data?</p>
+<p><span class="math display">\[Kurt[x]=E[(x-E[x])^4]\]</span></p>
+</div>
+</div>
+</div>
+<div id="probability-distributions" class="section level2">
+<h2>Probability distributions</h2>
+<p>see also <a href="https://cran.r-project.org/web/views/Distributions.html">CRAN Distributions Task View</a></p>
+<div class="figure">
+<img src="https://i.stack.imgur.com/eGAx9.png" />
+
+</div>
+<p>from <a href="http://people.stern.nyu.edu/adamodar/pdfiles/papers/probabilistic.pdf">Aswath Damodaran</a></p>
+<div id="discrete-probability-distributions" class="section level3">
+<h3>Discrete probability distributions</h3>
+<div id="poisson" class="section level4">
+<h4>Poisson</h4>
+<ul>
+<li>Describes number of events in a given amount of time / or number of individuals expected in a given area</li>
+<li>Parameter <span class="math inline">\(\lambda\)</span> is average density or arrival rate</li>
+<li>As <span class="math inline">\(\lambda \rightarrow \infty\)</span>, <span class="math inline">\(Poisson(\lambda)\rightarrow N(\lambda, \sqrt{\lambda})\)</span></li>
+</ul>
+</div>
+<div id="binomial" class="section level4">
+<h4>Binomial</h4>
+<ul>
+<li>Number of successes in <span class="math inline">\(n\)</span> independent experiments</li>
+<li>Parameters:</li>
+<li><span class="math inline">\(n\)</span> = number of trials</li>
+<li><span class="math inline">\(p\)</span> = probability of success</li>
+<li>pdf: <span class="math inline">\(p^x(1-p)^{N-x}\)</span></li>
+</ul>
+<p>Let’s flip a coin:</p>
+<pre class="r"><code>ifelse(rbinom(100, 1, 0.5), &quot;H&quot;, &quot;T&quot;)</code></pre>
+<pre><code>##   [1] &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot;
+##  [18] &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot;
+##  [35] &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot;
+##  [52] &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot;
+##  [69] &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot;
+##  [86] &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot;</code></pre>
+</div>
+</div>
+<div id="continuous-probability-distributions" class="section level3">
+<h3>Continuous probability distributions</h3>
+<div id="uniform" class="section level4">
+<h4>Uniform</h4>
+<ul>
+<li><span class="math inline">\(Uniform(a,b)\)</span> defines equal probability over the range <span class="math inline">\([a,b]\)</span></li>
+<li>Often used as prior distribution in a Bayesian framework to indicate that ‘nothing is known’. However:</li>
+<li>usually it is not true that nothing is known, or that <span class="math inline">\(P(event) = \frac{1}{(b-a)}\)</span> over range <span class="math inline">\([a,b]\)</span> but <span class="math inline">\(P= 0\)</span> elsewhere.</li>
+<li>the fact that <span class="math inline">\(U(a,b)\)</span> indicates that ‘nothing is known’ is scale dependent.</li>
+<li>good for quick and dirty priors, but not much else</li>
+</ul>
+</div>
+<div id="normal" class="section level4">
+<h4>Normal</h4>
+<p>Ubiquitous because of the Central Limit Theorem: “a large number of independent samples from the same distribution, the distribution of the sum will be approximately normal”</p>
+<p><span class="math display">\[x\sim N(\mu,s)\]</span> Here is a short example of the Central Limit Theorem, sampling from the gamma distribution (see below):</p>
+<pre class="r"><code>samps &lt;- matrix(data = rgamma(10000, 5, 2), nrow = 1000)
+#samps &lt;- matrix(data = rbeta(10000, 1, 2), nrow = 1000)
+hist(rowMeans(samps), breaks = 20, main = &#39;Demonstration of Central Limit Thm&#39;)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Here is a short example of the Central Limit Theorem, sampling from the beta distribution (see below):</p>
+<pre class="r"><code>samps &lt;- matrix(data = rbeta(10000, 1, 2), nrow = 1000)
+hist(rowMeans(samps), breaks = 20, main = &#39;Demonstration of Central Limit Thm&#39;)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="gamma" class="section level4">
+<h4>Gamma</h4>
+<p>Distribution of waiting times until a certain number of events take place.</p>
+<p><span class="math display">\[Gamma(shape, rate)\]</span></p>
+<ul>
+<li>parameters: waiting time for <code>shape</code> events given <code>rate</code></li>
+<li>e.g. <span class="math inline">\(Gamma(shape = 3, rate = 2)\)</span> is time until three events if avg time to event is 2 per day</li>
+<li>mean = shape / rate = 1.5</li>
+</ul>
+<pre class="r"><code>x &lt;- seq(from = 0, to = 10, by = 0.1)
+plot(x, dgamma(x, shape = 3, rate = 1/2), type = &#39;l&#39;)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Applications: * any distribution where <span class="math inline">\(x\in[0,\infty)\)</span> * conjugate prior on <span class="math inline">\(\sigma\)</span>, e.g. <span class="math inline">\(x\sim N(\mu,\sigma); \sigma~Gamma(0.001,0.001)\)</span> is a broad prior on <span class="math inline">\(\sigma\)</span></p>
+</div>
+<div id="exponential" class="section level4">
+<h4>Exponential</h4>
+<ul>
+<li><span class="math inline">\(Exp(\lambda)\equiv Gamma(1,\lambda)\)</span></li>
+</ul>
+<p>Applications:</p>
+<ul>
+<li>times between events, lifespans, survival times</li>
+<li>random samples of anything that decreases exponentially</li>
+</ul>
+</div>
+<div id="lognormal" class="section level4">
+<h4>logNormal</h4>
+<p><span class="math display">\[x\sim N(log(\mu),log(s))\]</span></p>
+</div>
+</div>
+<div id="mixture-models" class="section level3">
+<h3>Mixture Models</h3>
+<pre class="r"><code>t &lt;- 1:100/10
+l &lt;- sapply(t, function(x) rpois(1, 10*max(0, sin(x))))
+plot(t, sin(t), ylim = c(-1, 15), type = &#39;l&#39;, col = &#39;red&#39;)
+lines(t, l)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="../../../../home/rstudio/2017-bootcamp/static/images/bestiary_distns_table.jpg" /> Table 4.1 from Bolker 2009</p>
+</div>
+<div id="r-functions-for-probability-distribution" class="section level3">
+<h3>R functions for Probability distribution</h3>
+<pre class="r"><code>help.search(&#39;distribution&#39;, package = &#39;stats&#39;)
+?Binomial</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Distribution</th>
+<th>R name</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beta</td>
+<td>beta</td>
+<td>shape1, shape2, ncp</td>
+</tr>
+<tr class="even">
+<td>Binomial</td>
+<td>binom</td>
+<td>size, prob</td>
+</tr>
+<tr class="odd">
+<td>Cauchy</td>
+<td>cauchy</td>
+<td>location, scale</td>
+</tr>
+<tr class="even">
+<td>chi-squared</td>
+<td>chisq</td>
+<td>df, ncp</td>
+</tr>
+<tr class="odd">
+<td>exponential</td>
+<td>exp</td>
+<td>rate</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>f</td>
+<td>df1, df2, ncp</td>
+</tr>
+<tr class="odd">
+<td>gamma</td>
+<td>gamma</td>
+<td>shape, scale</td>
+</tr>
+<tr class="even">
+<td>geometric</td>
+<td>geom</td>
+<td>prob</td>
+</tr>
+<tr class="odd">
+<td>hypergeometric</td>
+<td>hyper</td>
+<td>m, n, k</td>
+</tr>
+<tr class="even">
+<td>log-normal</td>
+<td>lnorm</td>
+<td>meanlog, sdlog</td>
+</tr>
+<tr class="odd">
+<td>logistic</td>
+<td>logis</td>
+<td>location, scale</td>
+</tr>
+<tr class="even">
+<td>Negative binomial</td>
+<td>nbinom</td>
+<td>size, prob</td>
+</tr>
+<tr class="odd">
+<td>normal</td>
+<td>norm</td>
+<td>mean, sd</td>
+</tr>
+<tr class="even">
+<td>Poisson</td>
+<td>pois</td>
+<td>lambda</td>
+</tr>
+<tr class="odd">
+<td>Student’s t</td>
+<td>t</td>
+<td>df, ncp</td>
+</tr>
+<tr class="even">
+<td>uniform</td>
+<td>unif</td>
+<td>min, max</td>
+</tr>
+<tr class="odd">
+<td>Weibull</td>
+<td>weibull</td>
+<td>shape, scale</td>
+</tr>
+<tr class="even">
+<td>Wilcoxon</td>
+<td>wilcox</td>
+<td>m, n</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>“d” = density: probability density function (PDF)</li>
+<li>“p” = cumulative distribution function (CDF)</li>
+<li>“q” = compute quantiles: calculates the value associated with a specified tail probability, inverse of “p”</li>
+<li>“r” = simulates random numbers from the distribution</li>
+</ul>
+<div id="pdf-functions-dnorm-etc" class="section level4">
+<h4>PDF functions <code>dnorm</code> etc</h4>
+<pre class="r"><code>x = seq(-5,5,by=0.1)
+plot(x,dnorm(x),type=&#39;l&#39;)       ## that’s a lowercase “L” for “line”
+#abline(v=0)                              ## add a line to indicate the mean (“v” is for “vertical”)
+lines(x,dnorm(x,2),col=2)           ## try changing the mean (“col” sets the color)
+#abline(v=2,col=2)
+lines(x,dnorm(x,-1,2),col=3)    ## try changing the mean and standard dev</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>#abline(v=-1,col=3)</code></pre>
+<p>You will use density functions quite frequently to estimate the <strong>likelihood</strong> of data. For example if we collected a data point of x = 0.5 we can calculate the likelihood that this data point came from each of these three normal distributions. Implicit in the likelihood is that we’re looking at the probability of the data in a very small window, <span class="math inline">\(\delta x\)</span>, and that <span class="math inline">\(\delta x\)</span> never changes so that:</p>
+<p><span class="math display">\[Pr(x &lt; X &lt; x + \delta x) = \int_{x}^{x + \delta x} f(x)dx \propto f(x)\]</span></p>
+<pre class="r"><code>dnorm(0.5,0,1)</code></pre>
+<pre><code>## [1] 0.3520653</code></pre>
+<pre class="r"><code>dnorm(0.5,2,1)</code></pre>
+<pre><code>## [1] 0.1295176</code></pre>
+<pre class="r"><code>dnorm(0.5,-1,2)</code></pre>
+<pre><code>## [1] 0.1505687</code></pre>
+<p>This shows that the first distribution has a higher likelihood than the other two, which are about the same. We interpret this as saying that the observed data point was more likely to have been generated by the first distribution than the other two. This is consistent with where the dashed blue line intersects each of the curves.</p>
+<p>This plot of the normal distribution and the effects of varying the parameters in the normal are both probably familiar to you already – changing the mean changes where the distribution is centered while changing the standard deviation changes the spread of the distribution.</p>
+</div>
+</div>
+<div id="cdf-functions-qnorm-etc" class="section level3">
+<h3>CDF functions <code>qnorm</code> etc</h3>
+<p>Next try looking at the CDF of the normal:</p>
+<pre class="r"><code>plot(x,pnorm(x,0,1),type=&#39;l&#39;)
+abline(v=0)
+lines(x,pnorm(x,2,1),col=2)
+abline(v=2,col=2)
+lines(x,pnorm(x,-1,2),col=3)
+abline(v=-1,col=3)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Using the CDF we can calculate <span class="math inline">\(Pr(X \leq x)\)</span> for our data point</p>
+<pre class="r"><code>pnorm(0.5,0,1)</code></pre>
+<pre><code>## [1] 0.6914625</code></pre>
+<pre class="r"><code>pnorm(0.5,2,1)</code></pre>
+<pre><code>## [1] 0.0668072</code></pre>
+<pre class="r"><code>pnorm(0.5,-1,2)</code></pre>
+<pre><code>## [1] 0.7733726</code></pre>
+<p>If the value 0.5 here corresponded to some hypothesis, the CDF could be use to calculate a p-value associated with the one-sided test. Would any be significant at <span class="math inline">\(\alpha\)</span>=0.05 significance? At <span class="math inline">\(\alpha\)</span>=0.1?</p>
+<p>Next let’s look at the function qnorm. Since the input to this function is a quantile, the x-values for the plot are restricted to the range [0,1].</p>
+<pre class="r"><code>p = seq(0,1,by=0.01)
+plot(p,qnorm(p,0,1),type=&#39;l&#39;,ylim=range(x))    # ylim sets the y-axis range
+# range returns the min/max as a 2-element vector
+#abline(h=0)                        # “h” for “horizontal”
+lines(p,qnorm(p,2,1),col=2)
+#abline(h=2,col=2)
+lines(p,qnorm(p,-1,2),col=3)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>#abline(h=-1,col=3)</code></pre>
+</div>
+<div id="quantiles" class="section level3">
+<h3>Quantiles</h3>
+<p>the quantile function is the inverse of the CDF. These functions can be used to find the median of the distribution (p = 0.5) or to estimate confidence intervals at any level desired.</p>
+<pre class="r"><code>qnorm(c(0.025,0.975),0,1)       # what width CI is specified by these values?</code></pre>
+<pre><code>## [1] -1.959964  1.959964</code></pre>
+<pre class="r"><code>plot(p,qnorm(p,0,1),type=&#39;l&#39;,ylim=range(x))
+abline(v=c(0.025,0.975),lty=2)  # add vertical lines at the CI
+abline(h=qnorm(c(0.025,0.975)),lty=2)   #add horizontal lines at the threshold vals</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre class="r"><code>plot(x,dnorm(x,0,1),type=&#39;l&#39;)       # plot the corresponding pdf
+abline(v=qnorm(c(0.025,0.975)),lty=2)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<p>Finally, let’s investigate the rnorm function for generating random numbers that have a normal distribution. Here we generate histograms that have a progressively larger sample size and compare that to the actual density of the standard normal.</p>
+<pre class="r"><code>par(mfrow = c(5,5), mar = rep(0.1, 4))
+
+for(i in 1:25){
+  x &lt;- seq(-4,4,by=0.1)
+  hist(rnorm(25), xlim = c(-4,4), ylim = c(0,0.75), axes = FALSE, xlab = NULL, ylab = NULL, main = NULL, breaks = seq(-4,4,by=0.5), probability = TRUE)
+  lines(x, dnorm(x))
+}</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-14-1.png" width="768" /></p>
+</div>
+<div id="mixture-distributions" class="section level3">
+<h3>Mixture distributions</h3>
+<p>You can combine distributions.</p>
+<p>For example, if you have two distributions, <span class="math inline">\(D_1\)</span> and <span class="math inline">\(D_2\)</span> and <span class="math inline">\(p(D_1) = p_1 = 1-P(D_2)\)</span></p>
+<p>If <span class="math inline">\(D_1\sim N(1,2)\)</span> and <span class="math inline">\(D_2\sim N(5,1)\)</span> and <span class="math inline">\(P(D_1)=0.3\)</span> it is a 30:70 mixture of the two distributions:</p>
+<pre class="r"><code>u1 &lt;- runif(1000)
+z &lt;- ifelse(u1 &lt; 0.3,
+            rnorm(1000, mean = 1, sd = 2),
+            rnorm(1000, mean = 5, sd = 1))
+hist(z, breaks = 100, freq = FALSE)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>A common way of combining distributions is to use ‘zero inflation’. This distribution can represent a phenomenon where there is some probability of nothing occuring, but if something occurs it follows a parametric distribution (e.g. Poisson)</p>
+<pre class="r"><code>u2 &lt;- runif(1000)
+z &lt;- ifelse(u2 &lt; 0.1, 0, rpois(1000, 5))
+hist(z, breaks = 0:25)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="functions" class="section level3">
+<h3>Functions</h3>
+<p><a href="https://ms.mcmaster.ca/~bolker/emdbook/book.pdf">Bolker 2009 p 118</a></p>
+<!--![](../../static/images/bestiary_functions.png)-->
+<pre class="r"><code>set.seed(1)
+x &lt;- rnorm(100)
+hist(x)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<pre class="r"><code>dnorm(0)</code></pre>
+<pre><code>## [1] 0.3989423</code></pre>
+<pre class="r"><code>dnorm(x = 0.5)</code></pre>
+<pre><code>## [1] 0.3520653</code></pre>
+<pre class="r"><code>dnorm(x=0.5, mean = 2, sd = 1)</code></pre>
+<pre><code>## [1] 0.1295176</code></pre>
+<pre class="r"><code>dnorm(x=0.5, mean = -1, sd = 2)</code></pre>
+<pre><code>## [1] 0.1505687</code></pre>
+<pre class="r"><code>x &lt;- seq(from = -5, to = 5, by = 0.1)
+## Density
+plot(x, dnorm(x, 0, 1), type = &#39;l&#39;)
+abline(v = 0)
+lines(x, dnorm(x, 2, 1), type = &#39;l&#39;, col = 2)
+abline(v = 2, col = 2)
+lines(x, dnorm(x, -1, 2), type = &#39;l&#39;, col = 3)
+abline(v = -1, col = 3)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
+<pre class="r"><code>## CDF
+plot(x, pnorm(x, 0, 1), type = &#39;l&#39;)
+abline(v = 0)
+lines(x, pnorm(x, 2, 1), type = &#39;l&#39;, col = 2)
+abline(v = 2, col = 2)
+lines(x, pnorm(x, -1, 2), type = &#39;l&#39;, col = 3)
+abline(v = -1, col = 3)
+abline(h = 0.5)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-3.png" width="672" /></p>
+<pre class="r"><code>pnorm(0)</code></pre>
+<pre><code>## [1] 0.5</code></pre>
+<pre class="r"><code>pnorm(q = 0.5)</code></pre>
+<pre><code>## [1] 0.6914625</code></pre>
+<pre class="r"><code>pnorm(q=0.5, mean = 2, sd = 1)</code></pre>
+<pre><code>## [1] 0.0668072</code></pre>
+<pre class="r"><code>pnorm(q=0.5, mean = -1, sd = 2)</code></pre>
+<pre><code>## [1] 0.7733726</code></pre>
+<pre class="r"><code>## Quantiles
+qnorm(0.5)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>qnorm(c(0.025, 0.975), mean = 0, sd = 1)</code></pre>
+<pre><code>## [1] -1.959964  1.959964</code></pre>
+<pre class="r"><code>p = seq(0,1,by=0.01)
+qnorm(c(0.025,0.975),0,1)       # what width CI is specified by these values?</code></pre>
+<pre><code>## [1] -1.959964  1.959964</code></pre>
+<pre class="r"><code>plot(p,qnorm(p,0,1),type=&#39;l&#39;,ylim=range(x))
+abline(v=c(0.025,0.975),lty=2)  # add vertical lines at the CI
+abline(h=qnorm(c(0.025,0.975)),lty=2)   #add horizontal lines at the threshold vals</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-4.png" width="672" /></p>
+<pre class="r"><code>plot(x,dnorm(x,0,1),type=&#39;l&#39;)       # plot the corresponding pdf
+abline(v=qnorm(c(0.025,0.975)),lty=2)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-5.png" width="672" /></p>
+<pre class="r"><code>##
+rbinom(n = 100, 1, 0.5)</code></pre>
+<pre><code>##   [1] 0 0 1 0 0 1 1 0 0 1 1 0 1 1 1 0 1 1 1 0 0 0 0 1 1 1 0 0 0 1 0 0 0 1 0
+##  [36] 1 1 1 0 0 0 1 1 0 0 0 0 0 0 1 1 1 0 1 0 0 0 0 0 1 1 0 0 1 1 0 0 1 1 0
+##  [71] 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 1</code></pre>
+<pre class="r"><code>ifelse(rbinom(100, 1, 0.5), &quot;H&quot;, &quot;T&quot;)</code></pre>
+<pre><code>##   [1] &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot;
+##  [18] &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot;
+##  [35] &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot;
+##  [52] &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot;
+##  [69] &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot;
+##  [86] &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;H&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot;</code></pre>
+<pre class="r"><code>### Uniform
+plot(x, dunif(x, 0, 1), type = &#39;l&#39;)
+#abline(v = 0.5)
+lines(x, dunif(x, 1, 2), type = &#39;l&#39;, col = 2)
+#abline(v = 1.5, col = 2)
+lines(x, dunif(x, -1, 2), type = &#39;l&#39;, col = 3)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-6.png" width="672" /></p>
+<pre class="r"><code>#abline(v = 0.5, col = 3)
+
+
+hist(rgamma(10000, 5, 2))</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-7.png" width="672" /></p>
+<pre class="r"><code>samps &lt;- matrix(data = rgamma(10000, 5, 2), nrow = 1000)
+hist(rowMeans(samps), breaks = 20, main = &#39;demo of central limit thm&#39;)</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-8.png" width="672" /></p>
+<pre class="r"><code>### Gamma
+
+?rgamma
+
+## shape = 3, rate = 2
+x &lt;- seq(from = 0, to = 10, by = 0.1)
+plot(x, dgamma(x, shape = 3, rate = 2),
+     type = &#39;l&#39;)
+abline(v = qgamma(0.5, shape = 3, rate = 2))</code></pre>
+<p><img src="../../../../post/2017-06-04-probability_files/figure-html/unnamed-chunk-17-9.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>Bolker 2009 “Ecological Models and Data in R”</p>
+<p><a href="https://github.com/mdietze/EE509/blob/master/Exercise_02_Distributions.Rmd">Dietze EE509 class</a>)</p>
+<p>LICENSE</p>
+<p><strong>Probability distributions content derived from Dietze 2014 as well as Bolker 2009</strong></p>
+<p>For Dietze 2014</p>
+<p>The MIT License (MIT)</p>
+<p>Copyright (c) 2014 Michael Dietze</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="../../../../index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="../../../../images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/shell.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="../../../../js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-98205888-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

@@ -11,9 +11,10 @@ tags: []
 ## Bayesian regression
 
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, eval=FALSE}
 
-grass_yields <- read.csv('~/dev/bety_manuscript/data/ba_rawdata.csv') %>% 
+library(dplyr)
+grass_yields <- read.csv('data/grass_yield.csv') %>% 
   filter(genus %in% c("Miscanthus", "Panicum") & age >=3) %>%
   mutate(sqrt_yield = sqrt(yield_annual), 
          genus = as.character(genus), 
@@ -21,7 +22,7 @@ grass_yields <- read.csv('~/dev/bety_manuscript/data/ba_rawdata.csv') %>%
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 
 library(rstanarm)
 options(mc.cores = parallel::detectCores())
