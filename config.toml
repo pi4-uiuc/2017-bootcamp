@@ -23,8 +23,11 @@ publishDir = "docs"
     name = "Reading"
     url = "/reading/"
 [[menu.main]]
-    name = "Class Notes"
+    name = "Week 1 Class Notes"
     url = "/post/"
+[[menu.main]]
+    name = "Week 2 Class Notes"
+    url = "https://github.com/pi4-uiuc/2017-bootcamp/tree/master/lessons/data"
 [[menu.main]]
     name = "GitHub"
     url = "https://github.com/pi4-uiuc"
