@@ -11,3 +11,8 @@ The bootcamp is a two-week long course for for PI4 students prior to beginning s
 This year the focus is shifting to the use and analysis of large and complex data.
 In previous years, courses focused more on numerical analysis. Materials from [2016](http://www.math.uiuc.edu/~hirani/cbmg/index.html), [2015](http://math.illinois.edu/~shahkar2/cbmg/), [2014](http://www.math.uiuc.edu/~hirani/teaching/cbmgsu14) are available through these links.
 
+## Funding
+
+PI4 is an NSF-funded award from the Division of Mathematical Sciences, in the Mentoring Through Critical Transition Points program; award 1345032.
+
+
