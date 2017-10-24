@@ -53,6 +53,24 @@ Check in all .md, .Rmd, and .html files.
 
 Because the dependencies are complex, most of the tutorials are written in environments hosted at terraref.ndslabs.org. There students are able to launch web-based programming environments with all of the dependencies already available. [This article](http://www.nationaldataservice.org/news/170329_workbench.html) describes this tool, which is really amazing as it is incredibly difficult to setup identical environments for students. With many connections to remote computers this becomes even more challenging. And previously, there was no way to provide students with easy access to a very large filesystem and a friendly programming environment.
 
+From [terraref/rstudio-terraref](https://hub.docker.com/r/terraref/rstudio-terraref/builds/)
+
+```r
+install.packages("ggfortify")
+install.packages("ncdf4")
+install.packages("moments")
+devtools::install_github("terraref/traits")
+devtools::install_github("tidyverse/tibble")
+
+install.packages("bookdown")
+install.packages("lme4")
+
+
+devtools::install_github("glmmTMB/glmmTMB/glmmTMB")
+install.packages("sjPlot")
+
+```
+
 ### Data
 
 * Many online databases (especially betydb.org) will be used via both the web front end and the 
