@@ -1,5 +1,5 @@
 ---
-title: "Databases and SQL"
+title: "5. Databases and SQL"
 author: "David LeBauer"
 date: '2017-05-30'
 slug: databases-and-sql

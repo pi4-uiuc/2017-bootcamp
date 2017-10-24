@@ -3,6 +3,20 @@ title: "Projects"
 date: "2017-06-01"
 ---
 
+
+## Final group projects
+
+Each group has a github repository that contains code developed to answer a specific question with data from the TERRA REF project.
+
+Here are the project topics / questions and links to their repositories.
+
+* Can the shortwave infrared solar spectrum be predicted from visible spectra? https://github.com/pi4-uiuc/Team_1
+* Can genotype be predicted from leaf traits? https://github.com/pi4-uiuc/TeamTwo
+* Comparing growth rates of plants grown indoors versus outdoors https://github.com/pi4-uiuc/IndoorOutdoor
+* Can plant growth in greenhouses predict how plants will grow in the field? https://github.com/pi4-uiuc/Group-4
+* An exploration of genotype-phenotype correlation in _Sorghum bicolor_ https://github.com/pi4-uiuc/Team5
+
+
 ## Objectives
 
 Students should experience a collaborative development cycle similar to what they might encounter as a research programmer / software engineer / data scientist etc. 

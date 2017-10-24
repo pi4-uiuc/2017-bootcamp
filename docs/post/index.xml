@@ -81,7 +81,7 @@ library(ncdf4) library(dplyr) hsi_calibration_dir &amp;lt;- &amp;#39;/data/terra
     </item>
     
     <item>
-      <title>3. Best Practices and Collaborative Development</title>
+      <title>4. Best Practices and Collaborative Development</title>
       <link>/2017/05/30/scrum-and-best-practices/</link>
       <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
       
@@ -93,7 +93,7 @@ Slideshow: http://swcarpentry.github.io/slideshows/best-practices/
     </item>
     
     <item>
-      <title>Databases and SQL</title>
+      <title>5. Databases and SQL</title>
       <link>/2017/05/30/databases-and-sql/</link>
       <pubDate>Tue, 30 May 2017 00:00:00 +0000</pubDate>
       
