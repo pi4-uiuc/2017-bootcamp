@@ -4,11 +4,13 @@ site: blogdown:::blogdown_site
 
 ## 2017 PI4 Computational Bootcamp
 
-This site includes material for the 2017 PI4 Computational Bootcamp taught to students in the Department of Mathematics, University of Illinois at Urbana-Champaign.
+This site includes material for the 2017 PI4 Computational Bootcamp taught to students in the Department of Mathematics, University of Illinois at Urbana-Champaign May 26 - June 9, 2017 in 239 Altgeld Hall.
 
-The 2017 PI4 computational Bootcamp was held May 26 - June 9, 2017 in 239 Altgeld Hall.
+The material was primarily presented as a hands-on 'live coding' experience, following the Software Carpentry approach. The 'class notes' in many places code snippets but do not provide the background material that was presented in class to explain the concepts. This will be updated in future lessons.    
 
-The bootcamp is a two-week long course for for PI4 students prior to beginning summer internships as part of the NSF funded [PI4 Program for Interdisciplinary and Industrial Internships at Illinois](https://pi4.math.illinois.edu/). 
+Please note that the "course notes" 
+
+The PI4 bootcamp is a two-week long course intended to prepare students for applied computational work and for summer internships as part of the NSF funded [PI4 Program for Interdisciplinary and Industrial Internships at Illinois](https://pi4.math.illinois.edu/).
 
 This year the focus shifted to the use and analysis of large and complex data.
 In previous years, courses focused more on numerical analysis. Materials from [2016](http://www.math.uiuc.edu/~hirani/cbmg/index.html), [2015](http://math.illinois.edu/~shahkar2/cbmg/), [2014](http://www.math.uiuc.edu/~hirani/teaching/cbmgsu14) are available through these links.
@@ -17,4 +19,14 @@ In previous years, courses focused more on numerical analysis. Materials from [2
 
 PI4 is an NSF-funded award from the Division of Mathematical Sciences, in the Mentoring Through Critical Transition Points program; award 1345032.
 
+## License and Reuse 
 
+Computational Bootcamp materials are available for reuse by others. We ask that when materials are re-used, the following statement be included:
+
+> These materials were created by David LeBauer and Neal Davis at the University of Illinois, with support from National Science Foundation grant DMS 1345032 “MCTP: PI4: Program for Interdisciplinary and Industrial Internships at Illinois.”
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">work</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+A great way to reuse and improve this material is to fork it on GitHub. In this way, we can 'pull' back improvements that you make!
+
+<iframe src="https://ghbtns.com/github-btn.html?user=pi4-uiuc&repo=2017-bootcamp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
