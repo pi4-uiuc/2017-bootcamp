@@ -168,5 +168,139 @@ Version Control SWC Git Novice 1-6 Getting Started Introduce yourself (once you�
  Department of Mathematics, University of Illinois email:klajbor2@illinois.edu  Course Objectives A two week course designed to introduce Math graduate students with little or no programming experience to methods in data analysis and computation.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>/week2/02-pca/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/02-pca/</guid>
+      <description>Lesson 2: Principal component analysis Contents  Introduction Data access and data description PCA Implementation Example: Iris data References Contributors  As usual, a standard header to load necessary libraries:
+import pandas as pd import numpy as np import matplotlib.pyplot as plt %matplotlib inline  Introduction Principle component analysis (PCA) is a well-known technique for reducing the number of dimensions in a data set. PCA takes a linear transformation of features of the original dataset to reduce dimensionality.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/04-kdtree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/04-kdtree/</guid>
+      <description>Lesson 4: $k$-d tree for classification and regression Contents  Introduction Example: Online news data Fitting a classification tree from an original data set Fitting a classification tree from PCA References Contributors  As usual, a standard header to load necessary libraries:
+import pandas as pd import numpy as np from scipy import spatial import matplotlib.pyplot as plt %matplotlib inline  Introduction $k$-d trees partition $k$-dimensional space in order to organize points and data access.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/05-svm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/05-svm/</guid>
+      <description>Lesson 5: Support vector machines Contents  Introduction SVM for binary-class classification The kernel function SVM for three-class classification Exercise References Contributors  As usual, a standard header to load necessary libraries:
+import pandas as pd import numpy as np from sklearn import svm import matplotlib.pyplot as plt %matplotlib inline  Introduction &amp;ldquo;Support vector machines are a set of supervised learning methods used for classification, regressions, and outliers detection.&amp;rdquo; (scikit-learn documentation)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/06-mc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/06-mc/</guid>
+      <description>Lesson 6: Monte Carlo simulation Contents  Monte Carlo simulation Sampling Applications Contributors  First, a standard header to load necessary libraries:
+import numpy as np from numpy import random as npr import matplotlib.pyplot as plt %matplotlib inline  Monte Carlo simulation Monte Carlo techniques are used to estimate quantities by random sampling. They are particularly useful in three cases (arranged in order of approximate complexity):
+ Numerical integration (particularly high-dimensional integrals) Kinetic Monte Carlo (sampling events based on likelihoods) Markov chain Monte Carlo (MCMC), including the Metropolis algorithm (targeted physics simulations) &amp;gt; The Metropolis–Hastings algorithm can draw samples from any probability distribution P(x), provided you can compute the value of a function f(x) which is proportional to the density of P.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/07-kmclus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/07-kmclus/</guid>
+      <description>Lesson 7: $k$-Means Clustering Contents  Introduction $k$-means clustering method Evaluation: silhouette method Evaluation: gap statistics method Conclusion Contributors  First, a standard header to load necessary libraries:
+import numpy as np from numpy import random as npr import matplotlib.pyplot as plt import matplotlib.cm as cm %matplotlib inline  Introduction Clustering analysis is a type of unsupervised learning. Two common methods will be examined: $k$-means and hierarchical clustering. In this section, we will be introducing the $k$-means method as well as criteria to evaluate the performance of clustering.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/08-hierclus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/08-hierclus/</guid>
+      <description>Lesson 8: Hierarchical Clustering Contents  Introduction Hierarchical clustering method Dendrograms Evaluation: silhouette method Contributors  First, a standard header to load necessary libraries:
+import numpy as np from numpy import random as npr import matplotlib.pyplot as plt import matplotlib.cm as cm %matplotlib inline  Introduction How many clusters does the following data set have?
+from sklearn.datasets import make_circles noisy_circles = make_circles( n_samples=1500,factor=0.5,noise=0.05 ) plt.plot( noisy_circles[ 0 ][ :,0 ],noisy_circles[ 0 ][ :,1 ],&#39;ko&#39; ) plt.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/09-hiddenmarkov/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/09-hiddenmarkov/</guid>
+      <description>Lesson 9: Hidden Markov modeling Contents  Introduction Example: Generating a hidden Markov process Hidden Markov Model Generate HMM process Estimate transition and emission matrix Estimate hidden states Estimate transition and emission matrix given observations and hidden states Contributors  First, a standard header to load necessary libraries:
+import numpy as np from numpy import random as npr import matplotlib.pyplot as plt %matplotlib inline  Introduction The goal of data mining is to tease out characteristic behaviors and interesting subsets and interactions.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/09a-capstone/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/09a-capstone/</guid>
+      <description>Lesson 09a: Data Mining Capstone Contents  The data set The challenge Contributors  The data set The MovieLens database represents an extraction from IMDB of movies, tag data, and ratings data. For a capstone exercise, use the data mining techniques we have covered to analyze the tagging/metadata and the ratings data in order to make predictions about movie and tag popularity.
+Two data sets are available:
+ ml-latest-small ml-latest  Start with the smaller data set (100,000 entries) to set up your approach.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/10-aws/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/10-aws/</guid>
+      <description>Lesson 10: Amazon Web Services Contents  Cloud computing Amazon Web Services Elastic Compute Cloud Simple Storage Service Lambda Elastic MapReduce Contributors  Cloud computing Cloud computing marks the rise of computing as a utility, a resource that can be metered and accessed essentially anywhere. Although the lines can be blurry, cloud computing services are typically bundled into four categories:
+ cloud storage
+Dropbox and Box provide storage services, but naturally for enterprise customers there are many more competitors.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/11-hadoop-mr/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/11-hadoop-mr/</guid>
+      <description>Lesson 11: Apache Hadoop MapReduce Contents  MapReduce algorithm Elastic MapReduce Hadoop Streaming example: Word count Contributors  MapReduce algorithm The MapReduce algorithm is a specific low-communication parallel programming technique. It&amp;rsquo;s suitable for certain types of problems with iterated one-time local computational steps followed by a data trading step. Essentially, a Map step filters or sorts data, then a Reduce operation carries out a summarization procedure. Key to this is to stop thinking of machines carrying out tasks and instead just think in terms of functions.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/12-hadoop-fs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/12-hadoop-fs/</guid>
+      <description>Lesson 12: Apache Hadoop Architecture Contents  Apache Hadoop components Hadoop Distributed File System Hadoop Zoo Contributors  Apache Hadoop components Apache Hadoop is composed of a collection of tools and services, and embedded in a wider environment as well (the Hadoop Zoo). Hadoop itself consists of:
+ the MapReduce component, including the Mapper, Reducer, JobTracker, TaskTrackers, shufflers, sorters, etc. the Hadoop Distributed File System interfaces like Hadoop Streaming and Pig, etc.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/week2/13-pig/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/13-pig/</guid>
+      <description>Lesson 13: Apache Pig Contents  Apache Pig rationale Pig Latin Exercise Contributors  Apache Pig rationale Apache Pig is a procedural SQL-ish language which lets Hadoop users work with the distributed data sets of HDFS.
+Everything in Pig is a tuple (or a variation on a tuple, like a bag or an atom).
+Pig Latin The best way to get a feel for Pig is to just run an example.</description>
+    </item>
+    
+    <item>
+      <title>Lesson 1:  Data access and data cleaning</title>
+      <link>/week2/data-access-cleaning/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/week2/data-access-cleaning/</guid>
+      <description>Lesson 1: Data access and data cleaning Contents  Data description and data access Data cleaning Basic statistical analysis Data smoothing Correlation between different variables Contributors  First, a standard header to load necessary libraries:
+import pandas as pd import matplotlib.pyplot as plt %matplotlib inline  Data description and data access We will utilize weather data for the Coleto Creek Reservoir from 2003–14, provided by the National Oceanic and Atmospheric Administration (NOAA).</description>
+    </item>
+    
   </channel>
 </rss>
