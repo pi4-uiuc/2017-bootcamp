@@ -15,7 +15,7 @@ In previous years, courses focused more on numerical analysis. Materials from [2
 
 The class notes provided here are for reference as well as reuse and improvement.  The material was primarily presented in an interactive 'live coding' context based on the [Software Carpentry](https://software-carpentry.org) pedagogical approach ([Wilson 2016](https://f1000research.com/articles/3-62/v2), [Jordan et al 2017](https://carpentries.github.io/assessment/carpentries/long-term-survey/report.html)). 
 
-Class notes are provided as-is, and are not intendend to be self-contained and are in many places brief or incomplete. In many places code snippets that have not been fully developed to include all of the background material that was presented in class to explain the concepts. In addition, the 'notes' include new code that was written during the class and have not been revised. 2017 was the first year of the course, and will be developed in future years.
+Class notes are provided as-is, and are not intendend to be self-contained and are in many places brief or incomplete. In many places code snippets that have not been fully developed to include all of the background material that was presented in class to explain the concepts. In addition, the 'notes' include new code that was written during the class and have not been revised. This material was new this year and will be developed in future years.
 
 ## License and Reuse 
 
@@ -29,9 +29,9 @@ Computational Bootcamp materials are available for reuse by others. We ask that 
 
 Site content is maintained on GitHub. You can report errors and make suggestions by [submitting a new issue](https://github.com/pi4-uiuc/2017-bootcamp/issues/new).
 
-<iframe src="https://ghbtns.com/github-btn.html?user=pi4-uiuc&repo=2017-bootcamp&type=fork&count=false&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
-
 One way to reuse and improve this material is to fork it on GitHub. Then it is possible to push - or ask us to pull - back any improvements. 
+
+<iframe src="https://ghbtns.com/github-btn.html?user=pi4-uiuc&repo=2017-bootcamp&type=fork&count=false&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
 
 ## Funding
 
