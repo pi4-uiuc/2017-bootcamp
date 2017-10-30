@@ -373,6 +373,14 @@ rh &lt;- as.numeric(met$environment_sensor_readings$weather_station$relHumidity$
 temp &lt;- as.numeric(met$environment_sensor_readings$weather_station$temperature$value)</code></pre>
 <pre class="r"><code>if(!require(BioCro)) devtools::install_github(&#39;ebimodeling/biocro&#39;)</code></pre>
 <pre><code>## Loading required package: BioCro</code></pre>
+<pre><code>## Downloading GitHub repo ebimodeling/biocro@master
+## from URL https://api.github.com/repos/ebimodeling/biocro/zipball/master</code></pre>
+<pre><code>## Installing BioCro</code></pre>
+<pre><code>## &#39;/usr/local/lib/R/bin/R&#39; --no-site-file --no-environ --no-save  \
+##   --no-restore --quiet CMD INSTALL  \
+##   &#39;/tmp/Rtmp4nXIVx/devtools27a327df30bf/ebimodeling-biocro-4804884&#39;  \
+##   --library=&#39;/usr/local/lib/R/site-library&#39; --install-tests</code></pre>
+<pre><code>## </code></pre>
 <pre class="r"><code>library(BioCro)</code></pre>
 <pre class="r"><code>A &lt;- c4photo(Qp = par, Tl = temp, RH = rh)$Assim
 
