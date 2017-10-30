@@ -27,6 +27,9 @@ Computational Bootcamp materials are available for reuse by others. We ask that 
 
 A great way to reuse and improve this material is to fork it on GitHub. In this way, we can 'pull' back improvements that you make!
 
+<iframe src="https://ghbtns.com/github-btn.html?user=pi4-uiuc&repo=2017-bootcamp&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="158px" height="30px"></iframe>
+
+
 ## Funding
 
 PI4 is an NSF-funded award from the Division of Mathematical Sciences, in the Mentoring Through Critical Transition Points program; award 1345032.
