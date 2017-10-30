@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2017-05-05T00:00:00+00:00</lastmod>
+    <loc>/2017/06/06/bayesian-analysis/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/06/06/stochastic-simulation/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/06/05/intro-statistics/</loc>
+    <lastmod>2017-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/06/04/probability/</loc>
+    <lastmod>2017-06-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/projects/</loc>
+    <lastmod>2017-06-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/31/accessing-sensor-data/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/31/exploratory-data-analysis/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/30/scrum-and-best-practices/</loc>
+    <lastmod>2017-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/30/databases-and-sql/</loc>
+    <lastmod>2017-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/27/intro-to-r/</loc>
+    <lastmod>2017-05-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/26/the-terminal-unix-shell/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/05/26/version-control-git-github/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -17,18 +73,123 @@
   </url>
   
   <url>
+    <loc>/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/week2/02-pca/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/04-kdtree/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/05-svm/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/06-mc/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/07-kmclus/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/08-hierclus/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/09-hiddenmarkov/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/09a-capstone/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/10-aws/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/11-hadoop-mr/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/12-hadoop-fs/</loc>
+  </url>
+  
+  <url>
+    <loc>/week2/13-pig/</loc>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2017-05-05T00:00:00+00:00</lastmod>
+    <loc>/tags/git/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/week2/data-access-cleaning/</loc>
+  </url>
+  
+  <url>
+    <loc>/tags/met/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/programming/</loc>
+    <lastmod>2017-05-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/sensors/</loc>
+    <lastmod>2017-05-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/shell/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/statistics/</loc>
+    <lastmod>2017-06-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/week2/</loc>
     <priority>0</priority>
   </url>
   
