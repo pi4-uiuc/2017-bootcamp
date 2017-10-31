@@ -517,7 +517,7 @@ summary(train_lm_yield)
 
 ## Random Effects
 
-```{r}
+```{r eval=FALSE}
 ## create a category for site
 grass_yields <- grass_yields %>% 
   mutate(site = as.factor(lat))
