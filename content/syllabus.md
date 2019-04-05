@@ -44,9 +44,9 @@ And will receive email notifications that they are signed up for the following:
 
 ### Familarity with basic syntax and operations in R and Python
 
-Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from DataCamp are **Required***; completion certificates must be mailed to the instructors by the start of the first day of class (Friday May 25). These courses should take a few hours to complete: 
-* [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r) 
-* [Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science).
+Although the course is aimed at students with limited experience using software, you are expected to complete two introductory courses in order to become familiar with the basic syntax and operations in R and Python. Two free courses from (redacted) are **Required***; completion certificates must be mailed to the instructors by the start of the first day of class (Friday May 25). These courses should take a few hours to complete: 
+* Introduction to R
+* Introduction to Python for Data Scienc
 
 *Students who have significant experience with R and / or Python may elect to substitute a more advanced course.
 
