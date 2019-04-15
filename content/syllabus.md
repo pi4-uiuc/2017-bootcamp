@@ -188,7 +188,7 @@ Wednesday May 31
 
 Thursday June 1
 
-- Presumptive background:  [Intro to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science) (covers through NumPy)
+- Presumptive background:  Intro to Python for Data Science (covers through NumPy)
 
 
 1. [Pandas](https://github.com/pi4-uiuc/2017-bootcamp/blob/master/lessons/data/00-pandas.ipynb)
